@@ -1,0 +1,63 @@
+<div class="modal-header">
+    <h3 class="modal-title">Search</h3>
+</div>
+<div class="modal-body">
+    <form name="form" class="form-horizontal" novalidate>
+        <div class="form-group">
+            <label for="filterStatuses"
+                class="col-sm-2 control-label">Status <span class="label label-default">{{filter.statuses.length}}</span></label>
+            <div class="col-sm-10">
+                <select id="filterStatuses"
+                    class="form-control"
+                    size="4"
+                    multiple
+                    ng-model="filter.statuses"
+                    ng-options="status for status in filterOptions.statuses">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="filterStepStatuses"
+                class="col-sm-2 control-label">Step status <span class="label label-default">{{filter.stepStatuses.length}}</span></label>
+            <div class="col-sm-10">
+                <select id="filterStepStatuses"
+                    class="form-control"
+                    size="4"
+                    multiple
+                    ng-model="filter.stepStatuses"
+                    ng-options="stepStatus for stepStatus in filterOptions.stepStatuses | orderBy">
+                </select>
+            </div>
+        </div>
+        <!--<div class="form-group" ng-if="filter.objectId == null">
+            <label for="filterCategories"
+                class="col-sm-2 control-label">Category <span class="label label-default">{{filter.categories.length}}</span></label>
+            <div class="col-sm-10">
+                <select id="filterCategories"
+                    class="form-control "
+                    size="4"
+                    multiple
+                    ng-model="filter.categories"
+                    ng-options="category for category in filterOptions.categories">
+                </select>
+            </div>
+        </div>-->
+        <div class="form-group">
+            <label for="filterTestProcedureIds"
+                class="col-sm-2 control-label">Test Procedure <span class="label label-default">{{filter.testProcedureIds.length}}</span></label>
+            <div class="col-sm-10">
+                <select id="filterTestProcedureIds"
+                    class="form-control"
+                    size="4"
+                    multiple
+                    ng-model="filter.testProcedureIds"
+                    ng-options="testProcedure.id as testProcedure.name for testProcedure in filterOptions.testProcedures">
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" type="button" ng-click="ok()">Search</button>
+    <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+</div>

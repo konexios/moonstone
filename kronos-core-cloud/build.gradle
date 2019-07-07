@@ -1,0 +1,55 @@
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+	manifest {
+		attributes(
+			"Implementation-Title": "moonstone-kronos-core-cloud",
+			"Implementation-Version": version,
+			"Implementation-Vendor": "Arrow Electronics, Inc.",
+			"Built-By": System.getProperty('user.name'),
+			"Built-Date": new Date().format("yyyy-MM-dd"),
+			"Built-Jdk": "${System.getProperty('java.version')} (${System.getProperty('java.specification.vendor')})",
+            "Git-Branch": getCurrentGitBranch(),
+            "Git-Last-Commit": getLastGitCommit())
+	}
+}
+
+dependencies {
+	// aspectjweaver
+	// compile("org.aspectj:aspectjweaver:${aspectjweaverVersion}")
+
+	api("commons-net:commons-net:${commonsNetVersion}")
+    api("commons-validator:commons-validator:${commonsValidatorVersion}")
+
+	// aws
+	api("com.amazonaws:aws-java-sdk-iot:${awsSdkVersion}")
+	api("com.amazonaws:aws-iot-device-sdk-java:${awsIotVersion}")
+
+	// ibm
+	api("com.ibm.messaging:watson-iot:${watsonIotVersion}")
+
+    // azure
+    api("com.microsoft.azure.sdk.iot:iot-service-client:${azureServiceClientVersion}")
+    api("com.microsoft.azure:azure-eventhubs:${azureEventHubVersion}")   
+    api("com.microsoft.azure.sdk.iot:iot-device-client:${azureDeviceClientVersion}")
+
+	// mqtt
+	api("org.eclipse.paho:org.eclipse.paho.client.mqttv3:${pahoVersion}")
+
+	// excel
+	api("org.apache.poi:poi:${poiVersion}")
+	api("org.apache.poi:poi-ooxml:${poiVersion}")
+	
+	// bouncycastle
+    api("org.bouncycastle:bcprov-jdk15on:${bouncycastleVersion}")
+    api("org.bouncycastle:bcpkix-jdk15on:${bouncycastleVersion}")
+    api("org.bouncycastle:bcmail-jdk15on:${bouncycastleVersion}")           
+
+    // validation
+    api("javax.validation:validation-api:${javaxValidationApiVersion}")  
+    api("org.glassfish:javax.el:${javaxElVersion}")    
+    api("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")        
+}

@@ -1,0 +1,46 @@
+.page-header .page-header-top .page-logo .logo-default { margin: 8.5px 0 0; }
+
+
+/* TABLE */
+
+.table-ellipsis,
+.truncate-ellipsis {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap;
+}
+ 
+.table-ellipsis th,
+.table-ellipsis td,
+.truncate-ellipsis > * {
+    display: table-cell;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.table > thead > tr > th > a,
+.table > thead > tr > th > a:focus,
+.table > thead > tr > th > a:hover {
+    color: rgb(51, 51, 51);
+    color: rgba(51, 51, 51, 1);
+    text-decoration: none;
+    display: block;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: transparent;
+}
+
+.table-striped>tbody>tr:nth-of-type(even) {
+    background-color: #fbfcfd;
+}
+
+i.enabled { 
+	color: rgb(47, 107, 60); 
+	color: rgba(47, 107, 60, 1); 
+}
+i.disabled { 
+	color: rgb(193, 68, 67); 
+	color: rgba(193, 68, 67, 1); 
+}

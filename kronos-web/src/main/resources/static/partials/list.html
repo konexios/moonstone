@@ -1,0 +1,41 @@
+<div class="row-content">
+    <subscription-expiration></subscription-expiration>
+    <!-- CONTENT WRAPPER -->
+    <div class="content-wrapper-fluid">
+
+        <div class="content-hd">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="content-title">
+                        <h1>{{vm.pageTitle}}</h1>
+                        <br/><span>{{vm.pageSubTitle}}</span>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 text-right">
+                    <div class="content-toolbar flex-row-end">
+                        <button type="button"
+                                ng-repeat="button in vm.toolbar"
+                                class="btn btn-default"
+                                ng-click="button.onClick()"><i ng-class="button.icon"></i> {{vm.getCaption(button.caption)}}
+                        </button>
+                        <div class="btn-group" ng-if="vm.btnDropdownActions.length > 0">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{vm.getCaption(vm.btnDropdownTitle)}} <span class="caret"></span></button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li ng-repeat="action in vm.btnDropdownActions"><a href ng-click="action.onClick()">{{vm.getCaption(action.caption)}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT BODY WRAPPER -->
+        <div class="content-bd-wrapper">
+            <!--  CONTENT BODY -->
+            <div class="content-bd" ng-include="'partials/list/panel.html'"></div>
+            <!-- /CONTENT BODY -->
+        </div>
+        <!-- /CONTENT BODY WRAPPER -->
+    </div>
+    <!-- /CONTENT WRAPPER -->
+</div>

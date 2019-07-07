@@ -1,0 +1,181 @@
+<div class="content-wrapper all-boards">
+	<div class="content-bd">
+        <div class="breadcrumb-container no-padding">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a></li>
+                <li>Boards</li>
+            </ul>
+        </div>
+		<div class="boards">
+			<!-- ARROW CERTIFIED BOARDS -->
+			<div class="well well-board well-certified">
+				<a href=""
+					class="btn btn-default btn-create-board pull-right"
+					ng-click="openBoard(null)"
+					ng-if="canCreateBoard();">Create Board</a>
+				<h2>Arrow Connect Certified Boards <sup><span class="badge badge-board-count">{{data.certifiedBoards.length}}</span></sup></h2>
+				<br/>
+				<ul class="list-inline">
+					<li class="board" ng-repeat="board in data.certifiedBoards track by $index">
+						<div class="board-hd">
+							<h3>
+								<i class="fa fa-list-alt fa-3x fa-fw pull-left" aria-hidden="true"></i> {{board.name}}
+								<p><small>{{board.description}}</small></p>
+							</h3> 
+						</div>
+						<div class="board-bd">
+							<a href="" ng-click="viewArrowCertifiedBoard(board);">Let's get started...</a>
+							<div class="btn-group pull-right"
+								ng-if="canUpdateArrowCertifiedBoard() || canDeleteArrowCertifiedBoard()">
+								<button type="button" 
+									class="btn btn-default dropdown-toggle" 
+									data-toggle="dropdown" 
+									aria-haspopup="true" 
+									aria-expanded="false">
+									<i class="fa fa-cog" aria-hidden="true"></i>
+								</button>
+								<ul class="dropdown-menu list-inline certified-menu">
+									<li ng-if="canCopyBoard();">
+										<button type="button" 
+											class="btn" 
+											ng-click="copyBoard(board);" 
+											title="Copy">
+											<i class="fa fa-files-o" aria-hidden="true"></i>
+										</button>
+									</li>
+									<li ng-if="canUpdateArrowCertifiedBoard();">
+										<button type="button"
+											class="btn"  
+											ng-click="openBoard(board);" 
+											title="Edit details">
+											<i class="fa fa-pencil" aria-hidden="true"></i>
+										</button>
+									</li>
+									<li ng-if="canUpdateArrowCertifiedBoard();">
+										<button type="button"
+											class="btn"  
+											ng-click="goToBoard(board);" 
+											title="Edit board">
+											<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+										</button>
+									</li>
+									<li ng-if="canDeleteArrowCertifiedBoard();">
+										<button type="button"
+											class="btn"  
+											ng-click="deleteConfirmation(board);" 
+											title="Delete">
+											<i class="fa fa-trash-o" aria-hidden="true"></i>
+										</button>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- /ARROW CERTIFIED BOARDS -->
+			<div class="clear"></div>
+		</div>
+
+		<div>
+			<h2>My Boards <sup><span class="badge badge-board-count">{{data.allBoards.length}}</span></sup></h2>
+			<br/>
+			<form class="form">
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+					<input type="text" 
+						class="form-control" 
+						id="boardSearchText" 
+						placeholder="" 
+						ng-model="boardSearchText"
+						aria-describedby="basic-addon2">
+				</div>
+			</form>
+			<br/>
+			
+			<table class="table">
+				<thead class="thead-light">
+					<tr>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Owner</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="board in data.allBoards | filter:boardSearchText">
+						<td>
+							<div class="btn-group pull-right"
+								ng-if="canCopyBoard() || canUpdateBoard() || canDeleteBoard()">
+								<button type="button" 
+									class="btn btn-default dropdown-toggle" 
+									data-toggle="dropdown" 
+									aria-haspopup="true" 
+									aria-expanded="false">
+									<i class="fa fa-cog" aria-hidden="true"></i>
+								</button>
+								<ul class="dropdown-menu list-inline all-boards-menu">
+									<li>
+										<button type="button"
+											class="btn" 
+											ng-disabled="!canMarkAsUserDefaultBoard() || board.category === 'SystemDefault' || board.category === 'UserDefault'"
+											ng-click="assignBoardAsUserDefault(board);" 
+											title="Set as default board">
+											<i class="fa fa-user" aria-hidden="true"></i>
+										</button>
+									</li>
+									<li>
+										<button type="button" 
+											class="btn"
+											ng-disabled="!canMarkAsFavoriteBoard() || !isMyBoard(board) || board.category === 'Favorite'"
+											ng-click="assignBoardAsFavorite(board);" 
+											title="Set as favorite">
+											<i class="fa fa-heart" aria-hidden="true"></i>
+										</button>
+									</li>
+									<li>
+										<button type="button"
+											class="btn"
+											ng-disabled="!canCopyBoard()"
+											ng-click="copyBoard(board);" 
+											title="Copy">
+											<i class="fa fa-files-o" aria-hidden="true"></i>
+										</button>
+									</li>
+									<li>
+										<button type="button"
+											class="btn"
+											ng-disabled="(!canUpdateBoard() || !isMyBoard(board)) && !canEditDefaultBoard(board)"
+											ng-click="openBoard(board);" 
+											title="Edit details">
+											<i class="fa fa-pencil" aria-hidden="true"></i>
+										</button>
+									</li>
+									<li>
+										<button type="button"
+											class="btn"
+											ng-disabled="(!canDeleteBoard() || !isMyBoard(board)) && !canDeleteDefaultBoard(board)"
+											ng-click="deleteConfirmation(board);"
+											title="Delete">
+											<i class="fa fa-trash-o" aria-hidden="true"></i>
+										</button>
+									</li>
+								</ul>
+							</div>
+							<i class="fa fa-flag table-board-icon system-default" aria-hidden="true" ng-if="board.category === 'SystemDefault'"></i>
+							<i class="fa fa-user table-board-icon user-default" aria-hidden="true" ng-if="board.category === 'UserDefault'"></i>
+							<i class="fa fa-heart table-board-icon user-favorite" aria-hidden="true" ng-if="board.category === 'Favorite'"></i>
+							<i class="fa fa-paint-brush table-board-icon user-custom" aria-hidden="true" ng-if="board.category === 'Custom'"></i>
+							<i
+									class="fa fa-h-square table-board-icon user-custom"
+									aria-hidden="true"
+									ng-if="['XconDevice', 'XconGroup', 'XconCustomer', 'XconGateway'].includes(board.category)"></i>
+							<a href="#/board/{{board.id}}">{{board.name}}</a>
+						</td>
+						<td>{{board.description}}</td>
+						<td>{{board.owner}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

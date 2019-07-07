@@ -1,0 +1,63 @@
+<div class="modal-header">
+    <h3 class="modal-title">Log</h3>
+</div>
+<form class="form-horizontal">
+    <div class="modal-body">
+        <div class="row" style="margin:0">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label">Log Id:</label> {{vm.auditLog.id}}
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Log Type:</label> {{vm.auditLog.type}}
+                </div>
+                <div class="form-group">
+                    <label class="control-label">When:</label> {{vm.auditLog.createdDate | amFromUnix | amDateFormat:'MM/DD/YYYY hh:mm:ss A'}}
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Who:</label> {{vm.auditLog.createdBy || 'Unknown'}}
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label">Application:</label> {{vm.auditLog.applicationName}}
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Product:</label> {{vm.auditLog.productName}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group" style="margin-left:0; margin-right:0;">
+                    <label class="control-label">Properties</label>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <table class="table table-striped table-bordered" style="table-layout: fixed;" ng-if="vm.isParametersSpecified()">
+                    <thead class="hidden-xs">
+                        <tr>
+                            <th>Property</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="(property, value) in vm.auditLog.parameters">
+                            <td class="hidden-xs">{{property}}</td>
+                            <td class="hidden-xs">{{value}}</td>
+                            <td class="hidden-lg hidden-md hidden-sm">
+                                <div><b>Property:</b> {{property}}</div>
+                                <div class="white-space-normal"><b>Value:</b> {{value}}</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p ng-if="!vm.isParametersSpecified()">No properties were changed.</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default"
+            type="button" ng-click="vm.close()">Close</button>
+    </div>
+</form>

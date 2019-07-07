@@ -1,0 +1,187 @@
+[
+	{
+		"systemName": "pegasus",
+		"apiSigningRequired": false,
+		"hidden": true,
+		"configurations": [],
+		"features": [],
+		"name": "Pegasus",
+		"description": "Pegasus",
+		"enabled": true
+	},
+	{
+		"systemName": "kronos",
+		"apiSigningRequired": false,
+		"hidden": false,
+		"configurations": [
+			{
+				"dataType": "String",
+				"category": "Settings",
+				"name": "loginScreenDevRegDescription",
+				"value": "Rapid sensor to cloud development, flexible data platform options and comprehensive IoT solution management are just a few clicks away."
+			},
+			{
+				"dataType": "String",
+				"category": "Settings",
+				"name": "loginScreenDevRegMetrics",
+				"value": "<ul><li>Support for up to 50 provisioned devices</li><li>Up to 1GB of storage preserved for the last 30 days</li><li>Option to use your own data platform subscription</li><li>Access to APIs, SDKs and Developer guides</li><li>Access to Arrow Connect Mobile Gateway</li></ul>"
+			},
+			{
+				"dataType": "String",
+				"category": "Settings",
+				"name": "loginScreenDevRegEULA",
+				"value": "<div class=\"checkbox\"><label><input type=\"checkbox\" ng-model=\"vm.termsReadAndAgree\"> I have read and agree to the terms and conditions outlined in the <a target=\"_blank\" href=\"https://content.arrowconnect.io/public/assets/legal/arrow-connect-development-license-v1.pdf\">EULA</a>.</label></div>"
+			},
+			{
+				"dataType": "Json",
+				"category": "Email",
+				"name": "emailDeveloperAccountExpired",
+				"value": "{\"subject\":\"Arrow Connect Account Deactivated\",\"body\":\"Your Arrow Connect developer account for <strong>${login}</strong> has been deactivated. If you did not request a change in account status, please contact us at support@arrowconnect.io<br/><br/>Thank you for using Arrow Connect.<br/><br/>Sincerely,<br/><br/>The Arrow Connect Support Team<br/><br/>For more information, visit us anytime at <a href='http://www.arrowconnect.io'>www.arrowconnect.io</a>\"}",
+				"jsonClass": "com.arrow.acs.client.model.EmailModel"
+			},
+			{
+				"dataType": "Json",
+				"category": "Email",
+				"name": "emailPasswordReset",
+				"value": "{\"subject\":\"Arrow Connect Password Reset\",\"body\":\"${fullName},<br/><br/>Your Arrow Connect password has been reset. Use the following login and password to access your account. If you did not request a change in account status, please contact us at support@arrowconnect.io<br/><br/>Login: ${login}<br/>Password: ${password}<br/>Portal: <a href=\\\"https://portal.arrowconnect.io\\\">https://portal.arrowconnect.io</a><br/><br/>Once you login, you will be required to change your password.<br/><br/>Thank you for using Arrow Connect.<br/><br/>Sincerely,<br/><br/>The Arrow Connect Support Team<br/><br/>For more information, visit us anytime at <a href='http://www.arrowconnect.io'>www.arrowconnect.io</a>\"}",
+				"jsonClass": "com.arrow.acs.client.model.EmailModel"
+			},
+			{
+				"dataType": "Json",
+				"category": "Email",
+				"name": "emailPasswordUpdatedEmail",
+				"value": "{\"subject\":\"Arrow Connect Password Update\",\"body\":\"${fullName},<br/><br/>The password for your Arrow Connect developer account <strong>${login}</strong> has been updated. If you did not request a change in account status, please contact us at support@arrowconnect.io<br/><br/>Thank you for using Arrow Connect.<br/><br/>Sincerely,<br/><br/>The Arrow Connect Support Team<br/><br/>For more information, visit us anytime at <a href='http://www.arrowconnect.io'>www.arrowconnect.io</a>\"}",
+				"jsonClass": "com.arrow.acs.client.model.EmailModel"
+			},
+			{
+				"dataType": "Json",
+				"category": "Email",
+				"name": "emailReactivateDeveloperAccountEmail",
+				"value": "{\"subject\":\"Arrow Connect Account Activation\",\"body\":\"${fullName},<br/><br/>Your Arrow Connect developer account for <strong>${login}</strong> has been reactivated. If you did not request a change in account status, please contact us at support@arrowconnect.io<br/><br/>Thank you for using Arrow Connect.<br/><br/>Sincerely,<br/><br/>The Arrow Connect Support Team<br/><br/>For more information, visit us anytime at <a href='http://www.arrowconnect.io'>www.arrowconnect.io</a>\"}",
+				"jsonClass": "com.arrow.acs.client.model.EmailModel"
+			},
+			{
+				"dataType": "Json",
+				"category": "Email",
+				"name": "emailRegisteredDeveloperEmail",
+				"value": "{\"subject\":\"Arrow Connect - Developer Registration\",\"body\":\"<html><head></head><body><table width='600' cellspacing='0' style='font-family: franklin-gothic-urw,Franklin Gothic Book,Arial,Helvetica,sans-serif,Verdana; font-size: 12pt; color: rgb(22, 22 ,22);'><tr><td bgcolor='#000000'><table width='100%' cellspacing='0' cellpadding='8'><tr><td><img alt='Arrow Connect' src='https://content.arrowconnect.io/public/assets/images/Arrow_Worm_ArrowConnect_lockup_h_2c_white_cmyk.png' height='60'/></td></tr></table></td></tr><tr><td><table width='100%' cellspacing='0' cellpadding='20'><tr><td bgcolor='#ffffff'>Hello, ${firstName},<br/><br/><p>You're so close to start developing IoT Solutions! Your Arrow Connect developer account has been created.<br/><br/>Please verify your account by clicking the link below.</p><br/><table width='100%' cellspacing='0'><tr><td align='center'><table width='128' height='46' cellspacing='0'><tr><td align='center' bgcolor='#00a19b'><a href='https://portal-${zoneSystemName}.arrowconnect.io/#/verify?tthid=${tempTokenHID}' style='display: inline-block; color: #ffffff; text-decoration: none;'>Verify</a></td></tr></table></td></tr></table><br/><br/>If you did not request this account, please contact us at support@arrowconnect.io.<br/><br/>Sincerely,<br/><br/>The Arrow Connect Support Team<br/><br/>For more information, visit us any time at <a href='http://www.arrowconnect.io'>www.arrowconnect.io</a></td></tr></table></td></tr></table></body></html>\"}",
+				"jsonClass": "com.arrow.acs.client.model.EmailModel"
+			},
+			{
+				"dataType": "Json",
+				"category": "Email",
+				"name": "emailUnverifiedAccountExpiredEmail",
+				"value": "{\"subject\":\"Arrow Connect Account Expiration\",\"body\":\"${fullName},<br/><br/>Your Arrow Connect developer account <strong>${login}</strong> has been deactivated. If you did not request a change in account status, please contact us at support@arrowconnect.io<br/><br/>Thank you for using Arrow Connect.<br/><br/>Sincerely,<br/><br/>The Arrow Connect Support Team<br/><br/>For more information, visit us anytime at <a href='http://www.arrowconnect.io'>www.arrowconnect.io</a>\"}",
+				"jsonClass": "com.arrow.acs.client.model.EmailModel"
+			},
+			{
+				"dataType": "Json",
+				"category": "EULA",
+				"name": "productEULA",
+				"value": "{\"url\":\"https://content.arrowconnect.io/public/assets/legal/arrow-connect-developer-eula-2-23-18.pdf\",\"date\":\"2018-02-23T00:00:00.000Z\"}",
+				"jsonClass": "com.arrow.pegasus.data.profile.ProductEULA"
+			},
+			{
+				"dataType": "Json",
+				"category": "Email",
+				"name": "emailAccountActivatedEmail",
+				"value": "{\"subject\":\"Arrow Connect - Get Started\",\"body\":\"<html><head></head><body><table width='600' cellspacing='0' style='font-family: franklin-gothic-urw,Franklin Gothic Book,Arial,Helvetica,sans-serif,Verdana; font-size: 12pt; color: rgb(22, 22 ,22);'><tr><td bgcolor='#000000'><table width='100%' cellspacing='0' cellpadding='8'><tr><td><img alt='Arrow Connect' src='https://content.arrowconnect.io/public/assets/images/Arrow_Worm_ArrowConnect_lockup_h_2c_white_cmyk.png' height='60'/></td></tr></table></td></tr><tr><td><table width='100%' cellspacing='0' cellpadding='20'><tr><td bgcolor='#ffffff'>Hello ${firstName},<br/><br/><p>Your Arrow Connect developer account has been created and you're now ready to start developing IoT solutions. Get started with the \\\"IoT Pocket Demo\\\" to see how Arrow Connect bridges the Operational Technology (OT) and Information Technology (IT) worlds.<br/><br/>Pocket Demo? The IoT Device that you carry in your pocket already is ready to help you get started. The Arrow Connect mobile application allows you to push data from sensors on your smart phone to the Arrow Connect Developer Portal where you can visualize the data and associate actions with it.<br/><br/>Download the application from the appropriate app store.<br/><br/><table width='100%' cellspacing='0'><tr><td align='center'><table width='280' cellspacing='0'><tr><td align='center'><a href='https://itunes.apple.com/us/app/arrow-connect-gateway/id1268374251?mt=8'><img alt='Download on the App Store' src='https://content.arrowconnect.io/public/assets/images/gas.png' width='141'/></a> <a href='https://play.google.com/store/apps/details?id=com.arrow.jmyiotgateway'><img alt='Android App On Google Play' src='https://content.arrowconnect.io/public/assets/images/apogp.png' width='128'/></a></td></tr></table></td></tr></table><br/>Once you download the application, sign in with your username and password and enter this application code.<br/><br/>Application Code: <span style='font-size:17px'><strong>${applicationCode}</strong></span><br/><br/>You can review the detailed instructions and to access Arrow Connect SDKs, APIs and documentation, please visit <a href='https://developer.arrowconnect.io/'>Developer Hub</a></p><br/>If you did not request a change in account status, please contact us at support@arrowconnect.io.<br/><br/><br/>Thank you for using Arrow Connect<br/><br/>Sincerely,<br/><br/>The Arrow Connect Support Team<br/><br/>For more information, visit us any time at <a href='http://www.arrowconnect.io'>www.arrowconnect.io</a></td></tr></table></td></tr></table></body></html>\"}",
+				"jsonClass": "com.arrow.acs.client.model.EmailModel"
+			},
+			{
+				"dataType": "Json",
+				"category": "Email",
+				"name": "emailKioskSignupEmail",
+				"value": "{\"subject\":\"Arrow Connect - Developer Registration\",\"body\":\"<html><head></head><body><table width='600' cellspacing='0' style='font-family: franklin-gothic-urw,Franklin Gothic Book,Arial,Helvetica,sans-serif,Verdana; font-size: 12pt; color: rgb(22, 22 ,22);'><tr><td bgcolor='#000000'><table width='100%' cellspacing='0' cellpadding='8'><tr><td><img alt='Arrow Connect' src='https://content.arrowconnect.io/public/assets/images/Arrow_Worm_ArrowConnect_lockup_h_2c_white_cmyk.png' height='60'/></td></tr></table></td></tr><tr><td><table width='100%' cellspacing='0' cellpadding='20'><tr><td bgcolor='#ffffff'>${email},<br/><br/><p>Please click on the Sign Up button below to create your free Arrow Connect developer account.<br/><br/><table width='100%' cellspacing='0'><tr><td align='center'><table width='128' height='46' cellspacing='0'><tr><td align='center' bgcolor='#00a19b'><a href='https://portal-${zoneSystemName}.arrowconnect.io/#/signup?tthid=${tempTokenHID}' style='display: inline-block; color: #ffffff; text-decoration: none;'>Sign Up</a></td></tr></table></td></tr></table><br/><br/>If you did not request this information, please contact us at support@arrowconnect.io.<br/><br/>Sincerely,<br/><br/>The Arrow Connect Support Team<br/><br/>For more information, visit us any time at <a href='http://www.arrowconnect.io'>www.arrowconnect.io</a></p></td></tr></table></td></tr></table></body></html>\"}",
+				"jsonClass": "com.arrow.acs.client.model.EmailModel"
+			},
+			{
+				"dataType": "Json",
+				"category": "Email",
+				"name": "emailSoftwareReleaseScheduleStart",
+				"value": "{\"subject\":\"Firmware Upgrade Job ${jobName} started\",\"body\":\"Your requested firmware upgrade for Job ${jobName} has started. <br><br><table border='1' cellpadding='5' style='border-collapse: collapse;'><tr><th>Job Name</th><th>Requester</th><th>Assets</th><th>Asset Type</th><th>Hardware Version</th><th>New Firmware Version</th><th>Started</th></tr><tr><td>${jobName}</td><td>${requestor}</td><td>${assets}</td><td>${deviceType}</td><td>${hwVersion}</td><td>${newSwVersion}</td><td>${started?datetime}</td></tr></table><br/>For more information, please refer to the job�s detailed Audit Log in the Firmware Management section of the Arrow Connect developer portal.<br/><br/>Thanks,<br/><br/>Arrow Connect Support\"}",
+				"jsonClass": "com.arrow.acs.client.model.EmailModel"
+			},
+			{
+				"dataType": "Json",
+				"category": "Email",
+				"name": "emailSoftwareReleaseScheduleEnd",
+				"value": "{\"subject\":\"Firmware Upgrade ${jobName} Completed\",\"body\":\"Your requested firmware upgrade for Job ${jobName} has completed. <br><br><table  border='1' cellpadding='5' style='border-collapse: collapse;'><tr><th>Job Name</th><th>Requester</th><th>Assets</th><th>Asset Type</th><th>Hardware Version</th><th>New Firmware Version</th><th>Started</th><th>Completed</th><th>Status</th></tr><tr><td>${jobName}</td><td>${requestor}</td><td>${assets}</td><td>${deviceType}</td><td>${hwVersion}</td><td>${newSwVersion}</td><td>${started?datetime}</td><td>${completed?datetime}</td><td>${status}</td></tr></table><br/>For more information, please refer to the job�s detailed Audit Log in the Firmware Management section of the Arrow Connect developer portal.<br/><br/>Thanks,<br/><br/>Arrow Connect Support\"}",
+				"jsonClass": "com.arrow.acs.client.model.EmailModel"
+			},
+			{
+				"dataType": "Json",
+				"category": "Email",
+				"name": "emailSoftwareReleaseScheduleSubmit",
+				"value": "{\"subject\":\"Firmware Upgrade Job ${jobName} submitted\",\"body\":\"Your requested firmware upgrade for Job ${jobName} has submitted. <br><br><table border='1' cellpadding='5' style='border-collapse: collapse;'><tr><th>Job Name</th><th>Requester</th><th>Assets</th><th>Asset Type</th><th>Hardware Version</th><th>New Firmware Version</th><th>Schedule</th></tr><tr><td>${jobName}</td><td>${requestor}</td><td>${assets}</td><td>${deviceType}</td><td>${hwVersion}</td><td>${newSwVersion}</td><td>${schedule}</td></tr></table><br/>For more information, please refer to the job�s detailed Audit Log in the Firmware Management section of the Arrow Connect developer portal.<br/><br/>Thanks,<br/><br/>Arrow Connect Support\"}",
+				"jsonClass": "com.arrow.acs.client.model.EmailModel"
+			},
+			{
+				"dataType": "Json",
+				"category": "Email",
+				"name": "emailSocialEventRegistration",
+				"value": "{\"subject\":\"Arrow Connect - Social Event Registration\",\"body\":\"<html><head></head><body><table width='600' cellspacing='0' style='font-family: franklin-gothic-urw,Franklin Gothic Book,Arial,Helvetica,sans-serif,Verdana; font-size: 12pt; color: rgb(22, 22 ,22);'><tr><td bgcolor='#000000'><table width='100%' cellspacing='0' cellpadding='8'><tr><td><img alt='Arrow Connect' src='https://content.arrowconnect.io/public/assets/images/Arrow_Worm_ArrowConnect_lockup_h_2c_white_cmyk.png' height='60'/></td></tr></table></td></tr><tr><td><table width='100%' cellspacing='0' cellpadding='20'><tr><td bgcolor='#ffffff'>Hello ${name},<br/><br/>Your Arrow Connect account has been created.<br/>Here is your verification code to complete your registration.<br/><br/>${verificationCode}<br/><br/>If you did not request this account, please contact us at <a href='mailto:support@arrowconnect.io'>support@arrowconnect.io</a>.<br/><br/>Sincerely,<br/>The Arrow Connect Support Team</td></tr></table></td></tr></table></body></html>\"}",
+				"jsonClass": "com.arrow.acs.client.model.EmailModel"
+			},
+			{
+				"dataType": "Json",
+				"category": "Email",
+				"name": "emailSocialEventRegistrationVerified",
+				"value": "{\"subject\":\"Arrow Connect - Social Event Registration\",\"body\":\"<html><head></head><body><table width='600' cellspacing='0' style='font-family: franklin-gothic-urw,Franklin Gothic Book,Arial,Helvetica,sans-serif,Verdana; font-size: 12pt; color: rgb(22, 22 ,22);'><tr><td bgcolor='#000000'><table width='100%' cellspacing='0' cellpadding='8'><tr><td><img alt='Arrow Connect' src='https://content.arrowconnect.io/public/assets/images/Arrow_Worm_ArrowConnect_lockup_h_2c_white_cmyk.png' height='60'/></td></tr></table></td></tr><tr><td><table width='100%' cellspacing='0' cellpadding='20'><tr><td bgcolor='#ffffff'>Hello ${name},<br/><br/>Thank you for registering for an Arrow Connect� account. You are now ready to start your IoT Experience - From Sensor to Sunset�. You have been supplied with an IoT device that when paired to your smart phone with the Arrow Connect Gateway mobile application allows you to push data back to the Arrow Connect Portal where you can visualize the data and associate actions with it.<br/><br/>Below are references to get you started with your new Arrow Connect account and IoT device.<br/><br/><b>Device Management:</b><br/>      Arrow Connect Portal - <a href='https://portal-${zoneSystemName}.arrowconnect.io'>https://portal-${zoneSystemName}.arrowconnect.io</a><br/>      Arrow Connect Dynamic Dashboard - <a href='https://dashboard-${zoneSystemName}.arrowconnect.io'>https://dashboard-${zoneSystemName}.arrowconnect.io</a><br/><br/><b>Developer Resources:</b><br/>      Arrow Connect Developer Hub - <a href='https://developer.arrowconnect.io'>https://developer.arrowconnect.io</a><br/>      Arrow Connect SDK - <a href='https://developer.arrowconnect.io/docs/arrow-connect-sdk'>https://developer.arrowconnect.io/docs/arrow-connect-sdk</a><br/>      Arrow Connect API - <a href='https://developer.arrowconnect.io/docs/api-guide'>https://developer.arrowconnect.io/docs/api-guide</a><br/><br/><b>Mobile Application:</b><br/>      Arrow Connect Gateway  <a href='https://itunes.apple.com/us/app/arrow-connect-gateway/id1268374251?mt=8'><img alt='Download on the App Store' src='https://content.arrowconnect.io/public/assets/images/gas.png'width='128'/></a>   <a href='https://play.google.com/store/apps/details?id=com.arrow.jmyiotgateway'><img alt='Android App On Google Play' src='https://content.arrowconnect.io/public/assets/images/apogp.png' width='117'/></a><br/><br/><br/><b>Coming Soon!</b><br/>Watch for an email with additional information on your complimentary Microsoft Azure account with a custom application that you can use to start developing along with a Power BI dashboard to visualize your data from Arrow Connect.<br/><br/>If you did not request this account, please contact us at <a href='mailto:support@arrowconnet.io'>support@arrowconnect.io</a>.<br/><br/>Sincerely,<br/>The Arrow Connect Support Team</td></tr></table></td></tr></table></body></html>\"}",
+				"jsonClass": "com.arrow.acs.client.model.EmailModel"
+			},
+			{
+				"dataType": "String",
+				"category": "Settings",
+				"name": "deviceTypeTemplates",
+				"value": "[{\"name\":\"gateway\",\"description\":\"gateway\",\"enabled\":true,\"editable\":false,\"deviceCategory\":\"GATEWAY\",\"rheaDeviceTypeId\":null,\"telemetries\":[]},{\"name\":\"android\",\"description\":\"android\",\"enabled\":true,\"editable\":false,\"deviceCategory\":\"DEVICE\",\"rheaDeviceTypeId\":null,\"telemetries\":[{\"name\":\"magnometerXYZ\",\"description\":\"Magnometer XYZ\",\"type\":\"FloatCube\",\"controllable\":false},{\"name\":\"gyrometerXYZ\",\"description\":\"Gyrometer XYZ\",\"type\":\"FloatCube\",\"controllable\":false},{\"name\":\"accelerometerXYZ\",\"description\":\"Accelerometer XYZ\",\"type\":\"FloatCube\",\"controllable\":false},{\"name\":\"latitude\",\"description\":\"Latitude\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"latlong\",\"description\":\"Latitude & Longitude\",\"type\":\"FloatSquare\",\"controllable\":false},{\"name\":\"barometer\",\"description\":\"Barometer\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"pressure\",\"description\":\"Pressure\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"gyroscopeX\",\"description\":\"Gyroscope X\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"magnometerZ\",\"description\":\"Magnometer Z\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"magnometerY\",\"description\":\"Magnometer Y\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"accelerometerX\",\"description\":\"Accelerometer X\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"magnometerX\",\"description\":\"Magnometer X\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"light\",\"description\":\"Light\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"gyroscopeZ\",\"description\":\"Gyroscope Z\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"accelerometerZ\",\"description\":\"Accelerometer Z\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"gyroscopeY\",\"description\":\"Gyroscope Y\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"accelerometerY\",\"description\":\"Accelerometer Y\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"longitude\",\"description\":\"Longitude\",\"type\":\"Float\",\"controllable\":false}]},{\"name\":\"IPhoneDevice\",\"description\":\"IPhoneDevice\",\"enabled\":true,\"editable\":false,\"deviceCategory\":\"DEVICE\",\"rheaDeviceTypeId\":null,\"telemetries\":[{\"name\":\"gyrometerXYZ\",\"description\":\"Gyrometer XYZ\",\"type\":\"FloatCube\",\"controllable\":false},{\"name\":\"gyrometerZ\",\"description\":\"Gyrometer Z\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"accelerometerXYZ\",\"description\":\"Accelerometer XYZ\",\"type\":\"FloatCube\",\"controllable\":false},{\"name\":\"latitude\",\"description\":\"Latitude\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"latlong\",\"description\":\"Latitude & Longitude\",\"type\":\"FloatSquare\",\"controllable\":false},{\"name\":\"magnetometerXYZ\",\"description\":\"Magnetometer XYZ\",\"type\":\"FloatCube\",\"controllable\":false},{\"name\":\"accelerometerX\",\"description\":\"Accelerometer X\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"accelerometerZ\",\"description\":\"Accelerometer Z\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"GyroXY\",\"description\":\"Gyro XY\",\"type\":\"FloatSquare\",\"controllable\":false},{\"name\":\"accelerometerY\",\"description\":\"Accelerometer Y\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"magnetometerY\",\"description\":\"MagnetometerY\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"magnetometerX\",\"description\":\"Magnetometer X\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"gyrometerX\",\"description\":\"Gyrometer X\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"magnetometerZ\",\"description\":\"Magnetometer Z\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"gyrometerY\",\"description\":\"Gyrometer Y\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"longitude\",\"description\":\"Longitude\",\"type\":\"Float\",\"controllable\":false}]},{\"name\":\"microsoft-band\",\"description\":\"Microsoft Band\",\"enabled\":false,\"editable\":false,\"deviceCategory\":\"DEVICE\",\"rheaDeviceTypeId\":null,\"telemetries\":[{\"name\":\"heartRate\",\"description\":\"Heart Rate\",\"type\":\"Integer\",\"controllable\":false}]},{\"name\":\"silabs-sensor-puck\",\"description\":\"silabs-sensor-puck\",\"enabled\":true,\"editable\":false,\"deviceCategory\":\"DEVICE\",\"rheaDeviceTypeId\":null,\"telemetries\":[{\"name\":\"light\",\"description\":\"Light\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"uvIndex\",\"description\":\"UV Index\",\"type\":\"Integer\",\"controllable\":false},{\"name\":\"temperature\",\"description\":\"Temperature\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"humidity\",\"description\":\"Humidity\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"heartRate\",\"description\":\"Heart Rate\",\"type\":\"Integer\",\"controllable\":false}]},{\"name\":\"rhythm-plus\",\"description\":\"rhythm-plus\",\"enabled\":true,\"editable\":false,\"deviceCategory\":\"DEVICE\",\"rheaDeviceTypeId\":null,\"telemetries\":[{\"name\":\"heartRate\",\"description\":\"Heart Rate\",\"type\":\"Integer\",\"controllable\":false}]},{\"name\":\"senseability-2\",\"description\":\"senseability-2\",\"enabled\":true,\"editable\":false,\"deviceCategory\":\"DEVICE\",\"rheaDeviceTypeId\":null,\"telemetries\":[{\"name\":\"temperature\",\"description\":\"Temperature\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"humidity\",\"description\":\"Humidity\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"magnet\",\"description\":\"Magnet\",\"type\":\"Boolean\",\"controllable\":false},{\"name\":\"pressure\",\"description\":\"Pressure\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"airflow\",\"description\":\"Airflow\",\"type\":\"Float\",\"controllable\":false}]},{\"name\":\"xbee-sensor\",\"description\":\"xbee-sensor\",\"enabled\":true,\"editable\":false,\"deviceCategory\":\"DEVICE\",\"rheaDeviceTypeId\":null,\"telemetries\":[{\"name\":\"light\",\"description\":\"Light\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"humidity\",\"description\":\"Humidity\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"temperature\",\"description\":\"Temperature\",\"type\":\"Float\",\"controllable\":false}]},{\"name\":\"digi-gps\",\"description\":\"digi-gps\",\"enabled\":true,\"editable\":false,\"deviceCategory\":\"DEVICE\",\"rheaDeviceTypeId\":null,\"telemetries\":[{\"name\":\"longitude\",\"description\":\"Longitude\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"numSatellites\",\"description\":\"Number of Satellites\",\"type\":\"Integer\",\"controllable\":false},{\"name\":\"dilution\",\"description\":\"Dilution\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"quality\",\"description\":\"Quality\",\"type\":\"String\",\"controllable\":false},{\"name\":\"latitude\",\"description\":\"Latitude\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"altitude\",\"description\":\"Altitude\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"geoidHeight\",\"description\":\"Geoid Height\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"time\",\"description\":\"Time\",\"type\":\"String\",\"controllable\":false}]},{\"name\":\"st-sensortile\",\"description\":\"st-sensortile\",\"enabled\":true,\"editable\":false,\"deviceCategory\":\"DEVICE\",\"rheaDeviceTypeId\":null,\"telemetries\":[{\"name\":\"micLevel\",\"description\":\"Microphone level\",\"type\":\"Integer\",\"controllable\":false},{\"name\":\"pressure\",\"description\":\"Pressure\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"humidity\",\"description\":\"Humidity\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"surfaceTemperature\",\"description\":\"Surface Temperature\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"ambientTemperature\",\"description\":\"Ambient Temperature\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"accelerometerX\",\"description\":\"Accelerometer X\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"accelerometerY\",\"description\":\"Accelerometer Y\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"accelerometerZ\",\"description\":\"Accelerometer Z\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"gyroscopeX\",\"description\":\"Gyroscope X\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"gyroscopeY\",\"description\":\"Gyroscope Y\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"gyroscopeZ\",\"description\":\"Gyroscope Z\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"magnetometerX\",\"description\":\"Magnetometer X\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"magnetometerY\",\"description\":\"Magnetometer Y\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"magnetometerZ\",\"description\":\"Magnetometer Z\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"fusionX\",\"description\":\"Fusion X\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"fusionY\",\"description\":\"Fusion Y\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"fusionZ\",\"description\":\"Fusion Z\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"fusionW\",\"description\":\"Fusion W\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"accelerationEvent\",\"description\":\"Acceleration Event\",\"type\":\"Integer\",\"controllable\":false},{\"name\":\"activity\",\"description\":\"Activity\",\"type\":\"Integer\",\"controllable\":false},{\"name\":\"carryPosition\",\"description\":\"Carry Position\",\"type\":\"Integer\",\"controllable\":false},{\"name\":\"memsGesture\",\"description\":\"MEMS Gesture\",\"type\":\"Integer\",\"controllable\":false},{\"name\":\"switch\",\"description\":\"Switch\",\"type\":\"Integer\",\"controllable\":false}]},{\"name\":\"silabs-thunderboard-react\",\"description\":\"silabs-thunderboard-react\",\"enabled\":true,\"editable\":false,\"deviceCategory\":\"DEVICE\",\"rheaDeviceTypeId\":null,\"telemetries\":[{\"name\":\"humidity\",\"description\":\"Humidity\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"light\",\"description\":\"Light\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"temperature\",\"description\":\"Temperature\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"keys\",\"description\":\"Keys\",\"type\":\"Integer\",\"controllable\":false},{\"name\":\"accelerometerX\",\"description\":\"Accelerometer X\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"accelerometerY\",\"description\":\"Accelerometer Y\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"accelerometerZ\",\"description\":\"Accelerometer Z\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"orientationX\",\"description\":\"Orientation X\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"orientationY\",\"description\":\"Orientation Y\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"orientationZ\",\"description\":\"Orientation Z\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"leds\",\"description\":\"LEDs\",\"type\":\"Integer\",\"controllable\":false}]},{\"name\":\"simba-pro\",\"description\":\"simba-pro\",\"enabled\":true,\"editable\":false,\"deviceCategory\":\"DEVICE\",\"rheaDeviceTypeId\":null,\"telemetries\":[{\"name\":\"humidity\",\"description\":\"Humidity\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"light\",\"description\":\"Light\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"temperature\",\"description\":\"Temperature\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"accelerometerX\",\"description\":\"Accelerometer X\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"accelerometerY\",\"description\":\"Accelerometer Y\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"accelerometerZ\",\"description\":\"Accelerometer Z\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"gyrometerX\",\"description\":\"Gyrometer X\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"gyrometerY\",\"description\":\"Gyrometer Y\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"gyrometerZ\",\"description\":\"Gyrometer Z\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"pressure\",\"description\":\"Pressure\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"magnetometerX\",\"description\":\"Magnetometer X\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"magnetometerY\",\"description\":\"Magnetometer Y\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"magnetometerZ\",\"description\":\"Magnetometer Z\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"micLevel\",\"description\":\"Microphone level\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"longitude\",\"description\":\"Longitude\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"latitude\",\"description\":\"Latitude\",\"type\":\"Float\",\"controllable\":false},{\"name\":\"latlong\",\"description\":\"Latitude & Longitude\",\"type\":\"FloatSquare\",\"controllable\":false},{\"name\":\"gyrometerXYZ\",\"description\":\"Gyrometer XYZ\",\"type\":\"FloatCube\",\"controllable\":false},{\"name\":\"magnetometerXYZ\",\"description\":\"Magnetometer XYZ\",\"type\":\"FloatCube\",\"controllable\":false},{\"name\":\"accelerometerXYZ\",\"description\":\"Accelerometer XYZ\",\"type\":\"FloatCube\",\"controllable\":false}]}]"
+			},
+			{
+				"dataType": "String",
+				"category": "Settings",
+				"name": "deviceActionTypeTemplates",
+				"value": "[{\"systemName\":\"SendEmail\",\"editable\":false,\"parameters\":{\"Email\":\"your email address here\",\"Subject\":\"Arrow Connect Notification\",\"ContentType\":\"text/plain\",\"Body\":\"The following criteria was met: {Criteria}\\n\\nDevice information:\\n\\tUID: {DeviceUID}\\n\\nEvent information:\\n\\tTimestamp: {Timestamp}\\n{FullTelemetry}\"},\"name\":\"Send Email\",\"description\":\"Send an email.\",\"enabled\":true},{\"systemName\":\"InitiateSkypeCall\",\"parameters\":{\"Message\":\"Default message.\",\"Phone\":\"000-000-0000\",\"SipAddress\":\"sip:me@here.com\"},\"name\":\"Initiate Skype Call\",\"description\":\"Initiate a Skype Call.\",\"enabled\":true},{\"systemName\":\"InitiateSkypeMeeting\",\"parameters\":{\"SipAddress\":\"sip:me@here.com\"},\"name\":\"Initiate Skype Meeting\",\"description\":\"Initiate a Skype Meeting.\",\"enabled\":true},{\"systemName\":\"RaiseOneViewAlarm\",\"parameters\":{\"Severity\":\"1\",\"Location\":\"Default Location\"},\"name\":\"Arrow Insight Alarm\",\"description\":\"Raise Arrow Insight Alarm.\",\"enabled\":true},{\"systemName\":\"PostBackURL\",\"parameters\":{\"URL\":\"https://\",\"Headers\":\"\\\"name\\\":\\\"value\\\",...\",\"RequestBody\":\"param1=value1&param2=value2&params3={payload}\",\"ContentType\":\"application/x-www-form-urlencoded\"},\"name\":\"Post Back URL\",\"description\":\"Post Back URL.\",\"enabled\":true},{\"systemName\":\"SendCommand\",\"parameters\":{\"Command\":\"\",\"Payload\":\"\"},\"name\":\"Send Command\",\"description\":\"Send Command.\",\"enabled\":true}]"
+			}
+		],
+		"features": [
+			{
+				"name": "Firmware Management",
+				"description": "Firmware Management",
+				"systemName": "FIRMWARE_MANAGEMENT"
+			}
+		],
+		"name": "Kronos",
+		"description": "Kronos",
+		"enabled": true
+	},
+	{
+		"systemName": "rhea",
+		"apiSigningRequired": false,
+		"hidden": true,
+		"configurations": [],
+		"features": [],
+		"name": "Rhea",
+		"description": "Rhea",
+		"enabled": true
+	},
+	{
+		"systemName": "apollo",
+		"apiSigningRequired": false,
+		"hidden": false,
+		"configurations": [],
+		"features": [],
+		"name": "Apollo",
+		"description": "Apollo",
+		"enabled": true
+	},
+	{
+		"systemName": "itus",
+		"apiSigningRequired": false,
+		"hidden": true,
+		"configurations": [],
+		"features": [],
+		"name": "Itus",
+		"description": "Itus",
+		"enabled": true
+	}
+]

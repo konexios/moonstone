@@ -1,0 +1,58 @@
+<div class="row-content">
+    <!-- CONTENT WRAPPER -->
+    <div class="content-wrapper-fluid">
+		<div ng-controller="StateController">
+			<div class="obj-page-hd">
+            	<div class="row">
+			    	<div class="col-md-4 col-sm-4">
+						<h3 class="page-title text-center">Device State Pane</h3>
+					</div>
+					<div class="col-md-8 col-sm-8">
+						<h3 class="page-title text-center">Editor Window</h3>
+					</div>
+            	</div>
+        	</div>
+          	<div class="obj-page-bd">
+		  		<form name="form" class="form-horizontal css-form" novalidate>
+					<fieldset ng-disabled="busy">	
+						<div class="row">	
+							<div class="col-sm-12">			
+								<div class="col-sm-4">
+									<p>Variable Information:</p>
+									<p>For device state payload formation, certain function arguments are available as listed below.</p>
+									<p>Utilize these arguments to format the payload as expected by the client application.</p>
+									<p>"deviceName" : Name of the device for which state change is requested</p>
+									<p>"deviceUid" : UID of the registered device</p>
+									<p>"deviceStates" : A string of an array containing metadata of the received device states.</p>
+									<p>deviceStates Payload Format:</p>
+									<pre>{{stateTranspose|json}}</pre>
+									<p>Each element of the array will be a dictionary containing following keys:</p>
+									<p>"propertyName": Name of the device property for which desired state is requested</p>
+									<p>"propertyValue" : Desired value of the device property</p>
+									<p>"timestamp" : Timestamp value in ISO 8601 format at which the desired state is received by Selene.</p>
+
+								</div>
+								<div class="form-group col-sm-8 ">
+										<textarea id="transposeText" name="transposeText" ng-required="true" cols="120" rows="31">function transpose(deviceUid,deviceName,deviceStates)</textarea>
+							    		<div class="help-block" ng-messages="form.transposeText.$error"
+				                             ng-show="form.transposeText.$touched || (form.$submitted && form.transposeText.$invalid)">
+				                             <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+				                       	</div>
+								</div>
+							</div>
+							<div class="col-sm-12">	
+								<div class="col-sm-8"></div>
+								<div class="form-group col-sm-4 text-right">
+										<button class='btn btn-default' ng-click="back()">Back</button>
+										<button class='btn btn-default' ng-click=saveTranspose(form)>Save</button>
+										<button class='btn btn-default' ng-click="reset()">Reset</button>
+										<button class='btn btn-default' ng-click=Test()>Test</button>
+								</div>
+							</div>
+						</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	</div>
+</div>

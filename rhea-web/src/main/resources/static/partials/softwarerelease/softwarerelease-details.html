@@ -1,0 +1,299 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{softwareRelease.id ? 'Edit' : 'Add'}} Software Release</h3>
+</div>
+<form name="softwareReleaseForm" novalidate ng-submit="save();">
+	<div class="modal-body">
+		<div class="modal-header modal-header-with-tabs">
+		    <ul class="nav nav-pills nav-justified">
+		        <li role="presentation" ng-class="{active: activeTab == 0}"><a href ng-click="activeTab = 0">Software Release</a></li>
+		        <li role="presentation" ng-class="{active: activeTab == 1}"><a href ng-click="activeTab = 1">Hardware Versions</a></li>
+		        <li role="presentation" ng-class="{active: activeTab == 2}"><a href ng-click="activeTab = 2">Updateable From</a></li>
+		    </ul>
+		</div>
+	    <div class="modal-body">
+	
+	        <div ng-show="activeTab == 0">
+	            <div class="row">
+	
+	                <div class="form-group col-sm-6">
+	                    <label for="SoftwareReleaseHID">Software Release HID</label>
+	                    <p class="form-control-static">{{softwareRelease.hid}}</p>
+
+	                    <label for="SoftwareVendor">Software Vendor</label>
+	                    <p class="form-control-static" ng-if="!canSaveSoftwareRelease">{{softwareRelease.softwareVendor.name}}</p>
+	
+	                    <select id="SoftwareVendor" name="SoftwareVendor" class="form-control" ng-model="softwareRelease.softwareVendor" ng-if="canSaveSoftwareRelease" ng-options="softwareVendor as softwareVendor.name for softwareVendor in options.softwareVendors track by softwareVendor.id"
+	                        ng-change="options.selection.softwareVendorId = softwareRelease.softwareVendor.id; updateSelectionOptions(['softwareReleaseId', 'softwareProductId', 'softwareReleases'], true)" required>
+	                        <option value="">Select Software Vendor</option>
+	                    </select>
+	                    <div ng-messages="softwareReleaseForm.SoftwareVendor.$error" role="alert">
+	                        <div class="alert-danger">
+	                            <span ng-message="required">Software Vendor is required</span>
+	                        </div>
+	                    </div>
+	                </div>
+	
+	                <div class="form-group col-sm-6">
+	                	<label for="">&nbsp;</label>
+	                    <p class="form-control-static">&nbsp;</p>
+	                    
+	                    <label for="SoftwareProduct">Software Product</label>
+	                    <p class="form-control-static" ng-if="!canSaveSoftwareRelease">{{softwareRelease.softwareProduct.name}}</p>
+	
+	                    <select id="SoftwareProduct" name="SoftwareProduct" class="form-control" ng-model="softwareRelease.softwareProduct" ng-if="canSaveSoftwareRelease" ng-options="softwareProduct as softwareProduct.name for softwareProduct in options.softwareProducts track by softwareProduct.id"
+	                        ng-change="options.selection.softwareProductId = softwareRelease.softwareProduct.id; updateSelectionOptions(['softwareReleaseId', 'softwareReleases'], true)" required>
+	                        <option value="">Select Software Product</option>
+	                    </select>
+	                    <div ng-messages="softwareReleaseForm.SoftwareProduct.$error" role="alert">
+	                        <div class="alert-danger">
+	                            <span ng-message="required">Software Product is required</span>
+	                        </div>
+	                    </div>
+	                </div>
+	
+	            </div>
+	            <div class="row">
+	
+	                <div class="form-group col-sm-4">
+	                    <label for="Major">Major</label>
+	                    <p class="form-control-static" ng-if="!canSaveSoftwareRelease">{{softwareRelease.major}}</p>
+	                    <input type="number" id="Major" name="Major" class="form-control" ng-if="canSaveSoftwareRelease" ng-model="softwareRelease.major" required="required" />
+	                    <div ng-messages="softwareReleaseForm.Major.$error" role="alert">
+	                        <div class="alert-danger">
+	                            <span ng-message="required">Major is required</span>
+	                        </div>
+	                    </div>
+	                </div>
+	
+	                <div class="form-group col-sm-4">
+	                    <label for="Minor">Minor</label>
+	                    <p class="form-control-static" ng-if="!canSaveSoftwareRelease">{{softwareRelease.minor}}</p>
+	                    <input type="number" id="Minor" name="Minor" class="form-control" ng-if="canSaveSoftwareRelease" ng-model="softwareRelease.minor" required="required" />
+	                    <div ng-messages="softwareReleaseForm.Minor.$error" role="alert">
+	                        <div class="alert-danger">
+	                            <span ng-message="required">Minor is required</span>
+	                        </div>
+	                    </div>
+	                </div>
+	
+	                <div class="form-group col-sm-4">
+	                    <label for="Build">Build</label>
+	                    <p class="form-control-static" ng-if="!canSaveSoftwareRelease">{{softwareRelease.build}}</p>
+	                    <input type="number" id="Build" name="Build" class="form-control" ng-if="canSaveSoftwareRelease" ng-model="softwareRelease.build" />
+	                    <div ng-messages="softwareReleaseForm.Build.$error" role="alert">
+	                        <div class="alert-danger">
+	                        </div>
+	                    </div>
+	                </div>
+	
+					<div class="form-group col-sm-12" ng-if="softwareRelease.fileName != null">
+	                    <label>Associated Firmware</label>
+	                    <br/><strong>File Name</strong> {{softwareRelease.fileName}}
+	                    <br/><strong>Md5</strong> {{softwareRelease.fileChecksum}}
+	                    <br/><strong>Upload Date</strong> {{softwareRelease.fileUploadDate | date: 'MM/dd/yyyy hh:mm a' }}
+	                </div>
+	
+	                <div class="form-group col-sm-12">
+	                    <label for="Firmware">
+	                    	<span  ng-if="softwareRelease.fileName != null">Replace Associated Firmware with</span>
+	                    	<span  ng-if="softwareRelease.fileName == null">Firmware</span>
+	                    </label>
+	                    <input type="file" id="Firmware" name="Firmware" class="form-control" ng-if="canSaveSoftwareRelease" file-model="firmware.file" />
+	                    <div ng-messages="softwareReleaseForm.Firmware.$error" role="alert">
+	                        <div class="alert-danger">
+	                        </div>
+	                    </div>
+	                </div>
+
+					<!-- softwareProduct as softwareProduct.name for softwareProduct in options.softwareProducts track by softwareProduct.id  -->
+
+	                <div class="form-group col-sm-12">
+	                    <label for="SoftwareVendor">Right To Use</label>
+	                    <p class="form-control-static" ng-if="!canSaveSoftwareRelease">{{softwareRelease.rtuType}}</p>
+	
+	                    <select id="RightToUse" name="RightToUse" 
+	                    	class="form-control" 
+	                    	ng-model="softwareRelease.rtuType" 
+	                    	ng-if="canSaveSoftwareRelease"
+	                    	ng-options="rtuType as rtuType for rtuType in options.rightToUseTypes track by rtuType"
+	                        ng-change="options.selection.rtuType = rtuType"
+	                        required="required">
+	                        <option value="">Select Right To Use Type</option>
+	                    </select>
+	                    <div ng-messages="softwareReleaseForm.RightToUse.$error" role="alert">
+	                        <div class="alert-danger">
+	                            <span ng-message="required">Right To Use is required</span>
+	                        </div>
+	                    </div>
+	                </div>
+
+									<div class="form-group col-sm-6">
+											<label for="softwareOwnerName">Software Owner Name</label>
+											<p class="form-control-static" ng-if="!canSaveSoftwareRelease">{{softwareRelease.softwareOwnerName}}</p>
+											<input
+													type="text"
+													id="softwareOwnerName"
+													class="form-control"
+													name="softwareOwnerName"
+													maxlength="50"
+													ng-if="canSaveSoftwareRelease"
+													ng-model="owner.name"
+													required="required">
+											<div ng-messages="softwareReleaseForm.softwareOwnerName.$error" role="alert">
+													<div class="alert-danger">
+															<span ng-message="required">Software owner name is required</span>
+													</div>
+											</div>
+									</div>
+
+									<div class="form-group col-sm-6">
+											<label for="softwareOwnerEmail">Software Owner Email</label>
+											<p class="form-control-static" ng-if="!canSaveSoftwareRelease">{{softwareRelease.softwareOwnerEmail}}</p>
+											<input
+													type="email"
+													id="softwareOwnerEmail"
+													class="form-control"
+													name="softwareOwnerEmail"
+													ng-model="owner.email"
+													ng-if="canSaveSoftwareRelease"
+													required="required">
+											<div ng-messages="softwareReleaseForm.softwareOwnerEmail.$error" role="alert">
+													<div class="alert-danger">
+															<span ng-message="required">Software owner email is required</span>
+													</div>
+											</div>
+									</div>
+
+		
+		
+	                <div class="form-group col-sm-12">
+	                    <label>
+	                        <input type="checkbox" ng-if="canSaveSoftwareRelease" value="" ng-model="softwareRelease.noLongerSupported" />
+	                        No Longer Supported
+	                        <span ng-if="!canSaveSoftwareRelease">{{softwareRelease.noLongerSupported}}</span>
+	                    </label>
+	                </div>
+	
+	                <div class="form-group col-sm-12">
+	                    <label>
+	                        <input type="checkbox" ng-if="canSaveSoftwareRelease" value="" ng-model="softwareRelease.enabled" />
+	                        Enabled
+	                        <span ng-if="!canSaveSoftwareRelease">{{softwareRelease.enabled}}</span>
+	                    </label>
+	                </div>
+	
+	            </div>
+	        </div>
+	
+	        <div ng-show="activeTab == 1">
+	            <div class="row">
+	                <div class="form-group col-sm-6">
+	                    <label for="manufacturer">Hardware Manufacturer</label>
+	                    <select id="manufacturer" name="manufacturer" class="form-control"
+	                        ng-model="options.selection.manufacturerId"
+	                        ng-options="manufacturer.id as manufacturer.name for manufacturer in options.manufacturers"
+	                        ng-disabled="options.manufacturers == null"
+	                        ng-change="updateSelectionOptions(['softwareReleaseId', 'productId', 'deviceTypes'], true)">
+	                        <option value="">Not Selected</option>
+	                    </select>
+	                </div>
+	                <div class="form-group col-sm-6">
+	                    <label for="category">Hardware Category</label>
+	                    <select id="category" name="category" class="form-control"
+	                        ng-model="options.selection.deviceCategory"
+	                        ng-options="category as category for category in options.deviceCategories"
+	                        ng-disabled="options.deviceCategories == null"
+	                        ng-change="updateSelectionOptions(['softwareReleaseId', 'productId', 'deviceTypes'], true)">
+	                        <option value="">Not Selected</option>
+	                    </select>
+	                </div>
+	                <div class="form-group col-sm-6">
+	                    <label for="product">Hardware Product</label>
+	                    <select id="product" name="product" class="form-control"
+	                        ng-model="options.selection.productId"
+	                        ng-options="product.id as product.name for product in options.products"
+	                        ng-disabled="options.products == null"
+	                        ng-change="updateSelectionOptions(['softwareReleaseId', 'deviceTypes'], true)">
+	                        <option value="">Not Selected</option>
+	                    </select>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="form-group col-xs-6">
+	                    <label>Available Hardware Versions</label>
+	                </div>
+	                <div class="form-group col-xs-6">
+	                    <label>Selected Hardware Versions</label>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="form-group col-xs-6 text-muted" ng-if="options.deviceTypes == null">
+	                    -- Select Hardware Versions --
+	                </div>
+	                <div class="form-group col-xs-6" style="height: 240px; overflow-x: hidden; overflow-y: auto;" ng-if="options.deviceTypes != null">
+	                    <table class="table">
+	                        <tr ng-repeat="deviceType in options.deviceTypes | filter:availableDeviceTypesFilter">
+	                            <td>{{deviceType.name}}</td>
+	                            <td class="text-right">
+	                                <button type="button" class="btn btn-default" ng-click="addDeviceType(deviceType)">Add</button>
+	                            </td>
+	                        </tr>
+	                    </table>
+	                </div>
+	                <div class="form-group col-xs-6" style="height: 240px; overflow-x: hidden; overflow-y: auto;">
+	                    <table class="table">
+	                        <tr ng-repeat="deviceType in options.deviceTypes | filter:selectedDeviceTypesFilter">
+	                            <td>{{deviceType.name}}</td>
+	                            <td class="text-right">
+	                                <button type="button" class="btn btn-default" ng-click="removeDeviceType(deviceType)">Remove</button>
+	                            </td>
+	                        </tr>
+	                    </table>
+	                </div>
+	            </div>
+	
+	        </div>
+	
+	        <div ng-show="activeTab == 2">
+	            <div class="row">
+	                <div class="form-group col-xs-6">
+	                    <label>Available Software Releases</label>
+	                </div>
+	                <div class="form-group col-xs-6">
+	                    <label>Selected Software Releases</label>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="form-group col-xs-6 text-muted" ng-if="options.softwareReleases == null">
+	                    -- Select Software Product --
+	                </div>
+	                <div class="form-group col-xs-6" style="height: 240px; overflow-x: hidden; overflow-y: auto;" ng-if="options.softwareReleases != null">
+	                    <table class="table">
+	                        <tr ng-repeat="softwareRelease in options.softwareReleases | filter:availableSoftwareReleasesFilter">
+	                            <td>{{softwareRelease.name}}</td>
+	                            <td class="text-right">
+	                                <button type="button" class="btn btn-default" ng-click="addSoftwareRelease(softwareRelease)">Add</button>
+	                            </td>
+	                        </tr>
+	                    </table>
+	                </div>
+	                <div class="form-group col-xs-6" style="height: 240px; overflow-x: hidden; overflow-y: auto;">
+	                    <table class="table">
+	                        <tr ng-repeat="softwareRelease in options.softwareReleases | filter:selectedSoftwareReleasesFilter">
+	                            <td>{{softwareRelease.name}}</td>
+	                            <td class="text-right">
+	                                <button type="button" class="btn btn-default" ng-click="removeSoftwareRelease(softwareRelease)">Remove</button>
+	                            </td>
+	                        </tr>
+	                    </table>
+	                </div>
+	            </div>
+	
+	        </div>
+	    </div>
+	</div>
+	<div class="modal-footer">
+	    <button class="btn btn-default" ng-if="canSaveSoftwareRelease" type="submit">Save</button>
+	    <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+	</div>
+</form>

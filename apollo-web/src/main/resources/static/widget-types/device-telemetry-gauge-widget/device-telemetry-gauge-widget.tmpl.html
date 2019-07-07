@@ -1,0 +1,53 @@
+<div class="widget-hd">
+	<h3>{{vm.widget.metadata.name}}</h3>
+	<h4>
+		<span ng-if="vm.widget.metadata.description">{{vm.widget.metadata.description}}</span>
+		<span ng-if="!vm.widget.metadata.description">Gauge</span>
+	</h4>
+</div>
+<div class="widget-bd">
+	<!-- LOADING -->
+	<div ng-if="vm.data.waiting && !vm.data.error" class="text-center callout-container">
+		<div class="callout acs-widget-callout acs-widget-callout-loading">
+			<i class="fa fa-spinner fa-pulse fa-3x" aria-hidden="true"></i>
+			<h3>Loading...</h3>
+		</div>			
+	</div>
+	<!-- ERROR -->
+	<div ng-if="!vm.data.waiting && vm.data.error">
+		<div class="callout acs-widget-callout acs-widget-callout-error">
+			<h3><i class="fa fa-exclamation-circle fa-3x fa-fw" aria-hidden="true"></i> Whoops! Error occurred</h3>
+			<p>Please contact your system administrator.</p>
+		</div>
+	</div>
+	<!-- RUNNING -->
+	<div ng-if="!vm.data.waiting && !vm.data.error">
+		<div class="gfx-labels text-center">
+			<span class="telemetry-percent">{{ vm.data.result.percent | number: 0 || 0 }}<sup><small>%</small></sup></span>		
+			<span class="telemetry-value">{{ vm.data.result.name }}<br/>{{ vm.data.result.value || 0 }}</span>
+		</div>
+		<div class="gfx-container">
+			<div class="widget-gauge">
+				<span class="gauge-range-scale">
+					<span class="scale-max-value">{{ vm.data.result.maxValue | number: 0 || 0 }}</span>
+					<span class="scale-min-value">{{ vm.data.result.minValue | number: 0 || 0 }}</span>
+				</span>
+			    <div class="progress-vertical">
+					<div class="progress">
+						<div class="progress-bar"
+							 role="progressbar"
+							 aria-valuenow="{{vm.data.result.value}}"
+							 aria-valuemin="{{vm.data.result.minValue}}"
+							 aria-valuemax="{{vm.data.result.maxValue}}"
+							 ng-style="{height: (vm.data.result.percent < 100 ? vm.data.result.percent : 100) + '%'}"
+							 aria-valuetext="{{vm.data.result.percent | number:0}}%"
+							 aria-labelledby="{{::title}}">
+						</div>
+					</div>
+			    </div>
+			</div>					
+		</div>
+	</div>
+	<!-- /RUNNING -->
+</div>
+<!--div class="widget-ft">footer</div-->

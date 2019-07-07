@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console 
+                name="Console" 
+                target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{ISO8601}|%-5level|%t|%c{1}|%msg%n" />
+        </Console>
+        <RollingFile 
+                name="RollingFile" 
+                fileName="log/app.log"
+                filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout pattern="%d{ISO8601}|%-5level|%t|%c{1}|%msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger 
+                name="com.arrow.kronos" 
+                level="debug" 
+                additivity="false">
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger 
+                name="com.arrow.pegasus" 
+                level="debug" 
+                additivity="false">
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger 
+                name="com.arrow.rhea" 
+                level="debug" 
+                additivity="false">
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>

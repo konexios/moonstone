@@ -1,0 +1,243 @@
+<div class="row-content" on-resize>
+
+    <subscription-expiration></subscription-expiration>
+
+    <div class="content-nav overflow-hidden arrow-collapsed-menu" ng-class="{'mobile-view':mobileLayot, 'showed-menu':mobileMenuShowed, 'collapsed-view':collapsedView}">
+        <div class="nav nav-custom-scrollbar" ng-scrollbars ng-scrollbars-config="scrollerConfig">
+            <ul class="nav-pills nav-stacked">
+                <li role="presentation" ng-class="activeTab == 0 ? 'active' : ''">
+                    <a href="" ng-click="activeTab = 0; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-tasks" aria-hidden="true"></i></span><span class="title crop">{{job.name}}</span>
+                    </a>
+                </li>
+                <li role="presentation" ng-class="activeTab == 1 ? 'active' : ''">
+                    <a href="" ng-click="activeTab = 1; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-tablet" aria-hidden="true"></i></span><span class="title crop">Assets</span>
+                    </a>
+                </li>
+                <li role="presentation" ng-class="activeTab == 2 ? 'active' : ''">
+                    <a href="" ng-click="activeTab = 2; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-history" aria-hidden="true"></i></span><span class="title crop">Audit Logs</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <ul class="collapsed-button-wrap nav nav-pills">
+            <li role="presentation" class="collapse-button">
+                <a ng-click="collapseMenu()" class="text-right">
+                    <span class="icon-wrapper"><i class="fa fa-lg" ng-class="{
+                        'fa-angle-double-left': !mobileLayot && !collapsedView,
+                        'fa-angle-double-right': !mobileLayot && collapsedView,
+                        'mobile fa-angle-double-right': mobileLayot && !mobileMenuShowed,
+                        'mobile fa-angle-double-left': mobileLayot && mobileMenuShowed
+                    }" aria-hidden="true"></i></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content-wrapper" ng-class="{'mobile-view':mobileLayot, 'showed-menu':mobileMenuShowed, 'collapsed-view':collapsedView}">
+        <div class="content-hd">
+            <!--div class="row">
+                <div class="col-md-12">
+                   <ol class="breadcrumb">
+                       <li><a href="#/fmsummary/">Job Summary</a></li>
+                       <li><a href="#/fmsummary/{{jobSummaryStatuses[job.scheduleStatus].tabId}}">{{jobSummaryStatuses[job.scheduleStatus].tabName}}</a></li>
+                       <li ng-show="activeTab == 0" class="active">{{job.name}}</li>
+                       <li ng-show="activeTab > 0"><a href="" ng-click="activeTab = 0">{{job.name}}</a></li>
+                       <li ng-show="activeTab > 0" class="active">{{tabsNames[activeTab]}}</li>
+                   </ol>
+                </div>
+            </div-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content-title fm-title">
+                        <h1>Job - {{job.name}}</h1>
+                        <p ng-if="job.onDemand"><i class="fa fa-calendar" aria-hidden="true"></i> On Demand</p>
+						<p ng-if="!job.onDemand"><i class="fa fa-calendar" aria-hidden="true"></i> {{ (job.start | date: "MM/dd/yyyy h:mm a") || '---' }}</p>
+                    </div>
+                </div>
+                <div class="col-md-12 text-right">
+                    <div class="content-toolbar pull-right">
+                      <button type="button"
+                        class="btn btn-default"
+                        ng-if="canStartOnDemand && job.onDemand && job.scheduleStatus == 'SCHEDULED'"
+                        ng-click="startOnDemand()">Update Now</button>
+                      <button type="button"
+                        class="btn btn-default"
+                        ng-if="canEdit && job.scheduleStatus == 'SCHEDULED'"
+                        ng-click="edit()">Edit</button>
+                      <button type="button"
+                        class="btn btn-default"
+                        ng-if="canCancel && job.scheduleStatus == 'SCHEDULED'"
+                        ng-click="cancel()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-bd-wrapper">
+            <div ng-if="activeTab == 0" ng-init="refreshJob()">
+                <form name="jobForm" class="form-horizontal" novalidate>
+                    <div class="content-bd">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="panel panel-default panel-content">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><i class="fa fa-file" aria-hidden="true"></i> Details</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                        	<div class="col-md-8 col-sm-12">
+		                                        <div class="form-group">
+		                                            <label class="col-sm-4">New Firmware</label>
+		                                            <div class="col-sm-8">
+		                                                <p>{{job.newSwVersion}}</p>
+		                                            </div>
+		                                        </div>
+		                                        <div class="form-group">
+		                                            <label class="col-sm-4">Asset Type</label>
+		                                            <div class="col-sm-8">
+		                                                <p>{{job.deviceType}}</p>
+		                                            </div>
+		                                        </div>
+		                                        <div class="form-group">
+		                                            <label class="col-sm-4"># of Assets</label>
+		                                            <div class="col-sm-8">
+		                                                <p>{{job.devices}}</p>
+		                                            </div>
+		                                        </div>
+		                                        <div class="form-group">
+		                                            <label class="col-sm-4">Scheduled</label>
+		                                            <div class="col-sm-8">
+		                                                <p ng-if="job.onDemand">On Demand</p>
+		                                                <p ng-if="!job.onDemand">{{ (job.start | date: "MM/dd/yyyy h:mm a") || '---' }}</p>
+		                                            </div>
+		                                        </div>
+		                                        <div class="form-group">
+		                                            <label class="col-sm-4">Status</label>
+		                                            <div class="col-sm-8">
+		                                                <p><span class="label label-default">{{job.scheduleStatus}}</span></p>
+		                                            </div>
+		                                        </div>
+		                                        <!--div class="form-group">
+		                                            <label class="col-sm-4">Hardware version</label>
+		                                            <div class="col-sm-8">
+		                                                <p>{{job.hwVersion}}</p>
+		                                            </div>
+		                                        </div-->
+		                                        <!--div class="form-group">
+		                                            <label class="col-sm-4">Created</label>
+		                                            <div class="col-sm-8">
+		                                                <p>{{job.created || '---'}}</p>
+		                                            </div>
+		                                        </div>
+		                                        <div class="form-group">
+		                                            <label class="col-sm-4">Created By</label>
+		                                            <div class="col-sm-8">
+		                                                <p>{{job.requestor || '---'}}</p>
+		                                            </div>
+		                                        </div>
+		                                        <div class="form-group">
+		                                            <label class="col-sm-4">Last Updated</label>
+		                                            <div class="col-sm-8">
+		                                                <p>{{job.lastUpdated || '---'}}</p>
+		                                            </div>
+		                                        </div>
+		                                        <div class="form-group">
+		                                            <label class="col-sm-4">Last Updated By</label>
+		                                            <div class="col-sm-8">
+		                                                <p>{{job.requestor || '---'}}</p>
+		                                            </div>
+		                                        </div-->                                        	
+                                        	</div>
+                                        	<div class="col-md-4 hidden-sm hidden-xs text-center">
+                                                <div class="circle-widget bg-blue">
+													<div class="circle-widget-content circle-widget-2-rows">
+                                                        <span class="circle-widget-value">{{job.progressMetrics.endOfLife.percent | number : 0}}%</span>
+                                                        <span class="circle-widget-caption">complete</span>
+													</div>
+												</div>
+                                        	</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default panel-content">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><i class="fa fa-comment" aria-hidden="true"></i> Comments</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        {{job.comments}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+								<div class="panel panel-default panel-content">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><i class="fa fa-tasks" aria-hidden="true"></i> Progress</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <label class="col-sm-4">% Completed</label>
+                                            <div class="col-sm-8">
+                                                <p>{{job.progressMetrics.endOfLife.percent | number : 0}}%</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4">Started</label>
+                                            <div class="col-sm-8">
+                                                <p ng-if="job.scheduleStatus == 'INPROGRESS' || job.scheduleStatus == 'COMPLETE'">{{job.started | date: "MM/dd/yyyy h:mm a"}}</p>
+                                                <p ng-if="job.scheduleStatus == 'SCHEDULED' || job.scheduleStatus == 'CANCELLED'">N/A</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4">Completed</label>
+                                            <div class="col-sm-8">
+                                                <p ng-if="job.scheduleStatus == 'COMPLETE'">{{job.completed | date: "MM/dd/yyyy h:mm a"}}</p>
+                                                <p ng-if="job.scheduleStatus == 'SCHEDULED' || job.scheduleStatus == 'INPROGRESS' || job.scheduleStatus == 'CANCELLED'">N/A</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4">Duration</label>
+                                            <div class="col-sm-8">
+                                                <p ng-if="job.scheduleStatus == 'COMPLETE'">{{getDuration(job)}}</p>
+                                                <p ng-if="job.scheduleStatus == 'SCHEDULED' || job.scheduleStatus == 'INPROGRESS' || job.scheduleStatus == 'CANCELLED'">N/A</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- PROGRESS BAR -->
+										<div>
+											<div class="progress">
+											  <div class="progress-bar progress-bar-fota fota-bg-pending" role="progressbar" ng-style="{'width': job.progressMetrics.pending.percent + '%'}" aria-valuenow="{{job.progressMetrics.pending.percent}}" aria-valuemin="0" aria-valuemax="100" tooltip="Pending">{{job.progressMetrics.pending.count}}</div>
+											  <div class="progress-bar progress-bar-fota fota-bg-inprogress" role="progressbar" ng-style="{'width': job.progressMetrics.inprogress.percent + '%'}" aria-valuenow="{{job.progressMetrics.inprogress.percent}}" aria-valuemin="0" aria-valuemax="100" tooltip="In progress">{{job.progressMetrics.inprogress.count}}</div>
+											  <div class="progress-bar progress-bar-fota fota-bg-received" role="progressbar" ng-style="{'width': job.progressMetrics.received.percent + '%'}" aria-valuenow="{{job.progressMetrics.received.percent}}" aria-valuemin="0" aria-valuemax="100" tooltip="Received">{{job.progressMetrics.received.count}}</div>
+											  <div class="progress-bar progress-bar-fota fota-bg-complete" role="progressbar" ng-style="{'width': job.progressMetrics.complete.percent + '%'}" aria-valuenow="{{job.progressMetrics.complete.percent}}" aria-valuemin="0" aria-valuemax="100" tooltip="Complete">{{job.progressMetrics.complete.count}}</div>
+											  <div class="progress-bar progress-bar-fota fota-bg-cancelled" role="progressbar" ng-style="{'width': job.progressMetrics.cancelled.percent + '%'}" aria-valuenow="{{job.progressMetrics.cancelled.percent}}" aria-valuemin="0" aria-valuemax="100" tooltip="Cancelled">{{job.progressMetrics.cancelled.count}}</div>
+											  <div class="progress-bar progress-bar-fota fota-bg-expired" role="progressbar" ng-style="{'width': job.progressMetrics.expired.percent + '%'}" aria-valuenow="{{job.progressMetrics.expired.percent}}" aria-valuemin="0" aria-valuemax="100" tooltip="Expired">{{job.progressMetrics.expired.count}}</div>
+											  <div class="progress-bar progress-bar-fota fota-bg-error" role="progressbar" ng-style="{'width': job.progressMetrics.failed.percent + '%'}" aria-valuenow="{{job.progressMetrics.failed.percent}}" aria-valuemin="0" aria-valuemax="100" tooltip="Failed">{{job.progressMetrics.failed.count}}</div>
+											</div>
+										</div>
+										<!-- /PROGRESS BAR -->
+										
+										<!-- LEGEND -->
+                                        <ul class="list-inline fota-legend">
+                                        	<li><span class="fota-bg-pending"></span><i class="fa fa-square pending" aria-hidden="true"></i>Pending</li>
+                                        	<li><span class="fota-bg-inprogress"></span><i class="fa fa-square inprogress" aria-hidden="true"></i>In Progress</li>
+                                        	<li><span class="fota-bg-received"></span><i class="fa fa-square received" aria-hidden="true"></i>Received</li>
+                                        	<li><span class="fota-bg-complete"></span><i class="fa fa-square complete" aria-hidden="true"></i>Complete</li>
+                                        	<li><span class="fota-bg-cancelled"></span><i class="fa fa-square cancelled" aria-hidden="true"></i>Cancelled</li>
+                                        	<li><span class="fota-bg-expired"></span><i class="fa fa-square expired" aria-hidden="true"></i>Expired</li>
+                                        	<li><span class="fota-bg-error"></span><i class="fa fa-square error" aria-hidden="true"></i>Failed</li>
+                                        </ul>
+                                        <!-- /LEGEND -->
+                                    </div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div ng-if="activeTab == 1" ng-controller="FMAuditAssetsController as vm" ng-init="init(job)" ng-include="'partials/firmwaremanagement/audit-assets.html'"></div>
+            <div ng-if="activeTab == 2" ng-controller="FMAuditLogsController as vm" ng-include="'partials/logs-tab.html'"></div>
+        </div>
+    </div>
+</div>

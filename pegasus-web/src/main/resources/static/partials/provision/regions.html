@@ -1,0 +1,139 @@
+<div left-menu is-collapsed="menuIsCollapsed">
+	&nbsp;
+</div>
+
+<div class="partial-page-content-container" ng-class="{'menu-collapsed': menuIsCollapsed}" ng-init="menuIsCollapsed = !menuIsCollapsed"
+	ng-scrollbars ng-scrollbars-config="scrollerConfig">
+	<div class="partial-page-content">
+		<!-- BEGIN PAGE BREADCRUMB -->
+		<ul class="page-breadcrumb breadcrumb">
+		    <li>Provision</li>
+		    <li class="active">Regions</li>
+		</ul>
+		<!-- END PAGE BREADCRUMB -->
+		<!-- BEGIN MAIN CONTENT -->
+		<div class="row">
+		    <div class="col-md-12">
+				<div class="panel panel-default panel-page">
+					<div class="panel-heading">
+					    <div class="row">
+							<div class="col-md-8 col-sm-4">
+								<arrow-items-per-page-dropdown
+									data-items-per-page="pagination.itemsPerPage" 
+									data-total-items="pagination.totalItems"
+									data-change="changeItemsPerPage(numberOfItems)"></arrow-items-per-page-dropdown>
+							</div>
+							<div class="col-md-4 col-sm-8">
+								<div class="table-group-actions pull-right">
+			                        <span></span>
+							        <!--div class="btn-group" role="group" aria-label="...">
+										<button type="button" 
+											class="btn btn-default"
+											ng-class="{'active': sm.opinion == 'list'}"
+											ng-click="changeOpinion('list')"><i class="fa fa-list" aria-hidden="true"></i> List</button>
+										<button type="button" 
+											class="btn btn-default"
+											ng-class="{'active': sm.opinion == 'grid'}"
+											ng-click="changeOpinion('grid')"><i class="fa fa-th" aria-hidden="true"></i> Grid</button>
+									</div-->
+							        <div class="btn-group" role="group" aria-label="...">
+							        	<button type="button" 
+							        		class="btn btn-default"
+								        	ng-if="canCreateRegion()"
+											ng-click="add()"><i class="fa fa-asterisk" aria-hidden="true"></i> New</button>
+							        </div>
+			                    </div>
+							</div>
+					    </div>
+					</div>
+					<div class="panel-body">
+					
+						<table class="table table-striped table-bordered table-hover dataTable table-ellipsis"
+							ng-if="sm.opinion == 'list'">
+							<thead>
+								<tr class="heading">
+									<th ng-repeat="header in columnHeaders" 
+										arrow-column-header 
+										label="header.label" 
+										value="header.value" 
+										sort-field="pagination.sort.property" 
+										sort-direction="pagination.sort.direction" 
+										sortable="header.sortable"
+										sort="sortColumn(column)">
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in pagination.content">
+									<td>
+										<span ng-if="canReadRegion() ">
+											<a ui-sref="region({regionId: '{{item.id}}'})">{{item.name}}</a>
+										</span>
+										<span ng-if="!canReadRegion()">
+											{{item.name}}
+										</span>
+									</td>
+									<td>{{item.description}}</td>
+									<td>{{item.enabled ? 'Yes' : 'No'}}</td>
+								</tr>
+							</tbody>
+						</table>
+					
+						<!-- START GRID OPINION -->
+						<div ng-if="sm.opinion == 'grid'"
+							class="page-grid">
+						
+							<ul class="list-unstyled">
+									
+								<li class="item"
+									ng-repeat="item in pagination.content">
+									<div class="item-header">
+										<span class="circle-user text-center" 
+											style="margin: 0px;">{{item.name.substring(0, 1)}}</span>
+										<span class="item-title">{{item.name}}</span>										
+									</div>
+									<div>
+								        <div class="btn-group pull-right" role="group" aria-label="...">
+											<a type="button" 
+												class="btn btn-default btn-sm"
+												ng-if="canUpdateRegion()"
+												ui-sref="region({regionId: '{{item.id}}'})"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+										</div>
+										<br/><i class="fa fa-circle" aria-hidden="true"></i> {{item.enabled}}
+									</div>
+								</li>
+
+							</ul>
+						
+						</div>
+						<!-- END GRID OPINION -->
+					
+					</div>
+					<div class="panel-footer">
+						<div class="row">
+							<div class="col-md-8 col-sm-12">
+								<arrow-showing-items 
+									data-page-index="pagination.pageIndex"
+									data-items-per-page="pagination.itemsPerPage" 
+									data-total-items="pagination.totalItems"
+									data-topic="role"
+									data-topic-plural="regions"></arrow-showing-items>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<arrow-pagination 
+									data-page-index="pagination.pageIndex"
+									data-total-pages="pagination.totalPages"
+									data-first="pagination.first" 
+									data-last="pagination.last"
+									data-previous="previousPage()"
+									data-next="nextPage()"
+									data-go="gotoPage(pageNumber)"></arrow-pagination>
+							</div>
+						</div>
+					</div>
+				</div>
+
+		    </div>
+		</div>
+	</div>
+</div>

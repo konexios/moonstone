@@ -1,0 +1,37 @@
+/* no header + transparent bg modification styles */
+/* NTH: make it as option on widget configuration */
+widget-body.logo-widget {
+    background-color: transparent;
+} 
+
+widget-body.logo-widget .widget-bd{
+    top: 0;
+    height: 100%;
+} 
+
+
+logo-widget .logo-wrapper {
+    overflow: hidden;
+    text-align: center;
+}
+
+logo-widget .logo-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    padding: 8px;
+    margin: auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.event-logo-preview {
+    text-align: center;
+}
+
+.event-logo-preview img {
+    max-height: 150px;
+    max-width: 400px;
+}

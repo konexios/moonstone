@@ -1,0 +1,427 @@
+<!-- create device -->
+<div class="row-content">
+	<!-- CONTENT WRAPPER -->
+	<div class="content-wrapper-fluid createDevice">
+		<div ng-controller="DevicesController">
+			<div class="panel panel-default panel-content">
+				<div class="clearfix">
+					<span class="pull-left">
+						<h3 class="page-title paddinglefttwenty">
+							Create New Device
+						</h3>
+					</span>
+				</div>
+				<div class="row clearfix">
+					<div class="obj-page-bd">
+						<form name="form" class="form-horizontal css-form" novalidate>
+							<fieldset ng-disabled="busy">
+								<div class="form-group ">
+									<label for="type" class="col-sm-4 control-label marginleftfiftyeight">
+										Type
+										<span class="required" aria-required="true"> * </span>
+									</label>
+									<div class="col-sm-3 pull-center">
+										<select id="type" ng-options ="item.type as item.device for item in deviceDetails" class="selectpicker form-control" name="type" ng-model="device.info.type" data-live-search="true" ng-change="onChangeSelectedDevice(device.info.type)">
+										</select>
+										<div class="help-block" ng-messages="form.type.$error" ng-show="form.type.$touched || (form.$submitted && form.type.$invalid)">
+											<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group" ng-repeat="info in deviceInfo">
+									<label for="{{info.name}}" class="col-sm-4 control-label marginleftfiftyeight">{{info.title}} </label>
+									<div class="col-sm-3 pull-center">
+										<input ng-if="info.input != null && info.input.type != 'checkbox'" ng-model="device.info[info.name]" ng-value="info.value" id="{{info.name}}" class="form-control" type="{{info.input.type}}" min="{{info.input.min}}" max="{{info.input.max}}" step="{{info.input.step}}">
+										<input ng-if="info.input != null && info.input.type == 'checkbox'" ng-model="device.properties[prop.name]" ng-checked="info.value" id="{{info.name}}" class="form-checkbox" type="{{info.input.type}}">
+										<select ng-if="info.values != null" ng-model="device.properties[prop.name]" id="{{info.name}}" class="selectpicker form-control">
+											<option ng-repeat="val in info.values">{{val}}</option>
+										</select>
+									</div>
+								</div>
+								
+								<div class="col-sm-12">
+								    <accordion>
+								      <div class="col-sm-1"></div>
+								      <accordion-group heading="Required Properties" class="col-sm-10" is-open="true">	
+								      <div class="form-group">
+											<label for="name" class="col-sm-4 control-label">
+												Name
+												<span class="required" aria-required="true"> * </span>
+												<a ng-mouseover="showPopoverN=true;" ng-mouseleave="showPopoverN=false;">
+													<img src="/assets/img/blue_question_mark.png" height="13px" />
+													<div class="popover" ng-show="showPopoverN">
+														<p>Name of Device</p>
+													</div>
+												</a>
+											</label>
+											<div class="col-sm-4">
+												<input type="text" class="form-control" id="name" name="name" ng-model="device.info.name" ng-required="true" />
+												<div class="help-block" ng-messages="form.name.$error" ng-show="form.name.$touched || (form.$submitted && form.name.$invalid)">
+													<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+												</div>
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="uid" class="col-sm-4 control-label">
+												UID
+												<span class="required" aria-required="true"> * </span>
+												<a ng-mouseover="showPopoverU=true;" ng-mouseleave="showPopoverU=false;">
+													<img src="/assets/img/blue_question_mark.png" height="13px" />
+													<div class="popover" ng-show="showPopoverU">
+														<p>Unique ID of Device</p>
+													</div>
+												</a>
+											</label>
+											<div class="col-sm-4 ">
+												<input type="text" class="form-control" id="uid" name="uid" ng-model="device.info.uid" ng-required="true" />
+												<div class="help-block" ng-messages="form.uid.$error" ng-show="form.uid.$touched || (form.$submitted && form.uid.$invalid)">
+													<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+												</div>
+											</div>
+										</div>								        
+										<div class="form-group" ng-repeat="prop in deviceProps"ng-if="prop.required=='true'">					
+											<label for="{{prop.name}}" class="col-sm-4 control-label">{{prop.title}}
+												<span class="required" aria-required="true" ng-if="prop.required=='true'"> * </span>
+												<a ng-mouseover="showPopoverP=true;" ng-mouseleave="showPopoverP=false;">
+													<img src="/assets/img/blue_question_mark.png" height="13px" />
+													<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='telemetryTopics'">
+														<p>Defines list of MQTT topics that device should subscribe for telemetry topics.</p>
+													</div>
+													<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='deviceUidToken'">
+														<p>Defines position of device UID inside MQTT topic name. Used to extract device UIDs from topic name formated as follows <token>/<token>/.../<token></p>
+													</div>	
+													<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='deviceUidTag'">
+														<p>Defines device uid key that will available in register payload.</p>
+													</div>								
+													<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='mqttUrl'">
+														<p>Defines address of MQTT server with port</p>
+													</div>	
+													<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='bleAddress'">
+															<p>Defines MAC address of device (e.g. FA:73:B2:D1:FD:C7).</p>
+													</div>
+													<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='bleInterface'">
+														<p>Defines name of bluetooth interface (e.g. hci0).</p>
+													</div>
+													<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='bleInterval'">
+														<p>Defines timeout interval (in seconds) for scanning bluetooth devices.</p>
+													</div>									
+												</a>
+											</label>
+											
+											<div class="col-sm-4 form-elem">
+												<input ng-if="prop.input != null && prop.input.type != 'checkbox'" ng-model="device.properties[prop.name]" ng-init="device.properties[prop.name] = prop.value" id="{{prop.name}}" class="form-control" type="{{prop.input.type}}" min="{{prop.input.min}}" max="{{prop.input.max}}" step="{{prop.input.step}}" ng-required="{{prop.required}}">																			<input ng-if="prop.input != null && prop.input.type == 'checkbox'" ng-model="device.properties[prop.name]" ng-checked="prop.value" id="{{prop.name}}" class="form-checkbox" type="{{prop.input.type}}">
+												<select ng-if="prop.values != null" ng-model="device.properties[prop.name]" id="{{prop.name}}" class="selectpicker form-control">
+													<option ng-repeat="val in prop.values">{{val}}</option>
+												</select>
+											</div>
+											<div class="col-sm-4 form-elem" ng-if="prop.name == 'bleAddress'">
+												<button class="btn btn-default" ng-click="scanForMacAddress(form,device)">
+												Scan</button>
+											</div>								
+											<div class="help-block" ng-messages="prop.name.$error" ng-show="prop.name.$touched || (form.$submitted && prop.name.$invalid)">
+												<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+											</div>																	
+										</div>
+										<div class="form-group" ng-if="device.info.type == 'mqtt-router'">
+												<label for="telemetryTopics" class="col-sm-4 control-label">
+													Telemetry MQTT topics
+													<a ng-mouseover="showPopoverTel=true;" ng-mouseleave="showPopoverTel=false;">
+														<img src="/assets/img/blue_question_mark.png" height="13px" />
+														<div class="popover" ng-show="showPopoverTel">
+															<p>Defines comma-separated list of MQTT topics that device should subscribe for telemetry topics.</p>
+														</div>
+													</a>
+												</label>
+												<div class="col-sm-4">
+													<input class="form-control" id="newTopicList" type="text" name="newTopicList" ng-model="device.newTopicList" />
+													<ul>
+														<li ng-repeat="topic in topic_list" class="{'fadeOut' : topic.done}">
+															<span class="fa fa-close" ng-click="deleteTopicList($index)"></span>
+															<span>{{topic.title}}</span>
+														</li>
+													</ul>
+												</div>
+												<div class="col-sm-4">
+													<button class="btn btn-default" ng-click="addTopicList(form,device)" ng-disabled="from.newTopicList.$invalid">
+														Add</button>
+												</div>
+												<div class="help-block" ng-messages="prop.name.$error" ng-show="prop.name.$touched || (form.$submitted && prop.name.$invalid)">
+												<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+											</div>	
+											</div>		
+										
+										</accordion-group>
+    								</accordion>
+    							</div>
+    							<div class="col-sm-12">
+									<accordion>
+										<div class="col-sm-1"></div>
+									      <accordion-group heading="Optional Properties" class="col-sm-10">				
+											<div class="form-group" ng-repeat="prop in deviceProps"ng-if="prop.required=='false'">				
+												<label for="{{prop.name}}" class="col-sm-4 control-label">{{prop.title}}
+													<span class="required" aria-required="true" ng-if="prop.required=='true'"> * </span>
+													<a ng-mouseover="showPopoverP=true;" ng-mouseleave="showPopoverP=false;">
+														<img src="/assets/img/blue_question_mark.png" height="13px" />
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='deviceNameTag'">
+															<p>Defines device name key that will available in register payload. It is optional, it take deviceUidTag as default.</p>
+														</div>
+														
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='cmdMqttTopic'">
+															<p>Defines template of topics used to send commands to devices</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='protocol'">
+															<p>Defines protocol</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='mqttUserName'">
+															<p>Defines MQTT user name</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='mqttPassword'">
+															<p>Defines MQTT user password</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='clientId'">
+															<p>Defines MQTT clientId.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='stateControlTopic'">
+															<p>Defines state control topic for 3rd party application.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='retryInterval'">
+															<p>Defines retry Interval.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='useDbus'">
+															<p>Enables D-Bus to be used to obtain data instead of direct parsing of received packets.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='publishLocal'">
+															<p>publishLocal.</p>
+														</div>
+														
+														
+											<!-- Sensors -->
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='HeartRateSensor/enabled'">
+															<p>Enable Heart Rate Sensor.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='LightSensor/enabled'">
+															<p>Enable Light Sensor.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='TemperatureSensor/enabled'">
+															<p>Enable Temperature Sensor.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='PressureSensor/enabled'">
+															<p>Enable Pressure Sensor.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='HumiditySensor/enabled'">
+															<p>Enable Humidity Sensor.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='UvSensor/enabled'">
+															<p>Enable UV Sensor.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='SoundSensor/enabled'">
+															<p>Enable Sound Sensor.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='CO2Sensor/enabled'">
+															<p>Enable Co2 Sensor.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='TvocSensor/enabled'">
+															<p>Enable Tvoc Sensor.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='AccelerationSensor/enabled'">
+															<p>Enable Acceleration Sensor.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='OrientationSensor/enabled'">
+															<p>Enable Orientation Sensor.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='LedsControl/enabled'">
+															<p>Enable Leds Sensor.</p>
+														</div>																																																							
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='KeysSensor/enabled'">
+															<p>Enable Keys Sensor.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='MovementSensor/enabled'">
+															<p>Enable Movement Sensor.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='MovementSensor/accelerometerEnabled'">
+															<p>Enable Movement Sensor/Accelerometer.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='MovementSensor/magnetometerEnabled'">
+															<p>Enable Movement Sensor/magnetometer.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='MovementSensor/gyroscopeEnabled'">
+															<p>Enable Movement Sensor/gyroscope.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='ActivitySensor/enabled'">
+															<p>Enable Activity Sensor.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='MicLevelSensor/enabled'">
+															<p>Enable MicLevel Sensor.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='EnvironmentSensor/enabled'">
+															<p>Enable Environment Sensor.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='LedControl/enabled'">
+															<p>Enable Led Control Sensor.</p>
+														</div>
+														
+														
+														
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='LightSensor/period'">
+															<p>Enable Light Sensor Period.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='TemperatureSensor/period'">
+															<p>Enable Temperature Sensor Period.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='PressureSensor/period'">
+															<p>Enable Pressure Sensor Period.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='HumiditySensor/period'">
+															<p>Enable Humidity Sensor Period.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='MovementSensor/period'">
+															<p>Enable Movement Sensor Period.</p>
+														</div>
+														<div class="popover" ng-show="showPopoverP" ng-if="prop.name =='MovementSensor/accelerometerRange'">
+															<p>Enable Movement Sensor Accelerometer Range.</p>
+														</div>
+													</a>
+												</label>
+												<div class="col-sm-4 form-elem">
+													<input ng-if="prop.input != null && prop.input.type != 'checkbox'" ng-model="device.properties[prop.name]" ng-value="prop.value" id="{{prop.name}}" class="form-control" type="{{prop.input.type}}" min="{{prop.input.min}}" max="{{prop.input.max}}" step="{{prop.input.step}}" ng-required="{{prop.required}}">
+													<input ng-if="prop.input != null && prop.input.type == 'checkbox'" ng-model="device.properties[prop.name]" ng-checked="prop.value" id="{{prop.name}}" class="form-checkbox" type="{{prop.input.type}}">
+													<select ng-if="prop.values != null" ng-model="device.properties[prop.name]" id="{{prop.name}}" class="selectpicker form-control">
+														<option ng-repeat="val in prop.values">{{val}}</option>
+													</select>
+												</div>
+												
+													<div class="help-block" ng-messages="prop.name.$error" ng-show="prop.name.$touched || (form.$submitted && prop.name.$invalid)">
+														<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+													</div>														
+											</div>
+															
+											<div class="form-group" ng-if="device.info.type == 'mqtt-router'">
+												<label for="deviceRegistrationOverMqtt" class="col-sm-4 control-label">
+													Device Registration Over Mqtt
+													<a ng-mouseover="showPopoverN=true;" ng-mouseleave="showPopoverN=false;">
+														<img src="/assets/img/blue_question_mark.png" height="13px" />
+														<div class="popover" ng-show="showPopoverN">
+															<p>Defines new device registration over mqtt activate or activate. DeviceRegistrationTopic properties required if it is true.</p>
+														</div>
+													</a>
+												</label>
+												<div class="col-sm-4">
+													<input type="checkbox" class="form-checkbox" id="deviceRegistrationOverMqtt" name="deviceRegistrationOverMqtt" ng-model="device.deviceRegistrationOverMqtt" />
+												</div>
+											</div>
+											<div class="form-group" ng-if="device.info.type == 'mqtt-router'" ng-show="device.deviceRegistrationOverMqtt">
+												<label for="deviceRegistrationTopic" class="col-sm-4 control-label">
+													Device Registration Topic
+													<a ng-mouseover="showPopoverN=true;" ng-mouseleave="showPopoverN=false;">
+														<img src="/assets/img/blue_question_mark.png" height="13px" />
+														<div class="popover" ng-show="showPopoverN">
+															<p>Defines MQTT topic that need subscribe for device registration over mqtt.</p>
+														</div>
+													</a>
+												</label>
+												<div class="col-sm-4">
+													<input type="text" class="form-control" id="deviceRegistrationTopic" name="deviceRegistrationTopic" ng-model="device.deviceRegistrationTopic" />
+												</div>
+											</div>
+											<div class="form-group" ng-if="device.info.type == 'mqtt-router'">
+												<label for="mqttBrokerCertified" class="col-sm-4 control-label">
+													Mqtt Broker Certified
+													<a ng-mouseover="showPopoverN=true;" ng-mouseleave="showPopoverN=false;">
+														<img src="/assets/img/blue_question_mark.png" height="13px" />
+														<div class="popover" ng-show="showPopoverN">
+															<p>Defines MQTT broker certified broker.</p>
+														</div>
+													</a>
+												</label>
+												<div class="col-sm-4">
+													<input type="checkbox" class="form-checkbox" id="mqttBrokerCertified" name="mqttBrokerCertified" ng-model="device.mqttBrokerCertified" />
+												</div>
+											</div>
+											<div class="form-group" ng-if="device.info.type == 'mqtt-router' && device.mqttBrokerCertified==true">
+												<label for="caCertPath" class="col-sm-4 control-label">
+													CA Certificate Path
+													<a ng-mouseover="showPopoverN=true;" ng-mouseleave="showPopoverN=false;">
+														<img src="/assets/img/blue_question_mark.png" height="13px" />
+														<div class="popover" ng-show="showPopoverN">
+															<p>Defines path of caCert file that is required for mqtt certified broker connection.</p>
+														</div>
+													</a>
+												</label>
+												<div class="col-sm-4">
+													<input type="text" class="form-control" id="caCertPath" name="caCertPath" ng-model="device.caCertPath" />
+												</div>
+											</div>
+											<div class="form-group" ng-if="device.info.type == 'mqtt-router' && device.mqttBrokerCertified==true">
+												<label for="clientCertPath" class="col-sm-4 control-label">
+													Client Certificate Path
+													<a ng-mouseover="showPopoverN=true;" ng-mouseleave="showPopoverN=false;">
+														<img src="/assets/img/blue_question_mark.png" height="13px" />
+														<div class="popover" ng-show="showPopoverN">
+															<p>Defines path of Cert file that is required for mqtt certified broker connection.</p>
+														</div>
+													</a>
+												</label>
+												<div class="col-sm-4">
+													<input type="text" class="form-control" id="clientCertPath" name="clientCertPath" ng-model="device.clientCertPath" />
+												</div>
+											</div>
+											<div class="form-group" ng-if="device.info.type == 'mqtt-router' && device.mqttBrokerCertified==true">
+												<label for="privateKeyPath" class="col-sm-4 control-label">
+													Private Key Path
+													<a ng-mouseover="showPopoverN=true;" ng-mouseleave="showPopoverN=false;">
+														<img src="/assets/img/blue_question_mark.png" height="13px" />
+														<div class="popover" ng-show="showPopoverN">
+															<p>Defines path of private Key file that is required for mqtt certified broker connection.</p>
+														</div>
+													</a>
+												</label>
+												<div class="col-sm-4">
+													<input type="text" class="form-control" id="privateKeyPath" name="privateKeyPath" ng-model="device.privateKeyPath" />
+												</div>
+											</div>
+											<div class="form-group" ng-if="device.info.type == 'mqtt-router'">
+												<label for="name" class="col-sm-4 control-label">
+													ADD Devices
+													<a ng-mouseover="showPopoverN=true;" ng-mouseleave="showPopoverN=false;">
+														<img src="/assets/img/blue_question_mark.png" height="13px" />
+														<div class="popover" ng-show="showPopoverN">
+															<p>Defines default devices</p>
+														</div>
+													</a>
+												</label>
+												<div class="col-sm-4">
+													<input class="form-control" id="newDeviceList" type="text" name="newDeviceList" ng-model="device.newDeviceList" />
+													<ul>
+														<li ng-repeat="deviceL in device_list" class="{'fadeOut' : deviceL.done}">
+															<span class="fa fa-close" ng-click="deleteDeviceList($index)"></span>
+															<span>{{deviceL.title}}</span>
+														</li>
+													</ul>
+												</div>
+												<div class="col-sm-4">
+													<button class="btn btn-default" ng-click="addDeviceList(form,device)" ng-disabled="from.newDeviceList.$invalid">
+														Add</button>
+												</div>
+											</div>				
+										</accordion-group>
+									</accordion>
+    							</div>							
+								<div class="form-group">
+									<div class="col-sm-7"></div>
+									<div class="col-sm-5 margin-top-fifteen" aria-label="...">
+										<button type="button" class="btn btn-default" ng-click="backAddingForm()">
+											Back
+										</button>
+										<button type="submit" class="btn btn-default" ng-click="save(form, device)" >
+											Create
+										</button>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

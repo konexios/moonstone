@@ -1,0 +1,11 @@
+<div class="partial-page-left-nav-container" ng-class="{'menu-collapsed': vm.menuIsCollapsed}"
+    ng-scrollbars ng-scrollbars-config="vm.scrollerConfig">
+    <div class="partial-page-left-nav-content">
+        <button class="btn btn-default" ng-click="vm.menuIsCollapsed = !vm.menuIsCollapsed">
+            <i class="fa fa-bars fa-2"></i>
+        </button>
+        <div class="left-menu-content" ng-hide="vm.menuIsCollapsed">
+            <div class="transcluded-content"></div>
+        </div>
+    </div>
+</div>

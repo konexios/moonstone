@@ -1,0 +1,168 @@
+<div class="row-content" on-resize>
+
+    <subscription-expiration></subscription-expiration>
+
+    <div class="content-nav overflow-hidden arrow-collapsed-menu" ng-class="{'mobile-view':mobileLayot, 'showed-menu':mobileMenuShowed, 'collapsed-view':collapsedView}">
+        <div class="nav nav-custom-scrollbar" ng-scrollbars ng-scrollbars-config="scrollerConfig">
+            <div class="content-nav-filters" ng-if="tab !== 'ELIGIBLE'">
+                <h3 ng-class="{'text-center': menuIsHidden() }">
+                    <i class="fa fa-filter"></i>
+                    <span ng-hide="menuIsHidden()">Filters</span>
+                </h3>
+                <div ng-hide="menuIsHidden()">
+                    <!--FILTERS-->
+                    <div class="form-group" ng-if="filterOptions.jobNumbers">
+                        <label for="jobNumbers">Job #</label>
+                        <select class="form-control" name="jobNumbers" id="jobNumbers"
+                            ng-model="filter.jobNumbers" ng-change="vm.filterUpdated()"
+                            ng-options="option.hid as option.jobNumber for option in filterOptions.jobNumbers">
+                            <option value>Please select</option>
+                        </select>
+                    </div>
+                    <div class="form-group" ng-if="filterOptions.requestors">
+                        <label for="requestors">Requester <sup>{{filter.requestors.length}}</sup></label>
+                        <select class="form-control " name="requestors" id="requestors" multiple
+                            ng-model="filter.requestors" ng-change="vm.filterUpdated()"
+                            ng-options="option.id as option.name for option in filterOptions.requestors | orderBy:'name'">
+                        </select>
+                    </div>
+                    <div class="form-group" ng-if="filterOptions.deviceTypes">
+                        <label for="deviceTypes">Asset Type <sup>{{filter.deviceTypes.length}}</sup></label>
+                        <select class="form-control " name="deviceTypes" id="deviceTypes" multiple
+                            ng-model="filter.deviceTypes" ng-change="vm.filterUpdated()"
+                            ng-options="option.id as option.name for option in filterOptions.deviceTypes | orderBy:'name'">
+                        </select>
+                    </div>
+                    <div class="form-group" ng-if="filterOptions.startDates">
+                        <label for="startDates">From Date</label>
+                        <select class="form-control " name="startDates" id="startDates"
+                            ng-model="filter.startDates" ng-change="vm.filterUpdated()"
+                            ng-options="option as (option | date:dateTimeFormat) for option in filterOptions.startDates">
+                            <option value>Please select</option>
+                        </select>
+                    </div>
+                    <div class="form-group" ng-if="filterOptions.completedDates">
+                        <label for="completedDates">Completed Date</label>
+                        <select class="form-control " name="completedDates" id="completedDates"
+                            ng-model="filter.completedDates" ng-change="vm.filterUpdated()"
+                            ng-options="option as (option | date:dateTimeFormat) for option in filterOptions.completedDates">
+                            <option value>Please select</option>
+                        </select>
+                    </div>
+                    <div class="form-group" ng-if="filterOptions.statuses">
+                        <label for="statuses">Status <sup>{{filter.statuses.length}}</sup></label>
+                        <select class="form-control " name="statuses" id="statuses" multiple
+                            ng-model="filter.statuses" ng-change="vm.filterUpdated()"
+                            ng-options="option for option in filterOptions.statuses | orderBy:orderByValue">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="collapsed-button-wrap nav nav-pills">
+            <li role="presentation" class="collapse-button">
+                <a ng-click="collapseMenu()" class="text-right">
+                    <span class="icon-wrapper"><i class="fa fa-lg" ng-class="{
+                        'fa-angle-double-left': !mobileLayot && !collapsedView,
+                        'fa-angle-double-right': !mobileLayot && collapsedView,
+                        'mobile fa-angle-double-right': mobileLayot && !mobileMenuShowed,
+                        'mobile fa-angle-double-left': mobileLayot && mobileMenuShowed
+                    }" aria-hidden="true"></i></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content-wrapper" ng-class="{'mobile-view':mobileLayot, 'showed-menu':mobileMenuShowed, 'collapsed-view':collapsedView}">
+        <div class="content-hd">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content-title fm-title">
+                        <h1>Job Summary</h1>
+                        <br/>
+                        <br/>
+                        <div class="jobs-total">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-6">
+                                    <!--p>Gateways <span ng-if="!summary.totalGateways" class="badge badge-iot">...</span><span ng-if="summary.totalGateways" class="badge badge-iot">{{summary.totalGateways}}</span> Devices <span ng-if="!summary.totalDevices" class="badge badge-iot">...</span><span ng-if="summary.totalDevices" class="badge badge-iot">{{summary.totalDevices}}</span></p-->
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-6">
+                                    <!--free space for additional content-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-sub-tabs">
+            <ul class="nav nav-pills" ng-class="{'mobile-tabs': mobileLayot}">
+                <!-- TABS: Tabs and their IDs implemented in FMSummary service -->
+                <li role="presentation" ng-class="rpTab.id === tab ? 'active': ''" ng-repeat="rpTab in tabs">
+                    <a href="#/fmsummary/{{rpTab.id}}">
+                        {{rpTab.name}} <sup><span ng-if="!summary[rpTab.countField]" class="badge badge-iot">0</span><span ng-if="summary[rpTab.countField]" class="badge badge-iot">{{summary[rpTab.countField]}}</span></sup>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12" ng-if="tab !== 'ELIGIBLE'">
+                <!--PAGE CONTENT-->
+                <div ng-include="'partials/list-tab.html'"></div>
+            </div>
+            <div class="col-md-12" ng-if="tab === 'ELIGIBLE'">
+
+				<div class="content-bd">
+
+					<div class="panel panel-default panel-content">
+					    <div class="panel-body">
+					        <table class="table table-striped table-bordered" style="table-layout: fixed;">
+					            <thead>
+					            <tr>
+					                <th class="hidden-xs" ng-repeat="header in eligibleColumns">{{header.label}}</th>
+					            </tr>
+					            </thead>
+					            <tbody>
+					            <tr ng-if="(!vm.pagination.content || vm.pagination.content.length <= 0) && vm.noResultsMsg">
+					            	<td colspan="{{vm.columnHeaders.length + 1}}" class="text-center">{{vm.noResultsMsg}}</td>
+					            </tr>
+					            <tr ng-if="eligibleGroups && eligibleGroups.length > 0" ng-repeat="item in eligibleGroups track by $index" >
+					                <td>{{item.assetTypeName}}</td>
+					                <td>{{item.numberOfAssets}}</td>
+					                <td>{{item.hardwareVersionName}}</td>
+					                <td>{{item.currentFirmwareVersionName}}</td>
+					                <td>
+					                	<span ng-repeat="firmwareVersion in item.availableFirmwareVersionNames">
+					                		<a href="" 
+					                			title="Schedule"
+					                			ng-if="canCreateSoftwareReleaseSchedule()"
+					                			ng-click="schedule(item.assetTypeId, firmwareVersion.softwareReleaseId);">{{firmwareVersion.softwareReleaseName}}</a>
+					                		<span ng-if="!canCreateSoftwareReleaseSchedule()">{{firmwareVersion.softwareReleaseName}}</span>
+					                		<br/>
+					                	</span>
+					                </td>
+					            </tr>
+					            </tbody>
+					            <tfoot>
+					            <tr>
+					                <td colspan="{{eligibleColumns.length}}">
+					                    <div class="row">
+					                        <div class="col-sm-12">
+					                            {{eligibleGroups.length}} eligible group<span ng-if="eligibleGroups.length > 1 || eligibleGroups.length == 0">s</span>
+					                        </div>
+					                    </div>
+					                </td>
+					            </tr>
+					            </tfoot>
+					        </table>
+					    </div>
+					</div>
+				</div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

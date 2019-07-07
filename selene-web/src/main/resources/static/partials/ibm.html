@@ -1,0 +1,139 @@
+<div class="row-content">
+	<!-- CONTENT WRAPPER -->
+	<div class="content-wrapper-fluid">
+		<div ng-controller="IbmController">
+			<div class="obj-page-hd">
+				<div class="row">
+					<div class="col-xs-12 padding-right-zero">
+						<div class="page-title">
+							<h1>
+								{{pageTitle}}
+								<small>{{pageSubTitle}}</small>
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="obj-page-bd">
+				<form name="form" class="form-horizontal css-form" novalidate ng-if="ibm">
+					<div class="obj-hd">
+						<div class="btn-group pull-right" role="group" aria-label="...">
+							<button type="submit"
+											class="btn btn-default"
+											tabindex="12"
+											ng-click="save(form, ibm)">Save
+							</button>
+						</div>
+						<h2>Organization id:{{ibm.organizationId}}</h2>
+					</div>
+					<div class="obj-bd">
+
+						<div class="form-group">
+							<label for="organizationId"
+										 class="col-sm-2 control-label">
+								Organization id
+								<span class="required" aria-required="true"> * </span>
+							</label>
+							<div class="col-sm-10">
+								<input type="text"
+											 class="form-control"
+											 id="organizationId"
+											 name="organizationId"
+											 ng-model="ibm.organizationId"
+											 ng-required="true"/>
+								<div class="help-block" ng-messages="form.organizationId.$error"
+										 ng-show="form.organizationId.$touched || (form.$submitted && form.organizationId.$invalid)">
+									<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="gatewayType"
+										 class="col-sm-2 control-label">
+								Gateway type
+								<span class="required" aria-required="true"> * </span>
+							</label>
+							<div class="col-sm-10">
+								<input type="text"
+											 class="form-control"
+											 id="gatewayType"
+											 name="gatewayType"
+											 ng-model="ibm.gatewayType"
+											 ng-required="true"/>
+								<div class="help-block" ng-messages="form.gatewayType.$error"
+										 ng-show="form.gatewayType.$touched || (form.$submitted && form.gatewayType.$invalid)">
+									<div ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="gatewayId"
+										 class="col-sm-2 control-label">
+								Gateway ID
+								<span class="required" aria-required="true"> * </span>
+							</label>
+							<div class="col-sm-10">
+								<input type="text"
+											 class="form-control"
+											 id="gatewayId"
+											 name="gatewayId"
+											 ng-model="ibm.gatewayId"
+											 ng-required="true"/>
+								<div class="help-block" ng-messages="form.gatewayId.$error"
+										 ng-show="form.gatewayId.$touched || (form.$submitted && form.gatewayId.$invalid)">
+									<div ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="authMethod"
+										 class="col-sm-2 control-label">
+								Authorization method
+								<span class="required" aria-required="true"> * </span>
+							</label>
+							<div class="col-sm-10">
+								<input type="text"
+											 class="form-control"
+											 id="authMethod"
+											 name="authMethod"
+											 ng-model="ibm.gatewayId"
+											 ng-required="true"/>
+								<div class="help-block" ng-messages="form.authMethod.$error"
+										 ng-show="form.authMethod.$touched || (form.$submitted && form.authMethod.$invalid)">
+									<div ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="authToken"
+										 class="col-sm-2 control-label">
+								Authorization token
+								<span class="required" aria-required="true"> * </span>
+							</label>
+							<div class="col-sm-10">
+								<input type="text"
+											 class="form-control"
+											 id="authToken"
+											 name="authToken"
+											 ng-model="ibm.gatewayId"
+											 ng-required="true"/>
+								<div class="help-block" ng-messages="form.authToken.$error"
+										 ng-show="form.authToken.$touched || (form.$submitted && form.authToken.$invalid)">
+									<div ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				<p ng-if="!ibm">IBM configuration is not available for this gateway.</p>
+			</div>
+			<div class="obj-page-ft">
+			</div>
+		</div>
+	</div>
+	<!-- /CONTENT WRAPPER -->
+</div>

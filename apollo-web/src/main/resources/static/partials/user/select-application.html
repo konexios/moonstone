@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <h3 class="modal-title">Select Application Instance</h3>
+</div>
+<div class="modal-body">
+    <div class="panel panel-default panel-content">
+        <div class="panel-heading"><i class="fa fa-list" aria-hidden="true"></i> APPLICATIONS</div>
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="app in applications track by $index"><a href="" ng-click="select(app)"><strong>{{app.name}}</strong></a><br /><em>{{app.description}}</em></li>
+        </ul>
+    </div>
+</div>

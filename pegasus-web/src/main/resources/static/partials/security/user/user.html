@@ -1,0 +1,38 @@
+<div left-menu is-collapsed="menuIsCollapsed">
+    <ul class="nav nav-pills nav-stacked">
+        <li role="presentation" ui-sref-active="active" ng-if="canReadUser()">
+            <a ui-sref="user.profile({userId: user.id})">{{userNameMI || 'User'}}</a>
+        </li>
+        <li role="presentation" ui-sref-active="active" ng-if="canReadUserAccount()">
+            <a ui-sref="user.account({userId: user.id})">Account</a>
+        </li>
+        <li role="presentation" ui-sref-active="active" ng-if="canReadUserAuthentication()">
+            <a ui-sref="user.authentication({userId: user.id})">Authentication</a>
+        </li>
+        <!--li role="presentation" ui-sref-active="active">
+            <a>Preferences</a>
+        </li>
+        <li role="presentation" ui-sref-active="active">
+            <a>Audit logs</a>
+        </li-->
+    </ul>
+</div>
+
+<div class="partial-page-content-container" ng-class="{'menu-collapsed': menuIsCollapsed}"
+     ng-scrollbars ng-scrollbars-config="scrollerConfig">
+    <div class="partial-page-content">
+        <!-- BEGIN PAGE BREADCRUMB -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>Security</li>
+            <li><a ui-sref="users">Users</a></li>
+            <li ng-if="$state.$current.self.url === '/profile'" class="active">{{userNameMI || 'User'}}</li>
+            <li ng-if="$state.$current.self.url !== '/profile'"><a ui-sref="user.profile({userId: user.id})">{{userNameMI || 'User'}}</a></li>
+            <li class="active" ng-if="$state.$current.self.url == '/account'">Account</li>
+            <li class="active" ng-if="$state.$current.self.url == '/authentication'">Authentication</li>
+        </ul>
+        <!-- END PAGE BREADCRUMB -->
+        <!-- BEGIN TABS -->
+        <div ui-view></div>
+        <!-- END TABS -->
+    </div>
+</div>

@@ -1,0 +1,276 @@
+<div class="row-content"
+     on-resize
+     ng-controller="SettingsController"
+     ng-show="!loading">
+
+    <subscription-expiration></subscription-expiration>
+
+    <!-- CONTENT NAV -->
+    <div class="content-nav overflow-hidden arrow-collapsed-menu" ng-class="{'mobile-view':mobileLayot, 'showed-menu':mobileMenuShowed, 'collapsed-view':collapsedView}">
+        <div class="nav nav-custom-scrollbar" ng-scrollbars ng-scrollbars-config="scrollerConfig">
+            <ul class="nav-pills nav-stacked">
+                <li role="presentation"
+                    ng-class="activeTab == 0 ? 'active' : ''"><a href="" ng-click="activeTab = 0; mobileMenuShowed=false"><span class="icon-wrapper"><i class="fa fa-building"
+                    aria-hidden="true"></i></span><span class="title crop">Company</span></a></li>
+                <li role="presentation"
+                    ng-class="activeTab == 1 ? 'active' : ''"><a href="" ng-click="activeTab = 1; mobileMenuShowed=false"><span class="icon-wrapper"><i class="fa fa-file-text"
+                    aria-hidden="true"></i></span><span class="title crop">Subscription</span></a>
+                </li>
+                <li role="presentation"
+                    ng-class="activeTab == 2 ? 'active' : ''"><a href="" ng-click="activeTab = 2; mobileMenuShowed=false"><span class="icon-wrapper"><i class="fa fa-cube"
+                    aria-hidden="true"></i></span><span class="title crop">Product</span></a>
+                </li>
+                <li role="presentation"
+                    ng-class="activeTab == 3 ? 'active' : ''"><a href="" ng-click="activeTab = 3; mobileMenuShowed=false"><span class="icon-wrapper"><i class="fa fa-cog"
+                    aria-hidden="true"></i></span><span class="title crop">Application</span></a>
+                </li>
+                <li role="presentation"
+                    ng-class="activeTab == 4 ? 'active' : ''" ng-show="canEditIoTConfig"><a href="" ng-click="activeTab = 4; mobileMenuShowed=false"><span class="icon-wrapper"><i class="fa fa-cloud"
+                    aria-hidden="true"></i></span><span class="title crop">IoT Configuration</span></a>
+                </li>
+                <li role="presentation"
+                    ng-class="activeTab == 5 ? 'active' : ''" ng-show="canProvisionApplication"><a href="" ng-click="activeTab = 5; mobileMenuShowed=false"><span class="icon-wrapper"><i class="fa fa-clone"
+                    aria-hidden="true"></i></span><span class="title crop">Provision Application</span></a>
+                </li>
+            </ul>
+        </div>
+        <ul class="collapsed-button-wrap nav nav-pills">
+            <li role="presentation" class="collapse-button">
+                <a ng-click="collapseMenu()" class="text-right">
+                    <span class="icon-wrapper"><i class="fa fa-lg" ng-class="{
+                        'fa-angle-double-left': !mobileLayot && !collapsedView,
+                        'fa-angle-double-right': !mobileLayot && collapsedView,
+                        'mobile fa-angle-double-right': mobileLayot && !mobileMenuShowed,
+                        'mobile fa-angle-double-left': mobileLayot && mobileMenuShowed
+                    }" aria-hidden="true"></i></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /CONTENT NAV -->
+
+    <!-- CONTENT WRAPPER -->
+    <div class="content-wrapper" ng-class="{'mobile-view':mobileLayot, 'showed-menu':mobileMenuShowed, 'collapsed-view':collapsedView}">
+
+        <div class="content-hd">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content-title">
+                        <h1>
+                            <span>
+                                <i class="fa fa-cogs" aria-hidden="true" title="Settings"></i>
+                            </span>
+                            Settings
+                        </h1>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="activeTab == 0">
+            <form class="form-horizontal" novalidate>
+                <div class="content-bd">
+                    <div class="panel panel-default panel-content">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Company</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Name</label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">{{model.company.name}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Abbreviation</label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">{{model.company.abbrName}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div ng-if="activeTab == 1">
+            <form class="form-horizontal" novalidate>
+                <div class="content-bd">
+                    <div class="panel panel-default panel-content">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Subscription</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Name</label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">{{model.subscription.name}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Description</label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">{{model.subscription.description}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Start date</label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">{{model.subscription.startDate}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">End date</label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">{{model.subscription.endDate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div ng-if="activeTab == 2">
+            <form class="form-horizontal" novalidate>
+                <div class="content-bd">
+                    <div class="panel panel-default panel-content">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Product</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Name</label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">{{model.product.name}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Description</label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">{{model.product.description}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">API Signing Required</label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">{{model.product.apiSigningRequired ? 'Yes' : 'No'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div ng-if="activeTab == 3">
+            <form name="configurationsForm" class="form-horizontal" novalidate ng-submit="saveConfigurations(configurationsForm)">
+                <div class="content-bd">
+                    <div class="panel panel-default panel-content" style="margin-bottom: 0;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Application</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Application Name</label>
+                                <div class="col-sm-9">
+                                    <p class="form-control-static">{{model.application.name}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Application Description</label>
+                                <div class="col-sm-9">
+                                    <p class="form-control-static">{{model.application.description}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Region Name</label>
+                                <div class="col-sm-9">
+                                    <p class="form-control-static">{{model.application.regionName}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Zone Name</label>
+                                <div class="col-sm-9">
+                                    <p class="form-control-static">{{model.application.zoneName}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">API Signing Required</label>
+                                <div class="col-sm-9">
+                                    <p class="form-control-static">{{model.application.apiSigningRequired ? 'Yes' : 'No'}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Application Code</label>
+                                <div class="col-sm-9">
+                                    <p class="form-control-static">{{model.application.code}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Application ID</label>
+                                <div class="col-sm-9">
+                                    <p class="form-control-static">{{model.application.applicationId}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Application HID</label>
+                                <div class="col-sm-9">
+                                    <p class="form-control-static">{{model.application.applicationHid}}</p>
+                                </div>
+                            </div>
+                            <div class="panel panel-default" ng-repeat="category in model.configurations | pluckUniq:'category' | orderBy">
+                                <div class="panel-heading">{{category | camelCaseLabel}}</div>
+                                <div class="panel-body">
+                                    <div ng-repeat="configuration in model.configurations | filter:{category: category}:true track by $index">
+                                        <div class="form-group" ng-if="configuration.dataType != 'Json'">
+                                            <label class="col-sm-3 control-label">{{configuration.name | camelCaseLabel}}</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" ng-model="configuration.value" ng-if="canSaveConfigurations && !configuration.readonly" />
+                                                <p class="form-control-static" ng-if="!canSaveConfigurations || configuration.readonly">{{configuration.value}}</p>
+                                            </div>
+                                        </div>
+                                        <div ng-if="configuration.dataType == 'Json'">
+                                            <div class="form-group" ng-repeat="(key, value) in configuration.value track by key">
+                                                <label class="col-sm-3 control-label">{{configuration.name | camelCaseLabel}} {{key | camelCaseLabel}}</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" ng-model="configuration.value[key]" ng-if="canSaveConfigurations && !configuration.readonly" />
+                                                    <p class="form-control-static" ng-if="!canSaveConfigurations || configuration.readonly">{{configuration.value[key]}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default" ng-if="model.productFeatures && model.productFeatures.length > 0">
+                                <div class="panel-heading">Features</div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Features</label>
+                                        <div class="col-sm-9">
+                                            <p ng-repeat="productFeature in model.productFeatures" class="form-control-static">
+                                                {{productFeature}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer text-right" ng-if="canSaveConfigurations && canShowSaveConfigsBtn(model.configurations)">
+                            <button class="btn btn-default" type="submit">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div ng-if="canEditIoTConfig && activeTab == 4" ng-include="'/partials/iot/iot-config.html'" ng-controller="IoTConfigController"></div>
+
+        <div ng-if="activeTab == 5" ng-include="'/partials/settings/provision-application.html'" ng-controller="ProvisionAppController"></div>
+        
+    </div>
+    <!-- /CONTENT WRAPPER -->
+
+    <div class="content-ft"></div>
+</div>

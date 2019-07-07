@@ -1,0 +1,144 @@
+<div class="row-content">
+	<div ng-controller="DevicesController">
+		<div class="obj-page-hd">
+		  <div class="container-fluid">
+        	<div class="row">
+				<div class="col-md-12 col-sm-12 padding-zero">
+            		<div class="page-title">
+              			<h1>
+                			{{pageTitle}}
+	                		<button type="button"
+									class="pull-right btn btn-default devices-btn-ctrl border-radius-twenty"
+									ng-click=adddev()>
+								<i class="fa fa-plus" aria-hidden="true"></i> Add
+							</button>
+							<small>{{pageSubTitle}}</small>
+              			</h1>
+            		</div>
+			  	</div>
+		  	</div>
+		</div>
+		</div>
+		<div class="obj-page-bd">
+      		<div class="panel panel-default panel-content">
+				<header class="b-panel-header">
+					<i class="fa fa-table"></i> Devices
+				</header>
+        	<div class="b-panel-body">
+					<div class="btn-group margin-bottom-thirty">
+						<button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+							{{pageSize}} items per page <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li ng-class="pageSize === 5 ? 'dropdown-menu__item--active' : 'dropdown-menu__item'">
+								<a href="" ng-click="changePageSize(5)" class="dropdown-menu__link">5</a>
+							</li>
+							<li ng-class="pageSize === 20 ? 'dropdown-menu__item--active' : 'dropdown-menu__item'">
+								<a href="" ng-click="changePageSize(20)" class="dropdown-menu__link">20</a>
+							</li>
+							<li ng-class="pageSize === 50 ? 'dropdown-menu__item--active' : 'dropdown-menu__item'">
+								<a href="" ng-click="changePageSize(50)" class="dropdown-menu__link">50</a>
+							</li>
+							<li ng-class="pageSize === 100 ? 'dropdown-menu__item--active' : 'dropdown-menu__item'">
+								<a href="" ng-click="changePageSize(100)" class="dropdown-menu__link">100</a>
+							</li>
+							<li ng-class="pageSize === 200 ? 'dropdown-menu__item--active' : 'dropdown-menu__item'">
+								<a href="" ng-click="changePageSize(200)" class="dropdown-menu__link">200</a>
+							</li>
+							<li ng-class="pageSize === 500 ? 'dropdown-menu__item--active' : 'dropdown-menu__item'">
+								<a href="" ng-click="changePageSize(500)" class="dropdown-menu__link">500</a>
+							</li>
+						</ul>
+					</div>
+					<table class="table table-bordered" >
+						<thead>
+							<tr  ng-if="!showSmallTable">
+								<th ng-repeat="header in columnHeaders" style={{header.style}}
+										ng-click="sortBy(header.value, $event)"
+										arrow-column-header
+										label="header.label">
+									{{header.label}}
+									<i class="pull-right fa fa fa-sort-asc padding-top-five" ng-if="sortAsc === header.value"></i>
+									<i class="pull-right fa fa fa-sort-desc" ng-if="sortDesc === header.value"></i>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-if="showSmallTable"
+									ng-repeat="device in devices
+											| startFrom:currentPage*pageSize
+											| limitTo:pageSize">
+								<td>
+									<p ng-repeat="header in columnHeaders">
+									<b>{{ header.label }}: </b>
+									<span ng-switch="header.value">
+										<a ng-switch-when="name" ng-href="#/device/{{device.id}}">{{device.name}}</a>
+										<span ng-switch-when="enabled">{{device[header.value]?'Yes':'No'}}</span>
+										<span ng-switch-default>{{device[header.value]}}</span>
+									</span>
+									</p>
+								</td>
+							</tr>
+							<tr ng-if="!showSmallTable"
+									ng-repeat="device in devices
+											| startFrom:currentPage*pageSize
+											| limitTo:pageSize">
+								<td ng-repeat="header in columnHeaders" ng-switch="header.value">{{}}
+									<a ng-switch-when="name" ng-href="#/device/{{device.id}}">{{device.name}}</a>
+									<span ng-switch-when="enabled">{{device[header.value]?'Yes':'No'}}</span>
+									
+									<span ng-switch-default>{{device[header.value]}}</span>
+								</td>
+							</tr>
+
+						</tbody>
+						<tfoot>
+							<tr>
+								<td class="hidden-xs" colspan="9">
+									<div class="row">
+										<div class="col-sm-6">
+											Showing {{(currentPage*pageSize)+1}} to
+											{{((currentPage+1)*pageSize <= devices.length ? (currentPage+1)*pageSize : devices.length)}}
+											of {{devices.length}} devices
+										</div>
+										<div class="col-sm-6 page-navigation-wrap">
+											<arrow-pagination
+													data-page-index="currentPage"
+													data-total-pages="lastPage"
+													data-first="firstPage"
+													data-last="lastPage"
+													data-previous="gotoPreviousPage()"
+													data-next="gotoNextPage()"
+													data-go="changeCurrentPage(pageNumber)"></arrow-pagination>
+										</div>
+									</div>
+								</td>
+								<td class="hidden-lg hidden-md hidden-sm" colspan="2">
+									<div class="row">
+										<div class="col-sm-6">
+											Showing {{(currentPage*pageSize)+1}} to
+											{{((currentPage+1)*pageSize <= devices.length ? (currentPage+1)*pageSize : devices.length)}}
+											of {{devices.length}} devices
+										</div>
+										<div class="col-sm-6">
+											<arrow-pagination
+													data-page-index="currentPage"
+													data-total-pages="lastPage"
+													data-first="firstPage"
+													data-last="lastPage"
+													data-previous="gotoPreviousPage()"
+													data-next="gotoNextPage()"
+													data-go="changeCurrentPage(pageNumber)">
+											</arrow-pagination>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+      		</div>
+		</div>
+		<div class="obj-page-ft"></div>
+	</div>
+</div>

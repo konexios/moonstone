@@ -1,0 +1,12 @@
+spring:
+    application:
+        name: pegasus-web
+    profiles:
+        active: default, pegasus
+    cloud:
+        config:
+            uri: http://config:8888
+            fail-fast: true
+            retry:
+              initial-interval: 3000
+              max-attempts: 20              

@@ -1,0 +1,10 @@
+event-last-registered-widget .redistered-view h2 {
+    /* font-size: 30px; */
+}
+
+event-last-registered-widget .redistered-view h1 { margin: 10px 0 10px; }
+
+event-last-registered-widget .redistered-view h1.person-0 { color: rgb(27, 27, 27); font-size: 35px; font-weight: bold; }
+event-last-registered-widget .redistered-view h1.person-1 { color: rgb(66, 66, 66); font-size: 24px; }
+event-last-registered-widget .redistered-view h1.person-2 { color: rgb(163, 163, 163); font-size: 17px; }
+event-last-registered-widget .redistered-view h1.person-3 { color: rgb(192, 192, 192); font-size: 11px; }

@@ -1,0 +1,23 @@
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+    manifest {
+        attributes(
+            "Implementation-Title": "moonstone-selene-device-zigbee",
+            "Implementation-Version": version,
+            "Implementation-Vendor": "Arrow Electronics, Inc.",
+            "Built-By": System.getProperty('user.name'),
+            "Built-Date": new Date().format("yyyy-MM-dd"),
+            "Built-Jdk": "${System.getProperty('java.version')} (${System.getProperty('java.specification.vendor')})",
+            "Git-Branch": getCurrentGitBranch(),
+            "Git-Last-Commit": getLastGitCommit())
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'lib/rxtx', include: '*.jar')
+    compile fileTree(dir: 'lib/xbee', include: '*.jar')
+}

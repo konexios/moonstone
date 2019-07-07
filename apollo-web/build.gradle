@@ -1,0 +1,73 @@
+bootJar {
+    archiveFileName.set("${baseName}.jar")
+    manifest {
+        attributes(
+            "Specification-Title": "moonstone-apollo-web",
+            "Specification-Version": version,
+            "Implementation-Title": "Arrow Connect IoT Dashboards",
+            "Implementation-Version": version,
+            "Implementation-Vendor": "Arrow Electronics, Inc",                        
+            "Built-By": System.getProperty('user.name'),
+            "Built-Date": new Date().format("yyyy-MM-dd"),
+            "Built-Jdk": "${System.getProperty('java.version')} (${System.getProperty('java.specification.vendor')})",
+            "Git-Branch": getCurrentGitBranch(),
+            "Git-Last-Commit": getLastGitCommit())
+    }
+}
+
+buildscript {
+    repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath("com.moowork.gradle:gradle-node-plugin:1.3.1")
+    }
+}
+
+apply plugin: "com.moowork.gulp"
+apply plugin: 'com.moowork.node'
+
+node {
+    version = '10.16.0'
+    download = true
+}
+
+dependencies {
+	// web sockets
+    compile("org.springframework.boot:spring-boot-starter-websocket:${springBootVersion}")
+	
+    // aspectjweaver
+    // compile("org.aspectj:aspectjweaver:${aspectjweaverVersion}")
+        
+    // aws
+    compile("com.amazonaws:aws-java-sdk-iot:${awsSdkVersion}")
+    compile("com.amazonaws:aws-iot-device-sdk-java:${awsIotVersion}")
+
+    // ibm
+    compile("com.ibm.messaging:watson-iot:${watsonIotVersion}")
+
+    // azure
+    compile("com.microsoft.azure.sdk.iot:iot-service-client:${azureServiceClientVersion}")
+    compile("com.microsoft.azure:azure-eventhubs:${azureEventHubVersion}")   
+    compile("com.microsoft.azure.sdk.iot:iot-device-client:${azureDeviceClientVersion}")
+
+    // mqtt
+    compile("org.eclipse.paho:org.eclipse.paho.client.mqttv3:${pahoVersion}")
+
+    // excel
+    compile("org.apache.poi:poi:${poiVersion}")
+    compile("org.apache.poi:poi-ooxml:${poiVersion}")
+}
+
+processResources.dependsOn 'gulp_build'
+
+gulp_build.dependsOn 'installGulp'
+gulp_build.dependsOn 'npmInstall'
+gulp_build.dependsOn 'appNpmInstall'
+bootJar.dependsOn gulp_build
+bootRun.dependsOn gulp_build
+
+task appNpmInstall(type: NpmTask) {
+    workingDir = file("${project.projectDir}/src/main/resources/static")
+    args = ['install']
+}

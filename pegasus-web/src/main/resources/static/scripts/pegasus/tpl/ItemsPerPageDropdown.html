@@ -1,0 +1,18 @@
+<div class="dropdown">
+	<button class="btn btn-default dropdown-toggle" 
+		type="button" 
+		id="itemsPerPageDropdownMenu" 
+		data-toggle="dropdown" 
+		aria-haspopup="true" 
+		aria-expanded="true">
+		{{itemsPerPage}} items per page
+		<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" 
+		aria-labelledby="itemsPerPageDropdownMenu">
+		<li ng-repeat="option in itemsPerPageOptions" 
+			ng-class="itemsPerPage === option.key ? 'active' : ''">
+			<a href="" ng-click="change({numberOfItems: option.key})">{{option.value}}</a>
+		</li>
+	</ul>
+</div>

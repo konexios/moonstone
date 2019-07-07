@@ -1,0 +1,79 @@
+[
+	{
+		"systemName": "RHEA_UPDATE_RTU_REQUEST",
+		"hidden": false,
+		"name": "Update Right To Use Requests",
+		"description": "Update Right To Use Requests",
+		"enabled": true
+	},
+	{
+		"systemName": "RHEA_READ_RTU_REQUEST",
+		"hidden": false,
+		"name": "Read Right To Use Requests",
+		"description": "Read Right To Use Requests",
+		"enabled": true
+	},
+	{
+		"systemName": "RHEA_CREATE_SOFTWARE_RELEASE",
+		"hidden": false,
+		"name": "Create Software Release",
+		"description": "Create Software Release",
+		"enabled": true
+	},
+	{
+		"systemName": "RHEA_UPDATE_DEVICE_MANUFACTURER",
+		"hidden": false,
+		"name": "Update Device Manufacturer",
+		"description": "Update Device Manufacturer",
+		"enabled": true
+	},
+	{
+		"systemName": "RHEA_READ_SOFTWARE_PRODUCTS",
+		"hidden": false,
+		"name": "Read Software Products",
+		"description": "Read Software Products",
+		"enabled": true
+	},
+	{
+		"systemName": "RHEA_READ_DEVICE_PRODUCTS",
+		"hidden": false,
+		"name": "Read Device Products",
+		"description": "Read Device Products",
+		"enabled": true
+	},
+	{
+		"systemName": "RHEA_UPDATE_DEVICE_TYPE",
+		"hidden": false,
+		"name": "Update Device Type",
+		"description": "Update Device Type",
+		"enabled": true
+	},
+	{
+		"systemName": "RHEA_READ_SOFTWARE_VENDORS",
+		"hidden": false,
+		"name": "Read Software Vendors",
+		"description": "Read Software Vendors",
+		"enabled": true
+	},
+	{
+		"systemName": "RHEA_READ_DEVICE_TYPES",
+		"hidden": false,
+		"name": "Read Device Types",
+		"description": "Read Device Types",
+		"enabled": true
+	},
+	{
+		"systemName": "RHEA_UPDATE_SOFTWARE_RELEASE",
+		"hidden": false,
+		"name": "Update Software Release",
+		"description": "Update Software Release",
+		"enabled": true
+	},
+	{
+		"systemName": "RHEA_CREATE_SOFTWARE_PRODUCT",
+		"hidden": false,
+		"name": "Create Software Product",
+		"description": "Create Software Product",
+		"enabled": true
+	}
+]

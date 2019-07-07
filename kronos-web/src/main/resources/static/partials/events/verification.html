@@ -1,0 +1,50 @@
+<div class="row-content no-list-page">
+    <div class="content-wrapper-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="paragraph-with-icon">
+                        <i class="icon color-brand glyphicon glyphicon-info-sign"></i>
+                        <p class="paragraph middle font-x2">Please check your email to find your verification code.</p>
+                    </div>
+
+                    <form class="form-horizontal" name="vm.verificationForm" ng-submit="vm.verify(vm.verificationModel)" novalidate autocomplete="off">
+
+                        <div class="form-group" ng-class="{'has-error': (vm.verificationForm.$submitted || vm.verificationForm.code.$touched) && !vm.verificationForm.code.$valid}">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <input type="text" class="form-control" id="code" name="code" placeholder="Verification code" ng-model="vm.verificationModel.code" required>
+                                <div class="help-block" ng-show="(vm.verificationForm.$submitted || vm.verificationForm.code.$touched) && !vm.verificationForm.code.$valid">
+                                    <div ng-show="vm.verificationForm.code.$error.required">Code required</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <div ng-show="vm.errorMessage" class="alert alert-danger" role="alert">
+                                    <ul>
+                                        <li ng-repeat="(field, error) in vm.errorMessage">{{error}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-brand btn-lg" ladda-button="vm.verificationLoading" data-style="expand-left">
+                                    <span class="ladda-label">Verify</span>
+                                </button>
+                                <a href="#/event" class="btn btn-link">Back to Registration</a>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="col-md-6">
+                    <resend-event-code></resend-event-code>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

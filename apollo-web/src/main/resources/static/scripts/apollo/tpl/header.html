@@ -1,0 +1,85 @@
+<nav class="navbar navbar-fixed-top app-top-navbar">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" 
+				class="navbar-toggle collapsed"
+				data-toggle="collapse" 
+				data-target="#app-top-navbar-collapse"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> 
+				<span class="icon-bar"></span> 
+				<span class="icon-bar"></span> 
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#/home">
+				<img class="logo" 
+					ng-cloak
+					alt="Arrow Connect | Dynamic Dashboards | Alpha"
+					title="Arrow Connect | Dynamic Dashboards | Alpha" 
+					src="assets/img/Arrow_Worm_Dynamic_Dashboards_lockup_h_2c_white_cmyk.png">
+			</a>
+		</div>
+		<div id="app-top-navbar-collapse" 
+			class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li ng-if="isLoggedIn()" 
+					ng-class="isActivePath('/board')" 
+					ng-cloak>
+					<a href="#/board/default"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav">
+				<li ng-if="isLoggedIn()" 
+					ng-class="isActivePath('/all-boards')" 
+					ng-cloak>
+					<a href="#/all-boards"><i class="fa fa-list-alt" aria-hidden="true"></i> Boards</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav" ng-if="isLoggedIn() && user.admin">
+				<li ng-if="isLoggedIn()" 
+					ng-class="isActivePath('/settings')" 
+					ng-cloak>
+					<a href="" 
+						class="dropdown-toggle" 
+						data-toggle="dropdown"
+						role="button" 
+						aria-haspopup="true" 
+						aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i> Configuration</a>
+					<ul class="dropdown-menu">
+						<li><a href="#/settings/widget-types">Widget Types</a></li>
+						<li><a href="#/settings/widgets">Widgets</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" 
+				ng-if="!isLoggedIn()" 
+				ng-cloak>
+				<li ng-class="isActivePath('/signin')"><a href="#/signin">Sign In</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right navbar-user" ng-if="isLoggedIn()" ng-cloak>
+				<li class="dropdown" ng-class="isActiveNavbarMenu('profile')">
+					<a href="" 
+						class="dropdown-toggle" 
+						data-toggle="dropdown"
+						role="button" 
+						aria-haspopup="true" 
+						aria-expanded="false">
+						<span class="circle-user text-center"
+					      	ng-class="{'admin': user.admin}">
+							{{user.firstName.substring(0, 1)}}{{user.lastName.substring(0, 1)}}
+						</span>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="user-options">
+							{{user.firstName}} {{user.lastName}}
+							<br/>{{user.login}}
+							<br/>{{user.companyName}}
+							<br/><br/>
+							<a href="" ng-click="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>

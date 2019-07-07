@@ -1,0 +1,114 @@
+[
+	{
+		"systemName": "APOLLO_UPDATE_SYSTEM_DEFAULT_BOARD",
+		"hidden": true,
+		"category": "System",
+		"name": "Update System Default Board",
+		"description": "Update System Default Board",
+		"enabled": true
+	},
+	{
+		"systemName": "APOLLO_UPDATE_BOARD",
+		"hidden": false,
+		"category": "User",
+		"name": "Update Board",
+		"description": "Update Board",
+		"enabled": true
+	},
+	{
+		"systemName": "APOLLO_UPDATE_ARROW_CERTIFIED_BOARD",
+		"hidden": true,
+		"category": "Certified",
+		"name": "Update Arrow Certified Board",
+		"description": "Update Arrow Certified Board",
+		"enabled": true
+	},
+	{
+		"systemName": "APOLLO_READ_BOARD",
+		"hidden": false,
+		"category": "User",
+		"name": "Read Board",
+		"description": "Read Board",
+		"enabled": true
+	},
+	{
+		"systemName": "APOLLO_DELETE_SYSTEM_DEFAULT_BOARD",
+		"hidden": true,
+		"category": "System",
+		"name": "Delete System Default Board",
+		"description": "Delete System Default Board",
+		"enabled": true
+	},
+	{
+		"systemName": "APOLLO_DELETE_BOARD",
+		"hidden": false,
+		"category": "User",
+		"name": "Delete Board",
+		"description": "Delete Board",
+		"enabled": true
+	},
+	{
+		"systemName": "APOLLO_DELETE_ARROW_CERTIFIED_BOARD",
+		"hidden": true,
+		"category": "Certified",
+		"name": "Delete Arrow Certified Board",
+		"description": "Delete Arrow Certified Board",
+		"enabled": true
+	},
+	{
+		"systemName": "APOLLO_CREATE_SYSTEM_DEFAULT_BOARD",
+		"hidden": true,
+		"category": "System",
+		"name": "Create System Default Board",
+		"description": "Create System Default Board",
+		"enabled": true
+	},
+	{
+		"systemName": "APOLLO_CREATE_BOARD",
+		"hidden": false,
+		"category": "User",
+		"name": "Create Board",
+		"description": "Create Board",
+		"enabled": true
+	},
+	{
+		"systemName": "APOLLO_CREATE_ARROW_CERTIFIED_BOARD",
+		"hidden": true,
+		"category": "Certified",
+		"name": "Create Arrow Certified Board",
+		"description": "Allows the user to define a board as an Arrow Certified Board",
+		"enabled": true
+	},
+	{
+		"systemName": "APOLLO_COPY_BOARD",
+		"hidden": false,
+		"category": "User",
+		"name": "Copy Board",
+		"description": "Copy Board",
+		"enabled": true
+	},
+	{
+		"systemName": "APOLLO_ASSIGN_USER_DEFAULT_BOARD",
+		"hidden": false,
+		"category": "User",
+		"name": "Assign User Default Board",
+		"description": "Assign User Default Board",
+		"enabled": true
+	},
+	{
+		"systemName": "APOLLO_ASSIGN_FAVORITE_BOARD",
+		"hidden": false,
+		"category": "User",
+		"name": "Assign Favorite Board",
+		"description": "Assign Favorite Board",
+		"enabled": true
+	},
+	{
+		"systemName": "APOLLO_ACCESS",
+		"hidden": false,
+		"category": "Access",
+		"name": "Apollo Access",
+		"description": "All roles for Apollo must have this privilege associated to them. Removing this privilege from the role will prevent all users with that role from accessing Apollo.",
+		"enabled": true
+	}
+]

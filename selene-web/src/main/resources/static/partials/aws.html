@@ -1,0 +1,161 @@
+<div class="row-content">
+    <!-- CONTENT WRAPPER -->
+    <div class="content-wrapper-fluid">
+        <div ng-controller="AwsController">
+            <div class="obj-page-hd">
+                <div class="row">
+                    <div class="col-xs-12 padding-right-zero">
+                        <div class="page-title">
+                            <h1>
+                                {{pageTitle}}
+                                <small>{{pageSubTitle}}</small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="obj-page-bd">
+                <form name="form" class="form-horizontal css-form" novalidate ng-if="aws">
+                    <div class="obj-hd">
+                        <div class="btn-group pull-right" role="group" aria-label="...">
+                            <button type="submit"
+                                    class="btn btn-default"
+                                    tabindex="12"
+                                    ng-click="save(form, aws)">Save
+                            </button>
+                        </div>
+                        <h2>{{aws.host}}:{{aws.port}}</h2>
+                    </div>
+                    <div class="obj-bd">
+
+                        <div class="form-group">
+                            <label for="host"
+                                   class="col-sm-2 control-label">
+                                Host
+                                <span class="required" aria-required="true"> * </span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                       class="form-control"
+                                       id="host"
+                                       name="host"
+                                       ng-model="aws.host"
+                                       ng-required="true"/>
+                                <div class="help-block" ng-messages="form.host.$error"
+                                     ng-show="form.host.$touched || (form.$submitted && form.host.$invalid)">
+                                    <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="port"
+                                   class="col-sm-2 control-label">
+                                Port
+                                <span class="required" aria-required="true"> * </span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="number"
+                                       min="0"
+                                       class="form-control"
+                                       id="port"
+                                       name="port"
+                                       ng-model="aws.port"
+                                       ng-required="true"/>
+                                <div class="help-block" ng-messages="form.port.$error"
+                                     ng-show="form.port.$touched || (form.$submitted && form.port.$invalid)">
+                                    <div ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rootCert" class="col-sm-2 control-label">
+                                Root certificate
+                                <span class="required" aria-required="true"> * </span>
+                            </label>
+                            <div class="col-sm-10">
+                                <textarea rows="2"
+                                          name="rootCert"
+                                          class="form-control"
+                                          id="rootCert"
+                                          ng-model="aws.rootCert"
+                                          ng-trim="true"
+                                          ng-required="true">
+                                </textarea>
+                                <div class="help-block" ng-messages="form.rootCert.$error"
+                                     ng-show="form.rootCert.$touched || (form.$submitted && form.rootCert.$invalid)">
+                                    <div ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="clientCert"
+                                   class="col-sm-2 control-label">
+                                Client certificate
+                            </label>
+                            <div class="col-sm-10">
+                                <textarea rows="2"
+                                          name="clientCert"
+                                          class="form-control"
+                                          id="clientCert"
+                                          ng-model="aws.clientCert"
+                                          ng-trim="true"
+                                          ng-required="true">
+                                </textarea>
+                                <div class="help-block" ng-messages="form.clientCert.$error"
+                                     ng-show="form.clientCert.$touched || (form.$submitted && form.clientCert.$invalid)">
+                                    <div ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="privateKey"
+                                   class="col-sm-2 control-label">
+                                Private Key
+                                <span class="required" aria-required="true"> * </span>
+                            </label>
+                            <div class="col-sm-10">
+                                <textarea rows="2"
+                                          name="privateKey"
+                                          class="form-control"
+                                          id="privateKey"
+                                          ng-model="aws.privateKey"
+                                          ng-trim="true"
+                                          ng-required="true">
+                                </textarea>
+                                <div class="help-block" ng-messages="form.privateKey.$error"
+                                     ng-show="form.privateKey.$touched || (form.$submitted && form.privateKey.$invalid)">
+                                    <div ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="enabled"
+                                   class="col-sm-2 control-label">Enabled</label>
+                            <div class="col-sm-10">
+                                <input type="checkbox"
+                                       id="enabled"
+                                       name="enabled"
+                                       ng-checked="aws.enabled"
+                                       ng-model="aws.enabled"/>
+                                <div class="help-block" ng-messages="form.enabled.$error"
+                                     ng-show="form.enabled.$touched || (form.$submitted && form.enabled.$invalid)">
+                                    <div ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <p ng-if="!aws">AWS configuration is not available for this gateway.</p>
+            </div>
+            <div class="obj-page-ft">
+            </div>
+        </div>
+
+    </div>
+    <!-- /CONTENT WRAPPER -->
+</div>

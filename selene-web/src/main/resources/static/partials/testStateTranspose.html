@@ -1,0 +1,84 @@
+<div class="modal-header">
+	<h3 class="modal-title">Registration</h3>
+</div>
+<form name="form" class="form-horizontal" >
+	<div class="modal-body">
+        <div class="form-group">
+			<div class="row">
+				<div class="col-md-6 text-align-center">
+			       		<label class="control-label text-center" >Input Parameters</label>
+	        	</div>
+	        	<div class="col-md-6 text-align-center">
+	        		<label class="control-label">Output JSON</label>  		
+			    </div>
+			    <div class="col-md-6">
+			    	<div class="form-group ">
+                         <label for="deviceName"
+                         	class="col-sm-4 control-label">
+                         	deviceName
+                         	<span class="required" aria-required="true"> * </span>
+                         </label>
+                      	<div class="col-sm-7">
+		        			<input type="text"
+			        			class="form-control"
+		                        id="deviceName"
+		                        name="deviceName"
+		                        ng-model="deviceName"
+		                        ng-required="true"/>
+		                        <div class="help-block" ng-messages="form.deviceName.$error"
+		                             ng-show="form.deviceName.$touched || (form.$submitted && form.deviceName.$invalid)">
+		                            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+		                        </div>
+	                	</div>
+	                </div>
+	                <div class="form-group ">
+                         <label for="deviceUid"
+                         	class="col-sm-4 control-label">
+                         	deviceUid
+                         	<span class="required" aria-required="true"> * </span>
+                         </label>
+                      	<div class="col-sm-7">
+		        			<input type="text"
+			        			class="form-control"
+		                        id="deviceUid"
+		                        name="deviceUid"
+		                        ng-model="deviceUid"
+		                        ng-required="true"/>
+		                        <div class="help-block" ng-messages="form.deviceUid.$error"
+		                             ng-show="form.deviceUid.$touched || (form.$submitted && form.deviceUid.$invalid)">
+		                            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+		                        </div>
+	                	</div>
+	                </div>
+	                <div class="form-group ">
+                         <label for="deviceStates"
+                         	class="col-sm-4 control-label">
+                         	deviceStates
+                         	<span class="required" aria-required="true"> * </span>
+                         </label>
+                      	<div class="col-sm-7">
+		        			<textarea
+			        			class="form-control"
+		                        id="deviceStates"
+		                        name="deviceStates"
+		                        ng-model="deviceStates"
+		                        ng-required="true"></textarea>
+		                        <div class="help-block" ng-messages="form.deviceStates.$error"
+		                             ng-show="form.deviceStates.$touched || (form.$submitted && form.deviceStates.$invalid)">
+		                            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+		                        </div>
+	                	</div>
+	                </div>
+	        	</div>
+	        	<div class="col-md-6">		        		
+			        <textarea  id="inputTextToSave"cols="45" rows="15">{{output}}</textarea>
+			    </div>
+			    
+			    <div class="col-md-12 margin-left-eighteen">
+			    	<button class='btn btn-default' ng-click = testStateTransposeFunc(deviceUid,deviceName,deviceStates)>Execute</button>
+			    	<button class='btn btn-default' ng-click=close()>Close</button>
+			   	</div>
+			</div>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,30 @@
+bootJar {
+    archiveFileName.set("${baseName}.jar")
+    manifest {
+        attributes(
+            "Implementation-Title": "moonstone-kronos-api",
+            "Implementation-Version": version,
+            "Implementation-Vendor": "Arrow Electronics, Inc.",
+            "Built-By": System.getProperty('user.name'),
+            "Built-Date": new Date().format("yyyy-MM-dd"),
+            "Built-Jdk": "${System.getProperty('java.version')} (${System.getProperty('java.specification.vendor')})",
+            "Git-Branch": getCurrentGitBranch(),
+            "Git-Last-Commit": getLastGitCommit())
+    }
+}
+
+dependencies {
+    // web sockets
+    implementation("org.springframework.boot:spring-boot-starter-websocket:${springBootVersion}")
+    
+    // azure
+    implementation("com.microsoft.azure.sdk.iot:iot-service-client:${azureServiceClientVersion}")
+    implementation("com.microsoft.azure:azure-eventhubs:${azureEventHubVersion}")   
+    implementation("com.microsoft.azure.sdk.iot:iot-device-client:${azureDeviceClientVersion}")
+
+    // expression
+    implementation("org.apache.commons:commons-jexl3:${commonsJexl3Version}")
+    
+    // collections    
+    implementation("org.apache.commons:commons-collections4:${commonsCollection4Version}")
+}

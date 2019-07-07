@@ -1,0 +1,10 @@
+[
+    {
+        "editable": false,
+        "privilegeIds": [],
+        "hidden": true,
+        "name": "default-apollo-admin",
+        "description": "Default Apollo Admin",
+        "enabled": true
+    }
+]

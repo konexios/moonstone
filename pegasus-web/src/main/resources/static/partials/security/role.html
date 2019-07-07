@@ -1,0 +1,282 @@
+<div left-menu is-collapsed="menuIsCollapsed">
+</div>
+
+<div class="partial-page-content-container" ng-class="{'menu-collapsed': menuIsCollapsed}" ng-init="menuIsCollapsed = !menuIsCollapsed"
+	ng-scrollbars ng-scrollbars-config="scrollerConfig">
+	<div class="partial-page-content">
+		<!-- BEGIN PAGE BREADCRUMB -->
+		<ul class="page-breadcrumb breadcrumb">
+		    <li>Security</li>
+		    <li><a ui-sref="roles">Roles</a></li>
+		    <li class="active">Role</li>
+		</ul>
+		<!-- END PAGE BREADCRUMB -->
+		<!-- BEGIN MAIN CONTENT -->
+		<div class="row">
+		    <div class="col-md-12">
+				<div class="portlet light bordered">
+					<div class="portlet-body form">
+						<form name="form" 
+							class="form-horizontal" 
+							role="form"
+							novalidate>
+						    <div class="form-body">
+								<fieldset class="fieldset-form">
+									<legend class="legend-form">Role</legend>
+							        <div class="form-group"
+							        	ng-class="{ 'has-error': (form.name.$touched || form.$submitted) && form.name.$invalid, 'has-success': (form.name.$touched || form.$submitted) && !form.name.$invalid }">
+							            <label
+							            	for="name" 
+							            	class="col-md-2 control-label">Name
+							            	<span class="required" aria-required="true"> * </span>
+							            </label>
+							            <div class="col-md-10">
+							                <div class="input-icon right">
+							                	<i ng-show="(form.name.$touched || form.$submitted) && form.name.$invalid" class="fa fa-warning"></i>
+							                	<i ng-show="(form.name.$touched || form.$submitted) && !form.name.$invalid" class="fa fa-check"></i>
+								                <input id="name"
+								                	name="name" 
+								                	type="text" 
+								                	class="form-control" 
+								                	placeholder="Name" 
+								                	ng-model="role.name"
+								                	ng-trim="true"
+								           			ng-required="true"
+								           			ng-minlength="5"
+								           			ng-maxlength="50"
+													ng-disabled="!hasAccess() || (!role.editable && !user.admin)">
+							                </div>
+							                <div class="help-block" ng-messages="form.name.$error" ng-show="form.name.$touched || form.$submitted">
+							                	<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+							                </div>
+							            </div>
+							        </div>
+							        
+							        <div class="form-group"
+							        	ng-class="{ 'has-error': (form.description.$touched || form.$submitted) && form.description.$invalid, 'has-success': (form.description.$touched || form.$submitted) && !form.description.$invalid }">
+							            <label for="description"
+							            	class="col-md-2 control-label">Description
+							            	<span class="required" aria-required="true"> * </span>
+							            </label>
+							            <div class="col-md-10">
+							            	<div class="input-icon right">
+							                	<i ng-show="(form.description.$touched || form.$submitted) && form.description.$invalid" class="fa fa-warning"></i>
+							                	<i ng-show="(form.description.$touched || form.$submitted) && !form.description.$invalid" class="fa fa-check"></i>
+								                <textarea id="description" 
+								                	name="description"
+								                	class="form-control" 
+								                	rows="3" 
+								                	ng-model="role.description"
+								                	ng-trim="true"
+								           			ng-required="true"
+								           			ng-minlength="3"
+								           			ng-maxlength="255"
+													ng-disabled="!hasAccess() || (!role.editable && !user.admin)"></textarea>
+								            </div>
+							                <div class="help-block" ng-messages="form.description.$error" ng-show="form.description.$touched || form.$submitted">
+							                	<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+							                </div>
+							            </div>
+							        </div>
+		
+							        <div class="form-group"
+							        	ng-class="{ 'has-error': (form.product.$touched || form.$submitted) && form.product.$invalid, 'has-success': (form.product.$touched || form.$submitted) && !form.product.$invalid }">
+							            <label for="product"
+							            	class="col-md-2 control-label">Product
+							            	<span class="required" aria-required="true"> * </span>
+							            </label>
+							            <div class="col-md-10">
+							                <div class="input-icon right">
+							                	<i ng-show="(form.product.$touched || form.$submitted) && form.product.$invalid" class="fa fa-warning"></i>
+							                	<i ng-show="(form.product.$touched || form.$submitted) && !form.product.$invalid" class="fa fa-check"></i>
+								                <select id="product"
+								                	name="product"
+								                	class="form-control" 
+								                	ng-model="role.productId"
+								                	ng-change="loadApplications(); loadPrivileges()"
+								                	ng-required="true"
+								                	ng-disabled="role.id || !hasAccess() || (!role.editable && !user.admin)">
+								                    <option ng-repeat="option in productOptions" 
+								                    	value="{{option.id}}">{{option.name}}</option>
+								                </select>
+								            </div>
+							                <div class="help-block" ng-messages="form.product.$error" ng-show="form.product.$touched || form.$submitted">
+							                	<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+							                </div>
+							            </div>
+							        </div>
+		
+							        <div class="form-group"
+							        	ng-class="{ 'has-error': (form.application.$touched || form.$submitted) && form.application.$invalid, 'has-success': (form.application.$touched || form.$submitted) && !form.application.$invalid }">
+							            <label for="application"
+							            	class="col-md-2 control-label">Application
+							            	<span class="required" aria-required="true"> * </span>
+							            </label>
+							            <div class="col-md-10">
+							                <div class="input-icon right">
+							                	<i ng-show="(form.application.$touched || form.$submitted) && form.application.$invalid" class="fa fa-warning"></i>
+							                	<i ng-show="(form.application.$touched || form.$submitted) && !form.application.$invalid" class="fa fa-check"></i>
+								                <select id="application"
+								                	name="application"
+								                	class="form-control" 
+								                	ng-model="role.applicationId"
+								                	ng-required="true"
+								                	ng-disabled="role.id || !role.productId || loadingApplications || !hasAccess() || (!role.editable && !user.admin)">
+								                    <option ng-repeat="option in applicationOptions" 
+								                    	value="{{option.id}}">{{option.name}}</option>
+								                </select>
+								            </div>
+							                <div class="help-block" ng-messages="form.application.$error" ng-show="form.application.$touched || form.$submitted">
+							                	<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+							                </div>
+							            </div>
+							        </div>
+
+							        <div class="form-group"
+							        	ng-class="{ 'has-error': form.enabled.$touched && form.enabled.$invalid, 'has-success': form.enabled.$touched && !form.enabled.$invalid }">
+							            <div class="col-md-offset-2 col-md-10">
+					                        <div class="checkbox">
+					                        	<label>
+					                        		<div class="checker">
+					                        			<span ng-class="role.enabled ? 'checked' : ''">
+															<input id="enabled" name="enabled" type="checkbox" ng-model="role.enabled" 
+																ng-disabled="!hasAccess() || (!role.editable && !user.admin)"/>
+														</span>
+					                        		</div>
+					                        		Enabled
+					                        	</label>
+					                        </div>
+							                <div class="help-block" ng-messages="form.enabled.$error" ng-show="form.enabled.$touched">
+							                	<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+							                </div>
+							            </div>
+							        </div>
+
+							        <div class="form-group"
+							        	ng-class="{ 'has-error': form.editable.$touched && form.editable.$invalid, 'has-success': form.editable.$touched && !form.editable.$invalid }"
+							        	ng-if="user.admin">
+							            <div class="col-md-offset-2 col-md-10">
+					                        <div class="checkbox">
+					                        	<label>
+					                        		<div class="checker">
+					                        			<span ng-class="role.editable ? 'checked' : ''">
+															<input id="editable" name="editable" type="checkbox" ng-model="role.editable" ng-disabled="!hasAccess()" />
+														</span>
+					                        		</div>
+					                        		Editable
+					                        	</label>
+					                        </div>
+							                <div class="help-block" ng-messages="form.editable.$error" ng-show="form.editable.$touched">
+							                	<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+							                </div>
+							            </div>
+							        </div>
+							        
+		                            <div class="form-group"
+		                                 ng-class="{ 'has-error': form.hidden.$touched && form.hidden.$invalid, 'has-success': form.hidden.$touched && !form.hidden.$invalid }"
+		                                 ng-if="user.admin">
+		                                <div class="col-md-offset-2 col-md-10">
+		                                    <div class="checkbox">
+		                                        <label>
+		                                            <div class="checker">
+					                        			<span ng-class="role.hidden ? 'checked' : ''">
+															<input id="hidden" name="hidden" type="checkbox" ng-model="role.hidden" ng-disabled="!hasAccess()" />
+														</span>
+		                                            </div>
+		                                            Private
+		                                        </label>
+		                                    </div>
+		                                    <div class="help-block" ng-messages="form.hidden.$error" ng-show="form.hidden.$touched">
+		                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+		                                    </div>
+		                                </div>
+		                            </div>
+								</fieldset>
+
+								<fieldset class="fieldset-form">
+									<legend class="legend-form">Privileges</legend>
+								
+							        <div class="form-group">
+							            <div class="col-md-offset-2 col-md-10">
+											<span ng-show="loadingPrivileges"><i class="fa fa-spinner fa-spin"></i> Loading privileges...</span>
+											<div class="note note-info"
+												 ng-show="!loadingPrivileges && privilegeOptions.length == 0">
+												<h4 class="block">No privileges!</h4>
+												<p> Privileges have not been defined for the selected product. Privileges may be defined and associated at a later time and are not required to create a role. </p>
+											</div>
+
+											<div ng-show="!loadingPrivileges && privilegeOptions.length > 0">
+												  <div class="form-row">
+												    <div class="form-group col-md-9">
+														<input id="categoryFilter"
+										                	name="categoryFilter" 
+										                	type="text" 
+										                	class="form-control" 
+										                	placeholder="Category" 
+										                	ng-model="categoryFilter"
+										                	ng-trim="true">
+												    </div>
+												    <div class="form-group col-md-3 text-center">
+										                <button type="button" 
+										                	class="btn green"
+										                	ng-disabled="busy || !hasAccess() || (!role.editable && !user.admin)"
+										                	ng-click="selectAllPrivileges();">Select All</button>
+														<button type="button" 
+										                	class="btn green"
+										                	ng-disabled="busy || !hasAccess() || (!role.editable && !user.admin)"
+										                	ng-click="deselectAllPrivileges();">Deselect All</button>
+												    </div>
+												  </div>
+											    <br/>
+											
+												<table class="table table-striped table-bordered" 
+													style="table-layout: fixed;">
+													<tbody>
+														<tr ng-repeat="privilege in filteredPrivileges = (privilegeOptions | filter:{ category: categoryFilter || undefined })">
+															<td>
+																<div class="checkbox">
+																	<label>
+																		<div class="checker">
+																			<span ng-class="hasPrivilege(privilege.id) ? 'checked' : ''">
+																				<input type="checkbox" 
+																					ng-checked="hasPrivilege(privilege.id)"
+																					ng-click="togglePrivilege(privilege.id)"
+																					ng-disabled="!hasAccess() || (!role.editable && !user.admin)"/>
+																			</span>
+																		</div>
+																		{{privilege.name}}
+																		<br/><em class="small">{{privilege.description}}</em>
+																	</label>
+																</div>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+							            </div>
+							        </div>
+								</fieldset>
+								
+						    </div>
+						    <div class="form-actions">
+						        <div class="row">
+						            <div class="col-md-offset-2 col-md-10 text-right">
+						                <button type="submit" 
+						                	class="btn green"
+						                	ng-disabled="busy || !hasAccess() || (!role.editable && !user.admin)"
+						                	ng-click="save(form, role)">Save</button>
+										<button type="button" 
+						                	class="btn green"
+						                	ng-show="role.id"
+						                	ng-disabled="busy  || !hasAccess()"
+						                	ng-click="cloneRole()">Clone</button>
+						            </div>
+						        </div>
+						    </div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

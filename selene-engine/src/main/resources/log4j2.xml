@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{ISO8601}|%-5level|%t|%c{1}|%msg%n" />
+		</Console>
+		<RollingFile name="RollingFile"
+			fileName="/opt/selene/log/selene.log"
+			filePattern="/opt/selene/log/$${date:yyyy-MM}/selene-%d{MM-dd-yyyy}-%i.log.gz">
+			<PatternLayout
+				pattern="%d{ISO8601}|%-5level|%t|%c{1}|%msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="250 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="com.arrow.selene" level="info" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
+		</Logger>
+		<Root level="info">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
+		</Root>
+	</Loggers>
+</Configuration>

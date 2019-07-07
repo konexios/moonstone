@@ -1,0 +1,8 @@
+/build/
+.idea/
+.classpath
+.project
+/bin/
+node_modules
+/selene-web/src/main/resources/static/node_modules/
+npm-debug.log

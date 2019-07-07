@@ -1,0 +1,180 @@
+<!-- create device -->
+<div class="row-content">
+	<!-- CONTENT WRAPPER -->
+	<div class="content-wrapper-fluid create-device">
+		<div ng-controller="SoftwareController">
+			<div class="panel panel-default panel-content">
+				<div class="clearfix">
+					<span class="pull-left">
+						<h3 class="page-title padding-left-twenty">
+							Upload File
+						</h3>
+					</span>
+				</div>
+				<div class="row clearfix">
+					<div class="obj-page-bd">
+						<form name="form" class="form-horizontal css-form" novalidate>
+							<fieldset ng-disabled="busy">
+								<div class="form-group ">
+									<label for="type" class="col-sm-4 control-label">
+										Directory Path
+										<span class="required" aria-required="true"> * </span>
+									</label>
+									<div class="col-sm-4">
+										<input type="text"
+		                                    class="form-control"
+		                                    id="path"
+		                                    name="path"
+		                                    ng-model="logs.path"
+		                                    required/>
+	                                </div>
+									<div class="col-sm-3 pull-center">
+										<div class="help-block" ng-messages="form.path.$error" ng-show="form.path.$touched || (form.$submitted && form.path.$invalid)">
+											<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="form-group col-sm-12">
+									<label class="col-sm-4 control-label ">Select option to Upload File</label>
+									<div class="col-sm-4 info">
+										<input type="radio" name="fileDrag" ng-model="upload" ng-click="showHide('url')">URL
+										<input type="radio" name="fileDrag" ng-model="upload" ng-click="showHide('file')">File
+									</div>
+    							</div>
+									
+								<div class="form-group" ng-show="IsFileVisible">
+									<label class="col-sm-4 control-label">Select File</label>
+									<div class=" col-sm-4 dropzone" choose-File-Show="chooseFileShow" file-dropzone="[image/zip]" file="file" file-name="fileName" show-flag="showflag" data-max-file-size="3">
+								      	<span>Drop file Here</span>
+								      	 <button id="viewclick" class="hidden">View</button>&nbsp;
+								      	
+								    </div>
+									<div class="col-sm-12">
+										<label for="type" class="col-sm-4 control-label margin-top-six ">Choose File</label>
+										<div class="col-sm-4 margin-top-ten">
+                                            <input type='file' name="file" id="file" onchange='angular.element(this).scope().openFile(event);' class="hidden">
+                                            <button class="btn btn-primary" onclick="document.getElementById('file').click();">Choose File</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+								    	<label for="type" class="col-sm-4 control-label margin-top-six ">Uploaded File Name</label>
+										<div class="col-sm-4 container" style="margin-left:0px;margin-top:14px;font-size:15px" id="fileDiv">
+										    <span  class="file-name">{{fileName}}</span>
+                                        </div>
+									</div>	
+								</div>
+									<div ng-show="IsURLVisible">
+										<div class="form-group">
+											<label for="type" class="col-sm-4 control-label ">
+												URL
+												<span class="required" aria-required="true"> * </span>
+											</label>
+											<div class="col-sm-4">
+												<input type="url"
+				                                    class="form-control"
+				                                    id="url"
+				                                    name="url"
+				                                    ng-model="logs.url"
+				                                    required/>
+			                                </div>
+											<div class="col-sm-3 pull-center">
+												<div class="help-block" ng-messages="form.url.$error" ng-show="form.url.$touched || (form.$submitted && form.url.$invalid)">
+													<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+												</div>
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="type" class="col-sm-4 control-label ">
+												Port
+											</label>
+											<div class="col-sm-4">
+												<input type="number"
+				                                    class="form-control"
+				                                    id="port"
+				                                    name="port"
+				                                    ng-model="logs.port"/>
+			                                </div>
+										</div>
+										<div class="form-group ">
+											<label for="type" class="col-sm-4 control-label ">
+												Proxy
+											</label>
+											<div class="col-sm-4">
+												<input type="text"
+				                                    class="form-control"
+				                                    id="proxy"
+				                                    ng-pattern='/^([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})$/'
+				                                    name="proxy"                              
+				                                    ng-model="logs.proxy"/>
+			                                </div>
+										</div>
+									</div>
+								
+								<div class="form-group">
+									<div class="col-sm-7"></div>
+								
+									<div class="col-sm-5 padding-left-thirtyseven" aria-label="...">
+										<button type="submit" ng-if="IsFileVisible" ng-disabled="logs.path=='' || logs.path==undefined|| fileName=='' || (file=='' && file==[]) " class="btn btn-default" ng-click="uploadFile(form,logs)" >
+											Upload
+										</button>
+										
+										<button type="submit" ng-if="IsURLVisible" ng-disabled="logs.path==''  || logs.path==undefined|| logs.url=='' || logs.url==undefined" class="btn btn-default" ng-click="uploadFile(form,logs)" >
+											Upload
+										</button>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default panel-content">
+				<div class="clearfix">
+					<span class="pull-left">
+						<h3 class="page-title padding-left-twenty">
+							Download File
+						</h3>
+					</span>
+				</div>
+				<div class="row clearfix">
+					<div class="obj-page-bd">
+						<form name="form" class="form-horizontal css-form" novalidate>
+							<fieldset ng-disabled="busy">
+								<div class="form-group ">
+									<label for="type" class="col-sm-4 control-label ">
+										File Path
+										<span class="required" aria-required="true"> * </span>
+									</label>
+									<div class="col-sm-4">
+										<input type="text"
+		                                    class="form-control"
+		                                    id="downloadpath"
+		                                    name="downloadpath"
+		                                    ng-model="logs.downloadpath"
+		                                    required/>
+	                                </div>
+									<div class="col-sm-3 pull-center">
+										<div class="help-block" ng-messages="form.downloadpath.$error" ng-show="form.downloadpath.$touched || (form.$submitted && form.downloadpath.$invalid)">
+											<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<div class="col-sm-7"></div>
+									<div class="col-sm-5 " aria-label="...">
+										<button type="submit" class="btn btn-default" ng-click="downloadFile(form,logs)" >
+											Download
+										</button>
+										<a id="downloadTag" class="hidden"></a>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

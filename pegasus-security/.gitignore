@@ -1,0 +1,5 @@
+.gradle/2.9/taskArtifacts/
+bin/
+build/
+.settings/
+/.gradle/

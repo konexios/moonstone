@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{options.title}}</h3>
+</div>
+<form name="promptForm"
+    class="form-horizontal"
+    novalidate
+    ng-submit="submit(promptForm);">
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="promptValue" class="col-sm-2 control-label">{{options.label}}</label>
+            <div class="col-sm-10">
+                <input type="text" id="promptValue" name="promptValue" class="form-control" ng-model="options.value" ng-required="options.required" />
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="promptForm.promptValue.$error" role="alert">
+                <div class="alert-danger">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default"
+            type="submit">{{options.ok}}</button>
+        <button class="btn btn-default"
+            type="button" ng-click="cancel()">{{options.cancel}}</button>
+    </div>
+</form>

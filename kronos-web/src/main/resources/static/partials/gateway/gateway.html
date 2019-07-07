@@ -1,0 +1,171 @@
+<div class="modal-header">
+    <h3 class="modal-title">Create New Gateway</h3>
+</div>
+<form name="form" class="form-horizontal" novalidate ng-submit="save(form);">
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="uid" class="col-sm-3 control-label">UID*</label>
+            <div class="col-sm-9">
+                <input type="text" id="uid" name="uid" class="form-control" ng-model="gateway.uid" required/>
+                <div ng-messages="(form.$submitted || form.uid.$touched) && form.uid.$error" role="alert">
+                    <div class="alert-danger">
+                        <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="gatewayName" class="col-sm-3 control-label">Name*</label>
+            <div class="col-sm-9">
+                <input type="text" id="gatewayName" name="gatewayName" class="form-control" ng-model="gateway.name" required/>
+                <div ng-messages="(form.$submitted || form.gatewayName.$touched) && form.gatewayName.$error" role="alert">
+                    <div class="alert-danger">
+                        <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="gatewayType" class="col-sm-3 control-label">Type*</label>
+            <div class="col-sm-9">
+                <select id="gatewayType" name="gatewayType" class="form-control customSelect" ng-model="gateway.type" required ng-options="type for type in options.types">
+                        <option value="">[Gateway Type]</option>
+                </select>
+                <div ng-messages="(form.$submitted || form.gatewayType.$touched) && form.gatewayType.$error" role="alert">
+                    <div class="alert-danger">
+                        <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="deviceType" class="col-sm-3 control-label">Device Type*</label>
+            <div class="col-sm-9">
+                <select id="deviceType" name="deviceType" class="form-control customSelect" ng-model="gateway.deviceTypeId" required ng-options="deviceType.id as deviceType.name for deviceType in options.deviceTypes"></select>
+                <div ng-messages="(form.$submitted || form.deviceType.$touched) && form.deviceType.$error" role="alert">
+                    <div class="alert-danger">
+                        <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="osName" class="col-sm-3 control-label">OS Name*</label>
+            <div class="col-sm-9">
+                <input type="text" id="osName" name="osName" class="form-control" ng-model="gateway.osName" required/>
+                <div ng-messages="(form.$submitted || form.osName.$touched) && form.osName.$error" role="alert">
+                    <div class="alert-danger">
+                        <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="softwareName" class="col-sm-3 control-label">Software Name*</label>
+            <div class="col-sm-9">
+                <input type="text" id="softwareName" name="softwareName" class="form-control" ng-model="gateway.softwareName" required/>
+                <div ng-messages="(form.$submitted || form.softwareName.$touched) && form.softwareName.$error" role="alert">
+                    <div class="alert-danger">
+                        <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="softwareVersion" class="col-sm-3 control-label">Software Version*</label>
+            <div class="col-sm-9">
+                <input type="text" id="softwareVersion" name="softwareVersion" class="form-control" ng-model="gateway.softwareVersion" required/>
+                <div ng-messages="(form.$submitted || form.softwareVersion.$touched) && form.softwareVersion.$error" role="alert">
+                    <div class="alert-danger">
+                        <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="sdkVersion" class="col-sm-3 control-label">SDK Version</label>
+            <div class="col-sm-9">
+                <input type="text" id="sdkVersion" name="sdkVersion" class="form-control" ng-model="gateway.sdkVersion"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="user" class="col-sm-3 control-label">User</label>
+            <div class="col-sm-9">
+                <select id="user" name="user" class="form-control customSelect" ng-model="gateway.userId" ng-options="user.id as user.name for user in options.users">
+                        <option value="">[Not Assigned]</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="externalId" class="col-sm-3 control-label">External ID</label>
+            <div class="col-sm-9">
+                <input type="text" id="externalId" name="externalId" class="form-control" ng-model="gateway.externalId"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="infoFields" class="col-sm-3 control-label">INFO fields</label>
+            <div class="col-sm-9">
+                <textarea key-value-pairs class="form-control" id="infoFields" name="infoFields" ng-model="gateway.info"></textarea>
+                <div ng-messages="(form.$submitted || form.infoFields.$touched || form.infoFields.$dirty) && form.infoFields.$error" role="alert">
+                    <div class="alert-danger">
+                        <span ng-message="keyValuePairs">Field should have correct "key=value" pairs format</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="propFields" class="col-sm-3 control-label">PROPERTIES fields</label>
+            <div class="col-sm-9">
+                <textarea key-value-pairs class="form-control" id="propFields" name="propFields" ng-model="gateway.properties"></textarea>
+                <div ng-messages="(form.$submitted || form.propFields.$touched || form.propFields.$dirty) && form.propFields.$error" role="alert">
+                    <div class="alert-danger">
+                        <span ng-message="keyValuePairs">Field should have correct "key=value" pairs format</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox col-sm-offset-2 col-sm-9">
+              <label>
+                <input type="checkbox" value="" ng-model="gateway.enabled" />
+                Enabled
+              </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Persist Telemetry</label>
+            <div class="col-sm-9">
+              <label class="radio-inline">
+                <input type="radio" ng-model="gateway.persistTelemetry" value="INHERIT"> Inherit
+              </label>
+              <label class="radio-inline">
+                <input type="radio" ng-model="gateway.persistTelemetry" value="YES"> Yes
+              </label>
+              <label class="radio-inline">
+                <input type="radio" ng-model="gateway.persistTelemetry" value="NO"> No
+              </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Index Telemetry</label>
+            <div class="col-sm-9">
+              <label class="radio-inline">
+                <input type="radio" ng-model="gateway.indexTelemetry" value="INHERIT"> Inherit
+              </label>
+              <label class="radio-inline">
+                <input type="radio" ng-model="gateway.indexTelemetry" value="YES"> Yes
+              </label>
+              <label class="radio-inline">
+                <input type="radio" ng-model="gateway.indexTelemetry" value="NO"> No
+              </label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-default" type="submit">Save</button>
+    </div>
+</form>

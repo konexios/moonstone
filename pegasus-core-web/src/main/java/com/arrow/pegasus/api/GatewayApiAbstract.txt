@@ -1,0 +1,273 @@
+package com.arrow.pegasus.api;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.arrow.pegasus.CoreAuditLog;
+import com.arrow.pegasus.JsonUtils;
+import com.arrow.pegasus.NotAuthorizedException;
+import com.arrow.pegasus.PegasusLogicalException;
+import com.arrow.pegasus.client.model.GatewayModel;
+import com.arrow.pegasus.client.model.HidModel;
+import com.arrow.pegasus.client.model.StatusModel;
+import com.arrow.pegasus.data.AccessKey;
+import com.arrow.pegasus.data.AuditLogBuilder;
+import com.arrow.pegasus.data.GatewayType;
+import com.arrow.pegasus.data.heartbeat.HeartbeatObjectType;
+import com.arrow.pegasus.data.profile.Application;
+import com.arrow.pegasus.data.profile.Gateway;
+import com.arrow.pegasus.data.profile.User;
+import com.arrow.pegasus.data.profile.UserStatus;
+import com.arrow.pegasus.service.AccessKeyService;
+import com.arrow.pegasus.service.GatewayService;
+
+public abstract class GatewayApiAbstract extends ApiAbstract {
+
+    @Autowired
+    private GatewayService gatewayService;
+    @Autowired
+    private AccessKeyService accessKeyService;
+
+    @RequestMapping(path = "/{hid}", method = RequestMethod.GET)
+    public GatewayModel find(@PathVariable(value = "hid") String hid) {
+        validateCanReadGateway(hid);
+        return populateModel(new GatewayModel(), getCoreCacheService().findGatewayByHid(hid));
+    }
+
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public List<GatewayModel> findAll() {
+        String method = "findAll";
+        List<GatewayModel> result = new ArrayList<>();
+
+        AccessKey accessKey = getValidatedAccessKey(getProductSystemName());
+        for (Gateway gateway : gatewayService.getGatewayRepository()
+                .findByApplicationIdAndEnabled(accessKey.getApplicationId(), true)) {
+            result.add(populateModel(new GatewayModel(), gateway));
+        }
+        logInfo(method, "result size: %d", result.size());
+        return result;
+    }
+
+    @RequestMapping(path = "", method = RequestMethod.POST)
+    public HidModel create(@RequestBody(required = false) GatewayModel body) {
+        GatewayModel model = JsonUtils.fromJson(getApiPayload(), GatewayModel.class);
+        Gateway gateway = doCreate(model);
+        return new HidModel(gateway.getHid(), "OK");
+    }
+
+    @RequestMapping(path = "/{hid}", method = RequestMethod.PUT)
+    public HidModel update(@PathVariable(value = "hid") String hid, @RequestBody(required = false) GatewayModel body) {
+        GatewayModel model = JsonUtils.fromJson(getApiPayload(), GatewayModel.class);
+        model.setHid(hid);
+        Gateway gateway = doUpdate(model);
+        return new HidModel(gateway.getHid(), "OK");
+    }
+
+    @RequestMapping(path = "/{hid}/checkin", method = RequestMethod.PUT)
+    public StatusModel checkin(@PathVariable(value = "hid") String hid) {
+        doCheckin(hid);
+        return StatusModel.OK;
+    }
+
+    @RequestMapping(path = "/{hid}/heartbeat", method = RequestMethod.PUT)
+    public StatusModel heartbeat(@PathVariable(value = "hid") String hid) {
+        doHeartbeat(hid);
+        return StatusModel.OK;
+    }
+
+    protected Gateway doCreate(GatewayModel model) {
+        String method = "doCreate";
+
+        Assert.hasText(model.getUid(), "uid is required");
+        Assert.hasLength(model.getName(), "name is required");
+        Assert.hasText(model.getOsName(), "osName is required");
+        Assert.hasText(model.getSoftwareName(), "softwareName is required");
+        Assert.hasText(model.getSoftwareVersion(), "softwareVersion is required");
+        Assert.notNull(model.getType(), "type is required");
+
+        AccessKey accessKey = validateCanCreateGateway();
+
+        Application application = accessKey.getRefApplication();
+        if (!StringUtils.isEmpty(model.getApplicationHid())
+                && !StringUtils.equals(application.getHid(), model.getApplicationHid())) {
+            Application overrideApplication = getCoreCacheService().findApplicationByHid(model.getApplicationHid());
+            checkEnabled(overrideApplication, "overrideApplication");
+            Assert.isTrue(application.getCompanyId().equals(overrideApplication.getCompanyId()),
+                    "companyId mismatched");
+            logInfo(method, "use override application: %s", overrideApplication.getName());
+            application = overrideApplication;
+        }
+
+        Gateway gateway = gatewayService.getGatewayRepository().findByApplicationIdAndUid(application.getId(),
+                model.getUid());
+        if (gateway != null) {
+            checkEnabled(gateway, "gateway");
+            gateway = populateGateway(gateway, model);
+            gatewayService.update(gateway, accessKey.getId());
+            logInfo(method, "gateway already exists, information has been updated");
+        } else {
+            gateway = populateGateway(new Gateway(), model);
+            gateway.setApplicationId(application.getId());
+            gateway.setEnabled(true);
+            gatewayService.create(gateway, accessKey.getId());
+
+            logInfo(method, "registered new gateway: %s --> %s", gateway.getName(), gateway.getId());
+        }
+        return gateway;
+    }
+
+    protected Gateway doUpdate(GatewayModel model) {
+        String method = "doUpdate";
+
+        AccessKey accessKey = validateCanWriteGateway(model.getHid());
+        Gateway gateway = gatewayService.getGatewayRepository().doFindByHid(model.getHid());
+        checkEnabled(gateway, "gateway");
+        logInfo(method, "found gateway, id: %s, name: %s, userId: %s", gateway.getId(), gateway.getName(),
+                gateway.getUserId());
+        gateway = populateGateway(gateway, model);
+        gatewayService.update(gateway, accessKey.getId());
+        logInfo(method, "updated existing gateway: %s --> %s", gateway.getName(), gateway.getId());
+        return gateway;
+    }
+
+    protected Gateway doCheckin(String hid) {
+        String method = "doCheckin";
+
+        AccessKey accessKey = validateCanWriteGateway(hid);
+
+        // find gateway
+        Gateway gateway = gatewayService.getGatewayRepository().doFindByHid(hid);
+        Assert.notNull(gateway, "Gateway not found for hid: " + hid);
+        if (StringUtils.isNotEmpty(gateway.getUserId())) {
+            User user = getCoreCacheService().findUserById(gateway.getUserId());
+            Assert.notNull(user, "invalid userId: " + gateway.getUserId());
+            logInfo(method, "gateway belongs to user: %s", user.getContact().getEmail());
+        }
+
+        Application application = accessKey.getRefApplication();
+
+        // write audit log
+        getAuditLogService().save(AuditLogBuilder.create().productName(application.getRefProduct().getName())
+                .type(CoreAuditLog.Gateway.GatewayCheckin).objectId(gateway.getId()).applicationId(application.getId())
+                .parameter("hid", hid));
+
+        logInfo(method, "applicationId: %s, hid: %s, uid: %s", application.getId(), hid, gateway.getUid());
+
+        return gateway;
+    }
+
+    protected void doHeartbeat(String hid) {
+        String method = "doHeartbeat";
+
+        validateCanReadGateway(hid);
+
+        // find gateway
+        Gateway gateway = gatewayService.getGatewayRepository().doFindByHid(hid);
+        Assert.notNull(gateway, "Gateway not found for hid: " + hid);
+
+        getHeartbeatService().create(HeartbeatObjectType.GATEWAY, gateway.getId());
+        getLastHeartbeatService().update(HeartbeatObjectType.GATEWAY, gateway.getId());
+        logDebug(method, "heartbeat received for gateway %s", gateway.getId());
+    }
+
+    protected Gateway populateGateway(Gateway gateway, GatewayModel model) {
+        String method = "populateGateway";
+
+        if (StringUtils.isNotEmpty(model.getName()))
+            gateway.setName(model.getName());
+        if (model.getType() != null)
+            gateway.setType(GatewayType.valueOf(model.getType().name()));
+        if (StringUtils.isNotEmpty(model.getOsName()))
+            gateway.setOsName(model.getOsName());
+        if (StringUtils.isNotEmpty(model.getSoftwareName()))
+            gateway.setSoftwareName(model.getSoftwareName());
+        if (StringUtils.isNotEmpty(model.getSoftwareVersion()))
+            gateway.setSoftwareVersion(model.getSoftwareVersion());
+        if (StringUtils.isNotEmpty(model.getUid()))
+            gateway.setUid(model.getUid());
+
+        if (StringUtils.isNotEmpty(model.getUserHid())) {
+            User user = getCoreCacheService().findUserByHid(model.getUserHid());
+            Assert.notNull(user, "invalid userHid: " + model.getUserHid());
+            logInfo(method, "found user: %s", user.getContact().getEmail());
+            if (user.getStatus() != UserStatus.Active) {
+                throw new PegasusLogicalException("user is not active");
+            }
+            gateway.setUserId(user.getId());
+        }
+        return gateway;
+    }
+
+    protected GatewayModel populateModel(GatewayModel model, Gateway gateway) {
+        model.setHid(gateway.getHid());
+        model.setUid(gateway.getUid());
+        model.setName(gateway.getName());
+        model.setType(GatewayModel.GatewayType.valueOf(gateway.getType().name()));
+        model.setOsName(gateway.getOsName());
+        model.setSoftwareName(gateway.getSoftwareName());
+        model.setSoftwareVersion(gateway.getSoftwareVersion());
+        if (StringUtils.isNotEmpty(gateway.getUserId())) {
+            User user = getCoreCacheService().findUserById(gateway.getUserId());
+            if (user != null) {
+                model.setUserHid(user.getHid());
+            }
+        }
+        return model;
+    }
+
+    protected AccessKey validateCanReadGateway(String hid) {
+        Gateway gateway = getCoreCacheService().findGatewayByHid(hid);
+        if (gateway == null) {
+            throw new PegasusLogicalException("invalid gateway hid");
+        }
+        AccessKey accessKey = getValidatedAccessKey(getProductSystemName());
+        if (!accessKey.getApplicationId().equals(gateway.getApplicationId())) {
+            throw new PegasusLogicalException("applicationId mismatched!");
+        }
+        if (!accessKey.canRead(accessKey.getRefApplication()) && !accessKey.canRead(gateway)) {
+            throw new NotAuthorizedException();
+        }
+        return accessKey;
+    }
+
+    protected AccessKey validateCanWriteGateway(String hid) {
+        Gateway gateway = getCoreCacheService().findGatewayByHid(hid);
+        if (gateway == null) {
+            throw new PegasusLogicalException("invalid gateway hid");
+        }
+        AccessKey accessKey = getValidatedAccessKey(getProductSystemName());
+        if (!accessKey.getApplicationId().equals(gateway.getApplicationId())) {
+            throw new PegasusLogicalException("applicationId mismatched!");
+        }
+        if (!accessKey.canWrite(accessKey.getRefApplication()) && !accessKey.canWrite(gateway)) {
+            throw new NotAuthorizedException();
+        }
+        return accessKey;
+    }
+
+    protected AccessKey validateCanCreateGateway() {
+        AccessKey accessKey = getValidatedAccessKey(getProductSystemName());
+        if (!accessKey.canWrite(accessKey.getRefApplication())) {
+            throw new NotAuthorizedException();
+        }
+        return accessKey;
+    }
+
+    protected GatewayService getGatewayService() {
+        return gatewayService;
+    }
+
+    protected AccessKeyService getAccessKeyService() {
+        return accessKeyService;
+    }
+
+    protected abstract String getProductSystemName();
+}

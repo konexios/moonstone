@@ -1,0 +1,118 @@
+<div left-menu is-collapsed="menuIsCollapsed">
+</div>
+
+<div class="partial-page-content-container" ng-class="{'menu-collapsed': menuIsCollapsed}" ng-init="menuIsCollapsed = !menuIsCollapsed"
+	ng-scrollbars ng-scrollbars-config="scrollerConfig">
+	<div class="partial-page-content">
+		<!-- BEGIN PAGE BREADCRUMB -->
+		<ul class="page-breadcrumb breadcrumb">
+		    <li>Provision</li>
+		    <li><a ui-sref="regions">Regions</a></li>
+		    <li class="active">Region</li>
+		</ul>
+		<!-- END PAGE BREADCRUMB -->
+		<!-- BEGIN MAIN CONTENT -->
+		<div class="row">
+		    <div class="col-md-12">
+				<div class="portlet light bordered">
+					<div class="portlet-title">
+						<div class="caption">
+							<span class="caption-subject font-dark sbold uppercase">Region</span>
+						</div>
+						<div class="actions"></div>
+					</div>
+					<div class="portlet-body form">
+						<form name="form" 
+							class="form-horizontal" 
+							role="form"
+							novalidate>
+						    <div class="form-body">
+						        <div class="form-group"
+						        	ng-class="{ 'has-error': (form.name.$touched || form.$submitted) && form.name.$invalid, 'has-success': (form.name.$touched || form.$submitted) && !form.name.$invalid }">
+						            <label
+						            	for="name" 
+						            	class="col-md-3 control-label">Name
+						            	<span class="required" aria-required="true"> * </span>
+						            </label>
+						            <div class="col-md-9">
+						                <div class="input-icon right">
+						                	<i ng-show="(form.name.$touched || form.$submitted) && form.name.$invalid" class="fa fa-warning"></i>
+						                	<i ng-show="(form.name.$touched || form.$submitted) && !form.name.$invalid" class="fa fa-check"></i>
+							                <input id="name"
+							                	name="name" 
+							                	type="text" 
+							                	class="form-control" 
+							                	placeholder="Name" 
+							                	ng-model="region.name"
+							                	ng-trim="true"
+							           			ng-required="true"
+							           			ng-minlength="1"
+							           			ng-maxlength="50"
+												ng-disabled="!hasAccess()">
+						                </div>
+						                <div class="help-block" ng-messages="form.name.$error" ng-show="form.name.$touched || form.$submitted">
+						                	<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+						                </div>
+						            </div>
+						        </div>
+						        <div class="form-group"
+						        	ng-class="{ 'has-error': (form.description.$touched || form.$submitted) && form.description.$invalid, 'has-success': (form.description.$touched || form.$submitted) && !form.description.$invalid }">
+						            <label for="description"
+						            	class="col-md-3 control-label">Description
+						            	<span class="required" aria-required="true"> * </span>
+						            </label>
+						            <div class="col-md-9">
+						            	<div class="input-icon right">
+						                	<i ng-show="(form.description.$touched || form.$submitted) && form.description.$invalid" class="fa fa-warning"></i>
+						                	<i ng-show="(form.description.$touched || form.$submitted) && !form.description.$invalid" class="fa fa-check"></i>
+							                <textarea id="description" 
+							                	name="description"
+							                	class="form-control" 
+							                	rows="3" 
+							                	ng-model="region.description"
+							                	ng-trim="true"
+							           			ng-required="true"
+							           			ng-minlength="3"
+							           			ng-maxlength="255"
+												ng-disabled="!hasAccess()"></textarea>
+							            </div>
+						                <div class="help-block" ng-messages="form.description.$error" ng-show="form.description.$touched || form.$submitted">
+						                	<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+						                </div>
+						            </div>
+						        </div>
+						        <div class="form-group"
+						        	ng-class="{ 'has-error': form.enabled.$touched && form.enabled.$invalid, 'has-success': form.enabled.$touched && !form.enabled.$invalid }">
+						            <div class="col-md-offset-3 col-md-9">
+				                        <div class="checkbox">
+				                        	<label>
+				                        		<div class="checker">
+				                        			<span ng-class="region.enabled ? 'checked' : ''">
+														<input id="enabled" name="enabled" type="checkbox" ng-model="region.enabled" ng-disabled="!hasAccess()" /></span>
+				                        		</div>
+				                        		Enabled
+				                        	</label>
+				                        </div>
+						                <div class="help-block" ng-messages="form.enabled.$error" ng-show="form.enabled.$touched">
+						                	<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+						                </div>
+						            </div>
+						        </div>
+						    </div>
+						    <div class="form-actions">
+						        <div class="row">
+						            <div class="col-md-offset-3 col-md-9">
+						                <button type="submit" 
+						                	class="btn green"
+						                	ng-disabled="busy || !hasAccess()"
+						                	ng-click="save(form, region)">Save</button>
+						            </div>
+						        </div>
+						    </div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

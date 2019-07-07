@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-xs-5">
+        <label for="availableList">Available:</label>
+        <select ng-model="vm.selectedAvailableItems" name="availableList" id="availableList" class="form-control" multiple size="15">
+            <option ng-value="device.key" ng-repeat="device in property.view.possibleValues | filter: vm.filterAvailable" title="{{device.value}}">{{device.value}}</option>
+        </select>
+    </div>
+    <div class="col-xs-2">
+        <div class="arrows-group text-center">
+            <div class="arrows-links-group">
+                <a ng-click="vm.pushSelected()" class="arrow-link" title="Add selected">
+                    <span class="glyphicon glyphicon-circle-arrow-right"></span>
+                </a>
+            </div>
+            <div class="arrows-links-group">
+                <a ng-click="vm.removeSelected()" class="arrow-link" title="Remove selected">
+                    <span class="glyphicon glyphicon-circle-arrow-left"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-5">
+        <label for="selectedList">Selected:</label>
+        <select ng-model="vm.selectedSelectedItems" name="selectedList" id="selectedList" class="form-control" multiple size="15">
+            <option ng-value="device.key" ng-repeat="device in property.view.possibleValues | filter: vm.filterSelected" title="{{device.value}}">{{device.value}}</option>
+        </select>
+    </div>
+</div>

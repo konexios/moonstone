@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h3 class="modal-title">EULA <small>Our EULA has changed as of {{eulaModel.date | date: 'MM/dd/yyyy' }}</small></h3>
+</div>
+<div class="modal-body">
+	<iframe 
+		ng-src="{{eulaUrl}}"
+		height="300" width="100%"></iframe>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-default"
+		type="submit"
+		ng-click="agree()">I Agree</button>
+	<button class="btn btn-default"
+		type="button" 
+		ng-click="disagree()">I Disagree</button>
+</div>

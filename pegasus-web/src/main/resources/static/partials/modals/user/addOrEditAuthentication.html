@@ -1,0 +1,85 @@
+<div class="modal-header">
+	<h3 class="modal-title" id="modal-title">
+		Authentication
+	</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <form name="form"
+          class="form-horizontal"
+          role="form"
+          novalidate>
+        <div class="form-body">
+
+            <div class="form-group">
+                <label for="type" class="col-md-3 control-label">Authentication Type</label>
+                    <div class="col-md-9 input-icon right">
+                        <i ng-show="form.type.$touched && form.type.$invalid" class="fa fa-warning"></i>
+                        <i ng-show="form.type.$touched && !form.type.$invalid" class="fa fa-check"></i>
+                        <select
+                                class="form-control"
+                                id="type"
+                                name="type"
+                                ng-model="authentication.type"
+                                ng-change="onChangeType()"
+                                ng-disabled="!typeOptions || typeOptions.length === 0"
+                                ng-options="type as type for type in typeOptions">
+                        </select>
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <label for="provider" class="col-md-3 control-label">Provider</label>
+                <div class="col-md-9 input-icon right">
+                    <i ng-show="form.provider.$touched && form.provider.$invalid" class="fa fa-warning"></i>
+                    <i ng-show="form.provider.$touched && !form.provider.$invalid" class="fa fa-check"></i>
+                    <select
+                            class="form-control"
+                            id="provider"
+                            name="provider"
+                            ng-model="authentication.provider"
+                            ng-disabled="!providerOptions || providerOptions.length === 0"
+                            ng-options="option.id as option.provider for option in providerOptions">
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="principal" class="col-md-3 control-label">Principal</label>
+                <div class="col-md-9">
+                    <div class="input-icon right">
+                        <i ng-show="form.principal.$touched && form.principal.$invalid" class="fa fa-warning"></i>
+                        <i ng-show="form.principal.$touched && !form.principal.$invalid" class="fa fa-check"></i>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="principal"
+                                name="authentication.principal"
+                                ng-trim="true"
+                                ng-model="authentication.principal"
+                                ng-required="true">
+                    </div>
+                    <div class="help-block" ng-messages="form.principal.$error" ng-show="form.principal.$touched">
+                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3 control-label"></div>
+                <label div class="col-md-9">
+                    <input id="is-admin" type="checkbox"
+                           ng-checked="authentication.enabled"
+                           ng-model="authentication.enabled"/>
+                    Enabled
+                </label>
+            </div>
+
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-disabled="busy" ng-click="cancel()">Cancel</button>
+	<button type="submit"
+            class="btn btn-default"
+            ng-disabled="busy || !form.$valid" ng-click="save(form)">Save</button>
+</div>	

@@ -1,0 +1,46 @@
+<div class="row-content no-list-page">
+	<div class="content-wrapper-fluid" ng-controller="LoginController">
+		<div class="container">
+			<div class="row">
+			   <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+					<form id="loginForm" class="form-horizontal signin-form" ng-submit="login()" novalidate>
+						<div class="panel-arrow panel-login">
+							<div class="hd">
+								<h3 class="title">Sign In</h3>
+							</div>
+							<div class="bd">
+								<div class="bd-wrapper">
+									<div ng-show="signingMessage" class="alert alert-danger" role="alert" ng-bind-html="signingMessage"></div>
+
+									<div class="form-group">
+									    <label for="username" class="col-sm-3 control-label">Login</label>
+									    <div class="col-sm-9">
+										    <input id="username" type="text" class="form-control" ng-model="credentials.username" ng-blur="getUserAutheticationType(credentials.username)">
+									    </div>
+									</div>
+									<div class="form-group">
+									    <label for="password" class="col-sm-3 control-label">Password</label>
+									    <div class="col-sm-9">
+										    <input id="password" type="password" class="form-control" ng-model="credentials.password">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="ft">
+								<div class="form-group">
+									<div class="col-sm-12">
+										<span class="splitted-links">
+											<a href="/#/forgotpassword" ng-if="!authType">Forgot Password?</a>							
+										</span>
+										<button type="submit" ng-disabled="loginBtnDisabled"
+											class="btn btn-brand pull-right">Sign In <i class="fa fa-long-arrow-right"></i></button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+			   </div>
+			</div>
+		</div>
+	</div>
+</div>

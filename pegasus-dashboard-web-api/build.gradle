@@ -1,0 +1,24 @@
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+    manifest {
+        attributes(
+            "Implementation-Title": "moonstone-pegasus-dashboard-web-api",
+            "Implementation-Version": version,
+            "Implementation-Vendor": "Arrow Electronics, Inc.",
+            "Built-By": System.getProperty('user.name'),
+            "Built-Date": new Date().format("yyyy-MM-dd"),
+            "Built-Jdk": "${System.getProperty('java.version')} (${System.getProperty('java.specification.vendor')})",
+            "Git-Branch": getCurrentGitBranch(),
+            "Git-Last-Commit": getLastGitCommit())
+    }
+}
+
+task webjar(type: Jar, dependsOn: "jar") { 
+    from(fileTree("src/main/resources")) {  
+        into "META-INF/resources/webjars/pegasus-dashboard-web-api/" 
+    } 
+}

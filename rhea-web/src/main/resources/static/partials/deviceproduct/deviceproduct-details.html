@@ -1,0 +1,73 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{deviceProduct.id ? 'Edit' : 'Add'}} Hardware Product</h3>
+</div>
+<form name="deviceProductForm"
+    class="form-horizontal"
+    novalidate
+    ng-submit="save();">
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="deviceProductName" class="col-sm-3 control-label">Name</label>
+            <div class="col-sm-9">
+                <input type="text" id="deviceProductName" name="deviceProductName" class="form-control" ng-model="deviceProduct.name" required />
+            </div>
+            <div class="col-sm-offset-3 col-sm-9" ng-messages="deviceProductForm.deviceProductName.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Name is required</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="deviceProductDescription" class="col-sm-3 control-label">Description</label>
+            <div class="col-sm-9">
+                <textarea id="deviceProductDescription" name="deviceProductDescription" class="form-control" rows="3" ng-model="deviceProduct.description" required ></textarea>
+            </div>
+            <div class="col-sm-offset-3 col-sm-9" ng-messages="deviceProductForm.deviceProductDescription.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Description is required</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="deviceProductManufacturer" class="col-sm-3 control-label">Hardware Manufacturer</label>
+            <div class="col-sm-9">
+                <select id="deviceProductManufacturer" name="deviceProductManufacturer" class="form-control" ng-model="deviceProduct.deviceManufacturer" ng-options="manufacturer.name for manufacturer in manufacturers track by manufacturer.id" required>
+                    <option value="">-- select one --</option>
+                </select>
+            </div>
+            <div class="col-sm-offset-3 col-sm-9" ng-messages="deviceProductForm.deviceProductManufacturer.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Hardware Manufacturer is required</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="deviceProductDeviceCategory" class="col-sm-3 control-label">Hardware Category</label>
+            <div class="col-sm-9">
+                <select id="deviceProductDeviceCategory" name="deviceProductDeviceCategory" class="form-control" ng-model="deviceProduct.deviceCategory" ng-options="deviceCategory for deviceCategory in deviceCategories track by deviceCategory" required>
+                    <option value="">-- select one --</option>
+                </select>
+            </div>
+            <div class="col-sm-offset-3 col-sm-9" ng-messages="deviceProductForm.deviceProductDeviceCategory.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Hardware Category is required</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="checkbox col-sm-offset-3 col-sm-9">
+              <label>
+                <input type="checkbox" value="" ng-model="deviceProduct.enabled" />
+                Enabled
+              </label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default"
+            ng-if="canSaveDeviceProduct"
+            type="submit">Save</button>
+        <button class="btn btn-default"
+            type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

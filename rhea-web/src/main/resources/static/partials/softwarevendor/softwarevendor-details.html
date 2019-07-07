@@ -1,0 +1,55 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{softwareVendor.id ? 'Edit' : 'Add'}} Software Vendor</h3>
+</div>
+<form name="softwareVendorForm"
+    class="form-horizontal"
+    novalidate
+    ng-submit="save();">
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="softwareVendorName" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <p class="form-control-static" ng-if="!canSaveSoftwareVendor">{{softwareVendor.name}}</p>
+                <input type="text" id="softwareVendorName" name="softwareVendorName" class="form-control" ng-model="softwareVendor.name" ng-if="canSaveSoftwareVendor" required />
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="softwareVendorForm.softwareVendorName.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Name is required</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="softwareVendorDescription" class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-10">
+                <p class="form-control-static" ng-if="!canSaveSoftwareVendor">{{softwareVendor.description}}</p>
+                <textarea id="softwareVendorDescription" name="softwareVendorDescription" class="form-control" rows="3" ng-model="softwareVendor.description" ng-if="canSaveSoftwareVendor" required ></textarea>
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="softwareVendorForm.softwareVendorDescription.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Description is required</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-if="canSaveSoftwareVendor">
+            <div class="checkbox col-sm-offset-2 col-sm-10">
+              <label>
+                <input type="checkbox" value="" ng-model="softwareVendor.enabled" />
+                Enabled
+              </label>
+            </div>
+        </div>
+        <div class="form-group" ng-if="!canSaveSoftwareVendor">
+            <label class="col-sm-2 control-label">Enabled</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">{{softwareVendor.enabled}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default"
+            ng-if="canSaveSoftwareVendor"
+            type="submit">Save</button>
+        <button class="btn btn-default"
+            type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

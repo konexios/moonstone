@@ -1,0 +1,154 @@
+<div class="modal-header">
+    <h3 class="modal-title">Search</h3>
+</div>
+<div class="modal-body">
+    <form name="form"
+        class="form-horizontal"
+        novalidate>
+        <div class="form-group">
+            <!-- GATEWAY UID -->
+            <label for="filterGatewayUIDs"
+                class="col-sm-2 control-label">Gateway UID</label>
+            <div class="col-sm-10">
+              <input id="filterGatewayUIDs"
+                type="text"
+                class="form-control"
+                placeholder="Gateway UID"
+                ng-model="filter.uid">
+            </div>
+        </div>
+		
+		<div class="form-group">
+           <!-- GATEWAY HID -->
+           <label for="filterGatewayHIDs"
+               class="col-sm-2 control-label">Gateway HID</label>
+           <div class="col-sm-10">
+             <input id="filterGatewayHIDs"
+               type="text"
+               class="form-control"
+               placeholder="Gateway HID"
+               ng-model="filter.hid">
+           </div>
+       </div>
+	   
+        <div class="form-group">
+            <label for="filterDeviceTypeIds"
+                class="col-sm-2 control-label">Asset Type <span class="label label-default">{{filter.deviceTypeIds.length}}</span></label>
+            <div class="col-sm-10">
+                <select id="filterDeviceTypeIds"
+                    class="form-control"
+                    size="4"
+                    multiple
+                    ng-model="filter.deviceTypeIds"
+                    ng-options="deviceType.id as deviceType.name for deviceType in filterOptions.deviceTypes">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <!-- GATEWAY TYPE -->
+            <label for="filterGatewayTypes"
+                class="col-sm-2 control-label">Gateway Type <span class="label label-default">{{filter.gatewayTypes.length || 0}}</span></label>
+            <div class="col-sm-10">
+                <select id="filterGatewayTypes"
+                    class="form-control "
+                    size="3"
+                    multiple
+                    ng-model="filter.gatewayTypes"
+                    ng-options="gatewayType for gatewayType in filterOptions.gatewayTypes">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <!-- GATEWAY OS NAME -->
+            <label for="filterGatewayOSName"
+                class="col-sm-2 control-label">OS <span class="label label-default">{{filter.osNames.length || 0}}</span></label>
+            <div class="col-sm-10">
+                <select id="filterGatewayOSName"
+                    class="form-control "
+                    size="3"
+                    multiple
+                    ng-model="filter.osNames"
+                    ng-options="osName for osName in filterOptions.osNames">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <!-- GATEWAY SOFTWARE NAME -->
+            <label for="filterGatewaySoftwareName"
+                class="col-sm-2 control-label">Software <span class="label label-default">{{filter.softwareNames.length || 0}}</span></label>
+            <div class="col-sm-10">
+                <select id="filterGatewaySoftwareName"
+                    class="form-control "
+                    size="3"
+                    multiple
+                    ng-model="filter.softwareNames"
+                    ng-options="softwareName for softwareName in filterOptions.softwareNames">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <!-- GATEWAY SOFTWARE VERSION -->
+            <label for="filterGatewaySoftwareVersion"
+                class="col-sm-2 control-label">Software Version <span class="label label-default">{{filter.softwareVersions.length || 0}}</span></label>
+            <div class="col-sm-10">
+                <select id="filterGatewaySoftwareVersion"
+                    class="form-control "
+                    size="3"
+                    multiple
+                    ng-model="filter.softwareVersions"
+                    ng-options="softwareVersion for softwareVersion in filterOptions.softwareVersions">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <!-- GATEWAY USER / OWNER -->
+            <label for="filterGatewayUserOwner"
+                class="col-sm-2 control-label">Owner <span class="label label-default">{{filter.userIds.length || 0}}</span></label>
+            <div class="col-sm-10">
+                <select id="filterGatewayUserOwner"
+                    class="form-control "
+                    size="3"
+                    multiple
+                    ng-model="filter.userIds"
+                    ng-options="userId.id as userId.name for userId in filterOptions.users">
+                </select>
+            </div>
+        </div>
+         <div class="form-group">
+            <label for="filterNodeIds"
+                class="col-sm-2 control-label">Group <span class="label label-default">{{filter.nodeIds.length}}</span></label>
+            <div class="col-sm-10">
+                <select id="filterNodeIds"
+                    class="form-control"
+                    size="4"
+                    multiple
+                    ng-model="filter.nodeIds"
+                    ng-options="node.id as node.name for node in filterOptions.nodes">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="checkbox col-sm-offset-2 col-sm-10">
+              <label class="radio-inline">
+                <input type="radio" ng-model="filter.enabled" ng-value="null"> Enabled and Disabled
+              </label>
+              <label class="radio-inline">
+                <input type="radio" ng-model="filter.enabled" ng-value="true"> Enabled only
+              </label>
+              <label class="radio-inline">
+                <input type="radio" ng-model="filter.enabled" ng-value="false"> Disabled only
+              </label>
+              <!--label>
+              	<input type="checkbox" value="" ng-model="filter.enabled" />
+              	Enabled
+              </label-->
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default"
+        type="button" ng-click="ok()">Search</button>
+    <button class="btn btn-default"
+        type="button" ng-click="cancel()">Cancel</button>
+</div>

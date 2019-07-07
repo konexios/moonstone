@@ -1,0 +1,21 @@
+.btn-green,
+.btn-green:focus,
+.btn-green:active:focus,
+.btn-green:hover,
+.btn-green:active:hover {
+	background-color: #00a19b;
+	border-color: #00a19b;
+	color: #f5f5f5;
+	width: 90px;
+	height: 40px;
+}
+
+.btn-yes { }
+.btn-no {
+	margin-left: 10px;
+}
+
+
+.container-partial {
+    background-color: #fff;
+}

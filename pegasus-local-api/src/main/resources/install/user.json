@@ -1,0 +1,22 @@
+[
+	{
+		"login": "sysadmin@arrowconnect.io",
+		"password": "Arrow-Connect-123",
+		"status": "Active",
+		"admin": true,
+		"failedLogins": 0,
+		"accountLockTimeout": 0,
+		"contact": {
+			"firstName": "System",
+			"lastName": "Administrator",
+			"email": "sysadmin@arrowconnect.io"
+		},
+		"address": {
+			
+		},
+		"roleIds": [],
+		"auths": [],
+		"oldPasswords": [],
+		"eulas": []
+	}
+]

@@ -1,0 +1,7 @@
+<th ng-class="!sortable ? 'sorting_disabled' : (sortable && sortField == value && sortDirection == 'ASC' ? 'sorting_asc' : (sortable && sortField == value && sortDirection == 'DESC' ? 'sorting_desc' : 'sorting'))">
+	<span ng-if="!sortable">{{label}}</span>
+	<a href=""
+		ng-if="sortable"
+		ng-click="sort({column: value})">{{label}}
+	</a>
+</th>

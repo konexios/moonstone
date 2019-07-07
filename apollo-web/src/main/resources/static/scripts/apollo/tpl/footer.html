@@ -1,0 +1,23 @@
+<footer class="footer hidden-xs hidden-sm">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="version-info" style="font-size:13px">
+					<div style="margin-bottom:5px;">
+						<span ng-if="!isLoggedIn() || !user.admin" 
+							ng-bind-template="{{apolloVersion.description}} | Version: {{apolloVersion.major}}.{{apolloVersion.minor}}.{{apolloVersion.build}}"></span>
+						<a href="" ng-if="isLoggedIn() && user.admin" ng-click="openComponentsVersion();"><span ng-bind-template="{{apolloVersion.description}} | Version: {{apolloVersion.major}}.{{apolloVersion.minor}}.{{apolloVersion.build}}"></span></a>							
+					</div>
+					<div  >&copy; <span ng-bind="currentDate | date:'yyyy'"></span> Arrow Electronics, Inc. All Rights Reserved. 
+						<a href="https://www.arrow.com/en/legal/privacy-policy" style="color:white;" target="_blank">Privacy Policy.</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<div class="pull-right">
+					<img src="/assets/img/iot_v_fyo_white.png" style="height: 60px;" />
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

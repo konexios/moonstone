@@ -1,0 +1,138 @@
+<form name="deviceActionForm"
+    class="form-horizontal"
+    novalidate
+    ng-submit="save();">
+    <div class="modal-header">
+        <h3 class="modal-title">{{canSaveDeviceAction ? (deviceActionIndex >= 0 ? 'Edit' : 'Add') : 'View'}} Device Action</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="actionType"
+                class="col-sm-3 control-label">Action&nbsp;Type</label>
+            <div class="col-sm-9">
+                <select id="actionType"
+                    name="actionType"
+                    class="form-control customSelect"
+                    required
+                    ng-if="deviceActionIndex < 0"
+                    ng-model="deviceAction.deviceActionTypeId"
+                    ng-change="onActionTypeChanged()"
+                    ng-options="actionType.id as actionType.name for actionType in options.actionTypes | filter:{enabled:true}:true ">
+                    <option value="">-- select one --</option>
+                </select>
+                <p class="form-control-static" ng-if="deviceActionIndex >= 0">{{options.actionTypes[deviceAction.deviceActionTypeId].name}}</p>
+            </div>
+            <div class="col-sm-offset-3 col-sm-9" ng-messages="deviceActionForm.actionType.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Type is required</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="actionDescription" class="col-sm-3 control-label">Description</label>
+            <div class="col-sm-9">
+                <input type="text" id="actionDescription" name="actionDescription" class="form-control" ng-model="deviceAction.description" ng-if="canSaveDeviceAction" maxlength="1000"/>
+                <p class="form-control-static" ng-if="!canSaveDeviceAction">{{deviceAction.description}}</p>
+            </div>
+            <div class="col-sm-offset-3 col-sm-9" ng-messages="deviceActionForm.actionDescription.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="maxlength">Description must be maximum 1000 characters long</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="actionCriteria" class="col-sm-3 control-label">Criteria</label>
+            <div class="col-sm-9">
+                <label>
+                    <input type="radio" id="actionNoTelemetry" name="actionNoTelemetry" ng-click="deviceAction.noTelemetryTime=60" ng-if="canSaveDeviceAction" ng-model="deviceAction.noTelemetry" ng-value="false"/> Telemetry Expression
+                </label>
+                <input type="text" id="actionCriteria" name="actionCriteria" class="form-control" ng-model="deviceAction.criteria" ng-disabled="deviceAction.noTelemetry" ng-if="canSaveDeviceAction" ng-required="!deviceAction.noTelemetry" maxlength="1000"/>
+                <p class="form-control-static" ng-if="!canSaveDeviceAction &&">{{deviceAction.noTelemetry ? "No Telemetry (" + deviceAction.noTelemetryTime +")" : deviceAction.criteria}}</p>
+			</div>
+            <div class="col-sm-offset-3 col-sm-9" ng-messages="deviceActionForm.actionCriteria.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Criteria is required</span>
+                    <span ng-message="maxlength">Criteria must be maximum 1000 characters long</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+            	<div class="row">
+					<div class="col-xs-12 col-sm-6">
+					    <label>
+						    <input type="radio" id="actionNoTelemetry" name="actionNoTelemetry" ng-if="canSaveDeviceAction" ng-model="deviceAction.noTelemetry" ng-value="true"/> No&nbsp;Telemetry&nbsp;(minutes)
+						</label>
+					</div>
+					<div class="col-xs-12 col-sm-6">
+						<input type="number" id="actionNoTelemetryTime" name="actionNoTelemetryTime" class="form-control" ng-model="deviceAction.noTelemetryTime" ng-disabled="!deviceAction.noTelemetry" ng-if="canSaveDeviceAction" ng-required="deviceAction.noTelemetry" min="0" onkeypress="return isNumberKey(event)"/>
+						<div class="alert-danger" ng-messages="deviceActionForm.actionNoTelemetryTime.$error" role="alert">
+                    		<span ng-message="required">No Telemetry is required</span>
+                    		<span ng-message="number">No Telemetry must be a valid number</span>
+                    		<span ng-message="min">No Telemetry must be greater than zero</span>
+                    	</div>
+					</div>
+				</div>
+			</div>
+
+
+        </div>        
+        <div class="form-group">
+            <label for="actionExpiration" class="col-sm-3 control-label">Expiration&nbsp;(seconds)</label>
+            <div class="col-sm-9">
+                <input type="number" id="actionExpiration" name="actionExpiration" class="form-control" ng-model="deviceAction.expiration" ng-if="canSaveDeviceAction" required min="0" onkeypress="return isNumberKey(event)"/>
+                <p class="form-control-static" ng-if="!canSaveDeviceAction">{{deviceAction.expiration}}</p>
+            </div>
+            <div class="col-sm-offset-3 col-sm-9" ng-messages="deviceActionForm.actionExpiration.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Expiration is required</span>
+                    <span ng-message="number">Expiration must be a valid number</span>
+                    <span ng-message="min">Expiration must be greater than zero</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-if="canSaveDeviceAction">
+            <div class="checkbox col-sm-offset-3 col-sm-9">
+              <label>
+                <input type="checkbox" value="" ng-model="deviceAction.enabled" />
+                Enabled
+              </label>
+            </div>
+        </div>
+        <div class="form-group" ng-if="!canSaveDeviceAction">
+            <label class="col-sm-3 control-label">Enabled</label>
+            <div class="col-sm-9">
+                <p class="form-control-static">{{deviceAction.enabled}}</p>
+            </div>
+        </div>
+        <div class="form-group" ng-repeat="(key, value) in deviceAction.parameters">
+            <label for="{{'actionParameter'+$index}}" class="col-sm-3 control-label">{{key}}</label>
+            <div class="col-sm-9">
+                <input type="text" id="{{'actionParameter'+$index}}" name="{{'actionParameter'+$index}}" class="form-control" ng-model="deviceAction.parameters[key]" ng-if="canSaveDeviceAction && isInputField(key)" ng-required="isRequired(key)" />
+                <textarea id="{{'actionParameter'+$index}}" name="{{'actionParameter'+$index}}" class="form-control" ng-model="deviceAction.parameters[key]" ng-if="canSaveDeviceAction && isTextareaField(key)" ng-required="isRequired(key)" rows="5"></textarea>
+                <select id="{{'actionParameter'+$index}}"
+                    name="{{'actionParameter'+$index}}"
+                    class="form-control customSelect"
+                    ng-required="isRequired(key)"
+                    ng-if="canSaveDeviceAction && isSelectField(key)"
+                    ng-model="deviceAction.parameters[key]"
+                    ng-options="optionValue for optionValue in optionValues[key]">
+                    <option value="">-- select one --</option>
+                </select>
+                <p class="form-control-static" ng-if="!canSaveDeviceAction">{{value}}</p>
+            </div>
+            <div class="col-sm-offset-3 col-sm-9" ng-messages="deviceActionForm['actionParameter'+$index].$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">{{key}} is required</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default"
+            ng-if="canSaveDeviceAction"
+            type="submit">Save</button>
+        <button class="btn btn-default"
+            type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

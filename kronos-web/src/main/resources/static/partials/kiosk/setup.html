@@ -1,0 +1,52 @@
+<div class="row-content no-list-page">
+    <div class="content-wrapper-fluid">
+        <div class="container">
+			<div>
+				<form id="kioskForm" 
+					name="vm.kioskForm" 
+					class="form-horizontal signin-form" 
+					ng-submit="vm.runKiosk(vm.settingsModel)" 
+					novalidate>
+			
+					<div ng-show="vm.errorgMessage" 
+						class="alert alert-danger" 
+						role="alert" 
+						ng-bind-html="vm.errorgMessage"></div>
+						
+					<div class="form-group" 
+						ng-class="{'has-error': (vm.kioskForm.$submitted || vm.kioskForm.rCode.$touched) && !vm.kioskForm.rCode.$valid}">
+						<label for="rCode" class="col-sm-2 control-label required">Referral Code</label>
+						<div class="col-sm-10">
+							<input id="rCode" type="rCode" name="rCode" class="form-control" placeholder="referral code" ng-model="vm.settingsModel.rCode">
+							<div class="help-block" 
+								ng-show="(vm.kioskForm.$submitted || vm.kioskForm.rCode.$touched) && !vm.kioskForm.rCode.$valid">
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group" 
+						ng-class="{'has-error': (vm.kioskForm.$submitted || vm.kioskForm.eCode.$touched) && !vm.kioskForm.eCode.$valid}">
+						<label for="eCode" class="col-sm-2 control-label required">Event Code</label>
+						<div class="col-sm-10">
+							<input id="eCode" type="eCode" name="eCode" class="form-control" placeholder="event code" ng-model="vm.settingsModel.eCode">
+							<div class="help-block" 
+								ng-show="(vm.kioskForm.$submitted || vm.kioskForm.eCode.$touched) && !vm.kioskForm.eCode.$valid">
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+							<button type="submit" 
+								class="btn btn-green pull-right" 
+								ng-disabled="vm.processing">Run Kiosk</button>
+						</div>
+					</div>
+
+				</form>
+
+			</div> 
+
+		</div>
+	</div>
+</div>

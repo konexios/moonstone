@@ -1,0 +1,50 @@
+bootJar {
+    archiveFileName.set("${baseName}.jar")
+    manifest {
+        attributes(
+            "Implementation-Title": "moonstone-kronos-web",
+            "Implementation-Version": version,
+            "Implementation-Vendor": "Arrow Electronics, Inc.",
+            "Built-By": System.getProperty('user.name'),
+            "Built-Date": new Date().format("yyyy-MM-dd"),
+            "Built-Jdk": "${System.getProperty('java.version')} (${System.getProperty('java.specification.vendor')})",
+            "Git-Branch": getCurrentGitBranch(),
+            "Git-Last-Commit": getLastGitCommit())
+    }
+}
+
+buildscript {
+    repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath("com.moowork.gradle:gradle-node-plugin:1.3.1")
+    }
+}
+
+apply plugin: "com.moowork.gulp"
+apply plugin: 'com.moowork.node'
+
+node {
+    version = '10.16.0'
+    download = true
+}
+
+dependencies {
+    // web sockets
+    implementation("org.springframework.boot:spring-boot-starter-websocket:${springBootVersion}")
+    
+    // csv export
+    implementation("org.apache.commons:commons-csv:1.5")
+}
+
+gulp_build.dependsOn 'installGulp'
+gulp_build.dependsOn 'npmInstall'
+gulp_build.dependsOn 'appNpmInstall'
+bootJar.dependsOn gulp_build
+bootRun.dependsOn gulp_build
+
+task appNpmInstall(type: NpmTask) {
+    workingDir = file("${project.projectDir}/src/main/resources/static")
+    args = ['install']
+}

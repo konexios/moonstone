@@ -1,0 +1,45 @@
+<div class="content-wrapper main-content">
+    <div class="row">
+        <div class="col-xs-12 breadcrumb-container no-padding">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a></li>
+                <li>Settings</li>
+                <li>Widgets</li>
+            </ul>
+        </div>
+    </div>
+
+	<button class="btn btn-default" ng-click="openWidgetDetails(null)">Add</button>
+
+	<!-- BEGIN MAIN CONTENT -->
+	<div class="row">
+	    <div class="col-md-12">
+			<table class="table table-striped table-bordered table-hover dataTable table-ellipsis">
+				<thead>
+					<tr class="heading">
+						<th ng-repeat="header in vm.columnHeaders" 
+							arrow-column-header 
+							label="header.label" 
+							value="header.value" 
+							sort-field="pagination.sort.property" 
+							sort-direction="pagination.sort.direction" 
+							sortable="header.sortable"
+							sort="sortColumn(column)">
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in vm.widgetTypes">
+						<td><a href="" ng-click="openWidgetDetails(item)">{{item.name}}</a></td>
+						<td>{{item.description}}</td>
+						<td>{{item.widgetTypeName}}</td>
+						<td>{{item.category}}</td>
+						<td>{{item.iconType}}</td>
+						<td>{{item.icon}}</td>
+						<td>{{item.enabled}}</td>
+					</tr>
+				</tbody>
+			</table>
+	    </div>
+	</div>
+</div>

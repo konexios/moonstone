@@ -1,0 +1,106 @@
+<div class="panel panel-default panel-content">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-list" aria-hidden="true"></i> {{vm.resultTitle}}</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row table-toolbar">
+            <div class="col-sm-6 height-50">
+                <arrow-items-per-page-dropdown
+                    data-classes="pull-right-for-mobile margin-bottom-15"
+                    data-items-per-page="vm.pagination.itemsPerPage"
+                    data-total-items="vm.pagination.totalItems"
+                    data-change="vm.changeItemsPerPage(numberOfItems)"></arrow-items-per-page-dropdown>
+            </div>
+            <div class="col-sm-6 page-navigation-wrap">
+                <arrow-pagination
+                    data-page-index="vm.pagination.pageIndex"
+                    data-total-pages="vm.pagination.totalPages"
+                    data-first="vm.pagination.first"
+                    data-last="vm.pagination.last"
+                    data-previous="vm.previousPage()"
+                    data-next="vm.nextPage()"
+                    data-go="vm.gotoPage(pageNumber)"></arrow-pagination>
+            </div>
+        </div>
+
+        <table class="table table-striped table-bordered" style="table-layout: fixed;">
+            <thead>
+            <tr>
+                <th class="hidden-xs" ng-repeat="header in vm.columnHeaders"
+                    arrow-column-header
+                    label="header.label"
+                    value="header.value"
+                    sort-field="vm.pagination.sort.property"
+                    sort-direction="vm.pagination.sort.direction"
+                    sortable="header.sortable"
+                    sort="vm.sortColumn(column)">
+                </th>
+                <th class="hidden-lg hidden-md hidden-sm">
+                    <div class="btn-group" uib-dropdown is-open="status.isopen">
+                        <button id="single-button" type="button" class="btn btn-default"
+                                uib-dropdown-toggle ng-disabled="disabled">
+                            Sort by: {{vm.getHeaderLabel(vm.columnHeaders, vm.pagination.sort.property)}}
+                            &nbsp;&nbsp;
+                            <i ng-if="vm.pagination.sort.direction=='DESC'" class="fa fa-sort-desc"></i>
+                            <i ng-if="vm.pagination.sort.direction=='ASC'" class="fa fa-sort-asc"></i>
+                        </button>
+                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                            <li ng-repeat="header in vm.columnHeaders"
+                                arrow-column-header-small-desktop
+                                label="header.label"
+                                value="header.value"
+                                sort-field="vm.pagination.sort.property"
+                                sort-direction="vm.pagination.sort.direction"
+                                sortable="header.sortable"
+                                role="menuitem"
+                                sort="vm.sortColumn(column)">
+                            </li>
+                        </ul>
+                    </div>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--tbody ng-mouseleave="vm.hideTooltip()"-->
+            <tr ng-repeat="item in vm.pagination.content track by $index" >
+            <!--tr ng-repeat="item in vm.pagination.content track by $index" uib-tooltip="hid: {{item.hid}}" tooltip-placement="top-left" tooltip-is-open="vm.isTooltipOpen($index)" tooltip-trigger="'none'" tooltip-enable="item.hid" ng-mouseenter="vm.showTooltip($index)" -->
+                <td class="hidden-xs" ng-repeat="column in vm.columnHeaders" ng-style="column.style">
+                    <a href="" ng-click="vm.openDetails(item)"
+                       ng-if="$index == 0 &amp;&amp; vm.canEdit">{{vm.getCellText(item,
+                        column)}}</a>
+                    {{$index == 0 &amp;&amp; vm.canEdit ? '' : (vm.getCellText(item,
+                    column)!==null?vm.getCellText(item, column):'---')}}
+                </td>
+                <td class="hidden-lg hidden-md hidden-sm">
+                    <div class="white-space-normal" ng-repeat="column in vm.columnHeaders">
+                        <b>{{column.label}}:</b>
+                        <a href="" ng-click="vm.openDetails(item)"
+                           ng-if="$index == 0 &amp;&amp; vm.canEdit">{{vm.getCellText(item,
+                            column)}}</a>
+                        {{$index == 0 &amp;&amp; vm.canEdit ? '' : (vm.getCellText(item,
+                        column)!==null?vm.getCellText(item, column):'---')}}
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td class="hidden-xs" colspan="{{vm.columnHeaders.length}}">
+                    <arrow-showing-items
+                        data-page-index="vm.pagination.pageIndex"
+                        data-items-per-page="vm.pagination.itemsPerPage"
+                        data-total-items="vm.pagination.totalItems"
+                        data-topic="{{vm.tfootTopic}}"></arrow-showing-items>
+                </td>
+                <td class="hidden-lg hidden-md hidden-sm">
+                    <arrow-showing-items
+                        data-page-index="vm.pagination.pageIndex"
+                        data-items-per-page="vm.pagination.itemsPerPage"
+                        data-total-items="vm.pagination.totalItems"
+                        data-topic="{{vm.tfootTopic}}"></arrow-showing-items>
+                 </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

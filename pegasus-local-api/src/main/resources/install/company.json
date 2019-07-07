@@ -1,0 +1,26 @@
+[
+	{
+		"name": "Arrow Connect",
+		"abbrName": "AC",
+		"status": "Active",
+		"contact": {
+			"firstName": "System",
+			"lastName": "Administrator",
+			"email": "sysadmin@arrowconnect.io"
+		},
+		"passwordPolicy": {
+			"minLength": 8,
+			"maxLength": 64,
+			"minLowerCase": 1,
+			"minUpperCase": 1,
+			"minDigit": 1,
+			"minSpecial": 0,
+			"historical": 3,
+			"allowWhitespace": false
+		},
+		"loginPolicy": {
+			"maxFailedLogins": 10,
+			"lockTimeoutSecs": 1800
+		}
+	}
+]

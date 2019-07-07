@@ -1,0 +1,41 @@
+<div class="content-wrapper main-content">
+    <div class="row">
+        <div class="col-xs-12 breadcrumb-container no-padding">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a></li>
+                <li>Settings</li>
+                <li>Widget Types</li>
+            </ul>
+        </div>
+    </div>
+
+	<!-- BEGIN MAIN CONTENT -->
+	<div class="row">
+	    <div class="col-md-12">
+			<table class="table table-striped table-bordered table-hover dataTable table-ellipsis">
+				<thead>
+					<tr class="heading">
+						<th ng-repeat="header in vm.columnHeaders" 
+							arrow-column-header 
+							label="header.label" 
+							value="header.value" 
+							sort-field="pagination.sort.property" 
+							sort-direction="pagination.sort.direction" 
+							sortable="header.sortable"
+							sort="sortColumn(column)">
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in vm.widgetTypes">
+						<td>{{item.name}}</td>
+						<td>{{item.description}}</td>
+						<td>{{item.className}}</td>
+						<td>{{item.directive}}</td>
+						<td>{{item.category}}</td>
+					</tr>
+				</tbody>
+			</table>
+	    </div>
+	</div>
+</div>

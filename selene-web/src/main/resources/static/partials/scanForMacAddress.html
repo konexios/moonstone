@@ -1,0 +1,25 @@
+<div class="modal-header">
+	<h3 class="modal-title text-center">Select BLE Mac Address</h3>
+</div>
+<form name="form" class="form-horizontal" >
+	<div class="modal-body">
+        <div class="form-group">
+			<div class="row scroll-mac-address" >
+				<div class="col-sm-12 mac-address" ng-repeat="(key, value) in macAddress">
+					<div class="col-sm-2">
+						<p class="font-size-sixteen">{{$index+1}}</p>
+					</div>
+					<div class= "col-sm-6">
+						<p class="font-size-sixteen">Name : {{value}}</p>
+						<p class="font-size-fourteen">MacId   : {{key}}</p>
+					</div>
+					<div class= "col-sm-4">
+						<button class="btn btn-default" ng-click="selectDevice(key)">
+						Select</button>
+					</div>			
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+			

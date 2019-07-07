@@ -1,0 +1,35 @@
+<div class="paragraph-with-icon">
+    <i class="icon color-brand glyphicon glyphicon-question-sign"></i>
+    <p class="paragraph middle font-x2">Can't find your verification code? We can resend it to you.</p>
+</div>
+
+<form class="form-horizontal" name="vm.resendCodeForm" ng-submit="vm.resendCode(vm.resendCodeModel)" novalidate autocomplete="off">
+
+    <div class="form-group" ng-class="{'has-error': (vm.resendCodeForm.$submitted || vm.resendCodeForm.email.$touched) && !vm.resendCodeForm.email.$valid}">
+        <div class="col-sm-8 col-sm-offset-2">
+            <input type="email" class="form-control" id="resendEmail" name="email" placeholder="Email" ng-model="vm.resendCodeModel.email" required email-validation>
+            <div class="help-block" ng-show="(vm.resendCodeForm.$submitted || vm.resendCodeForm.email.$touched) && !vm.resendCodeForm.email.$valid">
+                <div ng-show="vm.resendCodeForm.email.$error.required">Email required</div>
+                <div ng-show="vm.resendCodeForm.email.$error.email">Invalid email</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div ng-show="vm.resendErrorMessage" class="alert alert-danger" role="alert">
+                <ul>
+                    <li ng-repeat="(field, error) in vm.resendErrorMessage">{{error}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-brand btn-lg" ladda-button="vm.resendCodeLoading" data-style="expand-left">
+                <span class="ladda-label">Resend code</span>
+            </button>
+        </div>
+    </div>
+</form>

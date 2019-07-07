@@ -1,0 +1,19 @@
+widget-user {
+    display: block;
+    padding: 10px 10px;
+    line-height: 1;
+
+    .user-name {
+        font-size: 23px;
+        margin: 0;
+    }
+
+    .user-company {
+        font-size: 18px;
+        margin: 0;
+    }
+
+    .user-application {
+        color: #8f8f8f;
+    }
+}

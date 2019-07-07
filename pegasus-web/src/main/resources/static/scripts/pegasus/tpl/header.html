@@ -1,0 +1,137 @@
+<nav class="navbar navbar-fixed-top app-top-navbar">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button"
+				class="main-menu-navbar-toggle navbar-toggle collapsed"
+				data-toggle="collapse"
+				data-target="#app-top-navbar-collapse"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#/home">
+				<img class="logo"
+	     				ng-cloak
+	     				title="Arrow | Arrow Connect Cloud Services"
+	     				src="assets/img/Arrow_Worm_ArrowConnect_lockup_h_2c_white_cmyk.png">
+	  			</a>
+		</div>
+		<div id="app-top-navbar-collapse"  
+			class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li ng-if="isLoggedIn()"
+					ng-class="isActivePath('/dashboard')"
+					ng-cloak>
+					<a href="#/dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a>
+			</ul>
+			<ul class="nav navbar-nav no-margin"
+				ng-if="isLoggedIn()"
+				ng-cloak>
+				<li class="dropdown"
+					ng-class="isActive('provision')">
+					<a href=""
+						class="dropdown-toggle"
+						data-toggle="dropdown"
+						role="button"
+						aria-haspopup="true"
+						aria-expanded="false">
+						<i class="fa fa-wrench"></i> Provision
+					</a>
+					<ul class="dropdown-menu">
+					    <li ng-if="canReadProduct()"
+					        ng-class="isActive('provision/products')"><a href="#/provision/products">Products</a></li>
+					    <li ng-if="canReadCompany()"
+					        ng-class="isActive('provision/companies')"><a href="#/provision/companies">Tenants</a></li>
+					    <li ng-if="canReadSubscription()"
+					        ng-class="isActive('provision/subscriptions')"><a href="#/provision/subscriptions">Subscriptions</a></li>
+					    <li ng-if="canReadRegion()"
+					        ng-class="isActive('provision/regions')"><a href="#/provision/regions">Regions</a></li>
+					    <li ng-if="canReadZone()"
+					        ng-class="isActive('provision/zones')"><a href="#/provision/zones">Zones</a></li>
+					    <li ng-if="canReadApplication()"
+					        ng-class="isActive('provision/applications')"><a href="#/provision/applications">Applications</a></li>
+					</ul>
+		        </li>
+			</ul>
+			<ul class="nav navbar-nav no-margin"
+				ng-if="isLoggedIn()"
+				ng-cloak>
+				<li class="dropdown"
+					ng-class="isActive('security')">
+					<a href=""
+						class="dropdown-toggle"
+						data-toggle="dropdown"
+						role="button"
+						aria-haspopup="true"
+						aria-expanded="false">
+						<i class="fa fa-lock"></i> Security
+					</a>
+					<ul class="dropdown-menu">
+					    <li ng-if="canReadUser()"
+					        ng-class="isActive('users')"><a href="#/security/users">Users</a></li>
+					    <li ng-if="canReadRole()"
+					        ng-class="isActive('roles')"><a href="#/security/roles">Roles</a></li>
+					    <li ng-if="canReadPrivilege()"
+					        ng-class="isActive('privileges')"><a href="#/security/privileges">Privileges</a></li>
+					</ul>
+		        </li>
+			</ul>
+			<!--ul class="nav navbar-nav no-margin"
+				ng-if="isLoggedIn()"
+				ng-cloak>
+				<li class="dropdown"
+					ng-class="isActive('manage')">
+					<a href=""
+						class="dropdown-toggle"
+						data-toggle="dropdown"
+						role="button"
+						aria-haspopup="true"
+						aria-expanded="false">
+						<i class="fa fa-paper-plane"></i> Manage
+					</a>
+					<ul class="dropdown-menu">
+					    <li ng-if="canManageCache()"
+					        ng-class="isActive('cache')"><a href="#/manage/cache">Cache</a></li>
+					</ul>
+		        </li>
+			</ul-->
+			<ul class="nav navbar-nav navbar-right" ng-if="!isLoggedIn()" ng-cloak>
+				<li ng-class="isActive('signin')">
+					<a href="#/signin">Sign In</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right navbar-user hidden-sm" ng-if="isLoggedIn()" ng-cloak>
+				<li class="dropdown"
+					ng-class="isActive('user')">
+		          <a href=""
+		          	class="dropdown-toggle"
+		          	data-toggle="dropdown"
+		          	role="button"
+		          	aria-haspopup="true"
+		          	aria-expanded="false">
+		          	<span class="circle-user text-center"
+		          		ng-class="{'admin': user.admin}">
+		          		{{user.firstName.substring(0, 1)}}{{user.lastName.substring(0, 1)}}
+		          	</span>
+		          </a>
+		          <ul class="dropdown-menu">
+		          	<li class="user-options">
+          				{{user.firstName}} {{user.lastName}}
+          				<br/>{{user.login}}
+          				<br/>{{user.companyName}}
+          				<br/><br/>
+          				<a ui-sref="user.profile({userId: user.id})"><i class="fa fa-star" aria-hidden="true"></i>My Account</a>
+          				<a ui-sref="changepassword()"><i class="fa fa-key" aria-hidden="true"></i>Change Password</a>
+          				<a href="" ng-click="signout()"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out</a>
+		          	</li>
+		          	<!--li class="divider"></li-->
+					<!--li ng-class="isActive('changepassword')"><a href="#/changepassword">Change Password</a></li>
+					<li><a href="" ng-click="signout()">Sign Out</a></li-->
+		          </ul>
+		        </li>
+			</ul>
+		</div>
+	</div>
+</nav>

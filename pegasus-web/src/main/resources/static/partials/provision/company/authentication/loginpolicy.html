@@ -1,0 +1,86 @@
+<form name="form" 
+	class="form-horizontal" 
+	role="form" 
+	novalidate>
+	<div class="modal-header">
+		<h3 class="modal-title" id="modal-title">
+			Login Policy
+		</h3>
+	</div>
+	<div class="modal-body" id="modal-body">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-md-8">						
+					<div class="form-group"
+						ng-class="{ 'has-error': form.maxFailedLogins.$touched && form.maxFailedLogins.$invalid, 'has-success': form.maxFailedLogins.$touched && !form.maxFailedLogins.$invalid }">
+						<label for="maxFailedLogins" class="col-md-4 control-label">Maximum Failed Login Attempts <span class="required" aria-required="true">*</span></label>
+						<div class="col-md-8">
+							<div class="input-icon right">
+								<i ng-show="form.maxFailedLogins.$touched && form.maxFailedLogins.$invalid"
+									class="fa fa-warning"></i> <i
+									ng-show="form.maxFailedLogins.$touched && !form.maxFailedLogins.$invalid"
+									class="fa fa-check"></i> 
+									<input id="maxFailedLogins"
+										name="maxFailedLogins" 
+										type="text" 
+										class="form-control"
+										placeholder="Maximum Failed Login Attempts"
+										ng-model="companyAuthentication.loginPolicy.maxFailedLogins" 
+										ng-trim="true"
+										ng-required="true" 
+										ng-minlength="1" 
+										ng-maxlength="255">
+							</div>
+							<div class="help-block"
+								ng-messages="form.maxFailedLogins.$error"
+								ng-show="form.maxFailedLogins.$touched">
+								<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8">						
+					<div class="form-group"
+						ng-class="{ 'has-error': form.lockTimeoutSecs.$touched && form.lockTimeoutSecs.$invalid, 'has-success': form.lockTimeoutSecs.$touched && !form.lockTimeoutSecs.$invalid }">
+						<label for="lockTimeoutSecs" class="col-md-4 control-label">Lock Wait Timeout <span class="required" aria-required="true">*</span></label>
+						<div class="col-md-8">
+							<div class="input-icon right">
+								<i ng-show="form.lockTimeoutSecs.$touched && form.lockTimeoutSecs.$invalid"
+									class="fa fa-warning"></i> <i
+									ng-show="form.lockTimeoutSecs.$touched && !form.lockTimeoutSecs.$invalid"
+									class="fa fa-check"></i> 
+									<input id="lockTimeoutSecs"
+										name="lockTimeoutSecs" 
+										type="text" 
+										class="form-control"
+										placeholder="Lock Wait Timeout"
+										ng-model="companyAuthentication.loginPolicy.lockTimeoutSecs" 
+										ng-trim="true"
+										ng-required="true" 
+										ng-minlength="1" 
+										ng-maxlength="255">
+							</div>
+							<div class="help-block"
+								ng-messages="form.lockTimeoutSecs.$error"
+								ng-show="form.lockTimeoutSecs.$touched">
+								<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="submit" 
+			class="btn btn-default" 
+			ng-disabled="busy"
+			ng-click="save(form, companyAuth)">Save</button>
+		<button type="button" 
+			class="btn btn-default" 
+			ng-disabled="busy"
+			ng-click="cancel()">Cancel</button>
+	</div>
+</form>

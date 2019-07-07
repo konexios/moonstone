@@ -1,0 +1,74 @@
+<div class="row-content no-list-page">
+    <div class="content-wrapper-fluid">
+        <div class="container">
+			<div ng-if="vm.mode == 'input'">
+				<form id="registrationForm" 
+					name="vm.registrationForm" 
+					class="form-horizontal signin-form" 
+					ng-submit="!vm.resendEmail ? vm.signup(vm.registrationModel) : vm.resend(vm.registrationModel)" 
+					novalidate>
+
+					<div>
+						<p><h1>Get started with Arrow Connect - Fast &amp; Free!</h1>Sign up for your developer account by providing us your email address.</p><br/>
+					</div>
+					
+			
+					<div ng-show="vm.errorgMessage" 
+						class="alert alert-danger" 
+						role="alert" 
+						ng-bind-html="vm.errorgMessage"></div>
+
+					<div ng-show="vm.resendEmail"> 						
+						<div class="callout callout-purple">
+							<h4>Already Signed Up!</h4>
+							<p>The email address <strong>{{vm.registrationModel.email}}</strong> has already signed up! Would you like to re-send the email to <strong>{{vm.registrationModel.email}}</strong>?</p>
+						</div>
+					</div>
+	
+					<div class="form-group" 
+						ng-class="{'has-error': (vm.registrationForm.$submitted || vm.registrationForm.email.$touched) && !vm.registrationForm.email.$valid}">
+						<label for="email" class="col-sm-1 control-label required">Email</label>
+						<div class="col-sm-11">
+							<input id="email" type="email" name="email" class="form-control" 
+								placeholder="Email address" 
+								ng-model="vm.registrationModel.email" required email-validation 
+								autocomplete="off">
+							<div class="help-block" 
+								ng-show="(vm.registrationForm.$submitted || vm.registrationForm.email.$touched) && !vm.registrationForm.email.$valid">
+								<div ng-show="vm.registrationForm.email.$error.required">Email required</div>
+								<div ng-show="vm.registrationForm.email.$error.email">Invalid email</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+							<button type="submit" 
+								class="btn btn-green btn-yes pull-right" 
+								ng-disabled="vm.processing"
+								ng-if="!vm.resendEmail">Submit</button>
+							<button type="button" 
+								class="btn btn-green btn-no pull-right" 
+								ng-disabled="vm.processing"
+								ng-if="vm.resendEmail"
+								ng-click="vm.ok()">No</button>
+							<button type="submit" 
+								class="btn btn-green pull-right" 
+								ng-disabled="vm.processing"
+								ng-if="vm.resendEmail">Yes</button>
+						</div>
+					</div>
+
+				</form>
+
+			</div> 
+			
+			<div ng-if="vm.mode == 'output'">
+				<h1>Thanks for your interest!</h1>
+				<p>Please check your email.</p>
+				<!--h1>{{vm.walkawayCounter}}</h1-->
+				<button ng-click="vm.ok()" class="btn btn-default btn-green pull-right">OK</button>
+			</div>
+		</div>
+	</div>
+</div>

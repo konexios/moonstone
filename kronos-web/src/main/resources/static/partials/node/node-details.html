@@ -1,0 +1,83 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{node.id ? 'Edit' : 'Add'}} Group <a href="" style="padding-left: 10px" ng-show="node.hid" ng-class="hidShown ? 'less' : 'more'" ng-click="hidShown = !hidShown">hid</a></h3>
+</div>
+<form name="nodeForm"
+    class="form-horizontal"
+    novalidate
+    ng-submit="save();">
+    <div class="modal-body">
+        <div class="form-group" ng-if="hidShown">
+            <label class="col-sm-2 control-label">HID</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">{{node.hid}}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="nodeNameField" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" id="nodeNameField" name="nodeNameField" class="form-control" ng-model="node.name" required />
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="nodeForm.nodeNameField.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Name is required</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="nodeDescription" class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-10">
+                <textarea id="nodeDescription" name="nodeDescription" class="form-control" rows="3" ng-model="node.description" required></textarea>
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="nodeForm.nodeDescription.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Description is required</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="nodeTypeField" class="col-sm-2 control-label">Type</label>
+            <div class="col-sm-10">
+                <select id="nodeTypeField"
+                    name="nodeTypeField"
+                    class="form-control customSelect"
+                    required
+                    ng-model="node.nodeType"
+                    ng-options="nodeType.name for nodeType in options.types track by nodeType.id">
+                    <option value="">-- select one --</option>
+                </select>
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="nodeForm.nodeTypeField.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Type is required</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="nodeParentNode" class="col-sm-2 control-label">Parent&nbsp;Group</label>
+            <div class="col-sm-10">
+                <select id="nodeParentNode"
+                    name="nodeParentNode"
+                    class="form-control customSelect"
+                    ng-model="node.parentNode"
+                    ng-options="parentNode.name for parentNode in options.nodes | filter:{id:'!'+node.id}:true track by parentNode.id">
+                    <option value="">-- no parent --</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="checkbox col-sm-offset-2 col-sm-10">
+              <label>
+                <input type="checkbox" value="" ng-model="node.enabled" />
+                Enabled
+              </label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default"
+            ng-if="canSaveNode()"
+            type="submit">Save</button>
+        <button class="btn btn-default"
+            type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

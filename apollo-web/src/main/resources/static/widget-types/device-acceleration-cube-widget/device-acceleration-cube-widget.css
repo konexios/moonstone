@@ -1,0 +1,157 @@
+.widget-bd .viewport {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  margin: 30px auto;
+  perspective: 800px;
+  perspective-origin: 50%; /* position in div.cube */
+}
+
+.widget-bd .cube {
+  position: relative;
+  margin: 0 auto;
+  height: 150px;
+  width: 150px;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  transition: transform ease-in-out 0.5s;
+}
+
+.widget-bd .cube > div {
+  cursor: default;
+  overflow: hidden;
+  position: absolute;
+  height: 150px;
+  width: 150px;
+  box-sizing: border-box;
+  border: solid 1px #000;
+  background-color: rgba(255, 255, 255, 0.9);
+  -webkit-touch-callout: none;
+  -moz-touch-callout: none;
+  -ms-touch-callout: none;
+  -o-touch-callout: none;
+  touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.widget-bd .cube > div > div.cube-image {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  font-size: 80px;
+  text-align: center;
+}
+
+.widget-bd .cube > div.side > span.side-number {
+	display: inline-block;
+	position: absolute;
+	color: #f5f5f5;
+	font-size: 14px;
+	font-weight: normal;
+	border: solid 1px #00a19b;
+	background-color: #00a19b;
+	height: 24px;
+	width: 24px;
+	line-height: 24px;
+}
+
+.widget-bd .cube > div:first-child > span.side-number,
+.widget-bd .cube > div:nth-child(2) > span.side-number,
+.widget-bd .cube > div:nth-child(3) > span.side-number,
+.widget-bd .cube > div:nth-child(5) > span.side-number {
+	top: 10px;
+	left: 10px;
+}
+
+.widget-bd .cube > div:nth-child(4) > span.side-number,
+.widget-bd .cube > div:nth-child(6) > span.side-number {
+	bottom: 10px;
+	right: 10px;
+	-moz-transform: scale(-1, -1);
+	-webkit-transform: scale(-1, -1);
+	-o-transform: scale(-1, -1);
+	-ms-transform: scale(-1, -1);
+	transform: scale(-1, -1);
+}
+
+.widget-bd .cube > div > div.cube-image.active { color: red; }
+
+/* translateZ must be adjusted to half of height or width of cube */
+
+.widget-bd .cube > div:first-child {
+  -webkit-transform: rotateX(90deg) translateZ(75px);
+  -moz-transform: rotateX(90deg) translateZ(75px);
+  -ms-transform: rotateX(90deg) translateZ(75px);
+  -o-transform: rotateX(90deg) translateZ(75px);
+  transform: rotateX(90deg) translateZ(75px);
+  outline: 1px solid transparent;
+}
+
+.widget-bd .cube > div:nth-child(2) {
+  -webkit-transform: translateZ(75px);
+  -moz-transform: translateZ(75px);
+  -ms-transform: translateZ(75px);
+  -o-transform: translateZ(75px);
+  transform: translateZ(75px);
+  outline: 1px solid transparent;
+}
+
+.widget-bd .cube > div:nth-child(3) {
+  -webkit-transform: rotateY(90deg) translateZ(75px);
+  -moz-transform: rotateY(90deg) translateZ(75px);
+  -ms-transform: rotateY(90deg) translateZ(75px);
+  -o-transform: rotateY(90deg) translateZ(75px);
+  transform: rotateY(90deg) translateZ(75px);
+  outline: 1px solid transparent;
+}
+
+.widget-bd .cube > div:nth-child(4) {
+  -webkit-transform: rotateY(180deg) translateZ(75px);
+  -moz-transform: rotateY(180deg) translateZ(75px);
+  -ms-transform: rotateY(180deg) translateZ(75px);
+  -o-transform: rotateY(180deg) translateZ(75px);
+  transform: rotateY(180deg) translateZ(75px);
+  outline: 1px solid transparent;
+}
+
+.widget-bd .cube > div:nth-child(5) {
+  -webkit-transform: rotateY(-90deg) translateZ(75px);
+  -moz-transform: rotateY(-90deg) translateZ(75px);
+  -ms-transform: rotateY(-90deg) translateZ(75px);
+  -o-transform: rotateY(-90deg) translateZ(75px);
+  transform: rotateY(-90deg) translateZ(75px);
+  outline: 1px solid transparent;
+}
+
+.widget-bd .cube > div:nth-child(6) {
+  -webkit-transform: rotateX(-90deg) rotate(180deg) translateZ(75px);
+  -moz-transform: rotateX(-90deg) rotate(180deg) translateZ(75px);
+  -ms-transform: rotateX(-90deg) rotate(180deg) translateZ(75px);
+  -o-transform: rotateX(-90deg) rotate(180deg) translateZ(75px);
+  transform: rotateX(-90deg) rotate(180deg) translateZ(75px);
+  outline: 1px solid transparent;
+}
+
+.widget-bd .accel-values ul { 
+	list-style: none;
+	-webkit-padding-start: 0px; 
+}
+.widget-bd .accel-values ul > li { 
+	display: inline-block;
+	font-size: 12px; 
+}
+
+.widget-bd .accel-values ul > li > span.name { font-weight: bold; }
+.widget-bd .accel-values ul > li > span.value { color: #00a19b; }

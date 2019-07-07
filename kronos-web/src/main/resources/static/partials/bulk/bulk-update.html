@@ -1,0 +1,24 @@
+<form class="form-horizontal" name="form" novalidate ng-submit="bulkUpdate(fields);">
+    <div class="modal-header">
+        <h3 class="modal-title">{{modalOptions.title}}</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group" ng-repeat="field in fields track by $index">
+            <div class="checkbox col-sm-2 text-right">
+                <label><input type="checkbox" id="{{field+$index}}" value="" ng-model="field.edit"/></label>
+            </div>
+            <label class="col-sm-2 control-label" for="{{field+$index}}">{{field.name}}</label>
+            <div class="col-sm-8">
+                <select class="form-control customSelect" ng-model="field.choice" ng-disabled="!field.edit" ng-options="option.id as option.name for option in field.values">
+                    <option value="" ng-if="field.canBeNull">[Unassigned]</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" ng-click="cancel()">{{modalOptions.cancel}}</button>
+        <button class="btn btn-default" type="submit">{{modalOptions.update}}</button>
+    </div>
+</form>

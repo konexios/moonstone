@@ -1,0 +1,174 @@
+<!-- BEGIN MAIN CONTENT -->
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="callout callout-default">
+			<h4>Active Directory, Single Sign On or Native Sign On</h4>
+			<p>You can choose Active Directory, Single Sign On or Native Sign On for user authentication.</p>
+		</div>
+        <div class="panel panel-default panel-page">
+			<div class="panel-heading">
+			    <div class="row">
+					<div class="col-md-8 col-sm-12">
+						<h4>Active Directory</h4>
+					</div>
+					<div class="col-md-4 col-sm-12">
+						<div class="table-group-actions pull-right">
+	                        <span></span>
+					        <div class="btn-group" role="group" aria-label="...">
+					        	<button type="button" 
+					        		class="btn btn-default"
+					        		ng-if="canCreateCompanyAuth()"
+									ng-click="authModal(companySecurity.id, 'new', 'LDAP')">Add</button>
+							</div>
+	                    </div>
+					</div>
+			    </div>
+			</div>
+			<div class="panel-body">
+		        <table class="table table-striped table-bordered table-hover dataTable table-ellipsis">
+		            <thead>
+		                <tr class="heading">
+		                    <th>Domain</th>
+		                    <th>Application</th>
+		                    <th>Active</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		                <tr ng-repeat="auth in companySecurity.ldapAuths">
+		                    <td>
+		                    	<a href="" 
+		                    		ng-if="canUpdateCompanyAuth()"
+		                    		ng-click="authModal(companySecurity.id, auth.id, auth.type)">{{auth.ldap.domain}}</a>
+		                    	<span ng-if="!canUpdateCompanyAuth()">{{auth.ldap.domain}}</span>
+		                    </td>
+		                    <td>{{auth.ldap.applicationName}}</td>
+		                    <td>{{auth.enabled ? 'Yes' : 'No'}}</td>
+		                </tr>
+		            </tbody>
+		        </table>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<div class="col-sm-12">{{companySecurity.ldapAuths.length}} Active <span ng-if="companySecurity.ldapAuths.length == 1">Directory</span><span ng-if="companySecurity.ldapAuths.length > 1 || companySecurity.ldapAuths.length == 0">Directories</span></div>
+				</div>
+			</div>
+		</div>
+		
+        <div class="panel panel-default panel-page">
+			<div class="panel-heading">
+			    <div class="row">
+					<div class="col-md-8 col-sm-12">
+						<h4>Single Sign On</h4>
+					</div>
+					<div class="col-md-4 col-sm-12">
+						<div class="table-group-actions pull-right">
+	                        <span></span>
+					        <div class="btn-group" role="group" aria-label="...">
+					        	<button type="button" 
+					        		class="btn btn-default"
+					        		ng-if="canCreateCompanyAuth()"
+									ng-click="authModal(companySecurity.id, 'new', 'SAML')">Add</button>
+							</div>
+	                    </div>
+					</div>
+			    </div>
+			</div>
+			<div class="panel-body">
+		        <table class="table table-striped table-bordered table-hover dataTable table-ellipsis">
+		            <thead>
+		                <tr class="heading">
+		                    <th>Identity Provider</th>
+		                    <th>First Name</th>
+		                    <th>Last Name</th>
+		                    <th>Email</th>
+		                    <th>Active</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		                <tr ng-repeat="auth in companySecurity.samlAuths">
+		                    <td>
+		                    	<a href=""
+		                    		ng-if="canUpdateCompanyAuth()" 
+		                    		ng-click="authModal(companySecurity.id, auth.id, auth.type)">{{auth.saml.idp}}</a>
+		                    	<span ng-if="!canUpdateCompanyAuth()">{{auth.saml.idp}}</span>
+		                    </td>
+		                    <td>{{auth.saml.firstNameAttr}}</td>
+		                    <td>{{auth.saml.lastNameAttr}}</td>
+		                    <td>{{auth.saml.emailAttr}}</td>
+		                    <td>{{auth.enabled ? 'Yes' : 'No'}}</td>
+		                </tr>
+		            </tbody>
+		        </table>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<div class="col-sm-12">{{companySecurity.samlAuths.length}} Single Sign On Provider<span ng-if="companySecurity.samlAuths.length > 1 || companySecurity.samlAuths.length == 0">s</span></div>
+				</div>
+			</div>
+		</div>
+
+        <div class="panel panel-default panel-page">
+			<div class="panel-heading">
+			    <div class="row">
+					<div class="col-md-8 col-sm-12">
+					</div>
+					<div class="col-md-4 col-sm-12">
+					</div>
+			    </div>
+			</div>
+			<div class="panel-body">
+				<div class="callout callout-default">
+					<h4>Native Sign On</h4>
+					<p>Native Sign On enables you to define your preferred password policy and login policy.</p>
+				</div>
+				
+		        <table class="table table-striped table-bordered table-hover dataTable table-ellipsis">
+		            <thead>
+		                <tr class="heading">
+		                    <th>Policy</th>
+		                    <th>Settings</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		                <tr>
+		                    <td>
+		                    	<a href=""
+		                    		ng-if="canUpdateCompanyPasswordPolicy()" 
+		                    		ng-click="passwordPolicyModal(companySecurity.id)">Password</a>
+		                    	<span ng-if="!canUpdateCompanyPasswordPolicy()">Password</span>
+		                    </td>
+		                    <td>
+		                    	<strong>Minimum Length:</strong> {{companySecurity.passwordPolicy.minLength}}, 
+		                    	<strong>Maximum Length:</strong> {{companySecurity.passwordPolicy.maxLength}}, 
+		                    	<strong>Minimum Lower Case:</strong> {{companySecurity.passwordPolicy.minLowerCase}},
+		                    	<strong>Minimum Upper Case:</strong> {{companySecurity.passwordPolicy.minUpperCase}},
+		                    	<strong>Minimum Digits:</strong> {{companySecurity.passwordPolicy.minDigit}},
+		                    	<strong>Minimum Special Characters:</strong> {{companySecurity.passwordPolicy.minSpecial}},
+		                    	<strong>Historical Password:</strong> {{companySecurity.passwordPolicy.historical}},
+		                    	<strong>Allow White Space:</strong> {{companySecurity.passwordPolicy.allowWhitespace ? 'Yes' : 'No'}}
+		                    </td>
+		                </tr>
+		                <tr>
+		                    <td>
+		                    	<a href=""
+		                    		ng-if="canUpdateCompanyLoginPolicy()" 
+		                    		ng-click="loginPolicyModal(companySecurity.id)">Login</a>
+		                    	<span ng-if="!canUpdateCompanyLoginPolicy()">Login</span>
+		                    </td>
+		                    <td>
+		                    	<strong>Maximum Failed Login Attempts:</strong> {{companySecurity.loginPolicy.maxFailedLogins}}, 
+		                    	<strong>Lock Wait Timeout:</strong> {{companySecurity.loginPolicy.lockTimeoutSecs}} seconds
+		                    </td>
+		                </tr>
+		            </tbody>
+		        </table>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<div class="col-sm-12"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

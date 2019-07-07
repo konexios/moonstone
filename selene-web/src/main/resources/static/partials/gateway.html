@@ -1,0 +1,737 @@
+<div class="row-content">
+    <!-- CONTENT WRAPPER -->
+    <div class="content-wrapper-fluid" >
+        <div ng-controller="GatewayController">
+            <div class="obj-page-bd">
+                <div class="clearfix">
+
+                    <span class="pull-right">
+                        <div class="step-wzrd">
+                            <div class="stepwizard ">
+                                <div class="stepwizard-row setup-panel">
+                                    <div class="stepwizard-step">
+                                        <SPAN ng-if="deviceProp == 'ON' || gatewayDetail == 'ON'">
+                                            <a data-target="#step-1" type="button"
+                                            ng-click="selenePropFun();$event.preventDefault();"
+                                            class="btn btn-primary btn-circle">1</a>
+                                        </SPAN>
+                                        <p>Selene Properties</p>
+                                    </div>
+                                    <div class="stepwizard-step">
+                                        <SPAN ng-if="gatewayDetail == 'OFF' "> <a
+                                            data-target="#step-2" type="button"
+                                            class="btn btn-default btn-circle" disabled="disabled">2</a>
+                                            <p>Gateway Details</p>
+                                        </SPAN> <SPAN ng-if="gatewayDetail == 'ON' "> <a
+                                            data-target="#step-2" type="button"
+                                            ng-click="gatewayDetailFun();$event.preventDefault();"
+                                            class="btn btn-primary btn-circle">2</a>
+                                            <p>Gateway Details</p>
+                                        </SPAN>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+                <div ng-if="deviceProp =='ON'">
+                    <div class="panel panel-default panel-content">
+                        <div ng-if="seleneProp.propertiesFilePresent == false">
+                            <form name="form" class="form-horizontal css-form" novalidate>
+                                <fieldset>
+                                    <div class="obj-page-bd">
+                                        <div class="col-sm-12">
+                                            <span class="pull-left">
+                                                <h3 class="page-title" style="padding-left: 20px">
+                                                    Create Selene Properties</h3>
+                                            </span>
+                                        </div>
+                                        <div class="col-sm-12 form-group">
+                                            <label for="type" class="col-sm-4 control-label ">
+                                                Selene properties <span class="required"
+                                                aria-required="true"> * </span> <a
+                                                ng-mouseover="showPopoverS=true;"
+                                                ng-mouseleave="showPopoverS=false;"> <img
+                                                    src="/assets/img/blue_question_mark.png" height="13px" />
+                                                    <div class="popover" ng-show="showPopoverS">
+                                                        <p>
+                                                            Option 1 : <br /> Create new selene properties file
+                                                        </p>
+                                                        <p>
+                                                            Option 2 : <br /> If you have already created the selene
+                                                            properties file then load existing file.
+                                                        </p>
+                                                    </div>
+                                            </a>
+                                            </label>
+                                            <div class="col-sm-4">
+                                                <select id="selene" class="selectpicker form-control"
+                                                    name="selene" ng-model="selene" data-live-search="true"
+                                                    ng-init="selene='default'">
+                                                    <option value="default">--Select--</option>
+                                                    <option value="create">Create New File</option>
+                                                    <option value="load">Load Existing File</option>
+                                                </select>
+                                                <div class="help-block" ng-messages="form.selene.$error"
+                                                    ng-show="form.selene.$touched || (form.$submitted && form.selene.$invalid)">
+                                                    <div
+                                                        data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="create" ng-if="selene =='create'">
+                                            <div
+                                                data-ng-include="'scripts/portal/tpl/selenePropFile.html'"></div>
+
+                                            <div class="form-group">
+                                                <div class="col-sm-6"></div>
+                                                <div
+                                                    class="col-sm-6 margin-top-ten padding-left-onehundredfourteen"
+                                                    aria-label="...">
+                                                    <button type="submit" class="btn btn-default"
+                                                        ng-click="saveSeleneProp(form, seleneProp)">
+                                                        Create</button>
+                                                    <button type="button" class="btn btn-default"
+                                                        ng-click="nextStep()"
+                                                        ng-disabled="seleneNextEnable !== true">Next</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div id="load" ng-if="selene =='load'">
+                                            <div class="form-group col-sm-12">
+                                                <label for="homeDirectory" class="col-sm-4 control-label">
+                                                    Home Directory <span class="required" aria-required="true">
+                                                        * </span> <a ng-mouseover="showPopoverL=true;"
+                                                    ng-mouseleave="showPopoverL=false;"> <img
+                                                        src="/assets/img/blue_question_mark.png" height="13px" />
+                                                        <div class="popover" ng-show="showPopoverL">
+                                                            <p>Home Directory</p>
+                                                        </div>
+                                                </a>
+                                                </label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" id="homeDirectory"
+                                                        name="homeDirectory" ng-model="homeDirectory"
+                                                        ng-required="true" />
+                                                    <div class="help-block"
+                                                        ng-messages="form.homeDirectory.$error"
+                                                        ng-show="form.homeDirectory.$touched || (form.$submitted && form.homeDirectory.$invalid)">
+                                                        <div
+                                                            data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-6"></div>
+                                                <div class="col-sm-6 margintopten load-button" aria-label="...">
+                                                    <button type="submit" class="btn btn-default"
+                                                        ng-click="loadFile(form,homeDirectory)">Load</button>
+                                                    <button type="button" class="btn btn-default"
+                                                        ng-click="nextStep()"
+                                                        ng-disabled="loadNextEnable !== true">Next</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div ng-if="seleneProp.propertiesFilePresent==true">
+                            <form name="form" class="form-horizontal css-form" novalidate>
+                                <fieldset>
+                                    <div class="obj-page-bd">
+                                        <div class="col-sm-12 edit-selene">
+                                            <span class="">
+                                                <h2 class="page-title" style="padding-left: 20px">
+                                                    Edit Selene Properties <i
+                                                        class="margin-left-eighteen fa fa-edit ng-scope solidfontsize"
+                                                        ng-click="seleneEdit()" aria-hidden="true"
+                                                        title="Edit Selene Properties"></i>&nbsp;
+                                                </h2>
+                                            </span>
+                                        </div>
+                                        <div
+                                            data-ng-include="'scripts/portal/tpl/selenePropFile.html'" ng-disabled="!editSeleneMode"></div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-6"></div>
+                                            <div class="col-sm-6 margin-top-ten" aria-label="...">
+                                                <button type="submit"
+                                                    class="btn btn-default group-button save-button"
+                                                    tabindex="12" ng-click="saveSeleneProp(form,seleneProp)"
+                                                    ng-if="editSeleneMode">Save</button>
+                                                <button class="btn btn-default cancel-button" tabindex="12"
+                                                    ng-click="cancelseleneEdit()" ng-if="editSeleneMode">Cancel</button>
+
+                                                <button type="button" class="btn btn-default next-button"
+                                                    ng-click="nextStep()">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="gatewayDetail =='ON'">
+                <div class="row clearfix">
+                    <div class="col-sm-12 page-title paddingrightzero"
+                        ng-if="response.status== 200 || gatewayResponse.status ==200">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-11">
+                            <h2>
+                                Gateway Name : {{gateway.name}} <i
+                                    class="fa fa-check-circle ng-scope colorgreenfontsize"
+                                    ng-if="gatewayStatus=='OK'" aria-hidden="true"></i>&nbsp; <i
+                                    class="fa fa-play-circle ng-scope colorblackfontsize"
+                                    ng-if="gatewayStatus=='ERROR'" ng-click="startGateway()"
+                                    aria-hidden="true"></i>&nbsp; <i
+                                    class="fa fa-stop ng-scope colorredfontsize"
+                                    ng-click="stopGateway()" aria-hidden="true"></i>&nbsp; <i
+                                    class="fa fa-edit ng-scope solidfontsize"
+                                    ng-click="startEdit()" aria-hidden="true" title="Edit gateway"></i>&nbsp;
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <form name="form" class="form-horizontal css-form" novalidate>
+                    <fieldset>
+                        <div class="col-sm-12"
+                            ng-if="response.status== 200 || gatewayResponse.status ==200">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-8">
+                                <div class="obj-bd">
+                                    <div class="form-group">
+                                        <label for="name" class="col-sm-3 control-label">
+                                            GatewayId <span class="required" aria-required="true">
+                                                * </span>
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="id" name="id"
+                                                ng-model="gateway.id" ng-required="true" ng-readonly="true" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class="col-sm-3 control-label"> Name
+                                            <span class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                ng-model="gateway.name" ng-required="true"
+                                                ng-readonly="!editMode" />
+                                            <div class="help-block" ng-messages="form.name.$error"
+                                                ng-show="form.name.$touched || (form.$submitted && form.name.$invalid)">
+                                                <div
+                                                    data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="uid" class="col-sm-3 control-label"> UID <span
+                                            class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="uid" name="uid"
+                                                ng-model="gateway.uid" ng-required="true" ng-readonly="true" />
+                                            <div class="help-block" ng-messages="form.uid.$error"
+                                                ng-show="form.uid.$touched || (form.$submitted && form.uid.$invalid)">
+                                                <div
+                                                    ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="iotConnectUrl" class="col-sm-3 control-label">
+                                            IoT Connect Url <span class="required" aria-required="true">
+                                                * </span>
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <textarea rows="1" name="iotConnectUrl" class="form-control"
+                                                id="iotConnectUrl" ng-model="gateway.iotConnectUrl"
+                                                ng-trim="true" ng-required="true" ng-minlength="13"
+                                                ng-pattern="/^(https?:\/\/)?(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/"
+                                                ng-readonly="!editMode">
+                                        </textarea>
+                                            <div class="help-block"
+                                                ng-messages="form.iotConnectUrl.$error"
+                                                ng-show="form.iotConnectUrl.$touched || (form.$submitted && form.iotConnectUrl.$invalid)">
+                                                <div
+                                                    ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-if="!updateGateway">
+                                        <label for="topology" class="col-sm-3 control-label">
+                                            Topology </label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="topology"
+                                                name="topology" ng-model="gateway.topology"
+                                                ng-readonly="!editMode" />
+                                            <div class="help-block" ng-messages="form.topology.$error"
+                                                ng-show="form.topology.$touched || (form.$submitted && form.topology.$invalid)">
+                                                <div
+                                                    ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="heartBeatIntervalMs"
+                                            class="col-sm-3 control-label"> Heart Beat Interval <span
+                                            class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input type="number" min="0" class="form-control"
+                                                id="heartBeatIntervalMs" name="heartBeatIntervalMs"
+                                                ng-model="gateway.heartBeatIntervalMs" ng-required="true"
+                                                ng-readonly="!editMode" />
+                                            <div class="help-block">Milliseconds</div>
+                                            <div class="help-block"
+                                                ng-messages="form.heartBeatIntervalMs.$error"
+                                                ng-show="form.heartBeatIntervalMs.$touched || (form.$submitted && form.heartBeatIntervalMs.$invalid)">
+                                                <div
+                                                    ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="rawApiKey" class="col-sm-3 control-label">
+                                            Raw API Key <span class="required" aria-required="true">
+                                                * </span>
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <textarea name="rawApiKey" id="rawApiKey" rows="3"
+                                                class="form-control" ng-model="gateway.apiKey"
+                                                ng-required="true" ng-readonly="!editMode">
+                                        </textarea>
+                                            <div class="help-block" ng-messages="form.rawApiKey.$error"
+                                                ng-show="form.rawApiKey.$touched || (form.$submitted && form.rawApiKey.$invalid)">
+                                                <div
+                                                    ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="rawSecretApiKey" class="col-sm-3 control-label">
+                                            Raw Secret API Key <span class="required"
+                                            aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <textarea name="rawApiKey" id="rawSecretApiKey" rows="3"
+                                                class="form-control" ng-model="gateway.secretKey"
+                                                ng-required="true" ng-readonly="!editMode">
+                                    </textarea>
+                                            <div class="help-block"
+                                                ng-messages="form.rawSecretApiKey.$error"
+                                                ng-show="form.rawSecretApiKey.$touched || (form.$submitted && form.rawSecretApiKey.$invalid)">
+                                                <div
+                                                    ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="cloudPlatform" class="col-sm-3 control-label">
+                                            Cloud Platform <span class="required" aria-required="true">
+                                                * </span>
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" id="cloudPlatform"
+                                                name="cloudPlatform"
+                                                ng-change="checkType(gateway.cloudPlatform)"
+                                                ng-model="gateway.cloudPlatform" ng-disabled="updateGateway">
+                                                <option ng-repeat="cloudPlatform in cloudPlatformOptions"
+                                                    value="{{cloudPlatform.id}}">
+                                                    {{cloudPlatform.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-if="!updateGateway">
+                                        <label for="enabled" class="col-sm-3 control-label">Enabled</label>
+                                        <div class="col-sm-8">
+                                            <input type="checkbox" id="enabled" name="enabled"
+                                                ng-checked="gateway.enabled" ng-model="gateway.enabled" />
+                                            <div class="help-block" ng-messages="form.enabled.$error"
+                                                ng-show="form.enabled.$touched || (form.$submitted && form.enabled.$invalid)">
+                                                <div
+                                                    ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="second-header" ng-show="showGatewayProperties">
+                                        <h3>Properties</h3>
+                                    </div>
+                                    <div class="form-group"
+                                        ng-repeat="(propKey, propVal) in gateway.properties track by propKey">
+                                        <label for="propKey" class="col-sm-3 control-label">
+                                            {{ propKey }} </label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="propKey"
+                                                name="propKey" ng-model="device.properties[propKey]" />
+                                            <div class="help-block"
+                                                ng-messages="form.properties[propKey].$error"
+                                                ng-show="form.properties[propKey].$touched || (form.$submitted && form.properties[propKey].$invalid)">
+                                                <div
+                                                    ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="obj-hd">
+                                    <div class="btn-group pull-right margin-right-eightyseven"
+                                        ng-if="!editMode">
+                                        <button type="submit" class="btn btn-default" tabindex="12"
+                                            ng-click="selenePropFun()">Back</button>
+                                    </div>
+                                    <div class="btn-group pull-right margin-right-eightyseven"
+                                        role="group" aria-label="..." ng-if="editMode">
+                                        <button type="submit" class="btn btn-default group-button"
+                                            tabindex="12" ng-click="save(form, gateway)">Save</button>
+                                        <button class="btn btn-default" tabindex="12"
+                                            ng-click="cancelEdit()">Cancel</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="obj-page-hd">
+                            <div class="container-fluid marginbottomtoppadding">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6" ng-if="response.status==204">
+                                        <div class="page-title">
+                                            <h2>Step 1 : Create Gateway Properties</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6" ng-if="response.status==204">
+                                        <div class="page-title">
+                                            <h2>Step 2 : Start Selene Engine</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="obj-page-bd overflowauto">
+                            <div id="tab-conttols-content" class="row">
+                                <div class="col-sm-6" ng-if="response.status==204 ">
+                                    <div class="form-group">
+                                        <label for="name" class="col-sm-4 control-label"> Name
+                                            <span class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                ng-model="gateway1.name" ng-required="true" />
+                                            <div class="help-block" ng-messages="form.name.$error"
+                                                ng-show="form.name.$touched || (form.$submitted && form.name.$invalid)">
+                                                <div
+                                                    data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="uid" class="col-sm-4 control-label"> UID </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="uid" name="uid"
+                                                ng-model="gateway1.uid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cloudTransferMode" class="col-sm-4 control-label">
+                                            Cloud Transfer Mode <span class="required"
+                                            aria-required="true"> * </span>
+                                        </label>
+
+                                        <div class="col-sm-6">
+                                            <select id="type" class="selectpicker form-control"
+                                                name="type" ng-model="gateway1.cloudTransferMode"
+                                                data-live-search="true">
+                                                <option>BATCH</option>
+                                                <option>SINGLE</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="cloudBatchSendingIntervalMs"
+                                            class="col-sm-4 control-label"> Cloud Batch Sending
+                                            Interval in Ms <span class="required" aria-required="true">
+                                                * </span>
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input type="number" class="form-control"
+                                                id="cloudBatchSendingIntervalMs"
+                                                name="cloudBatchSendingIntervalMs"
+                                                ng-model="gateway1.cloudBatchSendingIntervalMs"
+                                                ng-required="true"
+                                                 />
+                                            <div class="help-block"
+                                                ng-messages="form.cloudBatchSendingIntervalMs.$error"
+                                                ng-show="form.cloudBatchSendingIntervalMs.$touched || (form.$submitted && form.cloudBatchSendingIntervalMs.$invalid)">
+                                                <div
+                                                    data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="apiKey" class="col-sm-4 control-label">
+                                            API Key <span class="required" aria-required="true"> *
+                                        </span>
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="apiKey"
+                                                name="apiKey" ng-model="gateway1.apiKey" ng-required="true" />
+                                            <div class="help-block" ng-messages="form.apiKey.$error"
+                                                ng-show="form.apiKey.$touched || (form.$submitted && form.apiKey.$invalid)">
+                                                <div
+                                                    data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="secretKey" class="col-sm-4 control-label">
+                                            Secret Key <span class="required" aria-required="true">
+                                                * </span>
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="secretKey"
+                                                name="secretKey" ng-model="gateway1.secretKey"
+                                                ng-required="true" />
+                                            <div class="help-block" ng-messages="form.secretKey.$error"
+                                                ng-show="form.secretKey.$touched || (form.$submitted && form.secretKey.$invalid)">
+                                                <div
+                                                    data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="heartBeatIntervalMs"
+                                            class="col-sm-4 control-label"> Heart Beat Interval
+                                            in Ms </label>
+                                        <div class="col-sm-6">
+                                            <input type="number" class="form-control"
+                                                id="heartBeatIntervalMs" name="heartBeatIntervalMs"
+                                                ng-model="gateway1.heartBeatIntervalMs"
+                                                 />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="iotConnectUrl" class="col-sm-4 control-label">
+                                            IOT Connect Url <span class="required" aria-required="true">
+                                                * </span>
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="iotConnectUrl"
+                                                name="iotConnectUrl" ng-model="gateway1.iotConnectUrl"
+                                                ng-required="true" />
+                                            <div class="help-block"
+                                                ng-messages="form.iotConnectUrl.$error"
+                                                ng-show="form.iotConnectUrl.$touched || (form.$submitted && form.iotConnectUrl.$invalid)">
+                                                <div
+                                                    data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="iotConnectMqtt" class="col-sm-4 control-label">
+                                            IOT Connect Mqtt <span class="required" aria-required="true">
+                                                * </span>
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="iotConnectMqtt"
+                                                name="iotConnectMqtt" ng-model="gateway1.iotConnectMqtt"
+                                                ng-required="true" />
+                                            <div class="help-block"
+                                                ng-messages="form.iotConnectMqtt.$error"
+                                                ng-show="form.iotConnectMqtt.$touched || (form.$submitted && form.iotConnectMqtt.$invalid)">
+                                                <div
+                                                    data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="iotConnectMqttVHost"
+                                            class="col-sm-4 control-label"> IOT Connect Mqtt
+                                            VHost <span class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control"
+                                                id="iotConnectMqttVHost" name="iotConnectMqttVHost"
+                                                ng-model="gateway1.iotConnectMqttVHost" ng-required="true" />
+                                            <div class="help-block"
+                                                ng-messages="form.iotConnectMqttVHost.$error"
+                                                ng-show="form.secretKey.$touched || (form.$submitted && form.iotConnectMqttVHost.$invalid)">
+                                                <div
+                                                    data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group margintopzero">
+                                        <div class="col-sm-7"></div>
+
+                                        <div class="col-sm-3 text-right">
+                                            <button type="submit" class="btn btn-default group-button"
+                                                tabindex="12" ng-click="selenePropFun()">Back</button>
+                                            <button type="submit" class="btn btn-default"
+                                                ng-click="create(form, gateway1)">Create</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1"></div>
+
+                                <div
+                                    class=" col-sm-4 panel panel-default panel-content paddingDiv"
+                                    ng-if="response.status==204 " ng-show="IsVisible">
+
+                                    <div class="b-panel-body text-center">
+                                        <a href="" ng-click="startGateway()"
+                                            class="device-action-button"> <i class="fa fa-play"
+                                            aria-hidden="true"></i><br> Start
+                                        </a> <a href="" ng-click="stopGateway()"
+                                            class="device-action-button"> <i class="fa fa-stop"
+                                            aria-hidden="true"></i><br> Stop
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+		  <!-- AWS -->
+	 <div class="obj-bd" ng-if="additiionalBlock == 'Aws'">
+		<div ng-if="!showSmallTable" class="second-header"><h3>Aws</h3></div>
+			<div class="row">
+			  <div class="col-md-12">
+				<div class="panel panel-default">
+				  <table class="table table-striped">
+					<thead>
+					<tr ng-if="showSmallTable">
+					  <th><h3 class="small-table-title">Aws</h3></th>
+					</tr>
+					<tr ng-if="!showSmallTable">
+					  <th class="name-coll">Property name</th>
+					  <th>Property value</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="header in awsHeaders">
+					  <td ng-if="!showSmallTable">{{ header.label }}</td>
+					  <td>
+						<div>
+						  <p ng-if="showSmallTable"><b>{{ header.label }}</b></p>
+						  <div ng-switch="header.type">
+							<div ng-switch-when="long">
+							  <div class="long-text-container hide-text">{{ aws[header.value] }}</div>
+							  <div show-more-link ng-if="aws[header.value]" class="long-text-show-more">
+								<a href="javascript:" class="show-more"></a>
+							  </div>
+							</div>
+							<div ng-switch-when="bool">
+							  {{ aws[header.value]?'Yes':'No' }}
+							</div>
+							<div ng-switch-default>
+							  {{aws[header.value]}}
+							</div>
+						  </div>
+						</div>
+					  </td>
+					</tr>
+					</tbody>
+				  </table>
+				</div>
+			  </div>
+			</div>
+		  </div>
+
+		  <!-- Ibm -->
+		  <div class="obj-bd" ng-if="additiionalBlock == 'Ibm'">
+			<div class="second-header"><h3>Ibm</h3></div>
+			<div class="row">
+			  <div class="col-md-12">
+				<div class="panel panel-default">
+				  <table class="table table-striped">
+					<thead>
+					<tr>
+					  <th>Property name</th>
+					  <th>Property value</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="header in ibmHeaders">
+					  <td >{{header.label}}</td>
+					  <td> {{iotConnect[header.value]}}</td>
+					</tr>
+					</tbody>
+				  </table>
+				</div>
+			  </div>
+			</div>
+		  </div>
+
+		  <!-- Azure -->
+		  <div class="obj-bd" ng-if="additiionalBlock == 'Azure'">
+			<div class="second-header"><h3>Azure</h3></div>
+			<div class="row">
+			  <div class="col-md-12">
+				<div class="panel panel-default">
+				  <table class="table table-striped">
+					<thead>
+					<tr>
+					  <th>Property name</th>
+					  <th>Property value</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="header in azureHeaders">
+					  <td >{{header.label}}</td>
+					  <td> {{iotConnect[header.value]}}</td>
+					</tr>
+					</tbody>
+				  </table>
+				</div>
+			  </div>
+			</div>
+		  </div>
+
+		  <!-- IotConnect -->
+		  <div class="obj-bd" ng-if="additiionalBlock == 'IotConnect'">
+			<div class="second-header"><h3>IotConnect</h3></div>
+			<div class="row">
+			  <div class="col-md-12">
+				<div class="panel panel-default">
+				  <table class="table table-bordered">
+					<thead>
+					<tr>
+					  <th>Property name</th>
+					  <th>Property value</th>
+					</tr>
+					</thead>
+					<tbody >
+					<tr ng-repeat="header in iotConnectHeaders">
+					  <td >{{header.label}}</td>
+					  <td> {{iotConnect[header.value]}}</td>
+					</tr>
+					</tbody>
+				  </table>
+				</div>
+			  </div>
+			</div>
+		  </div>
+
+        </div>
+        <div class="obj-page-ft"></div>
+    </div>
+    <!-- /CONTENT WRAPPER -->
+</div>

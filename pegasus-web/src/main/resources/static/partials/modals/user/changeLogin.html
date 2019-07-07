@@ -1,0 +1,42 @@
+<div class="modal-header">
+	<h3 class="modal-title" id="modal-title">
+		Change Login
+	</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <form name="form"
+          class="form-horizontal"
+          role="form"
+          novalidate>
+        <div class="form-body">
+            <div class="form-group">
+                <label for="login" class="col-md-3 control-label">Login</label>
+                <div class="col-md-9">
+                    <div class="input-icon right">
+                        <i ng-show="form.login.$touched && form.login.$invalid" class="fa fa-warning"></i>
+                        <i ng-show="form.login.$touched && !form.login.$invalid" class="fa fa-check"></i>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="login"
+                                name="login"
+                                ng-trim="true"
+                                ng-model="login"
+                                placeholder="Login"
+                                ng-minlength="3"
+                                ng-maxlength="100"
+                                ng-required="true"
+                                login-validation="login">
+                    </div>
+                    <div class="help-block" ng-messages="form.login.$error" ng-show="form.login.$touched">
+                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-disabled="busy" ng-click="cancel()">Cancel</button>
+	<button type="submit" class="btn btn-default" ng-disabled="busy" ng-click="save(form)">Ok</button>
+</div>	

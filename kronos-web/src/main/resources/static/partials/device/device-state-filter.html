@@ -1,0 +1,105 @@
+<div class="modal-header">
+    <h3 class="modal-title">Search</h3>
+</div>
+<div class="modal-body">
+    <form name="form"
+        class="form-horizontal"
+        novalidate>
+        <div class="form-group">
+            <label for="filterTypes"
+                class="col-sm-2 control-label">Types <span class="label label-default">{{vm.filter.types.length}}</span></label>
+            <div class="col-sm-10">
+                <select id="filterTypes"
+                    class="form-control "
+                    size="3"
+                    multiple
+                    ng-model="vm.filter.types"
+                    ng-options="type for type in vm.options.types">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="filterStatuses"
+                class="col-sm-2 control-label">Statuses <span class="label label-default">{{vm.filter.statuses.length}}</span></label>
+            <div class="col-sm-10">
+                <select id="filterStatuses"
+                    class="form-control"
+                    size="3"
+                    multiple
+                    ng-model="vm.filter.statuses"
+                    ng-options="type for type in vm.options.statuses">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Created From</label>
+            <div class="dropdown col-sm-4">
+                <a class="dropdown-toggle" id="createdDateDropdown" role="button" data-toggle="dropdown" data-target="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="vm.filter.createdDateFrom"
+                            data-date-time-input="MM/DD/YYYY hh:mm:ss A">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="vm.filter.createdDateFrom"
+                        data-datetimepicker-config="{ dropdownSelector: '#createdDateDropdown' }">
+                    </datetimepicker>
+                </ul>
+            </div>
+            <label class="col-sm-2 control-label">To</label>
+            <div class="dropdown col-sm-4">
+                <a class="dropdown-toggle" id="createdDateToDropdown" role="button" data-toggle="dropdown" data-target="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="vm.filter.createdDateTo"
+                            data-date-time-input="MM/DD/YYYY hh:mm:ss A">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="vm.filter.createdDateTo"
+                        data-datetimepicker-config="{ dropdownSelector: '#createdDateToDropdown' }">
+                    </datetimepicker>
+                </ul>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Updated From</label>
+            <div class="dropdown col-sm-4">
+                <a class="dropdown-toggle" id="updatedDateDropdown" role="button" data-toggle="dropdown" data-target="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="vm.filter.updatedDateFrom"
+                            data-date-time-input="MM/DD/YYYY hh:mm:ss A">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="vm.filter.updatedDateFrom"
+                        data-datetimepicker-config="{ dropdownSelector: '#updatedDateDropdown' }">
+                    </datetimepicker>
+                </ul>
+            </div>
+            <label class="col-sm-2 control-label">To</label>
+            <div class="dropdown col-sm-4">
+                <a class="dropdown-toggle" id="updatedDateToDropdown" role="button" data-toggle="dropdown" data-target="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="vm.filter.updatedDateTo"
+                            data-date-time-input="MM/DD/YYYY hh:mm:ss A">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="vm.filter.updatedDateTo"
+                        data-datetimepicker-config="{ dropdownSelector: '#updatedDateToDropdown' }">
+                    </datetimepicker>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default"
+        type="button" ng-click="vm.ok()">Search</button>
+    <button class="btn btn-default"
+        type="button" ng-click="vm.cancel()">Cancel</button>
+</div>

@@ -1,0 +1,323 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+
+            <div class="portlet-body form">
+                <form name="form"
+                      class="form-horizontal"
+                      role="form"
+                      novalidate>
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <fieldset class="fieldset-form">
+                                    <legend class="legend-form">Account</legend>
+
+                                    <!-- User HID -->
+                                    <div class="form-group"
+                                         ng-if="canReadUserAccount()"
+                                         ng-class="{ 'has-error': form.companyId.$touched && form.companyId.$invalid, 'has-success': form.companyId.$touched && !form.companyId.$invalid }">
+                                        <label for="userHID"
+                                               class="col-md-2 control-label">User HID
+                                        </label>
+                                        <div class="col-md-10">
+                                            <div class="right text-after-label">{{user.hid}}</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Tenant -->
+                                    <div class="form-group"
+                                         ng-if="canReadUserAccount()"
+                                         ng-class="{ 'has-error': form.companyId.$touched && form.companyId.$invalid, 'has-success': form.companyId.$touched && !form.companyId.$invalid }">
+                                        <label for="companyId"
+                                               class="col-md-2 control-label">Tenant
+                                            <span class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+                                            <div class="input-icon right">
+                                                <select id="companyId"
+                                                        name="companyId"
+                                                        class="form-control"
+                                                        ng-model="user.companyId"
+                                                        ng-required="true"
+                                                        ng-change="onCompanyChange()"
+                                                        ng-disabled="!canChangeUserTenant()">
+                                                    <option ng-show="!user.id" value="">[Tenant]</option>
+                                                    <option ng-repeat="option in companyOptions"
+                                                            value="{{option.id}}">{{option.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="help-block" ng-messages="form.companyId.$error"
+                                                 ng-show="form.companyId.$touched">
+                                                <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Login -->
+                                    <div class="form-group">
+                                        <label
+                                                class="col-md-2 control-label">Login
+                                        </label>
+                                        <div class="col-md-10">
+                                            <div class="right text-after-label">
+                                                 {{user.login}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Status -->
+                                    <div class="form-group"
+                                     ng-class="{ 'has-error': form.status.$touched && form.status.$invalid, 'has-success': form.status.$touched && !form.status.$invalid }">
+                                        <label for="status"
+                                               class="col-md-2 control-label">Status
+                                            <span class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-md-4">
+                                            <div ng-if="(user.id && isSuperAdministrator())" class="input-icon right">
+                                                <select id="status"
+                                                        name="status"
+                                                        class="form-control"
+                                                        ng-model="user.status"
+                                                        ng-required="true"
+                                                        ng-disabled="!hasAccess()">
+                                                    <option ng-show="!user.id" value="">[Status]</option>
+                                                    <option ng-repeat="option in statusOptions"
+                                                            value="{{option.id}}">{{option.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div ng-if="(user.id && !isSuperAdministrator())" class="right text-after-label">
+                                                {{user.status}}
+                                            </div>
+                                            <div class="help-block" ng-messages="form.status.$error"
+                                                 ng-show="form.status.$touched">
+                                                <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+
+                                        <label class="col-md-2 control-label">Last Login</label>
+                                        <div class="col-md-3 text-after-label">
+                                            {{user.lastLogin | date:"MM/dd/yyyy hh:mm:ss a Z"}}
+                                        </div>
+                                </div>
+
+                                    <!-- checkbox System Admin -->
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error': form.admin.$touched && form.admin.$invalid, 'has-success': form.admin.$touched && !form.admin.$invalid }" ng-if="isSuperAdministrator()">
+                                        <div class="col-md-2 control-label"></div>
+                                        <label class="col-md-10">
+                                            <input id="is-admin" type="checkbox"
+                                                   ng-checked="user.admin"
+                                                   ng-model="user.admin"/>
+                                            System Administrator
+                                        </label>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+
+                            <div class="col-md-2 margin-top-15 btn-user-account">
+                                    <div class="pull-left">
+
+                                        <div class="btn-group"
+                                             ng-if="canAccessToResetPassword()"
+                                             role="group" aria-label="...">
+                                            <button type="button"
+                                                    class="btn green"
+                                                    ng-disabled="busy"
+                                                    ng-click="resetPassword(user.id)">Reset Password
+                                            </button>
+                                        </div>
+
+                                        <div class="btn-group"
+                                             ng-if="canAccessToDisableAccount()"
+                                             role="group" aria-label="...">
+                                            <button type="button"
+                                                    class="btn green"
+                                                    ng-disabled="busy"
+                                                    ng-click="disableAccount(user.id)">Disable Account
+                                            </button>
+                                        </div>
+
+                                        <div class="btn-group"
+                                             ng-if="canAccessToChangeLogin()"
+                                             role="group" aria-label="...">
+                                            <button type="button"
+                                                    class="btn green"
+                                                    ng-disabled="busy"
+                                                    ng-click="changeLogin()">Change Login
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <fieldset class="fieldset-form">
+                                    <legend class="legend-form">Roles</legend>
+
+                                    <!-- Tenant -->
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error': form.companyRole.$touched && form.companyRole.$invalid, 'has-success': form.companyRole.$touched && !form.companyRole.$invalid }">
+                                        <label for="companyRole"
+                                               class="col-md-2 control-label">Tenant
+                                            <span class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+                                            <div class="input-icon right">
+                                                <select id="companyRole"
+                                                        name="companyRole"
+                                                        class="form-control"
+                                                        ng-required="true"
+                                                        ng-model="companyIdForRole"
+                                                        ng-change="onCompanyRoleChange()"
+                                                        ng-disabled="!hasAccess() || !canUpdateUserRoles()">
+                                                    <option ng-show="!user.id" value="">[Company]</option>
+                                                    <option ng-repeat="option in companyRoleOptions"
+                                                            value="{{option.id}}">{{option.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="help-block" ng-messages="form.companyRole.$error"
+                                                 ng-show="form.companyRole.$touched">
+                                                <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Application -->
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error': form.applicationId.$touched && form.applicationId.$invalid, 'has-success': form.applicationId.$touched && !form.applicationId.$invalid }">
+                                        <label for="applicationId"
+                                               class="col-md-2 control-label">Application
+                                            <span class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+                                            <div class="input-icon right">
+                                                <select id="applicationId"
+                                                        name="applicationId"
+                                                        class="form-control"
+                                                        ng-model="applicationIdForRole"
+                                                        ng-required="applicationOptions && applicationOptions.length >= 1"
+                                                        ng-change="onApplicationRoleChange()"
+                                                        ng-disabled="!hasAccess() || !canUpdateUserRoles()">
+                                                    <option ng-if="applicationOptions === null || applicationOptions === undefined || applicationOptions.length < 1" value="">N/A</option>
+                                                    <option ng-repeat="option in applicationOptions" value="{{option.id}}">{{option.name}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="help-block" ng-messages="form.applicationId.$error"
+                                                 ng-show="form.applicationId.$touched">
+                                                <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-if="canReadUser()">
+                                        <div class="col-md-6">
+                                            <fieldset class="fieldset-form" style="background-color: #fff;">
+                                                <legend class="legend-form">Available Roles</legend>
+                                                <div class="user-roles-block col-md-12">
+                                                    <div class="form-group" ng-repeat="option in roleAvailableOptions">
+                                                        <label class="control-label">
+                                                            <input id="roleAvail_{{option.id}}"
+                                                                   name="roleAvail_{{option.id}}"
+                                                                   type="checkbox"
+                                                                   value="{{option.id}}"
+                                                                   ng-click="toggleAvailableRoleCheckbox(option.id)"
+                                                                   ng-disabled="!hasAccess() || !canUpdateUserRoles()">
+                                                            <span>{{option.name}}</span>
+                                                        </label>
+                                                        <div>{{option.description}}</div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            <div class="text-center" ng-if="hasAccess() && canUpdateUserRoles()">
+                                                <div class="btn-group" role="group" aria-label="...">
+                                                    <button type="button"
+                                                            class="btn green"
+                                                            ng-click="add()"
+                                                            ng-disabled="busy || roleAvailableOptions.length < 1">Add
+                                                    </button>
+                                                </div>
+                                                <div class="btn-group" role="group" aria-label="...">
+                                                    <button type="button"
+                                                            class="btn green"
+                                                            ng-click="addAll()"
+                                                            ng-disabled="busy || roleAvailableOptions.length < 1">Add All
+                                                    </button>
+                                                </div>
+                                                <div ng-if="isAdmin" class="btn-group" role="group" aria-label="...">
+                                                    <button type="button"
+                                                            class="btn green"
+                                                            ng-click="copyRolesFromOtherUser()"
+                                                            ng-disabled="busy">Copy from User
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <fieldset class="fieldset-form" style="background-color: #fff;">
+                                                <legend class="legend-form">Assigned Roles</legend>
+                                                <div class="user-roles-block col-md-12">
+                                                    <div class="form-group" ng-repeat="option in roleAssignedOptions">
+                                                        <label class="control-label">
+                                                            <input id="role_{{option.id}}"
+                                                                   name="role_{{option.id}}"
+                                                                   type="checkbox"
+                                                                   value="{{option.id}}"
+                                                                   ng-click="toggleAssignedRoleCheckbox(option.id)"
+                                                                   ng-disabled="!hasAccess() || !canUpdateUserRoles()">
+                                                            <span>{{option.name}}</span>
+                                                        </label>
+                                                        <div>{{option.description}}</div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            <div class="text-center" ng-if="hasAccess() && canUpdateUserRoles()">
+                                                <div class="btn-group" role="group" aria-label="...">
+                                                    <button type="button"
+                                                            class="btn green"
+                                                            ng-click="remove()"
+                                                            ng-disabled="busy || roleAssignedOptions.length < 1">Remove
+                                                    </button>
+                                                </div>
+                                                <div class="btn-group" role="group" aria-label="...">
+                                                    <button type="button"
+                                                            class="btn green"
+                                                            ng-click="removeAll()"
+                                                            ng-disabled="busy || roleAssignedOptions.length < 1">Remove All
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <button type="submit"
+                                        class="btn green"
+                                        ng-disabled="busy || !hasAccess()"
+                                        ng-click="save(form)">Save
+                                </button>
+                                <button type="submit"
+                                        class="btn green"
+                                        ui-sref="users"
+                                        ng-disabled="busy">Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

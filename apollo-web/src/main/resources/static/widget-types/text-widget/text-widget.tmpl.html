@@ -1,0 +1,26 @@
+<div class="widget-hd">
+	<h3>{{vm.widget.metadata.name}}</h3>
+	<h4>
+		<span ng-if="vm.widget.metadata.description">{{vm.widget.metadata.description}}</span>
+		<span ng-if="!vm.widget.metadata.description">Text</span>
+	</h4>
+</div>
+<div class="widget-bd">
+	<!-- LOADING -->
+	<div ng-if="vm.data.waiting && !vm.data.error" class="text-center callout-container">
+		<div class="callout acs-widget-callout acs-widget-callout-loading">
+			<i class="fa fa-spinner fa-pulse fa-3x" aria-hidden="true"></i>
+			<h3>Loading...</h3>
+		</div>			
+	</div>
+	<!-- ERROR -->
+	<div ng-if="!vm.data.waiting && vm.data.error">
+		<div class="callout acs-widget-callout acs-widget-callout-error">
+			<h3><i class="fa fa-exclamation-circle fa-3x fa-fw" aria-hidden="true"></i> Whoops! Error occurred</h3>
+			<p>Please contact your system administrator.</p>
+		</div>
+	</div>
+	<!-- RUNNING -->
+	<div ng-show="!vm.data.waiting && !vm.data.error">{{vm.data.result}}</div>
+</div>
+<!--div class="widget-ft">footer</div-->

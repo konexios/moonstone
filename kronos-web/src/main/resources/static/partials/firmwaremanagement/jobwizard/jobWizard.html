@@ -1,0 +1,22 @@
+<div class="row-content" on-resize>
+  <subscription-expiration></subscription-expiration>
+   <div
+           class="height-100-prec"
+           ng-hide="vm.currentStep.name !== 'deviceSelection'"
+           ng-include="'partials/firmwaremanagement/jobwizard/deviceSelection.html'"></div>
+
+    <div
+           class="height-100-prec"
+           ng-hide="vm.currentStep.name !== 'scheduling'"
+           ng-include="'partials/firmwaremanagement/jobwizard/scheduling.html'"></div>
+
+    <div
+            class="height-100-prec"
+            ng-hide="vm.currentStep.name !== 'notification'"
+            ng-include="'partials/firmwaremanagement/jobwizard/notification.html'"></div>
+
+    <div
+            class="height-100-prec"
+            ng-hide="vm.currentStep.name !== 'summary'"
+            ng-include="'partials/firmwaremanagement/jobwizard/summary.html'"></div>
+</div>

@@ -1,0 +1,184 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="vm.cancel()">&times;</button>
+    <h4 class="modal-title">
+    	<span ng-if="vm.wizard.step == 0">Widget Selection</span>
+    	<span ng-if="vm.wizard.step > 0">Widget Setup</span>
+    </h4>
+</div>
+<form name="widgetForm" novalidate>
+    <div class="modal-body widget-configuration">
+
+        <!-- todo: fix view of this element -->
+        
+		<div class="callout" ng-if="vm.wizard.step == 0">
+			<h4>Select a widget</h4>
+			<p>Using the categories below, choose a widget that you would like to add to this dashbaord.</p>
+		</div>
+        <!-- STEP 1: Select type -->
+        <div ng-show="vm.wizard.step === 0">
+
+			<!-- TABS -->
+			<div class="content-sub-tabs">
+				<ul class="nav nav-pills">
+	                <li role="presentation"
+	                	ng-class="vm.widgetTypeData.tab === 'Device' ? 'active': ''">
+	                    <a href="" ng-click="vm.changeWidgetCategoryTab('Device')">
+	                        Device <sup><span class="badge badge-widget-count">{{vm.widgetTypeData.widgetCounts.deviceWidgetCount}}</span></sup>
+	                    </a>
+	                </li>
+	                <li role="presentation"
+	                	ng-class="vm.widgetTypeData.tab === 'Gateway' ? 'active': ''">
+	                    <a href="" ng-click="vm.changeWidgetCategoryTab('Gateway')">
+	                        Gateway <sup><span class="badge badge-widget-count">{{vm.widgetTypeData.widgetCounts.gatewayWidgetCount}}</span></sup>
+	                    </a>
+	                </li>
+	                <li role="presentation"
+	                	ng-class="vm.widgetTypeData.tab === 'Usage' ? 'active': ''">
+	                    <a href="" ng-click="vm.changeWidgetCategoryTab('Usage')">
+	                        Usage <sup><span class="badge badge-widget-count">{{vm.widgetTypeData.widgetCounts.usageWidgetCount}}</span></sup>
+	                    </a>
+	                </li>
+	                <li role="presentation"
+	                	ng-class="vm.widgetTypeData.tab === 'General' ? 'active': ''">
+	                    <a href="" ng-click="vm.changeWidgetCategoryTab('General')">
+	                        General <sup><span class="badge badge-widget-count">{{vm.widgetTypeData.widgetCounts.generalWidgetCount}}</span></sup>
+	                    </a>
+	                </li>
+					<li role="presentation" ng-class="vm.widgetTypeData.tab === 'Hyperion' && 'active'">
+						<a href="" ng-click="vm.changeWidgetCategoryTab('Hyperion')">
+							xConnect <sup><span class="badge badge-widget-count">{{vm.widgetTypeData.widgetCounts.hyperionWidgetCount}}</span></sup>
+						</a>
+					</li>
+	            </ul>         
+            </div>
+            <!-- /TABS -->
+
+			<!-- TAB CONTENT -->
+			<div class="widget-options-tab-content">
+				<div class="callout callout-red" ng-if="vm.widgetTypeData.widgets.length == 0 && !vm.widgetTypeData.loadingWidgets">
+					<h4>Whoops!</h4>
+					<p>There are not any widgets assigned to this category.</p>
+				</div>
+				<ul class="list-inline widget-options" ng-if="vm.widgetTypeData.widgets.length > 0">
+					<li class="widget-item text-center" 
+						ng-repeat="item in vm.widgetTypeData.widgets"
+						ng-class="vm.widgetTypeData.selected === item.id ? 'active': ''">
+						<a href="" ng-click="vm.selectWidgetItem(item)"
+							title="{{item.name}}">
+							<div class="widget-item-icon text-center">
+								<i class="fa {{item.icon}}" 
+									ng-if="item.iconType == 'FontAwesome'"></i>
+							</div>
+							<span class="widget-item-name">{{item.name}}</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<!-- /TAB CONTENT -->
+			<!--div><pre>{{vm.addWidgetModel | json}}</pre></div-->
+            
+            <!--div class="form-group">
+                <label for="name" class="control-label">Type*</label>
+                <select id="type" name="type" class="form-control" ng-model="vm.addWidgetModel.type" required ng-options="type.name for type in vm.widgetTypes track by type.id">
+                    <option value="">Select widget type</option>
+                </select>
+                <div ng-messages="(widgetForm.$submitted || widgetForm.type.$touched) && widgetForm.type.$error" role="alert">
+                    <div class="alert-danger">
+                        <span ng-message="required">Type is required</span>
+                    </div>
+                </div>
+            </div-->
+
+        </div>
+
+		<div class="row widget-setup-container" 
+			ng-if="vm.wizard.step > 0">
+			<!-- STEPS -->
+			<div class="col-xs-3 widget-setup-steps-container">
+		        <h4>Steps</h4>
+		        <ul class="list-unstyled" ng-if="vm.wizard.step > 0">
+		            <li ng-class="{ 'active': vm.wizard.step === 1 }">
+		                <span class="caption">Information</span>
+		            </li>
+		            <li ng-class="{ 'active': vm.wizard.step === 2 }" ng-show="!vm.widgetConfiguration">
+		                <span class="caption">...</span>
+		            </li>
+		            <li ng-class="{ 'active': vm.wizard.step === 2 && vm.widgetConfiguration.pages[vm.widgetConfiguration.currentPage] === page }" ng-show="vm.widgetConfiguration" ng-repeat="page in vm.widgetConfiguration.pages">
+		                <span class="caption">{{page.label}}</span>
+		            </li>
+		            <li ng-class="{ 'active': vm.wizard.step === 3 }">
+		                <span class="caption">Layout</span>
+		            </li>
+		        </ul>				
+			</div>
+			<!-- /STEPS -->
+			<div class="col-xs-9">
+
+				<!-- STEP 2: Name and description -->
+		        <div ng-show="vm.wizard.step === 1">
+		
+					<h4>Information</h4>
+					<p>Enter a name and description for this widget.</p>
+		
+		            <div class="form-group">
+		                <label for="name" class="control-label">Name*</label>
+		                <input type="text" id="name" name="name" class="form-control" ng-model="vm.addWidgetModel.name" required />
+		                <div ng-messages="(widgetForm.$submitted || widgetForm.name.$touched || widgetForm.name.$dirty) && widgetForm.name.$error" role="alert">
+		                    <div class="alert-danger">
+		                        <span ng-message="required">Name is required</span>
+		                    </div>
+		                </div>
+		            </div>
+		
+		            <div class="form-group">
+		                <label for="name" class="control-label">Description</label>
+		                <textarea id="description" name="description" class="form-control" ng-model="vm.addWidgetModel.description" rows="4"></textarea>
+		            </div>
+		
+		        </div>
+		
+		        <!-- STEP 2+N: CONFIGURATOR -->
+		        <div ng-show="vm.wizard.step === 2">
+		
+		            <div class="alert alert-danger" role="alert" ng-show="vm.widgetConfiguration.error">{{vm.widgetConfiguration.error}}</div>
+		
+		            <div class="form-group" ng-repeat="property in vm.widgetConfiguration.pages[vm.widgetConfiguration.currentPage].properties">
+		                <label for="name" class="control-label">{{property.label}}</label>
+		                <div add-property="property.property.viewId" property="property.property"></div>
+		                <p class="help-block">{{property.description}}</p>
+		                <div class="alert alert-danger" role="alert" ng-show="property.error">{{property.error}}</div>
+		            </div>
+		
+		            <div class="alert alert-danger" role="alert" ng-show="vm.widgetConfiguration.pages[vm.widgetConfiguration.currentPage].error">{{vm.widgetConfiguration.pages[vm.widgetConfiguration.currentPage].error}}</div>
+		        </div>
+		
+		        <!-- STEP 3:  -->
+		        <div ng-show="vm.wizard.step === 3">
+		            <div class="row">
+		                <div class="col-xs-12 text-center">
+		                    <label class="radio-inline text-center" ng-repeat="(key, value) in vm.supportedWidgetSizes">
+								<widget-size-icon cols="value.width" rows="value.height" active-size="vm.addWidgetModel.size"></widget-size-icon>
+								<br>
+		                        <input type="radio" ng-value="value" ng-model="vm.addWidgetModel.size" radio-object-model> {{ vm.widgetSizes[key].name }} [{{value.width}}x{{value.height}}]
+		                    </label>
+		                </div>
+		            </div>
+		        </div>
+			
+			</div>
+		</div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-xs-4 text-left">
+                <button type="button" class="btn btn-default" ng-click="vm.cancel()">Cancel</button>
+            </div>
+            <div class="col-xs-8">
+                <!--button type="button" class="btn btn-default" ng-show="vm.wizard.step > 1" ng-click="vm.goBack()">Previous</button-->
+                <button type="button" class="btn btn-default submit" ng-click="vm.goNext()" ng-disabled="(vm.wizard.step === 0 && !vm.addWidgetModel.type) || (vm.wizard.step === 1 && (!widgetForm.name.$valid || !vm.configuredWidget))">
+                    {{ vm.wizard.step === 3 ? "Done" : "Next" }}
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

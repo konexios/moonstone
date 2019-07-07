@@ -1,0 +1,62 @@
+[
+	{
+	  "systemName" : "SendEmail",
+	  "editable" : false,
+	  "parameters" : {
+	    "Email" : "me@here.com",
+	    "Subject": "Arrow Connect Notification",
+	    "ContentType": "text/plain",
+	    "Body": "The following criteria was met: {Criteria}\n\nDevice information:\n\tUID: {DeviceUID}\n\nEvent information:\n\tTimestamp: {Timestamp}\n{FullTelemetry}"
+	  },
+	  "name" : "Send Email",
+	  "description" : "Send an email.",
+	  "enabled" : true
+	}, {
+	  "systemName" : "InitiateSkypeCall",
+	  "parameters" : {
+	    "Message" : "Default message.",
+	    "Phone" : "000-000-0000",
+	    "SipAddress" : "sip:me@here.com"
+	  },
+	  "name" : "Initiate Skype Call",
+	  "description" : "Initiate a Skype Call.",
+	  "enabled" : true
+	}, {
+	  "systemName" : "InitiateSkypeMeeting",
+	  "parameters" : {
+	    "SipAddress" : "sip:me@here.com"
+	  },
+	  "name" : "Initiate Skype Meeting",
+	  "description" : "Initiate a Skype Meeting.",
+	  "enabled" : true
+	}, {
+	  "systemName" : "RaiseOneViewAlarm",
+	  "parameters" : {
+	    "Severity" : "1",
+	    "Location" : "Default Location"
+	  },
+	  "name" : "Arrow Insight Alarm",
+	  "description" : "Raise Arrow Insight Alarm.",
+	  "enabled" : true
+	}, {
+	  "systemName" : "PostBackURL",
+	  "parameters" : {
+	    "URL" : "https://",
+	    "Headers" : "\"name\":\"value\",...",
+	    "RequestBody" : "param1=value1&param2=value2&params3={payload}",
+	    "ContentType" : "application/x-www-form-urlencoded"
+	  },
+	  "name" : "Post Back URL",
+	  "description" : "Post Back URL.",
+	  "enabled" : true
+	}, {
+	  "systemName" : "SendCommand",
+	  "parameters" : {
+	    "Command" : "",
+	    "Payload" : ""
+	  },
+	  "name" : "Send Command",
+	  "description" : "Send Command.",
+	  "enabled" : true
+	}
+]

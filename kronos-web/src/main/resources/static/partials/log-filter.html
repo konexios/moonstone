@@ -1,0 +1,82 @@
+<div class="modal-header">
+    <h3 class="modal-title">Search</h3>
+</div>
+<div class="modal-body">
+    <form name="form"
+        class="form-horizontal"
+        novalidate>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">From</label>
+            <div class="dropdown col-sm-4">
+                <a class="dropdown-toggle" id="createdDateDropdown" role="button" data-toggle="dropdown" data-target="#">
+                    <div class="input-group">
+                        <input type="text" name="from" class="form-control" data-ng-model="vm.filter.createdDateFrom" autocomplete="off"
+                            data-date-time-input="MM/DD/YYYY hh:mm:ss A" date-range="vm.filter.createdDateTo" date-less date-from-less-current>
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="vm.filter.createdDateFrom"
+                        data-datetimepicker-config="{ dropdownSelector: '#createdDateDropdown' }">
+                    </datetimepicker>
+                </ul>
+            </div>
+            <label class="col-sm-2 control-label">To</label>
+            <div class="dropdown col-sm-4">
+                <a class="dropdown-toggle" id="createdDateToDropdown" role="button" data-toggle="dropdown" data-target="#">
+                    <div class="input-group">
+                        <input type="text" name="to" class="form-control" data-ng-model="vm.filter.createdDateTo" autocomplete="off"
+                            data-date-time-input="MM/DD/YYYY hh:mm:ss A">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="vm.filter.createdDateTo"
+                        data-datetimepicker-config="{ dropdownSelector: '#createdDateToDropdown' }">
+                    </datetimepicker>
+                </ul>
+              
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="form.from.$error" role="alert">
+                <div class="alert-danger">
+                	<p ng-message="dateLess">From date/time must be less than To date/time</p>
+                    <p ng-message="dateFromLessCurrent">From date/time must be less than Current date/time</p>
+                </div>
+            </div>
+                                     
+        </div>
+        <div class="form-group">
+            <label for="filterUserIds"
+                class="col-sm-2 control-label">Users <span class="label label-default">{{vm.filter.userIds.length}}</span></label>
+            <div class="col-sm-10">
+                <select id="filterUserIds"
+                    class="form-control"
+                    size="4"
+                    multiple
+                    ng-model="vm.filter.userIds"
+                    ng-options="user.id as user.name for user in vm.options.users">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="filterTypes"
+                class="col-sm-2 control-label">Types <span class="label label-default">{{vm.filter.types.length}}</span></label>
+            <div class="col-sm-10">
+                <select id="filterTypes"
+                    class="form-control"
+                    size="3"
+                    multiple
+                    ng-model="vm.filter.types"
+                    ng-options="type for type in vm.options.types">
+                </select>
+            </div>
+        </div>
+   
+<div class="modal-footer">
+    <button class="btn btn-default"
+        type="button" ng-click="vm.ok()" ng-disabled="form.$invalid">Search</button>
+    <button class="btn btn-default"
+        type="button" ng-click="vm.cancel()">Cancel</button>
+</div>
+ </form>
+</div>

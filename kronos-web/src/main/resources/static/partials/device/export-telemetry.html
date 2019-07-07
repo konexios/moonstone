@@ -1,0 +1,125 @@
+<div class="content-bd">
+    <div class="row">
+        <div class="col-md-12">
+            <h1><i class="fa fa-floppy-o" aria-hidden="true"></i> Export Telemetry</h1>
+        </div>
+    </div>
+    <div class="panel panel-default panel-content">
+        <div class="panel-heading">
+            <h3 class="panel-title">Export Telemetry Settings</h3>
+        </div>
+        <div class="panel-body">
+            <form name="exportTelemetryParamsForm" class="form-horizontal" novalidate>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Format</label>
+                    <div class="col-sm-4">
+                        <label class="radio-inline"><input type="radio" name="type" ng-change="vm.onChange()"
+                            ng-model="vm.model.type" value="json"> JSON </label>
+                        <label class="radio-inline"><input type="radio" name="type" ng-change="vm.onChange()"
+                            ng-model="vm.model.type" value="csv"> CSV </label>
+                    </div>
+                    <label class="col-sm-2 control-label">Sort</label>
+                    <div class="col-sm-4">
+                        <label class="radio-inline"><input type="radio" name="sort" ng-change="vm.onChange()"
+                            ng-model="vm.model.sort" value="DESC"> Descending </label>
+                        <label class="radio-inline"><input type="radio" name="sort" ng-change="vm.onChange()"
+                            ng-model="vm.model.sort" value="ASC"> Ascending </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Telemetry</label>
+                    <div class="col-sm-10">
+                        <select class="form-control"
+                            name="telemetry"
+                            size="4"
+                            multiple
+                            required
+                            ng-model="vm.model.names"
+                            ng-options="telemetry.name as telemetry.description for telemetry in device.telemetries"
+                            ng-change="vm.onChange()">
+                        </select>
+                    </div>
+                    <div class="col-sm-offset-2 col-sm-10"
+                        ng-messages="exportTelemetryParamsForm.telemetry.$error"
+                        role="alert">
+                        <div class="alert-danger">
+                            <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">From</label>
+					<div class="dropdown col-sm-4">
+						<a class="dropdown-toggle" id="rangeFrom" role="button"
+							data-toggle="dropdown" data-target="#">
+							<div class="input-group">
+								<input type="text" name="from" class="form-control" autocomplete="off"
+									data-ng-model="vm.model.from" ng-change="vm.onChange()"
+									data-date-time-input="MM/DD/YYYY hh:mm:ss A" required
+									date-required date-range="vm.model.to" date-less date-from-less-current
+									date-max-range="7*24*3600*1000" /> <span
+									class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							</div>
+						</a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<datetimepicker data-ng-model="vm.model.from"
+								data-on-set-time="vm.onChange()"
+								data-datetimepicker-config="{ dropdownSelector: '#rangeFrom' }">
+							</datetimepicker>
+						</ul>
+						<div ng-messages="exportTelemetryParamsForm.from.$error"
+							role="alert">
+							<div class="alert-danger">
+								<div
+									ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+							</div>
+						</div>
+					</div>
+					<label class="col-sm-2 control-label">To</label>
+					<div class="dropdown col-sm-4">
+						<a class="dropdown-toggle" id="rangeTo" role="button"
+							data-toggle="dropdown" data-target="#">
+							<div class="input-group">
+								<input type="text" name="to" class="form-control" autocomplete="off"
+									data-ng-model="vm.model.to" ng-change="vm.onChange()"
+									data-date-time-input="MM/DD/YYYY hh:mm:ss A" required
+									date-required /> <span class="input-group-addon"><i
+									class="fa fa-calendar"></i></span>
+							</div>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-right" role="menu"
+							aria-labelledby="dLabel">
+							<datetimepicker data-ng-model="vm.model.to"
+								data-on-set-time="vm.onChange()"
+								data-datetimepicker-config="{ dropdownSelector: '#rangeTo' }">
+							</datetimepicker>
+						</ul>
+						<div ng-messages="exportTelemetryParamsForm.to.$error" role="alert">
+							<div class="alert-danger">
+								<div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-offset-2 col-sm-10"
+						ng-messages="exportTelemetryParamsForm.from.$error" role="alert">
+						<div class="alert-danger">
+							<p ng-message="dateLess">From date/time must be less than To date/time</p>
+							<p ng-message="dateMaxRange">Maximum date/time interval is 7 days</p>
+							<p ng-message="dateFromLessCurrent">From date/time must be less than Current date/time</p>
+						</div>
+					</div>
+                </div>
+            </form>
+            <form name="exportTelemetryForm" class="form-horizontal" novalidate method="get" action="{{vm.exportUrl}}">
+                <div style="text-align: right;">
+                    <input type="hidden" name="type" value="{{vm.exportParams.type}}" />
+                    <input type="hidden" name="sort" value="{{vm.exportParams.sort}}" />
+                    <input type="hidden" name="names" value="{{vm.exportParams.names}}" />
+                    <input type="hidden" name="from" value="{{vm.exportParams.from}}" />
+                    <input type="hidden" name="to" value="{{vm.exportParams.to}}" />
+                    <button class="btn btn-default" type="submit" ng-disabled="exportTelemetryParamsForm.$invalid">Export</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

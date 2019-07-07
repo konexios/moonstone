@@ -1,0 +1,106 @@
+<div class="modal-header">
+	<button type="button" class="close" ng-click="cancel()">&times;</button>
+	<h4 class="modal-title">Create New Board</h4>
+</div>
+<form name="boardForm"
+	ng-submit="save(boardForm);">
+	<div class="modal-body">
+		<div class="row">
+			<div ng-messages="boardForm.$error.required" multiple class="col-md-12">
+				<div ng-message="required" class="alert alert-danger">Both fields <strong>required</strong></div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" class="form-control" id="name" name="name" ng-model="board.name" ng-required="true">
+				</div>
+			</div>
+			<div class="col-md-8 no-padding">
+				<ul class="options">
+					<li ng-if="canCreateSystemDefaultBoard() || canUpdateSystemDefaultBoard()" 
+						ng-init="isSystemDefault = false" 
+						ng-click="applyCategory('SystemDefault')" 
+						ng-class="{selected: board.category == 'SystemDefault'}">
+						<span class="icon system-default text-center">
+							<i class="fa fa-flag" aria-hidden="true"></i>
+						</span> System Default
+					</li>
+					<li ng-if="canCreateArrowCertifiedBoard() || canUpdateArrowCertifiedBoard()" 
+						ng-init="isArrowCertified = false" 
+						ng-click="applyCategory('ArrowCertified')" 
+						ng-class="{selected: board.category == 'ArrowCertified'}">
+						<span class="icon arrow-cirtified text-center">
+							<i class="fa fa-certificate" aria-hidden="true"></i>
+						</span> Arrow Certified
+					</li>
+					<li ng-if="canMarkAsFavoriteBoard()" 
+						ng-init="isFavorite = false" 
+						ng-click="applyCategory('Favorite')" 
+						ng-class="{selected: board.category == 'Favorite'}">
+						<span class="icon add-favorite text-center">
+							<i class="fa fa-heart" aria-hidden="true"></i>
+						</span> Favorite
+					</li>
+					<li ng-if="canMarkAsUserDefaultBoard()" 
+						ng-init="isMakeDefault = false" 
+						ng-click="applyCategory('UserDefault')" 
+						ng-class="{selected: board.category == 'UserDefault'}">
+						<span class="icon make-default text-center">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span> Default
+					</li>
+					<li ng-init="isHyperionDevice = false"
+							ng-click="applyCategory('XconDevice')"
+							ng-class="{selected: board.category == 'XconDevice'}">
+						<span class="icon make-default text-center">
+							<i class="fa fa-h-square" aria-hidden="true"></i>
+						</span> Device-Specific
+					</li>
+					<li ng-init="isHyperionGroup = false"
+							ng-click="applyCategory('XconGroup')"
+							ng-class="{selected: board.category == 'XconGroup'}">
+						<span class="icon make-default text-center">
+							<i class="fa fa-h-square" aria-hidden="true"></i>
+						</span> Device-Group
+					</li>
+					<li ng-init="isHyperionCustomer = false"
+							ng-click="applyCategory('XconCustomer')"
+							ng-class="{selected: board.category == 'XconCustomer'}">
+						<span class="icon make-default text-center">
+							<i class="fa fa-h-square" aria-hidden="true"></i>
+						</span> Enterprise
+					</li>
+					<!--li ng-init="isHyperionGateway = false"
+							ng-click="applyCategory('XconGateway')"
+							ng-class="{selected: board.category == 'XconGateway'}">
+						<span class="icon make-default text-center">
+							<i class="fa fa-h-square" aria-hidden="true"></i>
+						</span> Hyperion Gateway
+					</li-->
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label for="description">Description</label>
+					<textarea ng-required="true" type="text" class="form-control" id="description" name="description" ng-model="board.description"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="name"># of Columns</label>
+					<input type="number" class="form-control" id="numberOfColumns" name="numberOfColumns" ng-model="board.numberOfColumns" ng-required="true"
+						min="1" max="6">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer" >
+		<button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
+		<button type="submit" 
+			class="btn btn-default primary">Submit</button>
+	</div>
+</form>

@@ -1,0 +1,3855 @@
+{
+  "devicePriPrefix": "arw:krn:dev:",
+  "gatewayPriPrefix": "arw:pgs:gwy:",
+  "nodePriPrefix": "arw:krn:nde:",
+  "devices": [
+    {
+      "id": "584b513932c5052b2696bf33",
+      "hid": "fea5b535d0be4a122bfe2b70efc8452d8bf807a4",
+      "name": "1 - C0:79:47:30:45:4D - C0:79:47:30:45:4D"
+    },
+    {
+      "id": "586d6a8132c5052b2696c51a",
+      "hid": "ac263fcca11f58e44057e8c0401eccfc26846048",
+      "name": "10 - C0:79:25:30:36:4D - C0:79:25:30:36:4D"
+    },
+    {
+      "id": "584b384a32c5052b2696bf21",
+      "hid": "a9eb447e5f18c4fefcb6ccf7b70a45ac70ba40f9",
+      "name": "11 - C0:79:4C:30:4E:4D"
+    },
+    {
+      "id": "584b324c32c5052b2696bef3",
+      "hid": "b6003e099d18b1bec76bc5f2967460f1ce01d46e",
+      "name": "12 - C0:79:4B:30:4E:4D"
+    },
+    {
+      "id": "584b34e932c5052b2696bf0b",
+      "hid": "110370c70a03e729246403d2f24883782dac40ea",
+      "name": "14-C0:79:1C:30:4A:4D - C0:79:1C:30:4A:4D"
+    },
+    {
+      "id": "584b34bf32c5052b2696bf01",
+      "hid": "d4cd8f9f4dc4f3cb38f916e14c1c80a6aa6bbc4e",
+      "name": "15 - C0:79:28:30:4D:4D"
+    },
+    {
+      "id": "584b56b532c5052b2696bf44",
+      "hid": "1747c02ac0052c6025db2c1bdeeb08f8bb3e9b31",
+      "name": "16 - C0:79:40:30:55:4D - C0:79:40:30:55:4D"
+    },
+    {
+      "id": "584b56bf32c5052b2696bf48",
+      "hid": "5487fd3f54600b02414d57671b5cd15b5697bb44",
+      "name": "17 - C0:79:20:30:4A:4D"
+    },
+    {
+      "id": "584b56a432c5052b2696bf40",
+      "hid": "954ef211f59d2315439d5d3d9a7d321b8ee6fa3c",
+      "name": "18 - C0:79:50:30:4F:4D"
+    },
+    {
+      "id": "584b568b32c5052b2696bf3c",
+      "hid": "65baff2ecb3e8c25228977b2c6ab3064b8d09d41",
+      "name": "19- C0:79:22:30:49:4D - C0:79:22:30:49:4D"
+    },
+    {
+      "id": "584b51cd32c5052b2696bf37",
+      "hid": "8b08bb46bc305f346351fb572388b2691a8750eb",
+      "name": "2- C0:79:45:30:45:4D - C0:79:45:30:45:4D"
+    },
+    {
+      "id": "584b512a32c5052b2696bf2b",
+      "hid": "418f2645ed8f5645982ebb492dda0a43a24fb457",
+      "name": "4 - C0:79:51:30:45:4D - C0:79:51:30:45:4D"
+    },
+    {
+      "id": "584b511b32c5052b2696bf27",
+      "hid": "0ded905f808197c92f4035b7eb7565f2c28d623d",
+      "name": "5 -C0:79:26:30:4C:4D - C0:79:26:30:4C:4D"
+    },
+    {
+      "id": "586d695f32c5052b2696c512",
+      "hid": "4ed52d40963170cd309debba0b46b7a340fd6f77",
+      "name": "6 - C0:79:2D:30:4C:4D - C0:79:2D:30:4C:4D"
+    },
+    {
+      "id": "586d671e32c5052b2696c50a",
+      "hid": "74c09e170bed059d2952df9eefd25ec732c7955c",
+      "name": "7 - C0:79:2C:30:36:4D - C0:79:2C:30:36:4D"
+    },
+    {
+      "id": "586d5e2032c5052b2696c4ec",
+      "hid": "eef55bc05f0bb9c0f0702406f3916992649e1203",
+      "name": "8 - C0:79:35:30:3B:4D"
+    },
+    {
+      "id": "573387a1e4b015fd84373f09",
+      "hid": "8df9f9fe89b6b75962e9ed57361c98131fd99864",
+      "name": "800_Amp_Bussway - 800_Amp_Bussway"
+    },
+    {
+      "id": "586d6e5532c5052b2696c530",
+      "hid": "20811c009cf831d7a19a348193f4ddf3739e4507",
+      "name": "9 - 30454D - C0:79:50:30:45:4D"
+    },
+    {
+      "id": "5904b55c73e64608c2096006",
+      "hid": "7219d23456313ac8678a2c8c9de6476b5cef1a49",
+      "name": "ADC 0 - tam-test-gtaa-adc-0"
+    },
+    {
+      "id": "5809c449e4b09cdf54c44670",
+      "hid": "1cb6a11bfb33e2d47cf8c14e986f3bd055c97558",
+      "name": "AndroidInternal - android-0baa-cd0c-ffff-ffff8417b324"
+    },
+    {
+      "id": "57ada8fce4b01531b49c05c8",
+      "hid": "10d5768524b4f95232ae310af69d1f526a7f5eb5",
+      "name": "AndroidInternal - android-1e1e-ea9d-bde9-fea368bede20"
+    },
+    {
+      "id": "586ffd5632c5052b2696c598",
+      "hid": "bfbe6df9dda0deefc173b32054ddb502b36d2563",
+      "name": "AndroidInternal - android-6ac0-2ac7-0033-c5870033c587"
+    },
+    {
+      "id": "582efe5132c5056418788129",
+      "hid": "abc9264ae5f03dc851826347eee7bf2700380306",
+      "name": "AndroidInternal - android-6b53-b5b8-0033-c5870033c587"
+    },
+    {
+      "id": "59153bdb73e64608c20986f6",
+      "hid": "76b5206c996606602e91349ed953481f452ee93c",
+      "name": "AndroidInternal - android-bd9b-47a2-ffff-ffffd31a3ff4"
+    },
+    {
+      "id": "581b4b21e4b0279ad9cf4676",
+      "hid": "211f793a3bfd00244b28f1c519c19bf702e356e6",
+      "name": "AndroidInternal - android-bded-1030-0033-c5870033c587"
+    },
+    {
+      "id": "583dfbca32c5052b2696bc56",
+      "hid": "1a8e9a90afbc50bb793532300b945f1d7f5d31cc",
+      "name": "AndroidInternal - android-c7c1-2cce-2a65-82540033c587"
+    },
+    {
+      "id": "58c09a1573e6462336d53b01",
+      "hid": "d51460cd5e16db77d9e00a634ee42da9c0c8997e",
+      "name": "AndroidInternal - android-c7c1-2cce-9603-46430033c587"
+    },
+    {
+      "id": "58457c7732c5052b2696bd86",
+      "hid": "ffe87104999ed476c0b6caf4ffc315dab7d5a234",
+      "name": "AndroidInternal - android-e346-0748-ffff-fffffe0c97ab"
+    },
+    {
+      "id": "58c26ac673e64614e25b17af",
+      "hid": "d3bc076d3b9eecf8224b2977e463eea8bed51c03",
+      "name": "AndroidInternal - android-f78d-7e5f-ffff-ffff99d603a9"
+    },
+    {
+      "id": "587029ab32c5052b2696c649",
+      "hid": "c7c923521e9c90ae51b2f86508ba1dc1a432870d",
+      "name": "AndroidInternal - android-fbff-cb63-a5d0-12ca0033c587"
+    },
+    {
+      "id": "57ebc373e4b07ed47a939890",
+      "hid": "ae9792989978c80bd17333bcbaf0f15999e6dd75",
+      "name": "AndroidInternal - android-ffffffff-bded-1030-0033-c5870033c587"
+    },
+    {
+      "id": "57a85397e4b0e389818044ea",
+      "hid": "eba3e4fddd15e35e35873ca7ec09611f7e1f0014",
+      "name": "AndroidInternal - android-ffffffff-e346-0748-ffff-fffffe0c97ab"
+    },
+    {
+      "id": "57c433eae4b00beab9e1f953",
+      "hid": "41a19a53b6a64cb0d607961a2226f0f2555a6570",
+      "name": "AndroidInternal - android-ffffffff-efb7-74d1-ec6b-de700033c587"
+    },
+    {
+      "id": "591aef7473e64608c20988a1",
+      "hid": "5d8184c8f996825da1227820a1afe26d20ea4282",
+      "name": "AndroidInternal - deviceUid-1551330037"
+    },
+    {
+      "id": "5919cde773e64608c2098864",
+      "hid": "e42b2a42343d64e9db400f7027a38584f0baaf5e",
+      "name": "AndroidInternal - deviceUid-2134954356"
+    },
+    {
+      "id": "591addab73e64608c2098886",
+      "hid": "06f470e97bc78f6fa4048105aee40cdfa57ae45f",
+      "name": "AndroidInternal - deviceUid-718582639"
+    },
+    {
+      "id": "591c5c6e73e64608c2098972",
+      "hid": "9871f15efa456e1faa5d01ccd3d2640b301ec2a8",
+      "name": "AndroidInternal - deviceUid1167666239"
+    },
+    {
+      "id": "5919cd2773e64608c209885d",
+      "hid": "36cf857d2c71548f5f4725caf44d15ed51365006",
+      "name": "AndroidInternal - deviceUid1886781568"
+    },
+    {
+      "id": "5924432173e64608c2098c1c",
+      "hid": "1cc3fe6b782f17f5bd036e0008b7d193d0bd3d0d",
+      "name": "AndroidInternal - deviceUid624120087"
+    },
+    {
+      "id": "591aef3d73e64608c2098899",
+      "hid": "f22ab6c12e417edde0558c4705f33fa2afd9df28",
+      "name": "AndroidInternal - deviceUid658774914"
+    },
+    {
+      "id": "57ac52e7e4b01531b49c005e",
+      "hid": "9653b0963be430b06df994e4edf6ef7e4f8fb874",
+      "name": "AndroidInternal_DM - android-5ff1-8d58-8efb-bf8d0033c587"
+    },
+    {
+      "id": "5799db7d37fe8683557a66db",
+      "hid": "48a99c3cfda30aeda046ad16306be7b0d9e21be0",
+      "name": "AO_MS_Band_Simulator - AO_MS_Band_Simulator"
+    },
+    {
+      "id": "5767ddc0c2403a2f9d7b9d74",
+      "hid": "9d7cf32580ef6f00c4833b827770eb11a02b5aa1",
+      "name": "aozerov_test_device_001 - aozerov_test_device_001"
+    },
+    {
+      "id": "5767eef6c2403a2f9d7b9d7f",
+      "hid": "f9e6e7eb14f43ff1f77a59246b55dd147273604f",
+      "name": "aozerov_test_device_003 - aozerov_test_device_003"
+    },
+    {
+      "id": "576bc90c668005fd4635f6b1",
+      "hid": "88382ccf6fdea58e20f4af0f1ece1ca575f2c1ce",
+      "name": "aozerov_test_device_005 - aozerov_test_device_005"
+    },
+    {
+      "id": "58047975e4b09cdf54c43102",
+      "hid": "7b3025843bca9d949cdfde78e9eaeb98f266dd83",
+      "name": "aris - aris-f8f005f1c5cd-board"
+    },
+    {
+      "id": "586cc7b832c5052b2696c4c7",
+      "hid": "bfd4730e5917d6b7a4f758fc4264ebe3e0a151ec",
+      "name": "aris-device-demo-BP - aris-f8f005f1c638-board"
+    },
+    {
+      "id": "5812d055e4b0279ad9cf2db2",
+      "hid": "07ae91d4c89eb4ca37429deed9e4bf8cd569015f",
+      "name": "aris-device-tam - aris-f8f005f0c5c6-board"
+    },
+    {
+      "id": "56de562a9a153b2323846ccb",
+      "hid": "961d1c588baf9801832855444ff6c1fd3fee1782",
+      "name": "AWS-Device-001 - aws-device-001"
+    },
+    {
+      "id": "58dd31cd73e646e68fb770ff",
+      "hid": "2ed7972115c0d2d2634779066a1173d46a74e225",
+      "name": "Azure xConnect Gateway ISC - xconnect-gateway-isc-1"
+    },
+    {
+      "id": "58f615cd73e6464d8b2bd27d",
+      "hid": "60f1811187b1a735f0edb0dc51d9932a07306e73",
+      "name": "B-L475E-IOT01 - STM32-c47f510119cb-devkit"
+    },
+    {
+      "id": "59089a6d73e64608c2096e6f",
+      "hid": "55b2adafbbaf7476c13bafb8f2e6041226e6c330",
+      "name": "BB-GEVK - 984fee00a103-devkit"
+    },
+    {
+      "id": "5908a36373e64608c2096e9c",
+      "hid": "be53d843dbe582f7af28a1faec2926ce93c0ce74",
+      "name": "BB-GEVK - semiconductor-984fee00a103-devkit"
+    },
+    {
+      "id": "584fd18e32c5052b2696bf5c",
+      "hid": "a63774263603fa62efefbdbd42af00025df1b6f6",
+      "name": "Bill - floor_plan_demo_c"
+    },
+    {
+      "id": "575a5b83e4b05e82fc5fc8c8",
+      "hid": "e5e5efb09a8c0d129cd734c5e7d43525659621e2",
+      "name": "BLE Beacon Controller (DC) - ble-beacon-controller-dc"
+    },
+    {
+      "id": "57297837e4b0f22b715765e9",
+      "hid": "a58183d3b7d350ad1f05debd198302c735c8e1df",
+      "name": "BLE Beacon Controller - ble-beacon-controller-5cf37078416c"
+    },
+    {
+      "id": "57258e42e4b0f7d642be908b",
+      "hid": "3d54a4ad107e1f7eea8cf5da568a1e150aa087b6",
+      "name": "BLE Beacon Controller - ble-beacon-controller-tnguyen"
+    },
+    {
+      "id": "56f2aa3fe4b028cb626b3466",
+      "hid": "f6c07717c1727fc1c895dbd1e70e424195a64f19",
+      "name": "BleSensor - ble-001"
+    },
+    {
+      "id": "56fe6478e4b0e3e6302e32b3",
+      "hid": "9446605aded8398e5125e97765b3d801f2cb1715",
+      "name": "BleSensor-b01 - ble-b01"
+    },
+    {
+      "id": "584b513532c5052b2696bf2f",
+      "hid": "b8dffcd8a2f3e4f57bd7c938bf37009ce2489176",
+      "name": "BM2V213 @30434D - C0:79:48:30:43:4D"
+    },
+    {
+      "id": "584b56ef32c5052b2696bf4c",
+      "hid": "e0795faef7f145c8eee3afa0f52be17bd377f185",
+      "name": "BM2V213 @30494D - C0:79:20:30:49:4D"
+    },
+    {
+      "id": "5835591932c5052b2696bab8",
+      "hid": "2fb93bd711f5d75b6506b7d78c801ad25c5b710d",
+      "name": "BM2V213 @341D32 - C0:79:26:34:1D:32"
+    },
+    {
+      "id": "5845d5c432c5052b2696bda3",
+      "hid": "93ab5dbdacde590abb0103735b98ed853879cc4e",
+      "name": "BM2V213 @345A38 - C0:79:32:34:5A:38"
+    },
+    {
+      "id": "5877fafa32c5052b2696c821",
+      "hid": "fae430a5d8790b9eff8b42aea4979ff33af0938f",
+      "name": "Brandon's laptop Gateway - Brandons-laptop-gateway"
+    },
+    {
+      "id": "581b9dc1e4b0279ad9cf46d5",
+      "hid": "5b53872f55e903451b4c4a56cb4ea5e78d97e05d",
+      "name": "Camera Test 001 - camera-test-001"
+    },
+    {
+      "id": "584fd17632c5052b2696bf59",
+      "hid": "8f02ce897e8b4839cc24fdb26ef74a49dbc8d15b",
+      "name": "Ciccio - floor_plan_demo_b"
+    },
+    {
+      "id": "5849b8be32c5052b2696bec6",
+      "hid": "4daee55f96a6a0c7541436612422932053a3ddf8",
+      "name": "CLI Test 1 - cli-test-1"
+    },
+    {
+      "id": "57183de45158259a583d57b9",
+      "hid": "7f8313967137e1a777ea12552be53e8dd30831ad",
+      "name": "Co-Driver's MS Band - Stingray - sam-passenger-arrow-com"
+    },
+    {
+      "id": "5713c7e6515889f5084a980b",
+      "hid": "f2c6cfce7995ffb2c8df89444c0946cbcc7259a6",
+      "name": "Co-Driver's MS Band - Z06 - z06-codrivers-ms-band-001"
+    },
+    {
+      "id": "5728d2fde4b0f22b715765a5",
+      "hid": "9f2c9de59da7b7e40f065ca5c2d1ddcae4264b29",
+      "name": "DENT Collector - dent-collector-1"
+    },
+    {
+      "id": "56e0936fe4b04b26db5c1081",
+      "hid": "ea0f592b8175424224c3908f2875124a6072e2d9",
+      "name": "device-100 - uid-100"
+    },
+    {
+      "id": "56e0936fe4b04b26db5c1086",
+      "hid": "c538b2f4c429d67cd77e2aae9cfdc6c37384942b",
+      "name": "device-101 - uid-101"
+    },
+    {
+      "id": "56e0936fe4b04b26db5c108b",
+      "hid": "0172006ce13529c856f2bad3005c7ce8070037d6",
+      "name": "device-102 - uid-102"
+    },
+    {
+      "id": "56e0936fe4b04b26db5c108e",
+      "hid": "cffe2dad488d780c20e7033799a69c9f6dba8643",
+      "name": "device-103 - uid-103"
+    },
+    {
+      "id": "56e0936fe4b04b26db5c1091",
+      "hid": "05048a84e3aab62c993e768d89c2fe1e58e1ccfd",
+      "name": "device-104 - uid-104"
+    },
+    {
+      "id": "56e09370e4b04b26db5c1094",
+      "hid": "d73616d76d4900b72c4489ee31946a1bedcd9bf6",
+      "name": "device-105 - uid-105"
+    },
+    {
+      "id": "56e09370e4b04b26db5c1099",
+      "hid": "d1daefc3998270bfdd76940b809f4a7df3f4e909",
+      "name": "device-106 - uid-106"
+    },
+    {
+      "id": "56e09370e4b04b26db5c109c",
+      "hid": "630bf1de0a2277a9275ce076f977ab22c236a6e3",
+      "name": "device-107 - uid-107"
+    },
+    {
+      "id": "56e09370e4b04b26db5c10a1",
+      "hid": "6313c1013e4ae2feb0655380831977720b391b6a",
+      "name": "device-108 - uid-108"
+    },
+    {
+      "id": "56e09370e4b04b26db5c10a4",
+      "hid": "0abd17698e351908393bc5d83c3d3fcb9bfcc81a",
+      "name": "device-109 - uid-109"
+    },
+    {
+      "id": "56e09370e4b04b26db5c10a7",
+      "hid": "e839085cb1d8da4d3d709ccd4f90a4d1ca775bd2",
+      "name": "device-110 - uid-110"
+    },
+    {
+      "id": "56e09370e4b04b26db5c10aa",
+      "hid": "1b980d0a435b458fa273c03ce599e838163cf1cc",
+      "name": "device-111 - uid-111"
+    },
+    {
+      "id": "56e09370e4b04b26db5c10ad",
+      "hid": "45f193099dd57f1fe201cf14cb50249fb244cde0",
+      "name": "device-112 - uid-112"
+    },
+    {
+      "id": "56e09370e4b04b26db5c10b0",
+      "hid": "dff2c8561f2ab846d04b166efdbd9cd851607ae4",
+      "name": "device-113 - uid-113"
+    },
+    {
+      "id": "56e09371e4b04b26db5c10b3",
+      "hid": "49dc8a9a13fcfe54a05125b8bd39bcd54cac7282",
+      "name": "device-114 - uid-114"
+    },
+    {
+      "id": "56e09371e4b04b26db5c10b6",
+      "hid": "b4132ca0f65a2d8d196c93181056308bef0e33d6",
+      "name": "device-115 - uid-115"
+    },
+    {
+      "id": "56e09371e4b04b26db5c10b9",
+      "hid": "28589859095200b3aebd7e9133da64696b05bec0",
+      "name": "device-116 - uid-116"
+    },
+    {
+      "id": "56e09371e4b04b26db5c10bc",
+      "hid": "f36301657f8e08b21d9eef73f6f61249e1ab4c47",
+      "name": "device-117 - uid-117"
+    },
+    {
+      "id": "56e09371e4b04b26db5c10bf",
+      "hid": "52d515b3920e8e414d78c5b954cd236beabfb30e",
+      "name": "device-118 - uid-118"
+    },
+    {
+      "id": "56e09371e4b04b26db5c10c2",
+      "hid": "7c4ad93b5e872c835e62ab2e71b93c8ad7f5bb0d",
+      "name": "device-119 - uid-119"
+    },
+    {
+      "id": "56e09371e4b04b26db5c10c5",
+      "hid": "9c457a59c76e99b26ca140fa8a0bc5f762541942",
+      "name": "device-120 - uid-120"
+    },
+    {
+      "id": "56e09371e4b04b26db5c10c8",
+      "hid": "2678fcd02cc0fa935a4c7b5d20955318cecf6504",
+      "name": "device-121 - uid-121"
+    },
+    {
+      "id": "56e09371e4b04b26db5c10cb",
+      "hid": "8b803639f4cf2b8262ba43c305ce65195565bcd9",
+      "name": "device-122 - uid-122"
+    },
+    {
+      "id": "56e09371e4b04b26db5c10ce",
+      "hid": "969ff1805b323e87597b1e49be14a4ff9f492c07",
+      "name": "device-123 - uid-123"
+    },
+    {
+      "id": "56e09372e4b04b26db5c10d1",
+      "hid": "c3229001e6733ba52ae30dfc1f209aa8d80ee49b",
+      "name": "device-124 - uid-124"
+    },
+    {
+      "id": "56e09372e4b04b26db5c10d4",
+      "hid": "73edcf96905093e62498ba2e192746d88c09deb7",
+      "name": "device-125 - uid-125"
+    },
+    {
+      "id": "56e09372e4b04b26db5c10d7",
+      "hid": "549898424beae1984af0124697ca900cc44b5ccb",
+      "name": "device-126 - uid-126"
+    },
+    {
+      "id": "56e09372e4b04b26db5c10da",
+      "hid": "caf2a7bd68f34b9f375a5adb8dba0c0b8ae7ebe1",
+      "name": "device-127 - uid-127"
+    },
+    {
+      "id": "56e09372e4b04b26db5c10dd",
+      "hid": "89bc3c57f34e4bd84ba358f9346c03ba83a08e77",
+      "name": "device-128 - uid-128"
+    },
+    {
+      "id": "56e09372e4b04b26db5c10e0",
+      "hid": "24f92431c9d0b0fe36cf7a943a094995f36239a6",
+      "name": "device-129 - uid-129"
+    },
+    {
+      "id": "56e09373e4b04b26db5c10e3",
+      "hid": "82a147c5ac195613e195c4532593bc548f237a83",
+      "name": "device-130 - uid-130"
+    },
+    {
+      "id": "56e09373e4b04b26db5c10e6",
+      "hid": "6b6f6dc2b440e3329727f29d928f4da26792080a",
+      "name": "device-131 - uid-131"
+    },
+    {
+      "id": "56e09373e4b04b26db5c10e9",
+      "hid": "4aed7ac7d694558b427d0a9b4fb827327996aae3",
+      "name": "device-132 - uid-132"
+    },
+    {
+      "id": "56e09373e4b04b26db5c10ec",
+      "hid": "bf595d2cc06befd814b15bdda8842ee4a568bda2",
+      "name": "device-133 - uid-133"
+    },
+    {
+      "id": "56e09373e4b04b26db5c10ef",
+      "hid": "a82bf2ccc2e82e2dfc0605378e23c1fd3e5d463e",
+      "name": "device-134 - uid-134"
+    },
+    {
+      "id": "56e09373e4b04b26db5c10f2",
+      "hid": "f40bb262b64af5fca53043911f666277fb8c921b",
+      "name": "device-135 - uid-135"
+    },
+    {
+      "id": "56e09373e4b04b26db5c10f5",
+      "hid": "513b8b29418398f4435b8b26d8fa10da841a9826",
+      "name": "device-136 - uid-136"
+    },
+    {
+      "id": "56e09373e4b04b26db5c10f8",
+      "hid": "13e4e41f9f98301f163210e23ac4f1daf139a8e6",
+      "name": "device-137 - uid-137"
+    },
+    {
+      "id": "56e09374e4b04b26db5c10fb",
+      "hid": "bcc521fd81a65269dd4e81e0d1837d3b682b0d3c",
+      "name": "device-138 - uid-138"
+    },
+    {
+      "id": "56e09374e4b04b26db5c10fe",
+      "hid": "28f1526fecbb83a5609e6a02bef8db93bbd6bfff",
+      "name": "device-139 - uid-139"
+    },
+    {
+      "id": "56e09374e4b04b26db5c1101",
+      "hid": "13606bdcf4163e766a8254046328a362e845894b",
+      "name": "device-140 - uid-140"
+    },
+    {
+      "id": "56e09374e4b04b26db5c1104",
+      "hid": "b629f99ba5ab0c998de545ad52823561877cb03c",
+      "name": "device-141 - uid-141"
+    },
+    {
+      "id": "56e09374e4b04b26db5c1107",
+      "hid": "87ac0ad7c705041ff1cfff814dd035ef9c6697af",
+      "name": "device-142 - uid-142"
+    },
+    {
+      "id": "56e09374e4b04b26db5c110a",
+      "hid": "5c3c31ac532c219a2ffb04171e68bf3869fe8a58",
+      "name": "device-143 - uid-143"
+    },
+    {
+      "id": "56e09374e4b04b26db5c110d",
+      "hid": "639d9c67d4a45a91468f24dc1307a5f672431f01",
+      "name": "device-144 - uid-144"
+    },
+    {
+      "id": "56e09374e4b04b26db5c1110",
+      "hid": "1b45fef4b4a3ab5467517ee70e24629901f1b46c",
+      "name": "device-145 - uid-145"
+    },
+    {
+      "id": "56e09374e4b04b26db5c1113",
+      "hid": "94940e0d263ee823bab1fa5a8702ff6eacd547f9",
+      "name": "device-146 - uid-146"
+    },
+    {
+      "id": "56e09375e4b04b26db5c1116",
+      "hid": "fac4818f605f666c5839ff91867add38b9bce0c8",
+      "name": "device-147 - uid-147"
+    },
+    {
+      "id": "56e09375e4b04b26db5c1119",
+      "hid": "dbb9b92352e0fdd3681533d7981fe2cc8d7a4757",
+      "name": "device-148 - uid-148"
+    },
+    {
+      "id": "56e09375e4b04b26db5c111c",
+      "hid": "98333a66dc9d372f6646df321e2e9c46cef7d3b8",
+      "name": "device-149 - uid-149"
+    },
+    {
+      "id": "56e09375e4b04b26db5c111f",
+      "hid": "f276d727346bf9a58d790e0809cad6f3b4800b16",
+      "name": "device-150 - uid-150"
+    },
+    {
+      "id": "56e09375e4b04b26db5c1122",
+      "hid": "c2566f874bc781c6f3ec3b3f2e782f6605a13c26",
+      "name": "device-151 - uid-151"
+    },
+    {
+      "id": "56e09375e4b04b26db5c1125",
+      "hid": "17fb51762d7abb1e4fac6ab8563ca74a0b7925ca",
+      "name": "device-152 - uid-152"
+    },
+    {
+      "id": "56e09376e4b04b26db5c1128",
+      "hid": "30b1d3f32f6bc910c621dcf1eb33fedce9fa406e",
+      "name": "device-153 - uid-153"
+    },
+    {
+      "id": "56e09376e4b04b26db5c112b",
+      "hid": "208d1dc155da72afb28da8f792f2b4c78798c5e9",
+      "name": "device-154 - uid-154"
+    },
+    {
+      "id": "56e09376e4b04b26db5c112e",
+      "hid": "454f5cbd6487a57aec30920d5c431fa5079cabf9",
+      "name": "device-155 - uid-155"
+    },
+    {
+      "id": "56e09376e4b04b26db5c1131",
+      "hid": "8bc193183e12807f951aa9e2a36e2306b05b3642",
+      "name": "device-156 - uid-156"
+    },
+    {
+      "id": "56e09376e4b04b26db5c1134",
+      "hid": "0fc8a129351306bee3770324de89fb2916982e74",
+      "name": "device-157 - uid-157"
+    },
+    {
+      "id": "56e09376e4b04b26db5c1137",
+      "hid": "8f6373884239d780e716b274c36d747cc8d0c825",
+      "name": "device-158 - uid-158"
+    },
+    {
+      "id": "56e09376e4b04b26db5c113a",
+      "hid": "6d196ee0e44aba45e7a17f0be3fe7e8d59382a10",
+      "name": "device-159 - uid-159"
+    },
+    {
+      "id": "56e09376e4b04b26db5c113d",
+      "hid": "c23c6d0b55206f24f5000b04eb08ad8cc84fe757",
+      "name": "device-160 - uid-160"
+    },
+    {
+      "id": "56e09376e4b04b26db5c1140",
+      "hid": "fb5b60b682dd3be8f0d894097cf6ac500812aab0",
+      "name": "device-161 - uid-161"
+    },
+    {
+      "id": "56e09376e4b04b26db5c1143",
+      "hid": "6b8c489968ce97ad7a57a057da1ed3bb720faa22",
+      "name": "device-162 - uid-162"
+    },
+    {
+      "id": "56e09376e4b04b26db5c1146",
+      "hid": "901340e8c1fac60a137031329978d6e4fa9f64d7",
+      "name": "device-163 - uid-163"
+    },
+    {
+      "id": "56e09377e4b04b26db5c1149",
+      "hid": "d04fd66d7bd89c505e44b40b29193e3eaa098f63",
+      "name": "device-164 - uid-164"
+    },
+    {
+      "id": "56e09377e4b04b26db5c114c",
+      "hid": "0915b33a44886c310fd193270007e8e632b7389f",
+      "name": "device-165 - uid-165"
+    },
+    {
+      "id": "56e09377e4b04b26db5c114f",
+      "hid": "ebc9f568774e501cc5b1c921f4cf1e89ac0bbd03",
+      "name": "device-166 - uid-166"
+    },
+    {
+      "id": "56e09378e4b04b26db5c1152",
+      "hid": "4ad8c29bc83eaad8abd534a3b17f1d89c2c4bd29",
+      "name": "device-167 - uid-167"
+    },
+    {
+      "id": "56e09378e4b04b26db5c1155",
+      "hid": "fd3da5c3a9b74c2759b9ef187af8fe30c6e00b3f",
+      "name": "device-168 - uid-168"
+    },
+    {
+      "id": "56e09378e4b04b26db5c1158",
+      "hid": "6a0779053cd3c45e651bc3c33340a2e0d7db5004",
+      "name": "device-169 - uid-169"
+    },
+    {
+      "id": "56e09378e4b04b26db5c115b",
+      "hid": "d02daebaeebf67397c7dc8c3be88228b7daf5246",
+      "name": "device-170 - uid-170"
+    },
+    {
+      "id": "56e09378e4b04b26db5c115e",
+      "hid": "ded7386d2d557a59bc44a76770b9bdb3b03d6665",
+      "name": "device-171 - uid-171"
+    },
+    {
+      "id": "56e09378e4b04b26db5c1161",
+      "hid": "5c30a596da8f9b29a6eb612dced18774de9dae5d",
+      "name": "device-172 - uid-172"
+    },
+    {
+      "id": "56e09378e4b04b26db5c1164",
+      "hid": "af18c32471256bca9cfae64228847ed7d0584e81",
+      "name": "device-173 - uid-173"
+    },
+    {
+      "id": "56e09378e4b04b26db5c1167",
+      "hid": "7baecde1d51f5d175bb37e235467e78d4feca326",
+      "name": "device-174 - uid-174"
+    },
+    {
+      "id": "56e09378e4b04b26db5c116a",
+      "hid": "8f8e612c3c9fd210759693c5eb17ed350776bdaa",
+      "name": "device-175 - uid-175"
+    },
+    {
+      "id": "56e09378e4b04b26db5c116d",
+      "hid": "0e68bbaefeaeac1110796770ffe72319afcfd372",
+      "name": "device-176 - uid-176"
+    },
+    {
+      "id": "56e09379e4b04b26db5c1170",
+      "hid": "1b5fe8c3d3c02e7fbbb9a9d187f853068aa4ed15",
+      "name": "device-177 - uid-177"
+    },
+    {
+      "id": "56e09379e4b04b26db5c1173",
+      "hid": "73f43cc047b7ced75813f5c4029f78a9a2dd90cb",
+      "name": "device-178 - uid-178"
+    },
+    {
+      "id": "56e09379e4b04b26db5c1176",
+      "hid": "ce16b736a5cc15f013ea9a1eada78e180e5915c8",
+      "name": "device-179 - uid-179"
+    },
+    {
+      "id": "56e09379e4b04b26db5c1179",
+      "hid": "762b58286dc4b771500b06b107d96b33ebce9463",
+      "name": "device-180 - uid-180"
+    },
+    {
+      "id": "56e09379e4b04b26db5c117c",
+      "hid": "2a60953e098cb3ab93a5af6ddb04fb831dcba120",
+      "name": "device-181 - uid-181"
+    },
+    {
+      "id": "56e09379e4b04b26db5c117f",
+      "hid": "4070329a188a322a2baad2102e34b08f7d147b5e",
+      "name": "device-182 - uid-182"
+    },
+    {
+      "id": "56e0937ae4b04b26db5c1182",
+      "hid": "bb9d2e295e9175654ebbf1ee92b3bfa240ea9495",
+      "name": "device-183 - uid-183"
+    },
+    {
+      "id": "56e0937ae4b04b26db5c1185",
+      "hid": "1b0cd8182c0309a3eb185f4ba9e37f75e694754e",
+      "name": "device-184 - uid-184"
+    },
+    {
+      "id": "56e0937ae4b04b26db5c1188",
+      "hid": "64cdf7aa635419a9256719ce835852f140491136",
+      "name": "device-185 - uid-185"
+    },
+    {
+      "id": "56e0937ae4b04b26db5c118b",
+      "hid": "d8db3dbcd895653b5bde7a49797b530a49d12c93",
+      "name": "device-186 - uid-186"
+    },
+    {
+      "id": "56e0937ae4b04b26db5c118e",
+      "hid": "ec0e4ab9e144249390a325784c87a130d6dc619d",
+      "name": "device-187 - uid-187"
+    },
+    {
+      "id": "56e0937ae4b04b26db5c1191",
+      "hid": "bb3fcbd37a24303e1c99a4d4b97e451f53e97018",
+      "name": "device-188 - uid-188"
+    },
+    {
+      "id": "56e0937ae4b04b26db5c1194",
+      "hid": "7ff15b333c2734bd0f373509e0105937b62ed076",
+      "name": "device-189 - uid-189"
+    },
+    {
+      "id": "56e0937ae4b04b26db5c1197",
+      "hid": "b7fd206b14a61fb6001b83137255d4fc81793332",
+      "name": "device-190 - uid-190"
+    },
+    {
+      "id": "56e0937be4b04b26db5c119a",
+      "hid": "da52a7ec93964603b7899221ba5171d709feda49",
+      "name": "device-191 - uid-191"
+    },
+    {
+      "id": "56e0937be4b04b26db5c119d",
+      "hid": "2eab9bccfe8198e237afb29df65eb1cd77d9046d",
+      "name": "device-192 - uid-192"
+    },
+    {
+      "id": "56e0937be4b04b26db5c11a0",
+      "hid": "47f326b6cea0844063c680615bc287c837a0c054",
+      "name": "device-193 - uid-193"
+    },
+    {
+      "id": "56e0937be4b04b26db5c11a3",
+      "hid": "4d931f293360e1e456cd9ac69ade0dbfa893e97a",
+      "name": "device-194 - uid-194"
+    },
+    {
+      "id": "56e0937be4b04b26db5c11a6",
+      "hid": "dcdcd97590a5c602f686c2b6b57c24c5cdbb8e79",
+      "name": "device-195 - uid-195"
+    },
+    {
+      "id": "56e0937be4b04b26db5c11a9",
+      "hid": "2d757f18c922b7f8bc082c66f7e559b432f0fdaf",
+      "name": "device-196 - uid-196"
+    },
+    {
+      "id": "56e0937be4b04b26db5c11ac",
+      "hid": "ff9f5a40c531f785a7ae78e9c95a01b94109c1c9",
+      "name": "device-197 - uid-197"
+    },
+    {
+      "id": "56e0937be4b04b26db5c11af",
+      "hid": "e0107848d57ae4ddb34168e036732ddc29af5a74",
+      "name": "device-198 - uid-198"
+    },
+    {
+      "id": "56e0937be4b04b26db5c11b2",
+      "hid": "05f32bac7bfcd5b55b7dc75e556a56c15c5a0125",
+      "name": "device-199 - uid-199"
+    },
+    {
+      "id": "56eb71f8e4b028cb626b3443",
+      "hid": "6d223b4bd882ddff4aff3563151c20d97c1dc5cd",
+      "name": "Digi GPS - gps-001"
+    },
+    {
+      "id": "56fef7fbe4b0e3e6302e32d6",
+      "hid": "0ab399f9a626e6d010309632b13975133345c205",
+      "name": "Digi GPS - Z06 - gps-z06-1"
+    },
+    {
+      "id": "5717e9c7e4b0ab300e0300cc",
+      "hid": "5b4cf79a485b26e38c71dac8d4ec7bd40c20b386",
+      "name": "Digi GPS Test 001 - digi-gps-test-001"
+    },
+    {
+      "id": "57d7dbfbd7b97dc6f3974f44",
+      "hid": "833a740e17192652f882a2c45825da76d59d8e52",
+      "name": "Dining Room 1 - dm-test-restaurant-dining-room-1"
+    },
+    {
+      "id": "58a596b173e6463cc00f1c93",
+      "hid": "965c796e3aa3e4d98eca4cf3d17f7a0a3670cc5b",
+      "name": "DM - PantherBoard - dm-pantherboard-simulator"
+    },
+    {
+      "id": "5775207ae4b00e10b6378cca",
+      "hid": "ceda088153ce6f6d96ebc9f33c30afdb5e9fba56",
+      "name": "DM-MS-Band-simulator - DM-MS-Band-simulator-001"
+    },
+    {
+      "id": "577520cde4b00e10b6378ccd",
+      "hid": "a925e342b38e82006ee3a47ebd4c78acc73ac3de",
+      "name": "DM-sensability-2-simulator - DM-sensability-2-simulator-001"
+    },
+    {
+      "id": "57754066e4b00e10b6378cd9",
+      "hid": "6f9762d9203c6acfd2511e90fbafbf25432e9984",
+      "name": "DM-sensorpuck-simulator-001 - DM-sensorpuck-simulator-001"
+    },
+    {
+      "id": "57b45925efb1518b0f3a23ca",
+      "hid": "16ff91733193726fae3e241a0c391d0027293975",
+      "name": "DM-sensorpuck-simulator-002 - DM-sensorpuck-simulator-002"
+    },
+    {
+      "id": "57b459c3efb1518b0f3a23d0",
+      "hid": "7df954308bec83fa1126e8165a628f9a2b26ae39",
+      "name": "DM-sensorpuck-simulator-003 - DM-sensorpuck-simulator-003"
+    },
+    {
+      "id": "57b45961efb1518b0f3a23cd",
+      "hid": "ce75f94d6b624f0aa4b21f55d04ee440e63fb74a",
+      "name": "DM-sensorpuck-simulator-004 - DM-sensorpuck-simulator-004"
+    },
+    {
+      "id": "5845745c32c5052c9b8165db",
+      "hid": "f4ab7cb30a28fe14acb4043abda2b6404c3ddace",
+      "name": "dm-stdemo-test - dm-stdemo-test"
+    },
+    {
+      "id": "587f7fb573e646b08ec8980d",
+      "hid": "86c34f5ddb3c0e1c02b286bed77632e40076382b",
+      "name": "dm-stoelting-001 - dm-stoelting-001"
+    },
+    {
+      "id": "572a6743e4b0020aa84c31a1",
+      "hid": "67ae31d6227dacecd97c213299932ed8e6dd35e8",
+      "name": "DragonBoard (SenseAbility 2 Demo) - gateway-db410c-020043cc2d18"
+    },
+    {
+      "id": "57297837e4b0f22b715765ea",
+      "hid": "f563570a8a496f0033dc82503a374e69c664df2a",
+      "name": "DragonBoard 410c Gateway - gateway-db410c-0200fdf2d2ff"
+    },
+    {
+      "id": "571c94fde4b0f7d642be8e4d",
+      "hid": "74b1b7663ed67010b8458da18b7abbbee9a22b54",
+      "name": "DragonBoard 410c Gateway - gateway-db410c-tnguyen"
+    },
+    {
+      "id": "57183e805158259a583d57bc",
+      "hid": "40f65207a8f4bb1c175aa9016dde7d19d3e2affc",
+      "name": "Driver's MS Band - Stingray - sam-arrow-com"
+    },
+    {
+      "id": "5713c6c35158af0c93f53cbf",
+      "hid": "5825cf813ed5792aba542c2dc94f5846c72d4076",
+      "name": "Driver's MS Band - Z06 - z06-drivers-ms-band-001"
+    },
+    {
+      "id": "573387a1e4b015fd84373f10",
+      "hid": "c860675bf8caf9336fedaa8fc62c51d400236b1e",
+      "name": "ECS2_Panel - ECS2_Panel"
+    },
+    {
+      "id": "57a0d406a3cddd0954076f98",
+      "hid": "c0b50422e6fd7b635e8bca1609315cebe9c7fbfd",
+      "name": "EP Sensor Node 1 - ep-sensor-node-1"
+    },
+    {
+      "id": "57a0d438a3cddd0954076f99",
+      "hid": "cff11e0c3d6989e2cd160d22818f04de40c0f77a",
+      "name": "EP Sensor Node 2 - ep-sensor-node-2"
+    },
+    {
+      "id": "57a0d451a3cddd0954076f9c",
+      "hid": "929ab7d1b776b08c7fd73bcbc0b9fade9893145f",
+      "name": "EP Sensor Node 3 - ep-sensor-node-3"
+    },
+    {
+      "id": "57a0d496a3cddd0954076f9e",
+      "hid": "2509c924f532fb2eeccb7b316a749111b3c1e9ae",
+      "name": "EP Sensor Node 4 - ep-sensor-node-4"
+    },
+    {
+      "id": "57a0d4aea3cddd0954076fa0",
+      "hid": "5d1c84362ee47c43d1d7e8ca435f323ec27cca7d",
+      "name": "EP Sensor Node 5 - ep-sensor-node-5"
+    },
+    {
+      "id": "57a1f3f9a4d8aeeccca42212",
+      "hid": "5856bc47d12045ba8a4afe0c8186419dcc549c34",
+      "name": "EP Sensor Test Node - ep-sensor-test-node"
+    },
+    {
+      "id": "57e3bed2e4b07ed47a936b10",
+      "hid": "2ee72f909b64e1a5eca23bc29867537e0ad1d0ca",
+      "name": "Example device 1 - example-device-1"
+    },
+    {
+      "id": "57d7dbacd7b97dc6f3974f3e",
+      "hid": "adc0ac2a0dc8805db36bda9c6470ea1731903d6f",
+      "name": "Freezer 1 - dm-test-restaurant-freezer-1"
+    },
+    {
+      "id": "589489b8705f872160bbe8f6",
+      "hid": "stoelting-device-sim-03",
+      "name": "Fro-zen's Machine #2 - stoelting-device-3"
+    },
+    {
+      "id": "57f661dc210833a00f044595",
+      "hid": "stoelting-device-sim-01",
+      "name": "Fro-zen's Machine - stoelting-device-1"
+    },
+    {
+      "id": "572221bde4b0f7d642be9020",
+      "hid": "5984f9fbe948ece7256f99d1bad5e6084ea5526c",
+      "name": "GPS Stingray 1 - gps-stingray-1"
+    },
+    {
+      "id": "573387a1e4b015fd84373f11",
+      "hid": "99f065d9fb237f444bf5ed4dc2fe992c3e633fa5",
+      "name": "HVAC_Room_Lighting_L1-1 - HVAC_Room_Lighting_L1-1"
+    },
+    {
+      "id": "58bed0eb73e6462336d53a54",
+      "hid": "8f2f4141f858ea358a97656b17d2712bc337e2a0",
+      "name": "IPhoneDevice - 3158D6BA-297A-45BB-B51F-FE07337065EC"
+    },
+    {
+      "id": "5775da47e4b05e82fc5fcb56",
+      "hid": "cb677447acb39f5a14673090ddf753fd7e488eaa",
+      "name": "IPhoneDevice - 5D7BEEF4-ABF0-4612-A67D-80860FE38233"
+    },
+    {
+      "id": "58bf105473e6462336d53ac9",
+      "hid": "87080d4ecb41231ca8f2399b3ff1f16765916612",
+      "name": "IPhoneDevice - 8241F274-2E70-49BD-A6E4-467356400377"
+    },
+    {
+      "id": "5901c57c73e64608c2095e01",
+      "hid": "a267d829e733ee8bf59763cf3c39ff70ec4a2bc9",
+      "name": "IPhoneDevice - 83BC4ADD-0D70-4AED-ACC4-799CA2FE7D91"
+    },
+    {
+      "id": "58066979e4b09cdf54c440bf",
+      "hid": "04d85d3c1b7e31db8640f83d97b74146253b9e6f",
+      "name": "IPhoneDevice - A633DEC4-3076-4C94-A03C-92EAB00734EB"
+    },
+    {
+      "id": "57722eaae4b05e82fc5fcaf4",
+      "hid": "49c498d5854274ad504083e915564a0dd6af29aa",
+      "name": "IPhoneDevice - BF3E9E46-80F4-4DC0-A5B1-4AA5F075B301"
+    },
+    {
+      "id": "58f8761573e6464d8b2bd350",
+      "hid": "a0f9a560af7f530edb8d35ec3ba0ec5cab6fe656",
+      "name": "IPhoneDevice - CE3BAA8F-5FB9-4AA8-AF9B-805932FD12C5"
+    },
+    {
+      "id": "58049eb6e4b09cdf54c43166",
+      "hid": "cc35c08328cfd6e5caacf730d26b6e3db4d3bb65",
+      "name": "IPhoneDevice - E7FD1849-155B-4C53-9DA7-E437A0697C66"
+    },
+    {
+      "id": "583645ef32c5052b2696bb31",
+      "hid": "f54f082605ea49fd27cd09e89c53a3d0d4d4e73c",
+      "name": "IPhoneDevice - F21EFDF3-4A5C-4983-BCF1-C28CC1D11551"
+    },
+    {
+      "id": "573f8df0e4b0c9b4a1a5de2b",
+      "hid": "83f1e6de4b4b31a729d6f73142bec03d59965f8a",
+      "name": "Jeth - $301$0-0-0-04000046e"
+    },
+    {
+      "id": "584b32a332c5052b2696bef7",
+      "hid": "3f47657d9ff3ef1f80e834584100a6c0022b63a3",
+      "name": "Kevin - C0:79:2A:30:4D:4D"
+    },
+    {
+      "id": "584fd19c32c5052b2696bf5f",
+      "hid": "f41c1ccee746c41739877237e48ed05af5d7f9de",
+      "name": "Kevin - floor_plan_demo_d"
+    },
+    {
+      "id": "57d7dbd9d7b97dc6f3974f41",
+      "hid": "c46188ac2919dc1b5f171bd38659441e770fa480",
+      "name": "Kitchen 1 - dm-test-restaurant-kitchen-1"
+    },
+    {
+      "id": "57f3913e19e0cfc6d1cbf70b",
+      "hid": "4e7b2c41b801ad2dcd56298a915321bac9a6888c",
+      "name": "KR-1011-test - KR-1011-test"
+    },
+    {
+      "id": "57add0abe4b01531b49c072d",
+      "hid": "5b9bf093229133ee967b53a831a013f0054a4f28",
+      "name": "KR-763 Test Device 1 - kr-763-test-device-1"
+    },
+    {
+      "id": "57ac5f495dbe51813d2b096d",
+      "hid": "4df4c77f4024b9094cbda3258894f4e5b7126b45",
+      "name": "KR-775 test device - KR-775-test-device 1"
+    },
+    {
+      "id": "589e4ea073e6463cc00f1739",
+      "hid": "765c217dfcb91fb4b239f57cb90fa7f104a82d16",
+      "name": "Kronos Gateway (Tam) - gateway-tam-test-1"
+    },
+    {
+      "id": "589ed22d73e6463cc00f17b3",
+      "hid": "ed6a08c60952dc054b4648580d76d9a87950c7d6",
+      "name": "Kronos Gateway (Tam) Connector - gateway-tam-test-1-connector"
+    },
+    {
+      "id": "5701f0cce4b0925f05fea267",
+      "hid": "d8e82fbc10189feb7a169c652ea81dd7d5bf7278",
+      "name": "Kronos Gateway - gateway-001"
+    },
+    {
+      "id": "57218c26e4b0f7d642be8fe1",
+      "hid": "a073ce995fa814521ddea12c7568e6506b7e2ca6",
+      "name": "Kronos Gateway - gateway-aws-1"
+    },
+    {
+      "id": "579b5e73e4b0e389818041d1",
+      "hid": "4eb5379a93e00717918f3ab3010e06a55b35977f",
+      "name": "Kronos Gateway - gateway-aws-dc"
+    },
+    {
+      "id": "57c0521be4b00beab9e1e629",
+      "hid": "a66d8019c2caf1d2cdf878dae0f2e9be06d5787a",
+      "name": "Kronos Gateway - gateway-dc-1"
+    },
+    {
+      "id": "57dbaf90e4b07ed47a9364a7",
+      "hid": "810040c8a2b4cfe43be8d7e37a3c1a8d2b0b3ac4",
+      "name": "Kronos Gateway - gateway-dc-iot"
+    },
+    {
+      "id": "58062c18e4b09cdf54c43eb4",
+      "hid": "152bc7fc37a5ab8bcf3091096d247a655d364444",
+      "name": "Kronos Gateway - gateway-dc-test-iot"
+    },
+    {
+      "id": "589ca6f273e6463cc00f16b4",
+      "hid": "db3c1cf3ea89121ddd7f107a0250bd125de3d927",
+      "name": "Kronos Gateway - gateway-dc-test-iot-3"
+    },
+    {
+      "id": "57fe4face4b056eecd992cef",
+      "hid": "0ce2a67a2cf1414383b9b9fd4e932b193ea2d99a",
+      "name": "Kronos Gateway - gateway-dev-iot"
+    },
+    {
+      "id": "57b77b2ee4b00beab9e1b84a",
+      "hid": "6e207a45582732b39914e424326e17805f806087",
+      "name": "Kronos Gateway - gateway-ibm-1"
+    },
+    {
+      "id": "57b5b2ebe4b0575aa136183d",
+      "hid": "e4c3accf795e5a0907cf0223bb72e16326679237",
+      "name": "Kronos Gateway - gateway-ibm-dc-test"
+    },
+    {
+      "id": "57ac3c69e4b01531b49bffb3",
+      "hid": "d86ceef396cd77f071abedf97222d9edf333a53f",
+      "name": "Kronos Gateway - gateway-iot-test"
+    },
+    {
+      "id": "57886cece4b0450bed6a957a",
+      "hid": "1456afb6a7a0a9480f6a6a4c8383f6ea0a6f50b9",
+      "name": "Kronos Gateway - gateway-tnguyen"
+    },
+    {
+      "id": "57d35151e4b021dcdbc8ef49",
+      "hid": "2b7032cfac66bcc5394eab19cc200f3f3aec7a43",
+      "name": "Kronos Gateway - gateway-tnguyen-ibm"
+    },
+    {
+      "id": "58ad1d6273e6463cc00f1de0",
+      "hid": "0ea0d2e87b44d94e832f2860f556ec60d3ab489a",
+      "name": "Kronos Gateway Auto UID (Tam) - gateway-c85b7682e63b"
+    },
+    {
+      "id": "58ad1d6273e6463cc00f1ddb",
+      "hid": "cff4d22be41144d053fdee72eeac39ee06579289",
+      "name": "Kronos Gateway Auto UID (Tam) Connector - gateway-c85b7682e63b-connector"
+    },
+    {
+      "id": "589ca6f273e6463cc00f1699",
+      "hid": "b4da4071fef7da41e9ef7877669749538dd39877",
+      "name": "Kronos Gateway Connector - gateway-dc-test-iot-3-connector"
+    },
+    {
+      "id": "5888e40f73e646dc83c69995",
+      "hid": "093ce34244c0bb05b59b4a3bcd9ff80071091715",
+      "name": "Kronos Gateway Connector - gateway-dc-test-iot-connector"
+    },
+    {
+      "id": "5853fb7a32c5052b2696bf9a",
+      "hid": "48be7a8c5ff7da328f7750856e0c1c5018c1f8b7",
+      "name": "Kronos Gateway ubuntu - gateway-dc-test-iot-000c29734208"
+    },
+    {
+      "id": "573387a1e4b015fd84373f0e",
+      "hid": "575a6bddd7fe033f14ed7d8847a11a7e08b77adc",
+      "name": "Lift_Truck_Battery_Charging - Lift_Truck_Battery_Charging"
+    },
+    {
+      "id": "5718b4fae4b0ab300e030102",
+      "hid": "8d15cf6a2c56a1c9de3cd4c1d9c7355a21f89914",
+      "name": "MicrosoftBand - 1ED975F1-4DA2-9374-5ECD-88C4BF51ED98"
+    },
+    {
+      "id": "571e8423e4b0f7d642be8f10",
+      "hid": "0c135b272254031b74807e95e90ff77c3424f790",
+      "name": "MicrosoftBand - 4DC17E3D-4DD0-03DA-5E5B-314EEAF7AC94"
+    },
+    {
+      "id": "57979f6ee4b00f8f402950bc",
+      "hid": "aed3c5ad608127dfedef539da0ea473292317d97",
+      "name": "MicrosoftBand - band-android-4c0bbefdc4dc"
+    },
+    {
+      "id": "5731bffee4b015fd84373e65",
+      "hid": "55fe32c8d6a35b313c4f260f2d2a8f8a3ccaf078",
+      "name": "MicrosoftBand - band-android-5882a8ce8b46"
+    },
+    {
+      "id": "5721e798e4b0f7d642be9012",
+      "hid": "47df706f87534a064f61e3e9021c5bdebeb8e6b2",
+      "name": "MicrosoftBand - cdd307f103af2c278d8df33742695bbe98cc2707"
+    },
+    {
+      "id": "5744eac4e4b0138a0550543f",
+      "hid": "4aff23a0adcbb15dd0793deed1d6eac97e3d5b2f",
+      "name": "Mike - $301$0-0-0-040000500"
+    },
+    {
+      "id": "57ac4fa2e4b01531b49c0058",
+      "hid": "40908f16038f75437d3f1ddd9eb077aae93dd9d1",
+      "name": "my test device - my-test-device-1234"
+    },
+    {
+      "id": "5744ead3e4b0138a05505445",
+      "hid": "a2aea3b015af514f901215d316eab9f3214681b5",
+      "name": "Network Tester - $301$0-0-0-040000425"
+    },
+    {
+      "id": "57448430e4b0138a0550543c",
+      "hid": "6e35b1b7f6f975de7f9f33b6bc86bc40400b36e7",
+      "name": "Network Tester - $301$0-0-0-040000529"
+    },
+    {
+      "id": "57e624e7e4b07ed47a937597",
+      "hid": "d86f8a4c96728596d2304dd2ee79f6a61479469c",
+      "name": "nucleo iks01a1 - nucleo-0080e1b4d36b-iks01a1"
+    },
+    {
+      "id": "57eb7381e4b07ed47a939722",
+      "hid": "83acf4356eaad9d7def3959b3cd0ef9edff7b97e",
+      "name": "nucleo iks01a1 - nucleo-0080e1b4d43b-iks01a1"
+    },
+    {
+      "id": "57e3be6fe4b07ed47a936b06",
+      "hid": "fde463e84c893b222810fd5174cdfac21201b4dc",
+      "name": "nucleo-sensortile - 3Bcleo--sensortile"
+    },
+    {
+      "id": "57e3bfc6e4b07ed47a936b1c",
+      "hid": "a51d709152d822d122f3acaffd646d123096b738",
+      "name": "nucleo-sensortile - nucleo-0080E1B4D43B-sensortile"
+    },
+    {
+      "id": "57e3c101e4b07ed47a936b26",
+      "hid": "2dba153a4a133f01335422850dbd14713771280e",
+      "name": "nucleo-sensortile - nucleo-0080e1b4d43b-sensortile"
+    },
+    {
+      "id": "57e3a172e4b07ed47a936a7b",
+      "hid": "a1fdc571ecf63c6ec1ac5d549d0fbb3fe7bf03a5",
+      "name": "nucleo-sensortile - nucleo-sensortile-1234"
+    },
+    {
+      "id": "5717e640e4b0ab300e0300c4",
+      "hid": "f952a87548683540876876d6663f6be704da14a7",
+      "name": "PowerScout Collector - powerscout-collector-test-001"
+    },
+    {
+      "id": "5728e918e4b0f22b715765b1",
+      "hid": "2a2d0494a9530c152a51e755a3da5d35ec18f3c4",
+      "name": "PowerScout Meter - powerscout-meter-2"
+    },
+    {
+      "id": "58f1483673e6464d8b2bd23e",
+      "hid": "d47b7af7b644f495a74b66eaaa33dbbd13a54f61",
+      "name": "probook-4540s - probook-000000000000-notebook"
+    },
+    {
+      "id": "586cb26932c5052b2696c4c0",
+      "hid": "f8400f12182e53e39c4f300bddaff9007b59991b",
+      "name": "probook-4540s - probook-20689dc1b689-notebook"
+    },
+    {
+      "id": "58d3a59073e646088908d559",
+      "hid": "254f344581cc729820bbea29193195562392637f",
+      "name": "Raspberry PI periphery (DC) - rp-b827eb79d252"
+    },
+    {
+      "id": "57f4d9d0e4b03d2f4b18b980",
+      "hid": "7c4383120b93f9051dca6009e3836eb0c5bb9bdf",
+      "name": "Reactor: 01 - reactor-01"
+    },
+    {
+      "id": "57f4d9fee4b03d2f4b18b983",
+      "hid": "8b1c66594fcf2e97b1e436a0a9f1b11bda5bc603",
+      "name": "Reactor: 02 - reactor-02"
+    },
+    {
+      "id": "57f4da1ae4b03d2f4b18b986",
+      "hid": "e7a370f9d19fe907a16469f207e89a3fe1cf0a8a",
+      "name": "Reactor: 03 - reactor-03"
+    },
+    {
+      "id": "57f4da38e4b03d2f4b18b989",
+      "hid": "26f80356e762575986b1424ab0744c10783c09f5",
+      "name": "Reactor: 04 - reactor-04"
+    },
+    {
+      "id": "57f4dafbe4b03d2f4b18b98c",
+      "hid": "3ef3576e939e595cf1285010f6ad53abf4e43bed",
+      "name": "Reactor: 05 - reactor-05"
+    },
+    {
+      "id": "57f4db0ee4b03d2f4b18b98f",
+      "hid": "42cd33a5a36c9dc382f70beb19240778a772abf4",
+      "name": "Reactor: 06 - reactor-06"
+    },
+    {
+      "id": "57f4db1fe4b03d2f4b18b992",
+      "hid": "fc7ba045748dc8d9be7e721de09c98e90aa121ba",
+      "name": "Reactor: 07 - reactor-07"
+    },
+    {
+      "id": "57f4db30e4b03d2f4b18b995",
+      "hid": "869f9423230c5a623242a879ab06849140cf22e7",
+      "name": "Reactor: 08 - reactor-08"
+    },
+    {
+      "id": "57f4db41e4b03d2f4b18b998",
+      "hid": "cc1473797d8b8894d2893bf2fd5c4cc948bbab51",
+      "name": "Reactor: 09 - reactor-09"
+    },
+    {
+      "id": "57f4db53e4b03d2f4b18b99b",
+      "hid": "f1d890518050c9f1b528a0a2ac2ac60dbce43c14",
+      "name": "Reactor: 10 - reactor-10"
+    },
+    {
+      "id": "57f4db6be4b03d2f4b18b99e",
+      "hid": "dbb8d33362de6cd71d7cb399d29335d543d31a7c",
+      "name": "Reactor: 11 - reactor-11"
+    },
+    {
+      "id": "57f4db7de4b03d2f4b18b9a1",
+      "hid": "330c9572c6c16f28beb9f919d1a1d1ce55aa43d4",
+      "name": "Reactor: 12 - reactor-12"
+    },
+    {
+      "id": "57f4db94e4b03d2f4b18b9a4",
+      "hid": "f7778ed25af12dd347a0157d694e6a8296ee1ab2",
+      "name": "Reactor: 13 - reactor-13"
+    },
+    {
+      "id": "57f4dba5e4b03d2f4b18b9a7",
+      "hid": "b5d9ccbd166f686d3dd4fd4f453035cb09d0868f",
+      "name": "Reactor: 14 - reactor-14"
+    },
+    {
+      "id": "57f4dbb6e4b03d2f4b18b9aa",
+      "hid": "ce1318750466400e737dcc69085bb7d038beb65c",
+      "name": "Reactor: 15 - reactor-15"
+    },
+    {
+      "id": "58dbb9bb465f202ccc2de04f",
+      "hid": "1db692d7f1c19c49752e2d5266d87320ce1a5be6",
+      "name": "registration - string"
+    },
+    {
+      "id": "57336f01e4b015fd84373f03",
+      "hid": "cfba8b3207b298389cedeaded28f23e7e5d80bc9",
+      "name": "Rhythm+ Armband - rhythm-plus-d484c050a6d7"
+    },
+    {
+      "id": "572670c8e4b0f7d642be90ba",
+      "hid": "2ef830e397ccfc454cb8b20e1d2c605df11afeea",
+      "name": "Rhythm+ DragonBoard (tnguyen) - rhythm-plus-fa73b2d1fdc7"
+    },
+    {
+      "id": "56ea38a1e4b0824486080267",
+      "hid": "dbca7cd6f5f9ad0df0751b89b667f265ac6eccff",
+      "name": "SAM Car - sam-001"
+    },
+    {
+      "id": "56ea3a8de4b0ee71a9200584",
+      "hid": "866292fc8a97d2c0c5d83e05c6ddc5fb5ba80b10",
+      "name": "SAM Car - sam-car"
+    },
+    {
+      "id": "56dfc051e4b0bbe0ab709725",
+      "hid": "6c8c13a0bc7a75168eb9f5ba316634b0583897b7",
+      "name": "SAM Car - SAMCar-dell-001"
+    },
+    {
+      "id": "56d69bc89f793add08972398",
+      "hid": "3999dde5fe7bfb1c8fce362010742cb80d66b2ed",
+      "name": "SAM Car - Stingray - SAMCar-tnguyen"
+    },
+    {
+      "id": "56fef7fbe4b0e3e6302e32d3",
+      "hid": "b268575fcafdd6cc46b6e9593fd235684b935162",
+      "name": "SAM Car - Z06 - sam-z06-1"
+    },
+    {
+      "id": "57192be7e4b0ab300e030158",
+      "hid": "b5b4d5f2a014800a44c46f7b7d560db1b738dabd",
+      "name": "SAM Car Stingray - sam-stingray"
+    },
+    {
+      "id": "57186bc1e4b0ab300e0300db",
+      "hid": "354cf6c48fd0afdab36ef5b41220f3b519eb6b86",
+      "name": "SAM Car Test 001 - sam-car-gateway"
+    },
+    {
+      "id": "57053978e4b0f27523899ade",
+      "hid": "e876f19354a868a834ca2c1bd7db893d0d9dcc64",
+      "name": "SAM Car Z06 - sam-car-test-001"
+    },
+    {
+      "id": "57035c6be4b0e3032beb5267",
+      "hid": "b77b26a085590b9a9234ad845eaf50b2aefa7c85",
+      "name": "Sam Gateway - Z06 - gateway-z06-1"
+    },
+    {
+      "id": "571c4ed0e4b0f7d642be8e36",
+      "hid": "b285ea0a011caa112efc364d16bf81a73b8dfe36",
+      "name": "SAM Stingray Gateway - gateway-stingray"
+    },
+    {
+      "id": "57192be7e4b0ab300e030159",
+      "hid": "8ecafa6480341080f3fe5f69e2503c3fd37335e7",
+      "name": "SamCar Stingray Gateway - sam-stingray-gateway"
+    },
+    {
+      "id": "584fd16432c5052b2696bf56",
+      "hid": "6c6e8ee11126a769e46cb05e433cd9110afea8f3",
+      "name": "Sean - floor_plan_demo_a"
+    },
+    {
+      "id": "58bdf3e673e6462336d53677",
+      "hid": "198c30ebfc69e38d413ee1ba9bdb52a65f6f1e6a",
+      "name": "Sean's iPhone - BB0AA28E-4F92-4564-AE2C-DD593240D29B"
+    },
+    {
+      "id": "5820db2ae4b0279ad9cf47b2",
+      "hid": "95e4723a99a295094dc23cb2d44e7aa4aac53164",
+      "name": "Sean's MS Band - 9EF1EB8F-055F-F7C8-715D-901ABDBB8667"
+    },
+    {
+      "id": "58b8e440705f8730245ca7c2",
+      "hid": "pantherboard-device-sim-01",
+      "name": "Sean's Panther - pantherboard-device-2"
+    },
+    {
+      "id": "58c0c01d73e646802be95a42",
+      "hid": "646b44c3ed5476072619f19a01df6f921dbbb325",
+      "name": "Sean's Quadro - quadro-device-1"
+    },
+    {
+      "id": "58c19d74705f8707140ca3f4",
+      "hid": "quadro-device-sim-01",
+      "name": "Sean's Quadro 2 - quadro-device-2"
+    },
+    {
+      "id": "573387a1e4b015fd84373f12",
+      "hid": "77052aaffd4937a9ac1ce164770f1eb37921163c",
+      "name": "Seneca_Panel - Seneca_Panel"
+    },
+    {
+      "id": "57800372e4b05e82fc5fcc51",
+      "hid": "e3edfcb5075425bd25826641244a764933a1b4ff",
+      "name": "SenseAbility - 89C7982D-58E2-2230-1401-869F32C3C6CB"
+    },
+    {
+      "id": "577ce82de4b05e82fc5fcbc2",
+      "hid": "9f0f864a9865666ce370ddc92d9bd2b4728608ac",
+      "name": "SenseAbility - A3EF7AF4-550B-FE81-A885-5F3C075D6A42"
+    },
+    {
+      "id": "572a8202e4b03a5c59d9eb04",
+      "hid": "d34cbecfeb5bc3c92e9cdad1985b34847cb1d9f9",
+      "name": "SenseAbility 2 (demo) - sa2-00a05016101f"
+    },
+    {
+      "id": "57284a0ce4b0f22b71576592",
+      "hid": "139959433a9cb84026c787d66f7570457e1546cc",
+      "name": "SenseAbility 2 DragonBoard (tnguyen) - sa2-00a0500b0a29"
+    },
+    {
+      "id": "57ee2cf1e4b07ed47a93a31e",
+      "hid": "88afebb072740479f25519074f7a5c04310943d6",
+      "name": "SenseAbilityKit - sa2-00a0500f2c1c"
+    },
+    {
+      "id": "579843a3e4b0e3898180403b",
+      "hid": "f6c5206c01b7399a062d119808bf0170114a2ef3",
+      "name": "SenseAbilityKit - sk-android-00a0500b0a29"
+    },
+    {
+      "id": "57ecdd6fe4b07ed47a939d6c",
+      "hid": "def5c35a4eadb00a86f040348ac2cc513be8803a",
+      "name": "SensorPuck - sl-android-d481cae16f7f"
+    },
+    {
+      "id": "57adafe9e4b01531b49c0612",
+      "hid": "92976bde786200f99eb108fcb6de9841d8718d40",
+      "name": "SensorPuck - sl-android-d481cae17db6"
+    },
+    {
+      "id": "575a6ed8e4b05e82fc5fc8e6",
+      "hid": "cc0dd265bdebece257d7ba8af059bc21dc5b74dd",
+      "name": "SensorPuck-6f7d - puck-d481cae16f7d"
+    },
+    {
+      "id": "575a64c5e4b05e82fc5fc8d8",
+      "hid": "4a83f901a925e5e3d1a5b892aadce567f4b4d9ea",
+      "name": "SensorPuck-702b - puck-d481cae1702b"
+    },
+    {
+      "id": "572913c7e4b0f22b715765c9",
+      "hid": "577ca5b94137eb78fbde147ca3744c333aad88e1",
+      "name": "SensorPuck-744a - puck-d481cae0744a"
+    },
+    {
+      "id": "57296056e4b0f22b715765de",
+      "hid": "7a16ef909f805bfe91f3feeb2594fe4e8d199ea1",
+      "name": "SensorPuck-745a - puck-d481cae0745a"
+    },
+    {
+      "id": "5725c444e4b0f7d642be909c",
+      "hid": "f3964c972fea0ba04df283d05b2e05993d97aca0",
+      "name": "SensorPuck-75a8 - puck-"
+    },
+    {
+      "id": "5725ca10e4b0f7d642be90a1",
+      "hid": "31f8490c3e1de7710bca259644840c3fab3d63a2",
+      "name": "SensorPuck-75a8 - puck-d481cae075a8"
+    },
+    {
+      "id": "5772e129e4b05e82fc5fcb34",
+      "hid": "ea57f82a9813581f9ac58d0a95caa6bf97964abd",
+      "name": "SensorPuck-75A8 - st-android-d481cae075a8"
+    },
+    {
+      "id": "57295943e4b0f22b715765d9",
+      "hid": "3800dd2b58b2d90ef27f0e7d15ea800373cbc23e",
+      "name": "SensorPuck-7610 - puck-d481cae07610"
+    },
+    {
+      "id": "57296058e4b0f22b715765e1",
+      "hid": "7cf7e6e389479aceb4833b9691bdc91252f94e83",
+      "name": "SensorPuck-7dd6 - puck-d481cae07dd6"
+    },
+    {
+      "id": "576be2d8e4b05e82fc5fca9b",
+      "hid": "d709d05e5c9290636b5fda27eea8ddc70b2c83ca",
+      "name": "SensorPuck:7D:B - st-android-d481cae17db6"
+    },
+    {
+      "id": "573163e6e4b015fd84373e59",
+      "hid": "d0c9729076675fd372be973fce8fa4ad3b572c4d",
+      "name": "SensorTag - B0:B4:48:BA:32:85"
+    },
+    {
+      "id": "572787a6e4b0f7d642be90d9",
+      "hid": "b3c166b7a7cdc23ec6e9816f527b329fd14dd0fd",
+      "name": "SensorTag - b6b3df23a538961ba384b517bbe8321d4abf3fe3"
+    },
+    {
+      "id": "5718c498e4b0ab300e030111",
+      "hid": "00a937aa24cd9d8f42285fe35a7499d5fd1f624c",
+      "name": "SensorTag - bc9c0b71f304c0e09dc83ef7a2cbc476480ae89b"
+    },
+    {
+      "id": "57205f8ce4b0f7d642be8fbd",
+      "hid": "fabbfbc608608164c00240af19bf30dc228596c2",
+      "name": "SensorTag - E9E196875A9E1F14E8F7249FFFB677C3"
+    },
+    {
+      "id": "57557e8fe4b05e82fc5fc850",
+      "hid": "adb2b34a15bf43b4eb00283fc2ac665c6902d3a4",
+      "name": "SensorTag - st-android-244b037d04a5"
+    },
+    {
+      "id": "575577cfe4b05e82fc5fc84d",
+      "hid": "14c277733f982dbd3a954831a7b71ac041ecff38",
+      "name": "SensorTag - st-android-6f1b0173578a"
+    },
+    {
+      "id": "5768dd31e4b05e82fc5fc9d2",
+      "hid": "f0af44e203209823fe77078c5a6c6293f4863773",
+      "name": "SensorTag - st-android-b0b448ba3285"
+    },
+    {
+      "id": "5731cde5e4b015fd84373e76",
+      "hid": "9fa67cee6039d8c5285e72345962503755d31d41",
+      "name": "SensorTag - st-android-b0b448bc4d07"
+    },
+    {
+      "id": "575577a1e4b05e82fc5fc84a",
+      "hid": "88bf11857d93002ffd38070b3b2547a9e3f287a7",
+      "name": "SensorTag - st-android-fa0e9359145f"
+    },
+    {
+      "id": "571d19a1e4b0f7d642be8e51",
+      "hid": "9ff0d1ec6081b3a2dd6e2010b91addbfdceb68cb",
+      "name": "SensorTag DragonBoard (tnguyen) - st-b0b448ba3285"
+    },
+    {
+      "id": "570547e1e4b0f27523899ae7",
+      "hid": "5c552481851868626bc6910fe9e220e1ee9e5179",
+      "name": "SensorTag ST1 - st-01"
+    },
+    {
+      "id": "5787a199e4b057e30cefa538",
+      "hid": "e1a36154adb122afe0ab6fe32f8026da22d4fe2f",
+      "name": "SensorTag ST1 - st-b0b448c05981"
+    },
+    {
+      "id": "57398660e4b015fd84374052",
+      "hid": "e332e0709330c3326629fab05bb7b11baf288967",
+      "name": "SensorTag ST2 (DC) - st-b0b448c05981-test"
+    },
+    {
+      "id": "57d6a1a3e4b021dcdbc8f0af",
+      "hid": "bb3066d2c0e11c9ce0faf2926fd8f7f4c41c580e",
+      "name": "SensorTile - 02C4EC5D-B21F-5E29-A613-856F95421F15"
+    },
+    {
+      "id": "57ecfe70e4b07ed47a939e07",
+      "hid": "cad26afc10b673bbacdd4b72d669ac3fa44fd9c4",
+      "name": "SensorTile - stile-android-d087c8ff78ef"
+    },
+    {
+      "id": "57bd8eb0e4b00beab9e1d307",
+      "hid": "742f18b7d5ee3ec89d90186fd7e62dd7af322578",
+      "name": "SensorTile ST1 - st-d087c8ff78ef"
+    },
+    {
+      "id": "580a868be4b09cdf54c446c6",
+      "hid": "4b716d05175d0b0a6c0117e57a599ddff95af174",
+      "name": "Serial Test 001 - serial-sensor-test-001"
+    },
+    {
+      "id": "58dc011773e646e68fb770ad",
+      "hid": "e061b1f087f03a1a5ffba798fa095d13e0caba4b",
+      "name": "Server OOOOOO-22222-1111-B6DD-000EA68F75B9 - OOOOOO-22222-1111-B6DD-000EA68F75B9"
+    },
+    {
+      "id": "58dc01aa73e646e68fb770af",
+      "hid": "065cda355a77d9272bdff2a6be57338138338b18",
+      "name": "Server SERVER-000001-XXXXXX - SERVER-000001-XXXXXX"
+    },
+    {
+      "id": "58dc020673e646e68fb770b1",
+      "hid": "b65e47f0fda85fd2dcc6a2b61bc49da363cbed10",
+      "name": "Server SERVER-000002-XXXXXX - SERVER-000002-XXXXXX"
+    },
+    {
+      "id": "58dbf2fb73e646e68fb770ab",
+      "hid": "8bf491517b345754df3d5564e5811dcf5dc80d92",
+      "name": "Server XXXXXXX-C2AF-1111-B6DD-000EA68F75B9 - XXXXXXX-C2AF-1111-B6DD-000EA68F75B9"
+    },
+    {
+      "id": "581abb02e4b0279ad9cf448e",
+      "hid": "9242242542f2c35ff8daac243d1aa45dd6665cb0",
+      "name": "Silabs HA Gateway (TAM) - silabs-ha-gw-tam"
+    },
+    {
+      "id": "57232984e4b0f7d642be903f",
+      "hid": "5f1754b4ff8e41495e1320c53373dd9cc42d4134",
+      "name": "SiLabs Puck DragonBoard (tnguyen) - silabs-d481cae075a8"
+    },
+    {
+      "id": "581ab7b9e4b0279ad9cf4486",
+      "hid": "89a96766c0fc2a996cf10d4a71532d1e39be8ffd",
+      "name": "silabs zigBee gateway (tam) - silabs-zigbee-gateway-tam"
+    },
+    {
+      "id": "57557ec0e4b05e82fc5fc856",
+      "hid": "2cd5a118ce9630e7528e2d2f226e3d804482d98a",
+      "name": "SiLabsSensorPuck - SensorPuck-6F7F"
+    },
+    {
+      "id": "57588fd3e4b05e82fc5fc8a4",
+      "hid": "268ada5bda6aacb56ef2a2e4e3c797b957265b01",
+      "name": "SiLabsSensorPuck - SensorPuck-75A8"
+    },
+    {
+      "id": "57861bbae4b057e30cef9e95",
+      "hid": "ac9f19efae2325f2188b5313943510557ef1c12c",
+      "name": "SiLabsSensorPuck - SensorPuck-7DB6"
+    },
+    {
+      "id": "5893744b705f870ec4bc5983",
+      "hid": "stoelting-device-sim-02",
+      "name": "Sir Vings Machine - stoelting-device-2"
+    },
+    {
+      "id": "584fd1a632c5052b2696bf62",
+      "hid": "0c3a23606149d8eb231586c2eda5f8c018e35600",
+      "name": "ST Data - floor_plan_demo_e"
+    },
+    {
+      "id": "573cef327a963edffb0dfd50",
+      "hid": "31a2bcbb9c9358643b9e7539ed216f8b349a9061",
+      "name": "Tam - $301$0-0-0-040000467"
+    },
+    {
+      "id": "57b77b2ee4b00beab9e1b866",
+      "hid": "d1c1f9f3a58ac42638c88796b7c2a891a546a32f",
+      "name": "Tam's Dragonfly - cellular-modem-tam"
+    },
+    {
+      "id": "57a42ea0e4b0ac495c7699cd",
+      "hid": "e2c79081c93d99bba6b57997833231fa90b7cefd",
+      "name": "Tam's mDot Box 1 - 008000000000BB14"
+    },
+    {
+      "id": "57a42ec9e4b0ac495c7699d0",
+      "hid": "bead6f9ddf1051028811ebe0a16b01a9a0f09783",
+      "name": "Tam's mDot Box 2 - 008000000000B3B2"
+    },
+    {
+      "id": "5904b55c73e64608c2096007",
+      "hid": "446a1609cafd559b0c81dc25e70b14bd7b99ea5d",
+      "name": "tam-test-gtaa - tam-test-gtaa"
+    },
+    {
+      "id": "57fd48f8e4b0319503ae5e1e",
+      "hid": "497a73ce2cc807875fa217c602541aabc405cf9e",
+      "name": "Test device 1 - test-device-1"
+    },
+    {
+      "id": "5715fd79e4e2ddbb80e51e82",
+      "hid": "7ff9be620009000b296a209c06f9ee41136ab1cd",
+      "name": "Test-device-001 - test-device-001"
+    },
+    {
+      "id": "5715fe15e4e2ddbb80e51e85",
+      "hid": "4bc45589c43b8b07971c80a162e177b0fd6144e7",
+      "name": "test-device-002 - test-device-002"
+    },
+    {
+      "id": "57a0695aa22209477bb0be43",
+      "hid": "75f50f0c0a81dfe851cea3550c01b471721c225a",
+      "name": "Test-device-002 - test-device-002"
+    },
+    {
+      "id": "57ee6a62d7b95b88e0f32cb0",
+      "hid": "5cf7331ed4f9e876328c5fbbc38e4541bb8afcbf",
+      "name": "test-device-010 - test-device-010"
+    },
+    {
+      "id": "57f25b59d7b9fb28cf77a5c9",
+      "hid": "4e8c62ef1c8d856e2602b1d9a2c5232e3821e792",
+      "name": "test-device-011 - test-device-011"
+    },
+    {
+      "id": "56c0186b297cd651d3733371",
+      "hid": "e7160348a588ff38dbeac810c79ad3090676b61906113a8430d42159e03fbc0e",
+      "name": "test-device-1 - uid-001"
+    },
+    {
+      "id": "58186b5be4b0279ad9cf41ab",
+      "hid": "72dec0fdaf4eb86406031028204850faee00903f",
+      "name": "Thunder React - thunderboard-795694"
+    },
+    {
+      "id": "57976420e4b00f8f402950b1",
+      "hid": "16ad93c7471afec36cce11ef97a1c07c5910cbad",
+      "name": "Thunderboard - BA2288B2-0B4A-7231-5512-87B27E33016A"
+    },
+    {
+      "id": "58243bece4b0279ad9cf4b39",
+      "hid": "48363698bcb388e40c01cd759af8f4a6a7a2b8cb",
+      "name": "ThunderBoard - thunderboard-743423"
+    },
+    {
+      "id": "5792080ee4b00f8f40294f32",
+      "hid": "e27e5979d54998880e2de5527d3c5cd7862a4442",
+      "name": "Thunderboard React TBR1 - tbr-000b570c5864"
+    },
+    {
+      "id": "571e14cae4b0f7d642be8ea7",
+      "hid": "ddbd5b3aad47de7fe8549540b53ff463bd329b98",
+      "name": "TISensorTag - 0DA56C8A-C53B-D687-3FDE-54339F67B35C"
+    },
+    {
+      "id": "571ec8a4e4b0f7d642be8f27",
+      "hid": "f2ae2bf22a0e526132759eebedfc506d8cc97cb1",
+      "name": "TISensorTag - 84AEEB2F-8DCE-7292-C8DE-03DDC547A224"
+    },
+    {
+      "id": "571e6b01e4b0f7d642be8f0b",
+      "hid": "1bcb4a6ecae55d13dd73793c87a8dfe1d240b518",
+      "name": "TISensorTag - D8932F50-5A9E-95E3-04D6-4304AA2FC926"
+    },
+    {
+      "id": "5744eacee4b0138a05505442",
+      "hid": "ec5bf1e7fe5640fd7eac68f39afeaeb860245eb1",
+      "name": "TJ - $301$0-0-0-04f00258e"
+    },
+    {
+      "id": "5744ead8e4b0138a05505448",
+      "hid": "a4b52d8a537d750b65a53787532de1ae6bcd2b67",
+      "name": "Trevor - $301$0-0-0-04f00000b"
+    },
+    {
+      "id": "57873cece4b057e30cefa377",
+      "hid": "570683cc3e368efa8211b590abb2f9643ec88672",
+      "name": "UDP forwarder DC (Test custom info) - udp-forwarder-dc-test-custom-info"
+    },
+    {
+      "id": "579b5e73e4b0e389818041ce",
+      "hid": "3a6d27070ac5b46d809bc63ea5fec82218cf2ae2",
+      "name": "UDP forwarder DC Test (Rhythm Plus) - udp-forwarder-DC-test-rhymth-plus"
+    },
+    {
+      "id": "5785612de4b05e82fc5fedd4",
+      "hid": "a0378832cd4c2b82ce3f4bbcfd4d229fff8a4d78",
+      "name": "UDP forwarder TNGUYEN (Rhythm Plus) - udp-forwarder-tnguyen-rhymth-plus"
+    },
+    {
+      "id": "57855f90e4b05e82fc5fedc9",
+      "hid": "cf464530c1ebde5b2ebbd83f98dbb7e48aac4a3a",
+      "name": "UDP forwarder TNGUYEN - udp-forwarder-tnguyen"
+    },
+    {
+      "id": "58dcb66973e646e68fb770d0",
+      "hid": "d721051e93536de0f723e9aa724cec3e595dbb4a",
+      "name": "ULPGN - QCA-84253f1a337a-devkit"
+    },
+    {
+      "id": "582f1f8d32c50564187881dd",
+      "hid": "6fc1debae84be814c0245663967a9b41c34a4010",
+      "name": "VirtualNodeName 1 @Tag 01 - Virtual Tag 01:"
+    },
+    {
+      "id": "5832af6832c5056418788234",
+      "hid": "87e542f4c941b8da7519ac8f8ac42963a2f4eca9",
+      "name": "VirtualNodeName 2 @Tag 02 - Virtual Tag 02:"
+    },
+    {
+      "id": "5832cb6a32c505641878839d",
+      "hid": "766eac2d1f55fb3aa7b1c4ebd2a96f5e5c2d242b",
+      "name": "VirtualNodeName 3 @Tag 03 - Virtual Tag 03:"
+    },
+    {
+      "id": "56fef8b9e4b0e3e6302e32dc",
+      "hid": "0d3ee220d8f2542f48e1d6db699a460f73ff03ed",
+      "name": "WebCam One - Z06 - webcam-z06-1"
+    },
+    {
+      "id": "57192cbce4b0ab300e03015e",
+      "hid": "9657baee7b03d4b8e2608036373fbf53c9a619f8",
+      "name": "WebCam Stingray 1 - webcam-stingray-1"
+    },
+    {
+      "id": "571c44b1e4b0f7d642be8e21",
+      "hid": "a84b59f03150c511d18e3776016edff44ccd618c",
+      "name": "WebCam Stingray 2 - webcam-stingray-2"
+    },
+    {
+      "id": "570c809de4b0caf03e162e5c",
+      "hid": "0f103edf688658cdd605d1f20fb24c279351fb3a",
+      "name": "WebCam Test 001 - webcam-test-001"
+    },
+    {
+      "id": "571b09d4e4b0f7d642be8ded",
+      "hid": "8be0c7cf0e0a45703902267d49f64962d97caee7",
+      "name": "WebCam Test 002 - webcam-test-002"
+    },
+    {
+      "id": "5700b9e9e4b0925f05fea255",
+      "hid": "8141653c6e5c46d5a378162190c97310c36cd5f2",
+      "name": "WebCam Two - Z06 - webcam-z06-2"
+    },
+    {
+      "id": "573c2e39e4b0b1a3229213d2",
+      "hid": "182a2b698623ced871a37ff5f7f43c1e6a60cf37",
+      "name": "WiFi (305a3a5f6d00) - wifi-305a3a5f6d00"
+    },
+    {
+      "id": "57035da9e4b0e3032beb526d",
+      "hid": "ad2a5d7091b62ac77f17e216c8ae9f608463c177",
+      "name": "XBee Sensor - Z06 - xbee-sensor-z06-1"
+    },
+    {
+      "id": "56ea3c87e4b0ee71a9200588",
+      "hid": "3bf941f24e1b546f1140f3d0861c491244b004dd",
+      "name": "XBeeSensor - Stingray - sam-car-xbee"
+    },
+    {
+      "id": "56d94168e4b05af4e4f9b5ef",
+      "hid": "0b8161d549d75296b5af23bb32d2a2ca9bdb94b9",
+      "name": "XBeeSensor - XBeeSensor-tnguyen"
+    },
+    {
+      "id": "571c4ed0e4b0f7d642be8e39",
+      "hid": "dc0b8013277e005192e2fa036a6b71a735c9ca1d",
+      "name": "XBeeSensor Stingray - xbee-sensor-stingray"
+    },
+    {
+      "id": "577e5246e4b05e82fc5fcbf3",
+      "hid": "b85666a713cecb74d244e510a8d7df2fae33aea0",
+      "name": "XBeeSensor Test 001 - xbee-sensor-test-001"
+    },
+    {
+      "id": "56f4bce8e4b028cb626b34a7",
+      "hid": "c8737df14f764dd9593c4a82aae2db8f479c4c32",
+      "name": "XBeeSensor-Z06 - xbee-z06"
+    },
+    {
+      "id": "58b9816973e646fe7069b96a",
+      "hid": "12A339A9C6BD760F23CEA60FD3DA25D4A2877684",
+      "name": "xConnect Gateway (Mike B) - gateway-f8cab83b47b7"
+    },
+    {
+      "id": "58dbe7db73e646e68fb77079",
+      "hid": "4fb0cc368ed26d3ddef898d57a9e1569fceed114",
+      "name": "xConnect Gateway DEMO - gateway-000c2912b386"
+    },
+    {
+      "id": "58dc1b9073e646e68fb770b6",
+      "hid": "3d18dbde76190d7d5c0e6bacd6c5884f73021a20",
+      "name": "xConnect Gateway DEMO - gateway-000d3a72b660"
+    },
+    {
+      "id": "58dbe7db73e646e68fb77057",
+      "hid": "46a58200b28eafc3c518531d4a0461f2b8553acd",
+      "name": "xConnect Gateway DEMO Connector - gateway-000c2912b386-connector"
+    },
+    {
+      "id": "58dbf0d373e646e68fb77082",
+      "hid": "d933debfe7f11c6575fe566a2e9560b23f1abae5",
+      "name": "xConnect Gateway DEMO Connector - gateway-f8cab83b47b7-connector"
+    },
+    {
+      "id": "589ca6f273e6463cc00f1697",
+      "hid": "c191d5caf09f0a88242632ece9b2f9531fb70739",
+      "name": "XConnect Tam Test 1 - xconnect-tam-test-1"
+    },
+    {
+      "id": "58a20e1973e6463cc00f1934",
+      "hid": "f877b6ad479b1ce05b0c6370544c501ad125a84e",
+      "name": "XK-FLX-XC - gateway-xk-flx-xc-dev"
+    },
+    {
+      "id": "58a20e1873e6463cc00f1916",
+      "hid": "5df0979cd0bf40f6156439d84a21cc594d1a6b8f",
+      "name": "XK-FLX-XC Connector - gateway-xk-flx-xc-dev-connector"
+    },
+    {
+      "id": "58dc2fe773e646e68fb770c6",
+      "hid": "e6394acf273251750a712728f53e90aa3eb0916d",
+      "name": "XNVR200 - 2U 8 Bay (12G) - .245 - E1FEADC3-5026-764D-535A-14DDA9D4181C"
+    },
+    {
+      "id": "58dc5d6e73e646e68fb770c8",
+      "hid": "db9ecd8af5c4122b0cc2b92249b4d4d5d02a0dd4",
+      "name": "XNVR300v2 - 4U 24 Bay (12G) - .246 - 03000200-0400-0500-0006-000700080009"
+    },
+    {
+      "id": "58e520ac73e6461bc3b824a7",
+      "hid": "03c21e129b82dd540959835899350d1e38ae226d",
+      "name": "XNVR400i - 192.168.1.4 - 4C4C4544-0051-3810-8044-B3C04F504432"
+    },
+    {
+      "id": "58de558073e646e68fb77126",
+      "hid": "a015d0efd4948a643df3a83f2b9f7c63b2eb336e",
+      "name": "ZigBee hub 001 - zigbee-hub-1"
+    },
+    {
+      "id": "589e4ea073e6463cc00f173a",
+      "hid": "fdd2a0b145f3e6e8cc2cc8c2af29cd8c0ab03b97",
+      "name": "ZigBee Hub 1 (Tam) - zigbee-hub-tam-1"
+    },
+    {
+      "id": "589f6a3c73e6463cc00f1855",
+      "hid": "528ef61df574adebdba7c5e1da93126d5f9cc845",
+      "name": "ZigBee-00000000-00000000-57FFFEFF-FF1B3261 - zigbee-00000000-00000000-57fffeff-ff1b3261"
+    },
+    {
+      "id": "589f69d573e6463cc00f1842",
+      "hid": "7cb319b92895604bcf6d1c5e26dc2026e5f0e431",
+      "name": "ZigBee-00000000-00000000-57FFFEFF-FF1B450A - zigbee-00000000-00000000-57fffeff-ff1b450a"
+    },
+    {
+      "id": "588f8cb073e6463cc00f0c28",
+      "hid": "9d9f09169e7b7366782f92ee83050da8ccee0810",
+      "name": "ZigBee-00000000-00000000-6F0004FF-FF38F5C8 - zigbee-00000000-00000000-6f0004ff-ff38f5c8"
+    },
+    {
+      "id": "589ecc7673e6463cc00f1778",
+      "hid": "f191e6fa262f733a049cba07995f41bfce6788f9",
+      "name": "ZigBee-00000000-00000000-6F000AFF-FFA8017F - zigbee-00000000-00000000-6f000aff-ffa8017f"
+    },
+    {
+      "id": "588f8daa73e6463cc00f0c2d",
+      "hid": "f7d2bcac535c4fe283da8a0b57e6476226228144",
+      "name": "ZigBee-00000000-00000000-A20008FF-FF550514 - zigbee-00000000-00000000-a20008ff-ff550514"
+    },
+    {
+      "id": "589eaf6273e6463cc00f1748",
+      "hid": "7f7f93b4484ca1b038095b5a154b96b71f485d6f",
+      "name": "ZigBee-00000000-00000000-A20008FF-FF55054D - zigbee-00000000-00000000-a20008ff-ff55054d"
+    },
+    {
+      "id": "589ecbf273e6463cc00f1774",
+      "hid": "15452fcb5e3c6e782d7d7e3b854d773617441cd2",
+      "name": "ZigBee-00000000-00000000-A20040FF-FFF70A54 - zigbee-00000000-00000000-a20040ff-fff70a54"
+    },
+    {
+      "id": "58948e7973e6463cc00f0ee7",
+      "hid": "3cf0688f15f3c6a312e75e121414ee3be9ad3ab2",
+      "name": "ZigBee-00000000-00000000-A20041FF-FF531F64 - zigbee-00000000-00000000-a20041ff-ff531f64"
+    },
+    {
+      "id": "588f8e1a73e6463cc00f0c30",
+      "hid": "613e20c9f1f73f5ec6acfe7b5dde44b789513954",
+      "name": "ZigBee-00000000-00000000-A30000FF-FF0109D1 - zigbee-00000000-00000000-a30000ff-ff0109d1"
+    },
+    {
+      "id": "58a156f273e6463cc00f188b",
+      "hid": "dc4498622c3a28683bd77be8aa305f187ee27d7d",
+      "name": "ZigBee-000B57FFFE1B3261 - zigbee-000b57fffe1b3261"
+    },
+    {
+      "id": "58a1504a73e6463cc00f187f",
+      "hid": "06f79d1910beaaf6ccb34ca1a9f1e60b2ec9065e",
+      "name": "ZigBee-000B57FFFE1B450A - zigbee-000b57fffe1b450a"
+    },
+    {
+      "id": "58b690de73e6463af44371e2",
+      "hid": "54e36d4e5077c249f92a15c3ad12166199610eae",
+      "name": "ZigBee-000D6F000438F5C8 - zigbee-000d6f000438f5c8"
+    },
+    {
+      "id": "58a15cba73e6463cc00f1892",
+      "hid": "09986c8cb5730bb07a965f3ccccdcb8d93fd2eb8",
+      "name": "ZigBee-000D6F000AA8017F - zigbee-000d6f000aa8017f"
+    },
+    {
+      "id": "58a14a4073e6463cc00f1872",
+      "hid": "e0ffe7424ba014285c66ed5f05ac8fd342ddfbbc",
+      "name": "ZigBee-0013A20040F70A54 - zigbee-0013a20040f70a54"
+    },
+    {
+      "id": "58a31fbd73e6463cc00f19b9",
+      "hid": "7104263a50b4a5f16aaf258ed7a28f470abbfdba",
+      "name": "ZigBee-0013A20041531F57 - zigbee-0013a20041531f57"
+    },
+    {
+      "id": "58a3232073e6463cc00f19bd",
+      "hid": "340a7b79f504e706755cf710af7cac6cf87912dc",
+      "name": "ZigBee-0016A20008550514 - zigbee-0016a20008550514"
+    },
+    {
+      "id": "58a14a6873e6463cc00f1875",
+      "hid": "1c99dc0e7081ecde039b110ba4a2d7824c37630f",
+      "name": "ZigBee-0016A2000855054D - zigbee-0016a2000855054d"
+    },
+    {
+      "id": "58a45b6973e6463cc00f1b3f",
+      "hid": "36a28f05340f07419cc0469f0d5c65623f8cf7c9",
+      "name": "ZigBee-0022A300000109D1 - zigbee-0022a300000109d1"
+    }
+  ],
+  "gateways": [
+    {
+      "id": "58823018a894ed619eaf4c59",
+      "hid": "0ad773d295bbd4502703b2a4d2874e7c2a8568a1",
+      "name": "820c dragonboard"
+    },
+    {
+      "id": "58aef027a894ed40d06e3100",
+      "hid": "0abbe1d355c7b998402d01f26c012cd01f76971c",
+      "name": "Alan's Samsung S5"
+    },
+    {
+      "id": "584e6374a894ed619eaf0873",
+      "hid": "d3925459b1c600d8af966b2391cf80c8503db010",
+      "name": "Allwinner 703Q"
+    },
+    {
+      "id": "58779457a894ed619eaf36be",
+      "hid": "95c5cc6234c769ebb4d5e63f35d65ea6c51af040",
+      "name": "alps TU_1491"
+    },
+    {
+      "id": "5800eec4e4b09cdf54c42dba",
+      "hid": "6cedbdf4ea5668b18e023a4cf74b2d51f98c7de8",
+      "name": "aris-gateway-demo"
+    },
+    {
+      "id": "5812d053e4b0279ad9cf2dad",
+      "hid": "b330ef9b22dad547e40328e676ca9941c2fd9f13",
+      "name": "aris-gateway-demo"
+    },
+    {
+      "id": "5813c51de4b06fccaef9a786",
+      "hid": "cd3256596136a9280424148988094b4557d5da6a",
+      "name": "aris-gateway-demo"
+    },
+    {
+      "id": "586cc7b532c5052b2696c4c4",
+      "hid": "e3da826acc34156701e024f5b831b78db73a7f61",
+      "name": "aris-gateway-demo-BP"
+    },
+    {
+      "id": "58766229a894ed619eaf3473",
+      "hid": "6513c185235d94b65b20785da7523a1bc3e516d6",
+      "name": "aris-gateway-demo-BP"
+    },
+    {
+      "id": "57ebbc09e4b07ed47a93987f",
+      "hid": "12501ead8202ff8a0297a7be754343673f7cdbfd",
+      "name": "asus Nexus 7"
+    },
+    {
+      "id": "5829d10432c5056418787d7f",
+      "hid": "00d44dcbd828fe94bc23210da8576b0201b0acf8",
+      "name": "asus Nexus 7"
+    },
+    {
+      "id": "57ebb3ebe4b09c2e82fc8807",
+      "hid": "01ca82c98d74fb5af6f2e78b9ba4c7303d672d4d",
+      "name": "asus Nexus 7"
+    },
+    {
+      "id": "58dd0f2d73e646e68fb770e8",
+      "hid": "bad002cf1a22f1b46a7b412477b21f5c152c0faf",
+      "name": "Azure xConnect Gateway"
+    },
+    {
+      "id": "5877faf832c5052b2696c81d",
+      "hid": "900585be37f9b1f5d3c2ad72f31be9b1d0aa8f06",
+      "name": "Brandon's laptop Gateway"
+    },
+    {
+      "id": "57bf53efe4b0b21869016d61",
+      "hid": "f6062a80dfb84f9b60b80e56057627453aed3f06",
+      "name": "Christian C Samsung GW"
+    },
+    {
+      "id": "57e28d54e4b07ed47a936a30",
+      "hid": "0f66acde0ceeb9c957b54128791253d2c19e8ae7",
+      "name": "Client example"
+    },
+    {
+      "id": "57e3bed2e4b07ed47a936b0b",
+      "hid": "e6bb63e68d7b8262df7f6d9b85af823241f76f3e",
+      "name": "Client example 1"
+    },
+    {
+      "id": "5822713de4b0c3c339f96aed",
+      "hid": "1b30d120007529c30ba46d8f181e8a7bc770dd9e",
+      "name": "Clukey iPad GW"
+    },
+    {
+      "id": "58226da6e4b0c3c339f96ac8",
+      "hid": "4d2f3d157f495e8aae1702ab7f4fa59746de3061",
+      "name": "Clukey iPhone GW"
+    },
+    {
+      "id": "57c47c02e4b0b21869017cdd",
+      "hid": "6e0c67f6ab7dcb6f55c9369c46427a23398e8c65",
+      "name": "Cody's iPhone"
+    },
+    {
+      "id": "58abfb48a894ed40d06e1f4c",
+      "hid": "fa644c06cbb4870d3e7615de219768a80f7f99b3",
+      "name": "DB410C 02:00:1b:e8:23:20"
+    },
+    {
+      "id": "58ad2612a894ed40d06e2616",
+      "hid": "c55d49b483704063a8f92613b7d657776b1b83c5",
+      "name": "DB410C 02:00:1b:e8:23:20"
+    },
+    {
+      "id": "57f25634d7b9fb28cf77a5c0",
+      "hid": "1f70a702f4de19f834df941445a2c2401ad573f0",
+      "name": "dm-abc-gw"
+    },
+    {
+      "id": "57297835e4b0f22b715765e4",
+      "hid": "a5a103447e6505c3a3a9cbd429e0dc74a75fd865",
+      "name": "Dragon Board - DAVIES"
+    },
+    {
+      "id": "572a6742e4b0020aa84c319c",
+      "hid": "de00fd3d3ec0208fe779e14afb2bfd6c63cfd838",
+      "name": "DragonBoard (SenseAbility 2 Demo)"
+    },
+    {
+      "id": "571c94fce4b0f7d642be8e4a",
+      "hid": "6a3a3e4b1e53f1ea4d47b2a24321e7dd896178ef",
+      "name": "DragonBoard 410c Gateway"
+    },
+    {
+      "id": "578f2a67e4b06fcaffcedac1",
+      "hid": "cf02129bbfde6492fe1b597e1175b9ec55a2a74a",
+      "name": "DragonBoard 410c Gateway king"
+    },
+    {
+      "id": "5772b4d5e4b06600f6652b0a",
+      "hid": "94a69f8150cca7cb0d88ed645764d9da44ce16f2",
+      "name": "Dragonboard 410c-VongP"
+    },
+    {
+      "id": "57572cace4b018dd33af1841",
+      "hid": "f06e8cc55b333e890c72ac513ef84ea941be7a71",
+      "name": "DragonBoard-Sense-01 "
+    },
+    {
+      "id": "57588748e4b018dd33af1a83",
+      "hid": "6a984a2eb63540f3d2a1160e28a93ae822014d4b",
+      "name": "DragonBoard410c-Clukey"
+    },
+    {
+      "id": "57cf2642e4b019ef8ffb910d",
+      "hid": "512d74bfb8049b34ec0a2986a5f8e4c424c45d6d",
+      "name": "Dustin's iPhone GW"
+    },
+    {
+      "id": "57ecb1d4e4b09c2e82fc89af",
+      "hid": "fbe8a8b9d3c1fbc85f85679c29832f62f1796289",
+      "name": "EP Demo Kit 112867"
+    },
+    {
+      "id": "58348a3fe4b0c3c339f99de9",
+      "hid": "0d7474fc4a516ab87440620fac7101a45af17ed1",
+      "name": "EP Demo Kit 115003 "
+    },
+    {
+      "id": "58a79502a894ede22bc25dc0",
+      "hid": "80b0fe286757b07466b511096a79d3be6b911e68",
+      "name": "EP Demo Kit 115007"
+    },
+    {
+      "id": "583fbcd5e4b0c3c339f9d93e",
+      "hid": "54580f53cb2baea8a4d7af4e973c425edc9a8289",
+      "name": "EP Demo Kit GTAA "
+    },
+    {
+      "id": "57a0d269a3cddd0954076f8f",
+      "hid": "51a19ca20fd71f4a0a2cf4125e9f241876d381d3",
+      "name": "EP Gateway 1"
+    },
+    {
+      "id": "577fda81e4b06600f6652cf4",
+      "hid": "51a19ca20fd71f4a0a2cf4125e9f241876d381d3",
+      "name": "EP Gateway 1"
+    },
+    {
+      "id": "57869194e4b06fcaffced79f",
+      "hid": "69c7f5e5e1c85a6fe85334d9c37f19bd80aadf46",
+      "name": "ESC demo  Gateway 2"
+    },
+    {
+      "id": "57b71ab0e4b0807f44a632ab",
+      "hid": "7b1f2210e8f2e290e4abeead414b2bbd969ae9af",
+      "name": "ESC Demo Gateway 1"
+    },
+    {
+      "id": "58b9cb5573e646fe7069b9a8",
+      "hid": "B90E6859EF5AC352718884437C0C547280F648E2",
+      "name": "gateway 6000"
+    },
+    {
+      "id": "579aeeffe4b031bae47faa5a",
+      "hid": "8c1e919410f82086c7d365658a407d7b103950c2",
+      "name": "Gateway 999"
+    },
+    {
+      "id": "5847624532c5052b2696be58",
+      "hid": "58e91d934db943abe54d168b8828c7ce518cc271",
+      "name": "Google Pixel"
+    },
+    {
+      "id": "57c4a2ffe4b05326b22f453b",
+      "hid": "95df787cb32c4d88a694948421732bc532eaef19",
+      "name": "HPE Demo"
+    },
+    {
+      "id": "582efe0f32c5056418788121",
+      "hid": "cc2878073d2b8eaf7053956f401c6b5f0ec2a675",
+      "name": "htc Nexus 9"
+    },
+    {
+      "id": "5835029532c5052b2696baa5",
+      "hid": "f0c82f9104e32986e896b8693dd58af34cfb91a7",
+      "name": "htc Nexus 9"
+    },
+    {
+      "id": "5809c42ce4b09cdf54c4466a",
+      "hid": "1592a13c3ddb55fe3ce1fe14911c8c4fa8f536b8",
+      "name": "HUAWEI H60-L04"
+    },
+    {
+      "id": "57c433cee4b00beab9e1f949",
+      "hid": "5058892ae9ce5a1349d1612b10b13ac4c55f7d13",
+      "name": "Huawei Nexus 6P"
+    },
+    {
+      "id": "57c406c8e4b0b21869017a10",
+      "hid": "015b8817ad90435b65574358155a9f8c6d3c3ffa",
+      "name": "Huawei Nexus 6P"
+    },
+    {
+      "id": "576ae187e4b06600f6652920",
+      "hid": "cd8db64efe575e5e6c21944ebb7adf99b55cc980",
+      "name": "iPad"
+    },
+    {
+      "id": "576ae290e4b06600f6652929",
+      "hid": "3303d00438d24ae4b523e1950111b58c81e7f281",
+      "name": "iPad"
+    },
+    {
+      "id": "57fd0786e4b0a913aa7c3c67",
+      "hid": "cca2e055a9c43591bfd18e25e0a09794631d8af7",
+      "name": "iPad"
+    },
+    {
+      "id": "583dce28e4b0c3c339f9cd23",
+      "hid": "a1186271c5f325f4723dfbf28cd105d4110df68f",
+      "name": "iPad"
+    },
+    {
+      "id": "588b10e9a894ed619eaf59b9",
+      "hid": "24061144716cf7bc2b1aebb716d70d2d4458036a",
+      "name": "iPad"
+    },
+    {
+      "id": "58a657b7a894ede22bc24ea2",
+      "hid": "db4f596cf35739a74fb1d9becc5b7235ff7d03fe",
+      "name": "iPad"
+    },
+    {
+      "id": "58b87758a894eddc5b281514",
+      "hid": "e3c92c32e3fcbcaef8c7d693d03dbf07f52db68d",
+      "name": "iPad"
+    },
+    {
+      "id": "58bf2c55a894eddc5b2850fb",
+      "hid": "b9f1bcfc29604ac122723d1e9258d179ee9db4d6",
+      "name": "iPad"
+    },
+    {
+      "id": "5901c56873e64608c2095dff",
+      "hid": "a8b3ab807d5069454a9ced8dd64f8a600ca9241d",
+      "name": "iPad"
+    },
+    {
+      "id": "5710ea4be4b0cd334915d7e9",
+      "hid": "6f997c68ce689c02e5a1376ed7c1fe657f279a29",
+      "name": "iPhone"
+    },
+    {
+      "id": "5719a073e4b0ab300e030168",
+      "hid": "a55afa6bba8c9a477c12a6e73b4cbc27b61ef744",
+      "name": "iPhone"
+    },
+    {
+      "id": "571a30b7e4b0f7d642be8d98",
+      "hid": "7f4de841dcece979ae78e97bc28c7214ed35acbe",
+      "name": "iPhone"
+    },
+    {
+      "id": "571ea5f5e4b0f7d642be8f21",
+      "hid": "d26e85698012e2b3b8501f5f3a8a2ebf8be59b08",
+      "name": "iPhone"
+    },
+    {
+      "id": "5732584fe4b086a22e2d85c2",
+      "hid": "96df1b946646680e7b7886e245b4822c51dc68a4",
+      "name": "iPhone"
+    },
+    {
+      "id": "57335d86e4b086a22e2d8695",
+      "hid": "e93763b130f2552b61f26df4c53b81c606f4e316",
+      "name": "iPhone"
+    },
+    {
+      "id": "57336045e4b086a22e2d86b5",
+      "hid": "5b06158a1d21e9a503bfc3844a37631087f2a9e1",
+      "name": "iPhone"
+    },
+    {
+      "id": "5733af67e4b086a22e2d88df",
+      "hid": "96f63382c639e71aa1fa09343bd93e481ab0cada",
+      "name": "iPhone"
+    },
+    {
+      "id": "5734e4fee4b086a22e2d8b69",
+      "hid": "7b0eb5871793ac716a2144f6da7d261d739d61f5",
+      "name": "iPhone"
+    },
+    {
+      "id": "58049ea7e4b09cdf54c43163",
+      "hid": "0c0cf699ee35c95eb4b0f79b6730cf8c6e6b5fce",
+      "name": "iPhone"
+    },
+    {
+      "id": "58066976e4b09cdf54c440bc",
+      "hid": "2e6c7b7246c363dc9712ccef2aec1a5ef9b35133",
+      "name": "iPhone"
+    },
+    {
+      "id": "583645e732c5052b2696bb2e",
+      "hid": "28e5212e0d03d42dfcf57ff08ebb16f9fb696de7",
+      "name": "iPhone"
+    },
+    {
+      "id": "58bdf3d573e6462336d53674",
+      "hid": "0a7dcc484942d13ae18ff35cf60f189a9ed2bc4f",
+      "name": "iPhone"
+    },
+    {
+      "id": "58bed0e773e6462336d53a52",
+      "hid": "f0c675f8ca8263bc13f2bd3ba4d69da8690660f3",
+      "name": "iPhone"
+    },
+    {
+      "id": "58bf104b73e6462336d53ac7",
+      "hid": "68ec53c11a67259a4d2ac45c0ec9e2a43177ef02",
+      "name": "iPhone"
+    },
+    {
+      "id": "5741c6cde4b018dd33af0c06",
+      "hid": "703cd3d976efb6e8031bcf1c803f224a9c4b77c5",
+      "name": "iPhone"
+    },
+    {
+      "id": "5741c7cee4b018dd33af0c0d",
+      "hid": "499d62e16d166a6e8f103074ac12e45c8ab32ec5",
+      "name": "iPhone"
+    },
+    {
+      "id": "5741cd07e4b018dd33af0c21",
+      "hid": "17ef83e9c3fa72944cae44f6a69a348db75e25f6",
+      "name": "iPhone"
+    },
+    {
+      "id": "5741deaee4b018dd33af0c44",
+      "hid": "f206472d801b79a9c16b875d52794c09c56fa215",
+      "name": "iPhone"
+    },
+    {
+      "id": "5741e36ae4b018dd33af0c4b",
+      "hid": "6948af65d203816bc2280b5b8bb2ed9f564426f3",
+      "name": "iPhone"
+    },
+    {
+      "id": "5741ed82e4b018dd33af0c55",
+      "hid": "c4aeacbf49db1640a18b6f213c4f08aa9e089fb8",
+      "name": "iPhone"
+    },
+    {
+      "id": "5741ef95e4b018dd33af0c5c",
+      "hid": "bddca823088d9b43203998fdcbbba9ff27c979f5",
+      "name": "iPhone"
+    },
+    {
+      "id": "5743d40ee4b018dd33af0cb0",
+      "hid": "8260693de15a60ea73be71d56ddaeabe1fc2f21c",
+      "name": "iPhone"
+    },
+    {
+      "id": "5747587de4b018dd33af0e25",
+      "hid": "50097a3d382b2164a1d0f122845d8b73563f8061",
+      "name": "iPhone"
+    },
+    {
+      "id": "575986dbe4b018dd33af1ad1",
+      "hid": "1b17ff951276122b608741eb4ebf63f2a0bbd2e6",
+      "name": "iPhone"
+    },
+    {
+      "id": "575a4c8be4b018dd33af1adc",
+      "hid": "d97d5d3718e78362609d1bd0429bf2aad039a8bf",
+      "name": "iPhone"
+    },
+    {
+      "id": "5760f0b2e4b06600f66524c8",
+      "hid": "8bbefc6639a25f824ee75a57553003e734902ceb",
+      "name": "iPhone"
+    },
+    {
+      "id": "576ae358e4b06600f6652932",
+      "hid": "7607c57f13c525c057c79f10db53b0ed3cbec4f8",
+      "name": "iPhone"
+    },
+    {
+      "id": "576be8dde4b06600f6652a3c",
+      "hid": "10be356c52ef40135c31b03a5555ae4e1c230cab",
+      "name": "iPhone"
+    },
+    {
+      "id": "576eff61e4b06600f6652aee",
+      "hid": "056edfedd3a0fa31e0668ed31bdfb0d178499167",
+      "name": "iPhone"
+    },
+    {
+      "id": "57718b55e4b06600f6652b01",
+      "hid": "2820b2bd768adb2aa6fb1a821c187b5080d38e6e",
+      "name": "iPhone"
+    },
+    {
+      "id": "57759ceae4b06600f6652b3d",
+      "hid": "16ffd7aeeea05272c9dafdeb2821a28ace87eb82",
+      "name": "iPhone"
+    },
+    {
+      "id": "57760002e4b06600f6652b4e",
+      "hid": "d11b6160cf7375f4b58e53e1f2477fed73bdbab1",
+      "name": "iPhone"
+    },
+    {
+      "id": "57768efce4b06600f6652b62",
+      "hid": "f2a465c2ff805112f1c7e0935f40c6704b1b3c06",
+      "name": "iPhone"
+    },
+    {
+      "id": "57768f90e4b06600f6652b69",
+      "hid": "9929eb8e90499703db973f762213cb3d057c0b3f",
+      "name": "iPhone"
+    },
+    {
+      "id": "5778f79ce4b06600f6652ba1",
+      "hid": "13931881558e6bf4c546859e8badf46f84d978c3",
+      "name": "iPhone"
+    },
+    {
+      "id": "577bd733e4b06600f6652bb2",
+      "hid": "d9124673f8a3eb44d40cc89b1cb53406c3e6279d",
+      "name": "iPhone"
+    },
+    {
+      "id": "577cc231e4b06600f6652c01",
+      "hid": "51611f929ddbf95ec5aa6b0ac8e4991c548d998a",
+      "name": "iPhone"
+    },
+    {
+      "id": "578532ade4b0bb071c458ca8",
+      "hid": "7e915c7b1ea4214ce3cf61c61eb0b14a49950836",
+      "name": "iPhone"
+    },
+    {
+      "id": "578cea3ce4b06fcaffced927",
+      "hid": "72fe61c582e4e05f3b5c3d6bc4be676dc5727787",
+      "name": "iPhone"
+    },
+    {
+      "id": "57923133e4b0f123fa3a7e67",
+      "hid": "4d396bb42e0d3974b0b84a4eadf27f0375f8ad41",
+      "name": "iPhone"
+    },
+    {
+      "id": "57972d24e4b010661c838279",
+      "hid": "db69706f977491f12c7df960c32d40443bccc417",
+      "name": "iPhone"
+    },
+    {
+      "id": "5797c400e4b010661c83860e",
+      "hid": "164186c328eecf094970cecbe523437056fa148e",
+      "name": "iPhone"
+    },
+    {
+      "id": "579b654ae4b0f03fb5e70c55",
+      "hid": "a993e86699f8eba0339a5174b512c083f7f7b675",
+      "name": "iPhone"
+    },
+    {
+      "id": "579b83eee4b0f03fb5e70d4a",
+      "hid": "0030dd1f896d77fd7549813ed2da525a8c84f632",
+      "name": "iPhone"
+    },
+    {
+      "id": "579bfc41e4b0f03fb5e7105e",
+      "hid": "3d37bb62b4034a431a6b516781e8ff7c5c053bc2",
+      "name": "iPhone"
+    },
+    {
+      "id": "57a034d2e4b0f03fb5e727e4",
+      "hid": "fcf486e792e91fa999eec1e51600357fb27d14fe",
+      "name": "iPhone"
+    },
+    {
+      "id": "57a0ec20e4b0f03fb5e72e4b",
+      "hid": "afaac7897f7a9ed9ed3f393a3de73885182f8e31",
+      "name": "iPhone"
+    },
+    {
+      "id": "57a8aacfe4b0f03fb5e75424",
+      "hid": "7724ba373948cbab113f147d84bf4da4025535e0",
+      "name": "iPhone"
+    },
+    {
+      "id": "57ae2912e4b016141eb84aec",
+      "hid": "e1bd0c7647842cbb1cf29cb8e2f6ad669cecb906",
+      "name": "iPhone"
+    },
+    {
+      "id": "57b4814de4b034cc1f5ee02d",
+      "hid": "5ef06f485b9ec81a4c2f02098735bf78fcae1acc",
+      "name": "iPhone"
+    },
+    {
+      "id": "57b63df7e4b05ab76cf274ec",
+      "hid": "8e5da5fb710f607b8f403825a042e0617997bad5",
+      "name": "iPhone"
+    },
+    {
+      "id": "57bc9287e4b0b218690160fd",
+      "hid": "e95ef0d0128ac6a7045f9335f1030ba3883a1a83",
+      "name": "iPhone"
+    },
+    {
+      "id": "57bf5b5de4b0b21869016d9f",
+      "hid": "f5fc0d1eb59bce0ead7fa436571a0ba001232dfe",
+      "name": "iPhone"
+    },
+    {
+      "id": "57bf8a49e4b0b21869016eaf",
+      "hid": "24722de195359d441b3cf851bb2e5d730e4230e6",
+      "name": "iPhone"
+    },
+    {
+      "id": "57d71712e4b019ef8ffb962b",
+      "hid": "5a8ddae0344117b865daf7716ebbf73803336c58",
+      "name": "iPhone"
+    },
+    {
+      "id": "57e2f50de4b019ef8ffb9fed",
+      "hid": "0eca346dd1d44a2c58f7b68e0b25a13ee5e12ba8",
+      "name": "iPhone"
+    },
+    {
+      "id": "57e42362e4b019ef8ffb9ffa",
+      "hid": "81a7d22a25e1a270074b6b95052f93081a3edc67",
+      "name": "iPhone"
+    },
+    {
+      "id": "57e6d3e5e4b019ef8ffba07b",
+      "hid": "f61cb29262f66d1d428565edf446c4e411f7a2c3",
+      "name": "iPhone"
+    },
+    {
+      "id": "57eee2f8e4b09c2e82fc8e54",
+      "hid": "775dbcc0134d77e9e8d79d1ebde96c7c4088d6f8",
+      "name": "iPhone"
+    },
+    {
+      "id": "57f28027e4b046527edf8c99",
+      "hid": "48e9c5bcdf685267d6fcc939a9d66c9941fe12ee",
+      "name": "iPhone"
+    },
+    {
+      "id": "57f280f6e4b046527edf8cb1",
+      "hid": "c34361167af3137ffb8bdb49f0f7a96fe294f295",
+      "name": "iPhone"
+    },
+    {
+      "id": "57f7b2c1e4b046527edfa928",
+      "hid": "6950dd3c9e843233206612d61c0b0b41b26236e0",
+      "name": "iPhone"
+    },
+    {
+      "id": "58066735e4b06fccaef98597",
+      "hid": "36652757fb8c51c49acc45f431bb4e9c818a88b0",
+      "name": "iPhone"
+    },
+    {
+      "id": "58259c25e4b0c3c339f98c69",
+      "hid": "f909edd9f7abf00a2827a0b37a4b5ebc0255402b",
+      "name": "iPhone"
+    },
+    {
+      "id": "5829ed40e4b0c3c339f98f64",
+      "hid": "da1053d1d8e63994d31b4812fc5e473a0dcfecbb",
+      "name": "iPhone"
+    },
+    {
+      "id": "583e8505e4b0c3c339f9d11d",
+      "hid": "16ce84d72914902d934a7c67bcc0e94edefec4ad",
+      "name": "iPhone"
+    },
+    {
+      "id": "583f3ee7e4b0c3c339f9d56e",
+      "hid": "51e84beb852a816b6597e12d7f9a2775da1b501b",
+      "name": "iPhone"
+    },
+    {
+      "id": "5840a0afe4b0c3c339f9dde7",
+      "hid": "ce5d735738940396f4abbbe19b1c70fb06689456",
+      "name": "iPhone"
+    },
+    {
+      "id": "58450618a894ed619eaeed6e",
+      "hid": "b5315565c5422fc87380f5d0c38af9c01f211e20",
+      "name": "iPhone"
+    },
+    {
+      "id": "5846eb4aa894ed619eaeeddd",
+      "hid": "ea85194271bc33f5a13572ecd6b773f1743fd95f",
+      "name": "iPhone"
+    },
+    {
+      "id": "586d49b8a894ed619eaf1eba",
+      "hid": "dde69996577662e0812ab6f578865ef20fe32ce0",
+      "name": "iPhone"
+    },
+    {
+      "id": "587efd02a894ed619eaf45dc",
+      "hid": "b8297fa60ee69b7b342e3543861c301b0aa8c264",
+      "name": "iPhone"
+    },
+    {
+      "id": "58861125a894ed619eaf52a3",
+      "hid": "ed88d93a8ed1eb9f20e8366ebefbadf85ada4a30",
+      "name": "iPhone"
+    },
+    {
+      "id": "58864704a894ed619eaf5316",
+      "hid": "ab6ad8f72c1b33a12ed6b14da461582ab5f0d079",
+      "name": "iPhone"
+    },
+    {
+      "id": "58866d27a894ed619eaf53e4",
+      "hid": "77dd573322ec1a7940eee827c00aa752d1ff1a59",
+      "name": "iPhone"
+    },
+    {
+      "id": "5888c6d2a894ed619eaf55f0",
+      "hid": "fb5485e03c6dd9b852d6d5560c99f6a9a2fe3cc9",
+      "name": "iPhone"
+    },
+    {
+      "id": "589b6d7da894ede22bc1c027",
+      "hid": "6ebb094ae7826ebed8703ebfd8d3384fa53290a0",
+      "name": "iPhone"
+    },
+    {
+      "id": "58a2d612a894ede22bc21bc4",
+      "hid": "610ee6039fa0ce6ba6231b5b960973e6eeb64c83",
+      "name": "iPhone"
+    },
+    {
+      "id": "58ab4f2da894ed40d06e1b66",
+      "hid": "9aab7a818127acef3e9b0951c9805d800ef7b107",
+      "name": "iPhone"
+    },
+    {
+      "id": "58ae85dfa894ed40d06e2f3d",
+      "hid": "d940c4e099355df7df062e2a7e2f8016ca0f629b",
+      "name": "iPhone"
+    },
+    {
+      "id": "58af0064a894ed40d06e318a",
+      "hid": "5ff3929522f940d7982b4bf0ba3b302ba070e110",
+      "name": "iPhone"
+    },
+    {
+      "id": "58af92b0a894ed40d06e37e4",
+      "hid": "8c119cfbea9bce36cbc9713601d5b2281651ee3f",
+      "name": "iPhone"
+    },
+    {
+      "id": "58b85b18a894eddc5b2813b0",
+      "hid": "cb2f777f92246b67cdbbeb6cfd9df6a5bdb4fbde",
+      "name": "iPhone"
+    },
+    {
+      "id": "58bd3973a894eddc5b28324a",
+      "hid": "9915ced10cd1d46f95a22976397e7462fdb206f4",
+      "name": "iPhone"
+    },
+    {
+      "id": "58bd39e0a894eddc5b28325d",
+      "hid": "bd35eafe547653f3e6eb076db861b1bba17117b3",
+      "name": "iPhone"
+    },
+    {
+      "id": "58c123a7a894eddc5b28642b",
+      "hid": "07baf32bd43a40c8c9cc2626128a5af6a7ef12cd",
+      "name": "iPhone"
+    },
+    {
+      "id": "58f8761173e6464d8b2bd34e",
+      "hid": "fa0a0fe16e236316accc9cc66d0e7b82be5fb3ab",
+      "name": "iPhone"
+    },
+    {
+      "id": "591162b473e64608c20986db",
+      "hid": "f7d11f5d7bdc4e6a5623d696ce6e2ac046d511ad",
+      "name": "iPhone"
+    },
+    {
+      "id": "5880c647a894ed619eaf49e5",
+      "hid": "35b5129e6a615fb5f05940e7758519ee63aac4a7",
+      "name": "iPhone 5S"
+    },
+    {
+      "id": "58571a7ea894ed619eaf1249",
+      "hid": "d20a1a744cfde78b20b5d43463c081c50e6cbe9e",
+      "name": "iPhone 6s Plus GW"
+    },
+    {
+      "id": "58821b97a894ed619eaf4c47",
+      "hid": "8f3655685d4869546b356e1c8e55a915bb8808ad",
+      "name": "iPhone 7"
+    },
+    {
+      "id": "56ea3696e4b0824486080261",
+      "hid": "234e48699a003eba1cff4edb1a0416eaafbd2781",
+      "name": "Kronos Gateway"
+    },
+    {
+      "id": "56ea3a88e4b0ee71a9200580",
+      "hid": "08861e35c20e979e4df5178de26802b741922147",
+      "name": "Kronos Gateway"
+    },
+    {
+      "id": "56ff88f1e4b0925f05fea230",
+      "hid": "b1209de06accb68f8c6df3fac4e2fa5b1466b442",
+      "name": "Kronos Gateway"
+    },
+    {
+      "id": "57218c26e4b0f7d642be8fda",
+      "hid": "d30a783f29fe54f253a3c77ada75beed56fa4464",
+      "name": "Kronos Gateway"
+    },
+    {
+      "id": "579b5ea4e4b0e389818041d4",
+      "hid": "49ed77bbf670a7dbdf79c58c8c226763eaf5eb4e",
+      "name": "Kronos Gateway"
+    },
+    {
+      "id": "57ac3c66e4b01531b49bff98",
+      "hid": "a5d76efff483e7a0450087cb0693734de8a9bbe0",
+      "name": "Kronos Gateway"
+    },
+    {
+      "id": "57b5b262e4b0575aa1361820",
+      "hid": "5f73108ea6ddb71727dd2abb924476c3c13c434e",
+      "name": "Kronos Gateway"
+    },
+    {
+      "id": "57b77b2de4b00beab9e1b842",
+      "hid": "d64c6211535de80233a8278db54ad710061c4f0d",
+      "name": "Kronos Gateway"
+    },
+    {
+      "id": "57c05219e4b00beab9e1e624",
+      "hid": "ebb25328003b95aff40a279087bf78963f10652b",
+      "name": "Kronos Gateway"
+    },
+    {
+      "id": "57d35150e4b021dcdbc8ef24",
+      "hid": "7a47427e786d9494555238c818e78a067d5a8626",
+      "name": "Kronos Gateway"
+    },
+    {
+      "id": "57dbaf7ee4b07ed47a93649c",
+      "hid": "662dc604eb672851bb0238a85d23edeb294c00ad",
+      "name": "Kronos Gateway"
+    },
+    {
+      "id": "57fe4fabe4b056eecd992cd4",
+      "hid": "7d9de3e2648ec92ae44b7d6c563673b00e7ae30b",
+      "name": "Kronos Gateway"
+    },
+    {
+      "id": "58062c8de4b09cdf54c43ebe",
+      "hid": "14fb3740e75cd17fa26f1a7466d67e1612afea85",
+      "name": "Kronos Gateway"
+    },
+    {
+      "id": "589ca6f073e6463cc00f1685",
+      "hid": "8cff396e5e6490ba7669c90668e19094b4f01afa",
+      "name": "Kronos Gateway"
+    },
+    {
+      "id": "57d02040e4b019ef8ffb9144",
+      "hid": "d1e204253b257f82a9ff28d170ffd59f1ba2e086",
+      "name": "Kronos Gateway"
+    },
+    {
+      "id": "589ed22c73e6463cc00f17a4",
+      "hid": "0c1740a32782df8adb33ea86a1fec272f947a146",
+      "name": "Kronos Gateway (Tam)"
+    },
+    {
+      "id": "58ad1d6173e6463cc00f1db8",
+      "hid": "5498e9c8dcc272314db1be4a738f86467025c2a8",
+      "name": "Kronos Gateway Auto UID (Tam)"
+    },
+    {
+      "id": "59007df373e646eec4ed331b",
+      "hid": "76faba5e4b9424889db046cd3b011d081102fb4d",
+      "name": "Kronos Gateway Auto UID (Tam)"
+    },
+    {
+      "id": "56c3a747e4b0bc091a0a6a22",
+      "hid": "752070adca546358c7d0d6908357aba28c247829",
+      "name": "Kronos Skype Dev Gateway"
+    },
+    {
+      "id": "57c47824e4b0b21869017cbc",
+      "hid": "bca7fe2f6ff9e8d3b2b54849887991f4467b423c",
+      "name": "Kurt's iPhone Gateway"
+    },
+    {
+      "id": "579b2d7ce4b0f03fb5e70a51",
+      "hid": "77d80d097989266236c4ffda64b86c0c7fe187cb",
+      "name": "Letv Letv X500"
+    },
+    {
+      "id": "579b2d7ce4b0f03fb5e70a53",
+      "hid": "f43e4f7df4f72d711f945e9c759b042defd4af53",
+      "name": "Letv Letv X500"
+    },
+    {
+      "id": "589c2862a894ede22bc1cad2",
+      "hid": "33df19bce02edd3d29947995534ad3dda010f244",
+      "name": "LGE LG-H990"
+    },
+    {
+      "id": "57ac5b17e4b01531b49c0074",
+      "hid": "de502bae0773ca7be7d50096b011c36f09047d15",
+      "name": "LGE Nexus 5"
+    },
+    {
+      "id": "5870299932c5052b2696c644",
+      "hid": "7f65545fd4396a1e3d166e6397d126dbb8e10e85",
+      "name": "LGE Nexus 5"
+    },
+    {
+      "id": "57623549e4b06600f6652758",
+      "hid": "c6b16c47b8f62146ba16df2d6c58b341d2ac9a34",
+      "name": "LGE Nexus 5"
+    },
+    {
+      "id": "57ab2201e4b0f03fb5e75ca6",
+      "hid": "4d79ef82270ad6b8f47d2a0e54b80041128ebd53",
+      "name": "LGE Nexus 5"
+    },
+    {
+      "id": "582a1506e4b0c3c339f98fd0",
+      "hid": "e34e3f3ec64c0c28a8b16173f729e55cdc213a67",
+      "name": "LGE Nexus 5"
+    },
+    {
+      "id": "587479dea894ed619eaf3114",
+      "hid": "6fd2033e334c5c96c15c67a76b7cd44e96344527",
+      "name": "LGE Nexus 5"
+    },
+    {
+      "id": "5735cca3e4b015fd84373fa4",
+      "hid": "64259a7ee88fc4f311b71717b6777cd0321dd94b",
+      "name": "LGE Nexus 5X"
+    },
+    {
+      "id": "584159e3a894ed619eaee0ad",
+      "hid": "2208b4d48f985887c70565d1d5d65d4aab6f75e2",
+      "name": "LGE Nexus 5X"
+    },
+    {
+      "id": "586298b06ee825f8409998ce",
+      "hid": "68602c313c87568d4428238cfbd469b95095a72d",
+      "name": "Linux Dragonboard"
+    },
+    {
+      "id": "57a42d43e4b0e3898180434b",
+      "hid": "671c528d24e442ad098c5d421cec2cb52dd67c0d",
+      "name": "Loriot"
+    },
+    {
+      "id": "5883027fa894ed619eaf51c7",
+      "hid": "1d6dcefc10bbbe7b5a37578357d4e045efecf936",
+      "name": "Meshlium 16326151136518"
+    },
+    {
+      "id": "5881c0baa894ed619eaf4bba",
+      "hid": "00d3b8ed5ce791add2afd2adf87a240ad843f380",
+      "name": "Meshlium Tam"
+    },
+    {
+      "id": "588f6d64a894ed619eaf5b63",
+      "hid": "e345b4011a4c8163ee4627985ef3cfcc9a0e4cc7",
+      "name": "motorola Moto G (4)"
+    },
+    {
+      "id": "58b84d38a894eddc5b28130f",
+      "hid": "48f46f7107ce624ed888c9c3a9aa2e762b81a9c6",
+      "name": "motorola Moto G (4)"
+    },
+    {
+      "id": "5850938132c5052b2696bf6f",
+      "hid": "71eaa9a7079cf74654ae0bd2ca041e7ee3db3cf0",
+      "name": "motorola Moto G Play"
+    },
+    {
+      "id": "5852ff6432c5052b2696bf8f",
+      "hid": "e37c5fccfec705688f4d07ce6b5ff37f7f6ad25d",
+      "name": "motorola Moto G Play"
+    },
+    {
+      "id": "58583db632c5052b2696bfaf",
+      "hid": "0404e13f167da696f30a8d9fa2f31feebd1aee60",
+      "name": "motorola Moto G Play"
+    },
+    {
+      "id": "5859e3f932c5052b2696bfec",
+      "hid": "3d1d54a410db3519c1c5f02631526920de5348c3",
+      "name": "motorola Moto G Play"
+    },
+    {
+      "id": "5859e45132c5052b2696bff5",
+      "hid": "35955dfbddf15c84fb993b6b3d8f28e77ba76bb1",
+      "name": "motorola Moto G Play"
+    },
+    {
+      "id": "585c013e32c5052b2696c0f2",
+      "hid": "328348bebebc62acf15490d14cb6db9e7430affa",
+      "name": "motorola Moto G Play"
+    },
+    {
+      "id": "586d1a5432c5052b2696c4d9",
+      "hid": "360a2d9e1eba5e085edf4948abb0024b993f0943",
+      "name": "motorola Moto G Play"
+    },
+    {
+      "id": "586d60a332c5052b2696c4f4",
+      "hid": "a2f5fef5d99d3bea291065af5cd8d50c7e045ddd",
+      "name": "motorola Moto G Play"
+    },
+    {
+      "id": "586d671d32c5052b2696c506",
+      "hid": "d02bc538d0089a131291b7a36ea3e617ca291c01",
+      "name": "motorola Moto G Play"
+    },
+    {
+      "id": "586d6e5432c5052b2696c52c",
+      "hid": "7531130af042f35a8f909735c2567cc9443aca0b",
+      "name": "motorola Moto G Play"
+    },
+    {
+      "id": "5717aa26e4b0ab300e0300b5",
+      "hid": "4c080f6fe157a057d2f25e477b449839228a8801",
+      "name": "motorola Nexus 6"
+    },
+    {
+      "id": "57316fb4e4b086a22e2d8535",
+      "hid": "b6cd268dfa1a0969143f04ba317e8e726d0472d3",
+      "name": "motorola Nexus 6"
+    },
+    {
+      "id": "5784c6e0e4b05e82fc5feacd",
+      "hid": "aa6a1940cf2ec56654550e6bc4154963356ea6f8",
+      "name": "motorola Nexus 6"
+    },
+    {
+      "id": "577be42ee4b06600f6652bb8",
+      "hid": "38a107f3e105d0fd18b84879d931385769b24706",
+      "name": "motorola Nexus 6"
+    },
+    {
+      "id": "57336837e4b086a22e2d8708",
+      "hid": "c74806ae2077155574f22a7e3a8fec5ac21857ce",
+      "name": "motorola XT1254"
+    },
+    {
+      "id": "579a89e3e4b031bae47fa6f9",
+      "hid": "9302c507ede1d1aaea98c0d6a507b94b4190ce04",
+      "name": "motorola XT1650"
+    },
+    {
+      "id": "58827154a894ed619eaf4e2e",
+      "hid": "8f30ad4cd0a006c405f1a8bf69071144b053042b",
+      "name": "MSM8916 for arm64"
+    },
+    {
+      "id": "57886cebe4b0450bed6a9573",
+      "hid": "88c6d694bed1d680d5854ee9ca3f96eba163e197",
+      "name": "my-test-gateway-123"
+    },
+    {
+      "id": "57e3c0fde4b07ed47a936b23",
+      "hid": "c0fd8c28ea5cd1b043c5eaa77754c60f9f44ce6f",
+      "name": "my-test-gateway-123"
+    },
+    {
+      "id": "57e624e3e4b07ed47a937591",
+      "hid": "886ebfaba57e179b3289efcfe2c4d4eca06812c4",
+      "name": "my-test-gateway-123"
+    },
+    {
+      "id": "5808623ce4b06fccaef986d2",
+      "hid": "e24d6d925ed00948ab2658a687524094dab46c65",
+      "name": "my-test-gateway-123"
+    },
+    {
+      "id": "57c993b5e4b0b218690180e3",
+      "hid": "12134f537a972ae9717210cdc1fd67843c103214",
+      "name": "my-test-gateway-123"
+    },
+    {
+      "id": "57e62baee4b019ef8ffba069",
+      "hid": "e4a413ccc1a75805b04b7265fe4efa8b2c906610",
+      "name": "my-test-gateway-123"
+    },
+    {
+      "id": "57e6e21be4b019ef8ffba081",
+      "hid": "e8112334d1c53626d0874865c9b23d71b226a517",
+      "name": "my-test-gateway-123"
+    },
+    {
+      "id": "57eb7389e4b09c2e82fc87fe",
+      "hid": "fefc403ad5b56dfb8255889cd4fdc92c8f83e5d1",
+      "name": "my-test-gateway-123"
+    },
+    {
+      "id": "5898b907a894ede22bc19dee",
+      "hid": "d523f05ea7916acebfc3faa6075910e804f17411",
+      "name": "Panther Board Demo 1"
+    },
+    {
+      "id": "5898b914a894ede22bc19df3",
+      "hid": "a7ed75254f9c32cf7b1395c669fc5121fb9ff1aa",
+      "name": "Panther Board Demo 2"
+    },
+    {
+      "id": "5898b91da894ede22bc19df6",
+      "hid": "155a0daee3fc102033bbf9ead015df3f568a33ad",
+      "name": "Panther Board Demo 3"
+    },
+    {
+      "id": "586cb26732c5052b2696c4bd",
+      "hid": "1d1c97b53d2d28965e1f4eae2f2e430994671b51",
+      "name": "probook-gateway-demo"
+    },
+    {
+      "id": "58981f9da894ede22bc196d3",
+      "hid": "d61426cbdef2d095de071441118546cffcc98fe5",
+      "name": "probook-gateway-demo"
+    },
+    {
+      "id": "58f1483473e6464d8b2bd23c",
+      "hid": "6b8578890d801774e54f71dd5b98291473529d55",
+      "name": "probook-gateway-demo"
+    },
+    {
+      "id": "58b507c7a894ed40d06e6550",
+      "hid": "64d33fe09afb16ff84ec6dcd531579510293107b",
+      "name": "QCA-gateway-demo"
+    },
+    {
+      "id": "58dcb66773e646e68fb770ce",
+      "hid": "de6dbc78cd75e5978d19ae8fcdd5b911086a0c7d",
+      "name": "QCA-gateway-demo"
+    },
+    {
+      "id": "58dbb610465f202ccc2de04c",
+      "hid": "67f9f0412abfa9adc6c18730642e640ff13954b1",
+      "name": "registration"
+    },
+    {
+      "id": "58dbb83236cf83c6c7497c75",
+      "hid": "1234567890",
+      "name": "registration"
+    },
+    {
+      "id": "58ae1bd3a894ed40d06e2b8c",
+      "hid": "992242d045be0d014f4cd8c70ed4e6a8aceee639",
+      "name": "Rick's iPhone"
+    },
+    {
+      "id": "57bc903ce4b0b218690160d6",
+      "hid": "da4c6291540cb8c3ce3153dc6c7df33ea69a55a5",
+      "name": "Rolands iPhone"
+    },
+    {
+      "id": "58b624286ee825f840999c61",
+      "hid": "864d064a10ba5dac7aceb1c84fa735dc6092918c",
+      "name": "rpi2"
+    },
+    {
+      "id": "58b6fd7a6ee825f840999d02",
+      "hid": "eaba809632c404c531c538d7e265fe7a2038e42b",
+      "name": "rpi2"
+    },
+    {
+      "id": "571c4ecfe4b0f7d642be8e31",
+      "hid": "003ddb52dfe53221ce9d692f7553db6b05299ac1",
+      "name": "SAM Stingray Gateway"
+    },
+    {
+      "id": "571e3bc4e4b0f7d642be8ee3",
+      "hid": "58ba17b2ce8744296d517c84c912c06dde6ee55a",
+      "name": "SAM Z06 - Gateway"
+    },
+    {
+      "id": "57035c69e4b0e3032beb525e",
+      "hid": "25459780336e3466e55a9e342b03f889e992ae69",
+      "name": "SAM Z06 Gateway"
+    },
+    {
+      "id": "57192be6e4b0ab300e030154",
+      "hid": "d06c03f83915594dd6304055fe0683297338c1ec",
+      "name": "SamCar Stingray Gateway"
+    },
+    {
+      "id": "5833074a32c5056418788473",
+      "hid": "e39b0c070e8be33eae23c31bba9534fea6b27bb3",
+      "name": "samsung GT-I9505"
+    },
+    {
+      "id": "570fa2eae4b0904dca502563",
+      "hid": "5a2ebd86caa98e33a90ec2d3169c44682dc67c7e",
+      "name": "samsung GT-N7100"
+    },
+    {
+      "id": "57443daae4b05e82fc5fc6ff",
+      "hid": "11aa038861ea4b70bf28d12b91b8a8093c53b659",
+      "name": "samsung GT-N7100"
+    },
+    {
+      "id": "57a46464e4b0e38981804371",
+      "hid": "4f6d4ffdee69c430c6ef04da996816063276b05f",
+      "name": "samsung GT-N7100"
+    },
+    {
+      "id": "5790c709e4b0f123fa3a7e3c",
+      "hid": "b668fb2215ed002347d0b2b7fc2fdad75ad2d745",
+      "name": "samsung GT-N7100"
+    },
+    {
+      "id": "587e641aa894ed619eaf44e7",
+      "hid": "077e887ae324aed7a00ff98dea8c740407757f37",
+      "name": "samsung SAMSUNG-SM-G900A"
+    },
+    {
+      "id": "57e293fde4b019ef8ffb9f21",
+      "hid": "ea9b23504327a9591c1c61b00686d88ab809d0ff",
+      "name": "samsung SAMSUNG-SM-G930A"
+    },
+    {
+      "id": "58b5fb88a894ed40d06e70c2",
+      "hid": "4efe814fec606a36d7611adc8d016b7b0999326f",
+      "name": "samsung SCH-I545"
+    },
+    {
+      "id": "586cd4f8a894ed619eaf1d4c",
+      "hid": "572254d95d733cb3afde8afbe1942daa8ee8d911",
+      "name": "samsung SM-A510F"
+    },
+    {
+      "id": "58b6dbc4a894eddc5b2801c5",
+      "hid": "5a8b957242c6706bdaebb16755e4e83c54919861",
+      "name": "samsung SM-A520F"
+    },
+    {
+      "id": "57c6bd73e4b00beab9e20729",
+      "hid": "bde5cdf96483dc0d27b213f9d82641fa6851a839",
+      "name": "samsung SM-G900F"
+    },
+    {
+      "id": "57c02cc5e4b0b218690170d0",
+      "hid": "9186bfd6915ba43b617f37abab3af1a1283b0d2b",
+      "name": "samsung SM-G900F"
+    },
+    {
+      "id": "5741c884e4b018dd33af0c17",
+      "hid": "7161fbb85f2ebef43f6c17ded56da931f7c627c9",
+      "name": "samsung SM-G900T"
+    },
+    {
+      "id": "586d8a67a894ed619eaf1f73",
+      "hid": "ebb9129388896f53670b1212d9f37cea38388b79",
+      "name": "samsung SM-G900T"
+    },
+    {
+      "id": "5862d692a894ed619eaf196a",
+      "hid": "34acde2d1dc63e656ca06537365be1d917263dbb",
+      "name": "samsung SM-G900V"
+    },
+    {
+      "id": "586d5545a894ed619eaf1f31",
+      "hid": "ee37f9933c8d465be05ca28544c041f2ac409869",
+      "name": "samsung SM-G900V"
+    },
+    {
+      "id": "58179e65e4b0c3c339f944c0",
+      "hid": "46ab690afc3cbcd32afce06e3b0c85643db0badc",
+      "name": "samsung SM-G920V"
+    },
+    {
+      "id": "579a5ef8e4b031bae47fa5b9",
+      "hid": "75abd06ee3d0fb21c21a996642a74136dbf1c81b",
+      "name": "samsung SM-G920W8"
+    },
+    {
+      "id": "58529f36a894ed619eaf10c7",
+      "hid": "698f9eacfcb8aa37ba52c2a0411c9efd1b3d73ba",
+      "name": "samsung SM-G930F"
+    },
+    {
+      "id": "58ad4c59a894ed40d06e26bb",
+      "hid": "fa80cd1fc281d8300ea4bfcbaeca2c8c77b64b69",
+      "name": "samsung SM-G930F"
+    },
+    {
+      "id": "58edb8ce73e6464d8b2bd024",
+      "hid": "369a49f55450860598480b1d4c0aa65b3fcdf1d9",
+      "name": "samsung SM-G930F"
+    },
+    {
+      "id": "57767b92e4b06600f6652b53",
+      "hid": "03a786becf8327b3b1e587156f2c20a4caaee33a",
+      "name": "samsung SM-G930V"
+    },
+    {
+      "id": "58811b79a894ed619eaf4b6f",
+      "hid": "098e9c5d442a8daf43f9592c9d4656d9335db5e9",
+      "name": "samsung SM-G930V"
+    },
+    {
+      "id": "584b324b32c5052b2696beef",
+      "hid": "d104d93190140d5a6c97b45541f8a6cc97f6310d",
+      "name": "samsung SM-T113"
+    },
+    {
+      "id": "584b34be32c5052b2696befd",
+      "hid": "3f5032678498c052058c6c763686b4e7c1bc9ed3",
+      "name": "samsung SM-T113"
+    },
+    {
+      "id": "584b34e832c5052b2696bf07",
+      "hid": "c99f3a96ac4c1bcdee136b351fddee555eae6453",
+      "name": "samsung SM-T113"
+    },
+    {
+      "id": "584b383232c5052b2696bf13",
+      "hid": "21260f0a6876a53de1a21278f9c7bc45107d1be7",
+      "name": "samsung SM-T113"
+    },
+    {
+      "id": "584b384932c5052b2696bf1d",
+      "hid": "c7767f0cf740882d76e4ddf86ad39ef8f4f7a6fc",
+      "name": "samsung SM-T113"
+    },
+    {
+      "id": "586ffd4732c5052b2696c593",
+      "hid": "1c3d81cea3e7ca34b7cd4950531ba29b6b766362",
+      "name": "samsung SM-T210R"
+    },
+    {
+      "id": "57971a12e4b010661c838270",
+      "hid": "f8df261cd1c23b1d35fd0ddcdb81a8336e2be506",
+      "name": "samsung SM-T710"
+    },
+    {
+      "id": "57e54897e4b019ef8ffb9fff",
+      "hid": "555deaf13a359256b936890f4323b2a111c761b1",
+      "name": "SCM118 DEV Gateway"
+    },
+    {
+      "id": "59088b0973e64608c2096e26",
+      "hid": "7e17e184611bc27f1f3396de0e38081f480d529a",
+      "name": "semiconductor-demo"
+    },
+    {
+      "id": "5908a35f73e64608c2096e9a",
+      "hid": "076f586304737e029fc66ee28e1bc0b7a4132030",
+      "name": "semiconductor-demo"
+    },
+    {
+      "id": "57edd1bde4b09c2e82fc8b1f",
+      "hid": "dae5b87e650719438c7c1100a3722af03fc75030",
+      "name": "Serious Reactor 01"
+    },
+    {
+      "id": "57edd1c5e4b09c2e82fc8b22",
+      "hid": "8d44694fd6797fd592e5f51d0ca47c1a89103f6e",
+      "name": "Serious Reactor 02"
+    },
+    {
+      "id": "57edd1cde4b09c2e82fc8b25",
+      "hid": "cacc05e5610dbbea894d8ab3b3745c555512edeb",
+      "name": "Serious Reactor 03"
+    },
+    {
+      "id": "57edd1d4e4b09c2e82fc8b28",
+      "hid": "bf7beaba7acbbfae114e4e5959ea474aef181ae9",
+      "name": "Serious Reactor 04"
+    },
+    {
+      "id": "57edd1dbe4b09c2e82fc8b2b",
+      "hid": "ccb736eafb90cdfaba1b014cd7bd6bbbc3b37469",
+      "name": "Serious Reactor 05"
+    },
+    {
+      "id": "57edd1e0e4b09c2e82fc8b2e",
+      "hid": "598e52dabb96f467beec966ac9ebf3caa6aeae73",
+      "name": "Serious Reactor 06"
+    },
+    {
+      "id": "57edd1e5e4b09c2e82fc8b31",
+      "hid": "28d6e66181b9cb27a1f6a1a831c15a9025f9b0b3",
+      "name": "Serious Reactor 07"
+    },
+    {
+      "id": "57edd1ece4b09c2e82fc8b34",
+      "hid": "d386869420f8f591003417e26780b00f76da3148",
+      "name": "Serious Reactor 08"
+    },
+    {
+      "id": "57edd1f1e4b09c2e82fc8b37",
+      "hid": "7a777a132b91aa188837d195875c047f18c037e2",
+      "name": "Serious Reactor 09"
+    },
+    {
+      "id": "57edd1fbe4b09c2e82fc8b3a",
+      "hid": "5f9b0f58301c3ffe9d8f199d6f8735fc3917b8d8",
+      "name": "Serious Reactor 10"
+    },
+    {
+      "id": "57edd200e4b09c2e82fc8b3d",
+      "hid": "fba1713894c6f41e8f6d69f35db82a1972aa3de1",
+      "name": "Serious Reactor 11"
+    },
+    {
+      "id": "57edd205e4b09c2e82fc8b40",
+      "hid": "e2083f1e7bd7f2cd5b0e3b297f2ea7753cd8e4c5",
+      "name": "Serious Reactor 12"
+    },
+    {
+      "id": "57edd20be4b09c2e82fc8b43",
+      "hid": "75b370a16191fdf28fc568a1b22c2e47da354109",
+      "name": "Serious Reactor 13"
+    },
+    {
+      "id": "57edd210e4b09c2e82fc8b46",
+      "hid": "97b7f5c68064171917cf4327b7c16868bd3da992",
+      "name": "Serious Reactor 14"
+    },
+    {
+      "id": "57edd216e4b09c2e82fc8b49",
+      "hid": "40b9cf728a7d89e3d06e4c5e15b8dc02b29ab570",
+      "name": "Serious Reactor 15"
+    },
+    {
+      "id": "581ab7b6e4b0279ad9cf4481",
+      "hid": "dd4ca041cb8e9975415ba712d2e8d491fe851fbe",
+      "name": "silabs zigBee gateway (tam)"
+    },
+    {
+      "id": "5799f75ee4b031bae47fa2d1",
+      "hid": "2e26abe3a063ec48919ce8976b07fecdd47ec6bc",
+      "name": "Sony D5303"
+    },
+    {
+      "id": "585d370f32c5052b2696c150",
+      "hid": "6c55e53563b4da2834e68a72dfce2d607160a908",
+      "name": "Sony D5803"
+    },
+    {
+      "id": "57ada8c6e4b01531b49c05c2",
+      "hid": "2ebd137aa1dbf313af5fbb032d93ac2a87a1f56a",
+      "name": "Sony SGP521"
+    },
+    {
+      "id": "58524fb3a894ed619eaf109e",
+      "hid": "3c85076487bff54ce48fd5d069d6e9c28d5a8ff3",
+      "name": "Sony SGP771"
+    },
+    {
+      "id": "57e59858e4b019ef8ffba025",
+      "hid": "543d11f8c5e4f90b97489bf8f51c3caf55227edd",
+      "name": "ST Demo Gateway (Dragonboard 410c)"
+    },
+    {
+      "id": "58f5a3db73e6464d8b2bd267",
+      "hid": "175a945cd3fed5f5f5884ef22223c9419ff3828f",
+      "name": "STM32-gate-demo"
+    },
+    {
+      "id": "57edd0a9e4b09c2e82fc8b13",
+      "hid": "a2cd775a368ce051ad6e2c0f5a8586e3253edc2a",
+      "name": "Stoelting Machine 1"
+    },
+    {
+      "id": "57edd0b8e4b09c2e82fc8b16",
+      "hid": "069099ed546a022e64fbef1a3f92157a32fc6967",
+      "name": "Stoelting Machine 2"
+    },
+    {
+      "id": "57edd0c2e4b09c2e82fc8b19",
+      "hid": "4e62d4d27b3ed84f4fea63fe6f3e6ccd550ed2ff",
+      "name": "Stoelting Machine 3"
+    },
+    {
+      "id": "57edd0c9e4b09c2e82fc8b1c",
+      "hid": "225c22c9ea4e38984e3967dc09384b81b16be825",
+      "name": "Stoelting Machine 4"
+    },
+    {
+      "id": "57a911ebe4b0f03fb5e75591",
+      "hid": "4d7cccab2b87a01683afa9d9f12a1133edf804ad",
+      "name": "Tam's Conduit"
+    },
+    {
+      "id": "5848e887a894ed619eaef253",
+      "hid": "ad1d8a11f637e0a6c2e2b9e362c71002211626e8",
+      "name": "Tam's Conduit 1"
+    },
+    {
+      "id": "5904b55c73e64608c2096002",
+      "hid": "ed43bce56cec5659a72a7a6041fef9bf9c0b9876",
+      "name": "tam-test-gtaa"
+    },
+    {
+      "id": "57a3b355e4b0f03fb5e73d11",
+      "hid": "03c94bd671ad4096a5dc6a47a61196e8816d1c24",
+      "name": "TenX GW 001 "
+    },
+    {
+      "id": "57d32f00e4b019ef8ffb948d",
+      "hid": "13256d31a10814ddd92d2ca2258b752c7cbb6d86",
+      "name": "TenXP Gateway 1"
+    },
+    {
+      "id": "57768efce4b06600f6652b60",
+      "name": "Test Device 1"
+    },
+    {
+      "id": "5925621773e6464736f22e09",
+      "hid": "4e97f66da014dbdea22d6f60d59b4fba6ffd2cab",
+      "name": "test-gateway"
+    },
+    {
+      "id": "57fd3e5e61c07b4186ba310f",
+      "hid": "34573ebf4508cceca936b487d92ed9671ef81d4a",
+      "name": "test-gateway-0001"
+    },
+    {
+      "id": "5825e35b32c5056418787b44",
+      "hid": "c1c24ae9cac79cb06550ba1a19cd87e38b32b2ef",
+      "name": "test-profile-gateway"
+    },
+    {
+      "id": "58c26ab173e64614e25b17aa",
+      "hid": "f4106970c21faab99f248740c61d99560cdded23",
+      "name": "unknown Android SDK built for x86"
+    },
+    {
+      "id": "5919ade973e64608c209880a",
+      "hid": "155cbf8051af432d9e71b0207fd82feed0145745",
+      "name": "unknown Android SDK built for x86"
+    },
+    {
+      "id": "5919aea673e64608c209880d",
+      "hid": "2fd65867e5f7492982916b420ec3b89a29e62a8d",
+      "name": "unknown Android SDK built for x86"
+    },
+    {
+      "id": "5919b00873e64608c2098810",
+      "hid": "60215bbe364f4976372697ba2137afb34d24bfdd",
+      "name": "unknown Android SDK built for x86"
+    },
+    {
+      "id": "5919b42a73e64608c2098819",
+      "hid": "e999130a39f74d72401f68db582382e89cbb86ca",
+      "name": "unknown Android SDK built for x86"
+    },
+    {
+      "id": "5919b49473e64608c209881b",
+      "hid": "cdf50f165601c4fc1042cdefb0ae04c3378bd3ec",
+      "name": "unknown Android SDK built for x86"
+    },
+    {
+      "id": "5919b4e373e64608c209881e",
+      "hid": "e8a31f38bada1cd932c327bfc05b69a1aacf86f9",
+      "name": "unknown Android SDK built for x86"
+    },
+    {
+      "id": "5919b5d973e64608c2098821",
+      "hid": "1bc7dbe9a4c1d1447322cbdd35476eb2324deaef",
+      "name": "unknown Android SDK built for x86"
+    },
+    {
+      "id": "5919b67973e64608c2098824",
+      "hid": "07817d537f685bede6652c54a28b23b75e32546f",
+      "name": "unknown Android SDK built for x86"
+    },
+    {
+      "id": "5919bbb473e64608c2098827",
+      "hid": "34e0a216527df34d5566fd439577b6714ee50dc9",
+      "name": "unknown Android SDK built for x86"
+    },
+    {
+      "id": "57a20df9e4b0f03fb5e734f5",
+      "hid": "e966f6957aa4751aceeae0f0b79ccb11dfcddeb7",
+      "name": "unknown MSM8916 for arm64"
+    },
+    {
+      "id": "582646a0e4b0c3c339f98e03",
+      "hid": "6d081491edeabecb9b7226fdadf6177c2028501d",
+      "name": "unknown MSM8916 for arm64"
+    },
+    {
+      "id": "58b0b3ada894ed40d06e40ba",
+      "hid": "6736a089e7b945684729247e5ecba16ad9344110",
+      "name": "xconnect gateway (tam)"
+    },
+    {
+      "id": "58b87ea6a894eddc5b281562",
+      "hid": "e00e19e1b24c4c488bcbdb934e124726a5acc77b",
+      "name": "xconnect gateway (tam) 100"
+    },
+    {
+      "id": "58b9816773e646fe7069b968",
+      "hid": "6F56176E74185F00C8999B324D99FAB658BDB41C",
+      "name": "xConnect Gateway DEMO"
+    },
+    {
+      "id": "58dbe7d473e646e68fb77053",
+      "hid": "e11e556acf8588942d057d6aec16f9f8dd314db5",
+      "name": "xConnect Gateway DEMO"
+    },
+    {
+      "id": "58a518606ee825f840999c5c",
+      "hid": "85c1880a6ec4fad39dcf0cc59d124d407351be45",
+      "name": "Xiaomi Redmi Note 2"
+    },
+    {
+      "id": "58a20e1573e6463cc00f1909",
+      "hid": "524cfd83bfa7d2e1598fb7001a358175c9e3af3f",
+      "name": "XK-FLX-XC"
+    },
+    {
+      "id": "5876a902a894ed619eaf34cd",
+      "hid": "43efecf194cd4ad0c5f2dd4a9f9a22fc801c2f7e",
+      "name": "ZTE Z981"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "5712637e5158c583b4d4d003",
+      "hid": "bd9f912c3be234baca946d88ef3475dd14050461",
+      "name": "/Buildings"
+    },
+    {
+      "id": "57753ed7e4b00e10b6378cd4",
+      "hid": "6ee44708ec5ae99157b5cc6d289e47d4063bcfb1",
+      "name": "/Buildings/DM Test Lab"
+    },
+    {
+      "id": "57753f35e4b00e10b6378cd6",
+      "hid": "904af5faedc053b75a1fa2df4a2435993bf4a761",
+      "name": "/Buildings/DM Test Lab/Office 1"
+    },
+    {
+      "id": "57b2f3c6e4b0d098791fa735",
+      "hid": "b9f8323d9eff1af60088868c7b2aa10b2e9fcfdf",
+      "name": "/Buildings/DM Test Lab/Office 2"
+    },
+    {
+      "id": "57b2f3d8e4b0d098791fa737",
+      "hid": "7c52ac6e5adc6fdf8496ee8a45a9bbb7b5475640",
+      "name": "/Buildings/DM Test Lab/Office 3"
+    },
+    {
+      "id": "57b2f2ace4b0d098791fa72a",
+      "hid": "2a8cf9e8d77a5f2e8071510d7c21ec1f7804ebbe",
+      "name": "/Buildings/DM Test Lab/Reception Area"
+    },
+    {
+      "id": "57d6f052e4b0d15321f2e3e4",
+      "hid": "0337930a45573f66111efe4ff51b5ea38d9a9c6c",
+      "name": "/Buildings/Micro Studio"
+    },
+    {
+      "id": "572e0ae751587867839fb821",
+      "hid": "cd88946eeded360e155b9c46f76a6fe91c839389",
+      "name": "/Buildings/Test Lab"
+    },
+    {
+      "id": "572e0b8d51587867839fb825",
+      "hid": "3176a958b90e90b71b06f9ee84e0b29b9e8fa45a",
+      "name": "/Buildings/Test Lab/Office"
+    },
+    {
+      "id": "57d7d685d7b97dc6f3974f33",
+      "hid": "8442071ad8a0116a57009f39d402c19e37a9765c",
+      "name": "/Buildings/Test Restaurant"
+    },
+    {
+      "id": "57d7d727d7b97dc6f3974f39",
+      "hid": "e3c731f2fcea9d67a4548a6d491b2f9b087cdc37",
+      "name": "/Buildings/Test Restaurant/Dining Room"
+    },
+    {
+      "id": "57d7d6f6d7b97dc6f3974f37",
+      "hid": "977d3bc50a1fa35d96746e4c03648e20e426fa63",
+      "name": "/Buildings/Test Restaurant/Freezer"
+    },
+    {
+      "id": "57d7d6cad7b97dc6f3974f35",
+      "hid": "60d8bbc3add7df13561d577c578e555447129956",
+      "name": "/Buildings/Test Restaurant/Kitchen"
+    },
+    {
+      "id": "572ce7cf51587867839fb805",
+      "hid": "d40c562b27a1423d2f035879d6568d58fd801a34",
+      "name": "/Buildings/Wiz-Bang Studios"
+    },
+    {
+      "id": "572ce86851587867839fb80f",
+      "hid": "26e0137221736c9d64f33c3b3a5a32d08e629954",
+      "name": "/Buildings/Wiz-Bang Studios/Camera Studio"
+    },
+    {
+      "id": "572ce88751587867839fb811",
+      "hid": "da91aacae584cbacea6fd8c6de2e2fd45adbae26",
+      "name": "/Buildings/Wiz-Bang Studios/Film Development"
+    },
+    {
+      "id": "572ce91151587867839fb815",
+      "hid": "0a0b6c5d207bf1dc05a29eea5d44bf70e1eae627",
+      "name": "/Buildings/Wiz-Bang Studios/HVAC"
+    },
+    {
+      "id": "572ce85351587867839fb80d",
+      "hid": "00ea3209218951a84299063658294be19d5d4925",
+      "name": "/Buildings/Wiz-Bang Studios/Media Storage"
+    },
+    {
+      "id": "572ce7eb51587867839fb807",
+      "hid": "7c175e285482510837f571aa339c45708d62ea1c",
+      "name": "/Buildings/Wiz-Bang Studios/Office 1"
+    },
+    {
+      "id": "572ce80651587867839fb809",
+      "hid": "9254a8451e06423894ec3bc87ec85576f77942ef",
+      "name": "/Buildings/Wiz-Bang Studios/Office 2"
+    },
+    {
+      "id": "572ce82a51587867839fb80b",
+      "hid": "ae0fa3ba37978fd622b10a5cf6922f7ee10f444b",
+      "name": "/Buildings/Wiz-Bang Studios/Office 3"
+    },
+    {
+      "id": "572d7f0b51587867839fb81b",
+      "hid": "5961a919433113e9513fd6491fbce95517f199ac",
+      "name": "/Buildings/Wiz-Bang Studios/Reception Area"
+    },
+    {
+      "id": "575f4c7eb9361638a28ba668",
+      "hid": "74f248083d0f83e70b030239ac85db6dfb7e8d6b",
+      "name": "/Cars"
+    },
+    {
+      "id": "57fe0f3ce4b056eecd992b78",
+      "hid": "9db1ab24ae61b106fd41a72b620d3c213daad9f2",
+      "name": "/Cars/NewNone"
+    },
+    {
+      "id": "57fe17e1e4b056eecd992bad",
+      "hid": "f1203e1db2b2ced93400f71270eb8878b7be181e",
+      "name": "/Cars/NewNone"
+    },
+    {
+      "id": "575f4ac2b9361638a28ba659",
+      "hid": "ce546a954aff4232a43ca99d42787bf9c891b622",
+      "name": "/Cars/Stingray"
+    },
+    {
+      "id": "571263215158c583b4d4d001",
+      "hid": "c388f8c4bbe15826cf94908dfdf95bad25a981d5",
+      "name": "/Cars/Z06"
+    },
+    {
+      "id": "591b135f73e64608c20988c0",
+      "hid": "6f11483d7825807c428983fefb606731b9cfd2f2",
+      "name": "/Cars/Z06/TestNode"
+    },
+    {
+      "id": "591b155d73e64608c20988c2",
+      "hid": "4050add902766a064b0dea19860b3c025e0021dd",
+      "name": "/Cars/Z06/TestNode"
+    },
+    {
+      "id": "591c5c7273e64608c2098979",
+      "hid": "87d5bcaf558b35c69b90e7af75ae9d7654bf1458",
+      "name": "/Cars/Z06/TestNode"
+    },
+    {
+      "id": "5924432673e64608c2098c23",
+      "hid": "2518882a0d6ee9063dee4579f47e1bd4c784ab09",
+      "name": "/Cars/Z06/TestNode"
+    },
+    {
+      "id": "5846864d32c5052c9b8165ec",
+      "hid": "4b612a4aab7ea51b5420e6627e7c70b479b88684",
+      "name": "/Encore Hotel"
+    },
+    {
+      "id": "58de829e73e646e70c994807",
+      "hid": "ddc437be610edec3408c59a38b7a17701947bc62",
+      "name": "/Las Vegas, NV"
+    },
+    {
+      "id": "570fa2ffe4e2191bd389224e",
+      "hid": "c0e35928b0efae0d23492ae82e58bd91c6227b5b",
+      "name": "/node-001"
+    },
+    {
+      "id": "570faaf6e4e2191bd3892252",
+      "hid": "e17918f2141c7865b71985ac8ce88270cc30efd7",
+      "name": "/node-001/node-002"
+    },
+    {
+      "id": "5735f5afa22293d6d12cce46",
+      "hid": "3d43633f4136fedb7d08cb0f7b0fd1057427a68e",
+      "name": "/node-001/node-002/node-004"
+    },
+    {
+      "id": "5846862a32c5052c9b8165e9",
+      "hid": "6448e212aa38e4b4b7b9d60ae1613b820deba640",
+      "name": "/STMicroelectronics"
+    },
+    {
+      "id": "58de828673e646e70c994805",
+      "hid": "63590f47518522574fc90ba0b65e969094fa6d38",
+      "name": "/Syracuse, NY"
+    },
+    {
+      "id": "57ff8cf9e4b056eecd992ed2",
+      "hid": "67e60651d777ef2446c10d9319792f249fd3c97a",
+      "name": "/Test node"
+    }
+  ]
+}

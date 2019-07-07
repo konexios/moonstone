@@ -1,0 +1,50 @@
+<div class="row-content no-list-page" >
+	<div class="content-wrapper-fluid">
+		<div class="row margin-left-ninety" ng-controller="HomeController">
+		<div class="col-sm-1"></div>
+			<div class="col-sm-4">
+				<div class="panel panel-default panel-content">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<i class="fa fa-tablet" aria-hidden="true"></i> Gateway Status
+							<a href=""
+							   ng-click="checkGateway()"
+							   class="pull-right"
+							   title="Refresh"><i class="fa fa-refresh" ng-class="widgets.myGateways.loading ? 'fa-spin' : ''" aria-hidden="true"></i></a>
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div class="text-center" ng-if="gatewayStatus=='ERROR'">
+							<i class="fa fa-warning fontsize-red-color" aria-hidden="true"></i><br>
+							<p class="color-red">Gateway is not Running..</p>
+						</div>
+						<div class="text-center" ng-if="gatewayStatus=='OK'">
+							<i class="fa fa-check-circle fontsize-green-color" aria-hidden="true"></i>
+							<p>Gateway is Running..</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-4">
+				<div class="panel panel-default panel-content">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<i class="fa fa-tablet" aria-hidden="true"></i> Devices
+							<a href=""
+							   ng-click="noDevices()"
+							   class="pull-right"
+							   title="Refresh"><i class="fa fa-refresh" ng-class="widgets.myDevices.loading ? 'fa-spin' : ''" aria-hidden="true"></i></a>
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div class="text-center">
+							<p class="fontsize-thirty">{{devices}}</p>
+							<p><b>No. of Devices</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

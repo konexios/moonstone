@@ -1,0 +1,117 @@
+<div class="modal-header">
+    <h3 class="modal-title">Test Result</h3>
+</div>
+<form name="testResultForm" class="form-horizontal" novalidate ng-submit="save(testResultForm);">
+    <div class="modal-body">
+
+		<div class="row">
+			<div class="col-md-6">
+		        <div class="form-group">
+		            <label class="col-sm-4 control-label">Test Procedure</label>
+		            <div class="col-sm-8">
+		                <p class="form-control-static">{{testResult.testProcedureName}}</p>
+		            </div>
+		        </div>
+		
+		        <div class="form-group">
+		            <label class="col-sm-4 control-label">Asset</label>
+		            <div class="col-sm-8">
+		                <p class="form-control-static">{{testResult.objectName}}</p>
+		            </div>
+		        </div>
+		        <div class="form-group">
+		            <label class="col-sm-4 control-label">Status</label>
+		            <div class="col-sm-8">
+		                <p class="form-control-static">{{testResult.status}}</p>
+		            </div>
+		        </div>
+			</div>
+			<div class="col-md-6">
+		        <div class="form-group">
+		            <label class="col-sm-3 control-label">Started</label>
+		            <div class="col-sm-9">
+		                <p class="form-control-static">{{testResult.started | date:'MM/dd/yyyy h:mm a'}}</p>
+		            </div>
+		        </div>
+		
+		        <div class="form-group">
+		            <label class="col-sm-3 control-label">Ended</label>
+		            <div class="col-sm-9">
+		                <p class="form-control-static">{{testResult.ended | date:'MM/dd/yyyy h:mm a'}}</p>
+		            </div>
+		        </div>
+			</div>
+		</div>
+        <div class="form-group" style="margin-bottom: 0;">
+            <div class="col-sm-12">
+                <div class="panel panel-default" style="margin-bottom: 0;">
+                    <div class="panel-heading">
+                        Steps
+                    </div>
+                    <div class="scrollable-table" ng-show="testResult.steps.length > 0">
+                        <table class="table table-striped table-bordered" style="table-layout: fixed;">
+                            <thead class="hidden-xs">
+                                <tr>
+                                    <th>Step</th>
+                                    <th>Status</th>
+                                    <th>Error</th>
+                                    <th>Comment</th>
+                                    <th>Started</th>
+                                    <th>Ended</th>
+                                    <th ng-if="canSave">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="step in testResult.steps track by $index">
+                                    <td class="hidden-xs">{{step.definition.name}}</td>
+                                    <td class="hidden-xs">{{step.status}}</td>
+                                    <td class="hidden-xs">{{step.error}}</td>
+                                    <td class="hidden-xs" ng-if="!editing[$index]">{{step.comment}}</td>
+                                    <td class="hidden-xs" ng-if="editing[$index]">
+                                        <input type="text" name="{{'step'+$index+'Comment'}}" class="form-control" ng-model="step.comment" maxlength="1000" />
+                                        <div class="alert-danger" ng-messages="testResultForm['step'+$index+'Comment'].$error" role="alert">
+                                            <span ng-message="maxlength">Comment must be maximum 1000 characters long</span>
+                                        </div>
+                                    </td>
+                                    <td class="hidden-xs">{{step.started | date:'MM/dd/yyyy h:mm a'}}</td>
+                                    <td class="hidden-xs">{{step.ended | date:'MM/dd/yyyy h:mm a'}}</td>
+                                    <td class="hidden-xs" ng-if="canSave">
+                                        <button type="button" class="btn btn-link col-md-12" ng-click="editStep($index)" ng-disabled="editing[$index] &amp;&amp; (testResultForm['step'+$index+'Comment'].$invalid)">
+                                            {{editing[$index] ? 'Done' : 'Edit'}}
+                                        </button>
+                                    </td>
+                                    <!-- FOR MOBILE VIEW -->
+                                    <td class="hidden-sm hidden-md hidden-lg">
+                                        <div><b>Step:</b> {{step.definition.name}}</div>
+                                        <div><b>Status:</b> {{step.status}}</div>
+                                        <div><b>Error:</b> {{step.error}}</div>
+                                        <div ng-if="!editing[$index]"><b>Comment:</b> {{step.comment}}</div>
+                                        <div ng-if="editing[$index]" class="margin-top-20">
+                                            <b>Comment:</b>
+                                            <input type="text" name="{{'step'+$index+'Comment_m'}}" class="form-control" ng-model="step.comment" maxlength="1000" />
+                                            <div class="alert-danger" ng-messages="testResultForm['step'+$index+'Comment_m'].$error" role="alert">
+                                                <span ng-message="maxlength">Comment must be maximum 1000 characters long</span>
+                                            </div>
+                                        </div>
+                                        <div><b>Started:</b> {{step.started | date:'MM/dd/yyyy h:mm a'}}</div>
+                                        <div><b>Ended:</b> {{step.ended | date:'MM/dd/yyyy h:mm a'}}</div>
+                                        <div ng-if="canSave" class="text-center margin-top-20">
+                                            <button type="button" class="btn btn-link" ng-click="editStep($index)" ng-disabled="editing[$index] &amp;&amp; (testResultForm['step'+$index+'Comment_m'].$invalid)">
+                                                {{editing[$index] ? 'Done' : 'Edit'}}
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <!-- /FOR MOBILE VIEW -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="submit" ng-if="canSave">Save</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">Close</button>
+    </div>
+</form>

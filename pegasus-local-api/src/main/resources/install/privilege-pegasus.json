@@ -1,0 +1,499 @@
+[
+	{
+		"systemName": "PEGASUS_ACCESS",
+		"hidden": false,
+		"name": "Pegasus Access",
+		"description": "PEGASUS_ACCESS description",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CREATE_PRIVILEGE",
+		"hidden": false,
+		"name": "Create Privilege",
+		"description": "Enables the user to create a new privilege.",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_PRIVILEGE",
+		"hidden": false,
+		"name": "Update Privilege",
+		"description": "Enables the user to update/make changes to an existing privilege.",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CREATE_ROLE",
+		"hidden": false,
+		"name": "Create Role",
+		"description": "Enables the user to create a new role.",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CREATE_USER",
+		"hidden": false,
+		"name": "Create User",
+		"description": "Enables the user to create a new user.",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CREATE_APPLICATION",
+		"hidden": false,
+		"name": "Create Application",
+		"description": "Enables the user to create a new application.",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CREATE_PRODUCT",
+		"hidden": false,
+		"name": "Create Product",
+		"description": "Enables the user to create a new product.",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CREATE_COMPANY",
+		"hidden": false,
+		"name": "Create Company",
+		"description": "Enables the user to create a new company.",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CREATE_SUBSCRIPTION",
+		"hidden": false,
+		"name": "Create Subscription",
+		"description": "Enables the user to create a new subscription.",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_MANAGE_CACHE",
+		"hidden": false,
+		"name": "Manage Cache",
+		"description": "Enables the user to manage/clear cached data.",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_APPLICATION",
+		"hidden": false,
+		"name": "Read Application",
+		"description": "Read Application",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_APPLICATION",
+		"hidden": false,
+		"name": "Update Application",
+		"description": "Update Application",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_PRODUCT",
+		"hidden": false,
+		"name": "Read Product",
+		"description": "Read Product",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_COMPANY",
+		"hidden": false,
+		"name": "Read Company",
+		"description": "Read Company",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_SUBSCRIPTION",
+		"hidden": false,
+		"name": "Read Subscription",
+		"description": "Read Subscription",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_USER",
+		"hidden": false,
+		"name": "Read User",
+		"description": "Read User",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_ROLE",
+		"hidden": false,
+		"name": "Read Role",
+		"description": "Read Role",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_PRIVILEGE",
+		"hidden": false,
+		"name": "Read Privilege",
+		"description": "Read Privilege",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_PRODUCT",
+		"hidden": false,
+		"name": "Update Product",
+		"description": "Update Product",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_COMPANY",
+		"hidden": false,
+		"name": "Update Company",
+		"description": "Update Company",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_SUBSCRIPTION",
+		"hidden": false,
+		"name": "Update Subscription",
+		"description": "Update Subscription",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_USER",
+		"hidden": false,
+		"name": "Update User",
+		"description": "Update User",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_ROLE",
+		"hidden": false,
+		"name": "Update Role",
+		"description": "Update Role",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_RESET_USER_PASSWORD",
+		"hidden": false,
+		"name": "Reset User Password",
+		"description": "Enables the user to reset other users password.",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CREATE_APPLICATION_VAULT_LOGIN",
+		"hidden": false,
+		"name": "Create Application Vault Login",
+		"description": "Enables the user to create the vault login for an Application.",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CREATE_REGION",
+		"hidden": false,
+		"name": "Create Region",
+		"description": "Create Region",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CREATE_ZONE",
+		"hidden": false,
+		"name": "Create Zone",
+		"description": "Create Zone",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_REGION",
+		"hidden": false,
+		"name": "Read Region",
+		"description": "Read Region",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_ZONE",
+		"hidden": false,
+		"name": "Read Zone",
+		"description": "Read Zone",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_REGION",
+		"hidden": false,
+		"name": "Update Region",
+		"description": "Update Region",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_ZONE",
+		"hidden": false,
+		"name": "Update Zone",
+		"description": "Update Zone",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CREATE_COMPANY_ACCESS_KEY",
+		"hidden": false,
+		"name": "Create Company Access Key",
+		"description": "Create Company Access Key",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CREATE_COMPANY_AUTH",
+		"hidden": false,
+		"name": "Create Company Authentication",
+		"description": "Create Company Authentication",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_COMPANY_ACCESS_KEYS",
+		"hidden": false,
+		"name": "Read Company Access Keys",
+		"description": "Read Company Access Keys",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_COMPANY_APPLICATIONS",
+		"hidden": false,
+		"name": "Read Company Applications",
+		"description": "Read Company Applications",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_COMPANY_AUTHENTICATION",
+		"hidden": false,
+		"name": "Read Company Authentication",
+		"description": "Read Company Authentication",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_COMPANY_BILLING",
+		"hidden": false,
+		"name": "Read Company Billing",
+		"description": "Read Company Billing",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_COMPANY_HIERARCHY",
+		"hidden": false,
+		"name": "Read Company Hierarchy",
+		"description": "Read Company Hierarchy",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_COMPANY_SUBSCRIPTIONS",
+		"hidden": false,
+		"name": "Read Company Subscriptions",
+		"description": "Read Company Subscriptions",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_COMPANY_ACCESS_KEY",
+		"hidden": false,
+		"name": "Update Company Access Key",
+		"description": "Update Company Access Key",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_COMPANY_AUTH",
+		"hidden": false,
+		"name": "Update Company Authentication",
+		"description": "Update Company Authentication (Active Directory & Single Sign On)",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_COMPANY_BILLING",
+		"hidden": false,
+		"name": "Update Company Billing",
+		"description": "Update Company Billing",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_COMPANY_LOGIN_POLICY",
+		"hidden": false,
+		"name": "Update Company Login Policy",
+		"description": "Update Company Login Policy",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_COMPANY_PASSWORD_POLICY",
+		"hidden": false,
+		"name": "Update Company Password Policy",
+		"description": "Update Company Password Policy",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CREATE_APPLICATION_ACCESS_KEY",
+		"hidden": false,
+		"name": "Create Application Access Key",
+		"description": "Create Application Access Key",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CREATE_SUBSCRIPTION_ACCESS_KEY",
+		"hidden": false,
+		"name": "Create Subscription Access Key",
+		"description": "Create Subscription Access Key",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_APPLICATION_ACCESS_KEYS",
+		"hidden": false,
+		"name": "Read Application Access Keys",
+		"description": "Read Application Access Keys",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_SUBSCRIPTION_ACCESS_KEYS",
+		"hidden": false,
+		"name": "Read Subscription Access Keys",
+		"description": "Read Subscription Access Keys",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_APPLICATION_ACCESS_KEY",
+		"hidden": false,
+		"name": "Update Application Access Key",
+		"description": "Update Application Access Key",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_SUBSCRIPTION_ACCESS_KEY",
+		"hidden": false,
+		"name": "Update Subscription Access Keys",
+		"description": "Update Subscription Access Keys",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_PRODUCT_APPLICATIONS",
+		"hidden": false,
+		"name": "Read Product Applications",
+		"description": "Read Product Applications",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_SUBSCRIPTION_APPLICATIONS",
+		"hidden": false,
+		"name": "Read Subscription Applications",
+		"description": "Read Subscription Applications",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_USER_ACCOUNT",
+		"hidden": false,
+		"name": "Read User Account",
+		"description": "Read User Account",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_USER_PROFILE",
+		"hidden": true,
+		"name": "Read User Profile",
+		"description": "Read User Profile",
+		"enabled": false
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_USER_ACCOUNT",
+		"hidden": false,
+		"name": "Update User Account",
+		"description": "Update User Account",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_USER_PROFILE",
+		"hidden": true,
+		"name": "Update User Profile",
+		"description": "Update User Profile",
+		"enabled": false
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_PRODUCT_FEATURE",
+		"hidden": false,
+		"name": "Update Product Feature",
+		"description": "Update Product Feature",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_DELETE_PRODUCT_FEATURE",
+		"hidden": false,
+		"name": "Delete Product Feature",
+		"description": "Delete Product Feature",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CREATE_PRODUCT_FEATURE",
+		"hidden": false,
+		"name": "Create Product Feature",
+		"description": "Create Product Feature",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_USER_PREFERENCES",
+		"hidden": true,
+		"name": "Read User Preferences",
+		"description": "Read User Preferences",
+		"enabled": false
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_USER_PREFERENCES",
+		"hidden": true,
+		"name": "Update User Preferences",
+		"description": "Update User Preferences",
+		"enabled": false
+	},
+	{
+		"systemName": "PEGASUS_CREATE_USER_AUTHENTICATION",
+		"hidden": false,
+		"name": "Create User Authentication",
+		"description": "Create User Authentication",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_USER_AUTHENTICATION",
+		"hidden": false,
+		"name": "Read User Authentication",
+		"description": "Read User Authentication",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CHANGE_USER_LOGIN",
+		"hidden": false,
+		"name": "Change User Login",
+		"description": "Change User Login",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_USER_AUTHENTICATION",
+		"hidden": false,
+		"name": "Update User Authentication",
+		"description": "Update User Authentication",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_USER_AUDIT_LOGS",
+		"hidden": true,
+		"name": "Read User Audit Logs",
+		"description": "Read User Audit Logs",
+		"enabled": false
+	},
+	{
+		"systemName": "PEGASUS_DISABLE_USER_ACCOUNT",
+		"hidden": false,
+		"name": "Disable User Account",
+		"description": "Disable User Account",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_USER_ROLES",
+		"hidden": false,
+		"name": "Update User Roles",
+		"description": "Update User Roles",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_CREATE_APPLICATION_CONFIGURATION",
+		"hidden": false,
+		"name": "Create Application Configuration",
+		"description": "Create Application Configuration",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_READ_APPLICATION_CONFIGURATIONS",
+		"hidden": false,
+		"name": "Read Application Configurations",
+		"description": "Read Application Configurations",
+		"enabled": true
+	},
+	{
+		"systemName": "PEGASUS_UPDATE_APPLICATION_CONFIGURATION",
+		"hidden": false,
+		"name": "Update Application Configuration",
+		"description": "Update Application Configuration",
+		"enabled": true
+	}
+]

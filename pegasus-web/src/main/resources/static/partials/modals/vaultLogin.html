@@ -1,0 +1,49 @@
+<div class="modal-header">
+	<h3 class="modal-title" id="modal-title">
+		Vault Login
+	</h3>
+</div>
+<div class="modal-body" id="modal-body">
+	<form name="form" 
+		class="form-horizontal" 
+		role="form"
+		novalidate>
+	    <div class="form-body">
+
+	        <div class="form-group"
+	        	ng-class="{ 'has-error': form.adminToken.$touched && form.adminToken.$invalid, 'has-success': form.adminToken.$touched && !form.adminToken.$invalid }">
+	            <label for="adminToken"
+	            	class="col-md-2 control-label">Admin Token
+	            	<span class="required" aria-required="true"> * </span>
+	            </label>
+	            <div class="col-md-10">
+	            	<div class="input-icon right">
+	                	<i ng-show="form.adminToken.$touched && form.adminToken.$invalid" class="fa fa-warning"></i>
+	                	<i ng-show="form.adminToken.$touched && !form.adminToken.$invalid" class="fa fa-check"></i>
+		                <textarea id="adminToken" 
+		                	name="adminToken"
+		                	class="form-control" 
+		                	rows="3" 
+		                	ng-model="adminToken"
+		                	ng-trim="true"
+		           			ng-required="true"></textarea>
+		            </div>
+	                <div class="help-block" ng-messages="form.adminToken.$error" ng-show="form.adminToken.$touched">
+	                	<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+	                </div>
+	            </div>
+	        </div>
+
+		</div>	
+	</form>
+</div>
+<div class="modal-footer">
+	<button type="submit" 
+		class="btn btn-default" 
+		ng-disabled="busy"
+		ng-click="ok(form)">OK</button>
+	<button type="button" 
+		class="btn btn-default" 
+		ng-disabled="busy"
+		ng-click="cancel()">Cancel</button>
+</div>			

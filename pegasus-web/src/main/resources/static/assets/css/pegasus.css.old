@@ -1,0 +1,325 @@
+.page-header .page-header-top .page-logo .logo-default { margin: 8.5px 0 0; }
+
+body { 
+	background-color: rgb(34, 34, 34);
+	background-color: rgba(34, 34, 34, 1);
+}
+
+html,
+body {
+	height: 100%;
+	overflow: visible;
+}
+
+/* VIEW */
+
+.pegasus-view {
+    padding-top: 60px; /* account for navigation bar */
+    height: 100%;
+    overflow: visible;
+}
+
+/* CONTAINERS */
+
+body > .pegasus-view > .container,
+body > .pegasus-view > .container-fluid {
+	background-color: rgb(245, 245, 245);
+	background-color: rgba(245, 245, 245, 1);
+	color: rgb(34, 34, 34);
+	color: rgba(34, 34, 34, 1);	
+}
+
+/* NAVBAR */
+
+.app-top-navbar {
+	border: 0px solid transparent;
+}
+
+.navbar-brand > img {
+	display: inline-block;
+}
+
+.app-top-navbar .navbar-header { height: 57px; }
+
+.app-top-navbar .navbar-header .navbar-brand {
+    min-height: 57px;
+    padding: 0px 15px 0px 30px;
+    color: rgb(245, 245, 245);
+    color: rgba(245, 245, 245, 1);
+    white-space: nowrap !important;
+}
+
+.app-top-navbar {
+    background: rgb(34, 34, 34);
+    background: rgba(34, 34, 34, 1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.app-top-navbar .navbar-nav > li > a {
+    min-width: 128px;
+    height: 60px;
+    line-height: 60px;
+
+	/*override bootstrap*/
+    padding-top: 0px;
+    padding-bottom: 0px;
+	
+	text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: rgb(245, 245, 245);
+	color: rgba(245, 245, 245, 0.5);
+	transition: color 0.25s, background 0.25s;
+}
+
+.app-top-navbar .navbar-nav > li > a:hover, 
+.app-top-navbar .navbar-nav > li > a:focus,
+.app-top-navbar .navbar-nav > .active > a, 
+.app-top-navbar .navbar-nav > .active > a:hover {
+	color: rgb(245, 245, 245);
+    color: rgba(245, 245, 245, 1);
+    background: rgb(34, 34, 34);
+    background: rgba(34, 34, 34, 1);
+}
+
+.app-top-navbar .navbar-nav > li > a > span {
+	position: absolute;
+    display: block;
+    top: 40px;
+    left: 0;
+    height: 10px;
+    width: 100%;
+    text-align: center;
+    line-height: 10px;
+    font-size: 10px;
+    opacity: 0.5;
+}
+
+/* MENU ITEM:AFTER */
+
+.app-top-navbar .navbar-nav > li > a:after {
+	content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: rgb(245, 245, 245);
+    background: rgba(245, 245, 245, 0);
+    transition: 0.25s;
+}
+
+.app-top-navbar .navbar-nav > li > a:hover:after,
+.app-top-navbar .navbar-nav > .active > a:after,
+.app-top-navbar .navbar-nav > .active > a:hover:after {
+	left: 0;
+    width: 100%;
+    /* this is the color of the line under the menu item */
+    background: rgb(255, 0, 0);
+    background: rgba(255, 0, 0, 1);
+}
+
+/* MENU ITEM OPEN */
+
+.app-top-navbar .navbar-nav > .open > a, 
+.app-top-navbar .navbar-nav > .open > a:focus, 
+.app-top-navbar .navbar-nav > .open > a:hover {
+    color: rgb(245, 245, 245);
+    color: rgba(245, 245, 245, 1);
+    background: rgb(34, 34, 34);
+    background: rgba(34, 34, 34, 1);
+}
+
+/* DROP DOWN MENU  */
+
+.app-top-navbar .dropdown .dropdown-menu {
+    box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.25);
+    transition: 0.25s;
+    background: rgb(21, 21, 21);
+    background: rgba(21, 21, 21, 1);
+    
+    /* override bootstrap */
+    border-radius: 0px;
+}
+
+.app-top-navbar .dropdown .dropdown-menu .divider {
+	background: rgb(9, 9, 9);
+	background: rgba(9, 9, 9, 1);
+}
+
+.app-top-navbar .dropdown .dropdown-menu > li > a {
+	box-sizing: border-box;
+    padding: 12px 18px;
+    line-height: 16px;
+    font-size: 12px;
+    text-transform: none;
+    transition: 0.25s;
+
+    color: rgb(245, 245, 245);
+    color: rgba(245, 245, 245, 1);
+    background: rgb(21, 21, 21);
+    background: rgba(21, 21, 21, 1);
+}
+
+.app-top-navbar .dropdown .dropdown-menu > li > a:focus,
+.app-top-navbar .dropdown .dropdown-menu > li > a:hover {
+	color: rgb(245, 245, 245);
+    color: rgba(245, 245, 245, 1);
+	background: rgb(34, 34, 34);
+	background: rgba(34, 34, 34, 1);
+}
+
+.app-top-navbar .dropdown .app-top-navbar .dropdown .dropdown-menu > li > a { 
+    min-width: 128px;
+}
+
+.app-top-navbar .dropdown .dropdown-menu > .active > a, 
+.app-top-navbar .dropdown .dropdown-menu > .active > a:hover, 
+.app-top-navbar .dropdown .dropdown-menu > .active > a:focus {
+	background: rgb(47, 47, 47);
+	background: rgba(47, 47, 47, 1);
+}
+
+/* ICON */
+
+.app-top-navbar .dropdown-menu > li > a > i { font-size: 32px; float: left; padding: 0px; padding-right: 10px; }
+
+
+/* CONTENT */
+
+.container-content {
+	padding: 20px;
+}
+
+.page-title > h1 small, 
+.page-title > .h1 small, 
+.page-title > h2 small, 
+.page-title > .h2 small, 
+.page-title > h3 small, 
+.page-title > .h3 small, 
+.page-title > h1 .small, 
+.page-title > .h1 .small, 
+.page-title > h2 .small, 
+.page-title > .h2 .small, 
+.page-title > h3 .small, 
+.page-title > .h3 .small {
+    font-size: 35%;
+}
+
+.container-content .page-hd { margin-bottom: 20px; }
+.container-content .page-bd { margin-bottom: 20px; }
+.container-content .page-ft { margin-bottom: 20px; }
+
+/* DROPDOWN MENU */
+
+.dropdown-menu {
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    list-style: none;
+    font-size: 14px;
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 0;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+
+.dropdown-menu > li > a {
+    padding: 3px 20px;
+    font-weight: normal;
+    line-height: 1.42857143;
+	color: rgb(34, 34, 34);
+	color: rgba(34, 34, 34, 1);	
+}
+
+.dropdown-menu > .active > a, 
+.dropdown-menu > .active > a:hover, 
+.dropdown-menu > .active > a:focus {
+    background-image: none;
+    background-repeat: no-repeat;
+    filter: ;
+    background-color: rgb(255, 0, 0);
+    background-color: rgba(255, 0, 0, 1);
+}
+.dropdown-menu > .active > a, 
+.dropdown-menu > .active > a:hover, 
+.dropdown-menu > .active > a:focus {
+    color: rgb(245, 245, 245);
+    color: rgba(245, 245, 245, 1);
+    text-decoration: none;
+    outline: 0;
+    background-color: rgb(255, 0, 0);
+    background-color: rgba(255, 0, 0, 1);
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    background-image: none;
+    background-repeat: no-repeat;
+    filter: ;
+    background-color: #e8e8e8;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    text-decoration: none;
+    color: rgb(245, 245, 245);
+    color: rgba(245, 245, 245, 1);
+    background-color: rgb(34, 34, 34);
+    background-color: rgba(34, 34, 34, 1);
+}
+
+/* TABLE */
+
+.table-ellipsis,
+.truncate-ellipsis {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap;
+}
+ 
+.table-ellipsis th,
+.table-ellipsis td,
+.truncate-ellipsis > * {
+    display: table-cell;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.table-wrapper-hd {
+	margin-bottom: 20px;
+}
+
+.table > thead > tr > th {
+    vertical-align: bottom;
+    color: rgb(245, 245, 245);
+    color: rgba(245, 245, 245, 1);
+    background: rgb(47, 47, 47);
+    background: rgba(47, 47, 47, 1);
+    border-bottom: 3px solid rgb(255, 0, 0);
+    border-bottom: 3px solid rgba(255, 0, 0, 1);
+}
+
+.table > thead > tr > th > a,
+.table > thead > tr > th > a:focus,
+.table > thead > tr > th > a:hover {
+    color: rgb(245, 245, 245);
+    color: rgba(245, 245, 245, 1);
+    text-decoration: none;
+    display: block;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: rgb(245, 245, 245);
+    background-color: rgba(245, 245, 245, 1);
+}
+
+.table-striped>tbody>tr:nth-of-type(even) {
+    background-color: rgb(220, 220, 220);
+    background-color: rgba(220, 220, 220, 1);
+}

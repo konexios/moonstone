@@ -1,0 +1,116 @@
+<div class="modal-header">
+	<button type="button" class="close" ng-click="cancel()">&times;</button>
+	<h4 class="modal-title">Widget</h4>
+</div>
+<form name="widgetForm"
+	novalidate
+	ng-submit="save(widgetForm);">
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input type="text" class="form-control" id="name" name="name" ng-model="widget.name">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="description">Description</label>
+							<input type="text" class="form-control" id="description" name="description" ng-model="widget.description">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="widgetTypeId">Widget Type</label>
+		                    <select id="widgetTypeId" name="widgetTypeId" class="form-control"
+		                            ng-model="widget.widgetTypeId"
+		                            ng-options="widgetType.id as widgetType.name for widgetType in widgetTypes">
+		                        <option value="">Select Widget Type</option>
+		                    </select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="category">Category</label>
+		                    <select id="category" name="category" class="form-control"
+		                            ng-model="widget.category"
+		                            ng-options="category for category in categories">
+		                        <option value="">Select Category</option>
+		                    </select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="iconType">Icon Type</label>
+		                    <select id="iconType" name="iconType" class="form-control"
+		                            ng-model="widget.iconType"
+		                            ng-options="iconType for iconType in iconTypes">
+		                        <option value="">Select Icon Type</option>
+		                    </select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="icon">Icon</label>
+							<input type="text" class="form-control" id="icon" name="icon" ng-model="widget.icon">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+				            <label>
+		                        <input type="checkbox" value="" ng-model="widget.enabled" /> 
+		                        Enabled
+		                    </label>
+						</div>
+					</div>
+				</div>					
+			</div>
+			<div class="col-md-4 text-center">
+				<h4>Preview</h4>
+				
+				<ul class="list-inline widget-options">
+					<li class="widget-item text-center">
+						<a href="" 
+							title="{{widget.name}}">
+							<div class="widget-item-icon text-center">
+								<i class="fa {{widget.icon}}" 
+									ng-if="widget.iconType == 'FontAwesome'"></i>
+							</div>
+							<span class="widget-item-name">{{widget.name}}</span>
+						</a>
+					</li>
+					<li class="widget-item text-center active">
+						<a href="" 
+							title="{{widget.name}}">
+							<div class="widget-item-icon text-center">
+								<i class="fa {{widget.icon}}" 
+									ng-if="widget.iconType == 'FontAwesome'"></i>
+							</div>
+							<span class="widget-item-name">{{widget.name}}</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer" >
+		<button type="button" 
+			class="btn btn-default" ng-click="cancel()">Close</button>
+		<button type="submit" 
+			class="btn btn-default primary">Done</button>
+	</div>
+</form>

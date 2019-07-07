@@ -1,0 +1,197 @@
+<div class="row-content no-list-page">
+	<subscription-expiration></subscription-expiration>
+	<div class="content-wrapper-fluid">
+		<div class="row">
+			<div class="col-sm-7">
+				<div class="panel panel-default panel-content">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="fa fa-desktop" aria-hidden="true"></i> Gateways
+							<small>{{ widgets.myGateways.lastLoad | date: 'MM/dd/yyyy hh:mm a' }}</small>
+							<a href=""
+							   ng-click="loadMyGateways()"
+							   class="pull-right"
+							   title="Refresh"><i class="fa fa-refresh" ng-class="widgets.myGateways.loading ? 'fa-spin' : ''" aria-hidden="true"></i></a>
+						</h3>
+					</div>
+					<div class="panel-body loading-md" loading="widgets.myGateways.loading">
+						<div class="row table-toolbar" ng-if="widgets.myGateways.data.result.content.length > 0">
+							<div class="col-sm-6">
+								<arrow-items-per-page-dropdown
+										data-classes="pull-right-for-mobile"
+										data-items-per-page="vm.paginationGateways.itemsPerPage"
+										data-total-items="vm.paginationGateways.totalItems"
+										data-change="vm.changeItemsGatewaysPerPage(numberOfItems)">
+								</arrow-items-per-page-dropdown>
+							</div>
+							<div class="col-sm-6 page-navigation-wrap">
+								<arrow-pagination
+										data-page-index="vm.paginationGateways.pageIndex"
+										data-total-pages="vm.paginationGateways.totalPages"
+										data-first="vm.paginationGateways.first"
+										data-last="vm.paginationGateways.last"
+										data-previous="vm.previousGatewaysPage()"
+										data-next="vm.nextGatewaysPage()"
+										data-go="vm.gotoGatewaysPage(pageNumber)">
+								</arrow-pagination>
+							</div>
+						</div>
+						<table class="table" style="table-layout: fixed;">
+							<thead class="hidden-xs">
+							<tr>
+								<th>Name</th>
+								<th>Type</th>
+								<th>Heart Beat</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr ng-if="widgets.myGateways.data.result.content.length > 0"
+								ng-repeat="gateway in widgets.myGateways.data.result.content track by gateway.id">
+								<td class="hidden-xs"><a href="#/gateway/{{ gateway.id }}">{{ gateway.name }}</a></td>
+								<td class="hidden-xs">{{ gateway.gatewayTypeName }}</td>
+								<td class="hidden-xs">{{ gateway.lastHeartbeat | date: 'MM/dd/yyyy hh:mm a' }}</td>
+								<td class="hidden-lg hidden-md hidden-sm">
+									<div><b>Name</b> <a href="#/gateway/{{ gateway.id }}">{{ gateway.name }}</a></div>
+									<div><b>Type</b> {{ gateway.gatewayTypeName }}</div>
+									<div><b>Heart Beat</b> {{ gateway.lastHeartbeat | date: 'MM/dd/yyyy hh:mm a' }}</div>
+								</td>
+							</tr>
+							<tr ng-if="widgets.myGateways.data.result.content.length == 0">
+								<td colspan="3">No gateways currently.</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="panel panel-default panel-content">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<i class="fa fa-tablet" aria-hidden="true"></i> Devices
+							<small>{{ widgets.myDevices.lastLoad | date: 'MM/dd/yyyy hh:mm a' }}</small>
+							<a href=""
+							   ng-click="loadMyDevices()"
+							   class="pull-right"
+							   title="Refresh"><i class="fa fa-refresh" ng-class="widgets.myDevices.loading ? 'fa-spin' : ''" aria-hidden="true"></i></a>
+						</h3>
+					</div>
+					<div class="panel-body loading-md" loading="widgets.myDevices.loading">
+						<div class="row table-toolbar" ng-if="widgets.myDevices.data.result.content.length > 0">
+							<div class="col-sm-6">
+								<arrow-items-per-page-dropdown
+										data-classes="pull-right-for-mobile"
+										data-items-per-page="vm.paginationDevice.itemsPerPage"
+										data-total-items="vm.paginationDevice.totalItems"
+										data-change="vm.changeItemsDevicePerPage(numberOfItems)">
+								</arrow-items-per-page-dropdown>
+							</div>
+							<div class="col-sm-6 page-navigation-wrap">
+								<arrow-pagination
+										data-page-index="vm.paginationDevice.pageIndex"
+										data-total-pages="vm.paginationDevice.totalPages"
+										data-first="vm.paginationDevice.first"
+										data-last="vm.paginationDevice.last"
+										data-previous="vm.previousDevicePage()"
+										data-next="vm.nextDevicePage()"
+										data-go="vm.gotoDevicePage(pageNumber)">
+								</arrow-pagination>
+							</div>
+						</div>
+						<table class="table" style="table-layout: fixed;">
+							<thead class="hidden-xs">
+							<tr>
+								<th>Name</th>
+								<th>Type</th>
+								<th>Latest</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr ng-if="widgets.myDevices.data.result.content.length > 0"
+								ng-repeat="device in widgets.myDevices.data.result.content track by device.id">
+								<td class="hidden-xs"><a href="#/device/{{ device.id }}">{{ device.name }}</a></td>
+								<td class="hidden-xs">{{ device.deviceTypeName }}</td>
+								<td class="hidden-xs"><span ng-if="device.lastTimestamp">{{ device.lastTimestamp | date: 'MM/dd/yyyy hh:mm a' }}</span><span
+									ng-if="!device.lastTimestamp">---</span></td>
+								<td class="hidden-sm hidden-md hidden-lg">
+									<div><b>Name:</b> <a href="#/device/{{ device.id }}">{{ device.name }}</a></div>
+									<div><b>Type:</b> {{ device.deviceTypeName }}</div>
+									<div><b>Latest:</b> <span ng-if="device.lastTimestamp">{{ device.lastTimestamp | date: 'MM/dd/yyyy hh:mm a' }}</span><span
+										ng-if="!device.lastTimestamp">---</span></div>
+								</td>
+							</tr>
+							<tr ng-if="widgets.myDevices.data.result.content.length == 0">
+								<td colspan="3">No devices currently.</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-5">
+				<div class="panel panel-default panel-content">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="fa fa-exclamation" aria-hidden="true"></i> Notifications
+							<small>{{ widgets.myDeviceEvents.lastLoad | date: 'MM/dd/yyyy hh:mm a' }}</small>
+							<a href=""
+							   ng-click="loadMyDeviceEvents()"
+							   class="pull-right"
+							   title="Refresh"><i class="fa fa-refresh" ng-class="widgets.myDeviceEvents.loading ? 'fa-spin' : ''" aria-hidden="true"></i></a>
+						</h3>
+					</div>
+					<div class="panel-body loading-md" loading="widgets.myDeviceEvents.loading">
+						<div class="row table-toolbar" ng-if="widgets.myDeviceEvents.data.result.content.length > 0">
+							<div class="col-sm-6">
+								<arrow-items-per-page-dropdown
+										data-classes="pull-right-for-mobile"
+										data-items-per-page="vm.paginationDeviceEvents.itemsPerPage"
+										data-total-items="vm.paginationDeviceEvents.totalItems"
+										data-change="vm.changeItemsDeviceEventsPerPage(numberOfItems)">
+								</arrow-items-per-page-dropdown>
+							</div>
+							<div class="col-sm-6 page-navigation-wrap">
+								<arrow-pagination
+										data-page-index="vm.paginationDeviceEvents.pageIndex"
+										data-total-pages="vm.paginationDeviceEvents.totalPages"
+										data-first="vm.paginationDeviceEvents.first"
+										data-last="vm.paginationDeviceEvents.last"
+										data-previous="vm.previousDeviceEventsPage()"
+										data-next="vm.nextDeviceEventsPage()"
+										data-go="vm.gotoDeviceEventsPage(pageNumber)">
+								</arrow-pagination>
+							</div>
+						</div>
+						<table class="table" style="table-layout: fixed;">
+							<thead class="hidden-xs">
+							<tr>
+								<th>Device</th>
+								<th>Type</th>
+								<th>Count</th>
+								<th>Status</th>
+								<th>Date</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr ng-if="widgets.myDeviceEvents.data.result.content.length > 0"
+								ng-repeat="event in widgets.myDeviceEvents.data.result.content track by event.id">
+								<td class="hidden-xs">{{ event.deviceName }}</td>
+								<td class="hidden-xs">{{ event.deviceActionTypeName }}</td>
+								<td class="hidden-xs">{{ event.count }}</td>
+								<td class="hidden-xs">{{ event.status }}</td>
+								<td class="hidden-xs">{{ event.createdDate | date: 'MM/dd/yyyy hh:mm a' }}</td>
+								<td class="hidden-sm hidden-md hidden-lg">
+									<div><b>Device:</b> {{ event.deviceName }}</div>
+									<div><b>Type:</b> {{ event.deviceActionTypeName }}</div>
+									<div><b>Count:</b> {{ event.count }}</div>
+									<div><b>Status:</b> {{ event.status }}</div>
+									<div><b>Date:</b> {{ event.createdDate | date: 'MM/dd/yyyy hh:mm a' }}</div>
+								</td>
+							</tr>
+							<tr ng-if="widgets.myDeviceEvents.data.result.content.length == 0">
+								<td colspan="4">No notifications currently.</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

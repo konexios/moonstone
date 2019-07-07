@@ -1,0 +1,10 @@
+[
+	{
+		"editable": false,
+		"privilegeIds": [],
+		"hidden": true,
+		"name": "default-pegasus-admin",
+		"description": "Default Pegasus Admin",
+		"enabled": true
+	}
+]

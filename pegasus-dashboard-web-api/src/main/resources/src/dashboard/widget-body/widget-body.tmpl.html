@@ -1,0 +1,19 @@
+<div class="widget-panel" ng-class="{ 'edit-mode': vm.editMode }">
+
+    <!-- widget action icons -->
+    <div uib-dropdown dropdown-append-to-body="true" ng-repeat="widgetActionIcon in vm.widget.widgetActionIcons" ng-show="vm.editMode">
+        <button type="button" id="{{widgetActionIcon.id}}" class="btn btn-link btn-xs" uib-dropdown-toggle>
+            <i ng-class="widgetActionIcon.iconClass"></i>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="{{widgetActionIcon.id}}">
+            <li ng-repeat="menuItem in widgetActionIcon.menuItems">
+                <a href ng-click="menuItem.action(vm.widget)">{{menuItem.name}}</a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="widget-content"></div>
+
+<div class="widget-moving-overlay" ng-if="vm.editMode"></div>

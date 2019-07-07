@@ -1,0 +1,88 @@
+<div class="row-content">
+	<!-- CONTENT WRAPPER -->
+	<div class="content-wrapper-fluid">
+		<div ng-controller="MessageController">
+			<div class="obj-page-hd">
+				<div class="row">
+					<div class="col-xs-12 padding-right-zero">
+						<div class="page-title">
+							<h1>
+								{{pageTitle}}
+								<small>{{pageSubTitle}}</small>
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="obj-page-bd">
+				<div class="obj-hd">
+					<h2>{{message.message}}</h2>
+					<p>Message id: {{message.id}}</p>
+				</div>
+				<div class="obj-bd">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel panel-default">
+								<table class="table table-striped">
+									<thead>
+									<tr>
+										<th>Property name</th>
+										<th>Property value</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+										<td>Message id</td>
+										<td>{{ message.id}}</td>
+									</tr>
+									<tr>
+										<td>Message</td>
+										<td>{{ message.message }}</td>
+									</tr>
+									<tr>
+										<td>Timestamp</td>
+										<td>{{ message.timestamp }}</td>
+									</tr>
+									<tr>
+										<td>Device id</td>
+										<td>{{ message.deviceId }}</td>
+									</tr>
+									<tr>
+										<td>Class name</td>
+										<td>{{ message.className }}</td>
+									</tr>
+									<tr>
+										<td>Method name</td>
+										<td>{{ message.methodName }}</td>
+									</tr>
+									<tr>
+										<td>Object name</td>
+										<td>{{ message.objectName }}</td>
+									</tr>
+									<tr>
+										<td>Object id</td>
+										<td>{{ message.objectId }}</td>
+									</tr>
+									<tr>
+										<td>Severity</td>
+										<td>{{ message.severity }}</td>
+									</tr>
+									<!--<tr ng-repeat="(propKey, propVal) in device.properties track by propKey">
+										<td>{{ propKey }}</td>
+										<td>{{ device.properties[propKey] }}</td>
+									</tr>-->
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="obj-page-ft">
+			</div>
+		</div>
+
+	</div>
+	<!-- /CONTENT WRAPPER -->
+</div>

@@ -1,0 +1,33 @@
+<div class="row-content">
+    <!-- CONTENT WRAPPER -->
+    <div class="content-wrapper-fluid">
+		<div >
+			<div class="obj-page-hd">
+            	<div class="row">
+			    	<div class="col-md-12 col-sm-12">
+						<h3 class="page-title text-center">Log File Content</h3>
+					</div>
+            	</div>
+        	</div>
+          	<div class="obj-page-bd">
+		  		<form name="form" class="form-horizontal css-form" novalidate>
+					<fieldset ng-disabled="busy">	
+						<div class="row">	
+							<div class="col-sm-12">			
+								<div class="form-group col-sm-8 ">
+										<textarea id="logfilecontent" name="logfilecontent" cols="95" rows="31">{{fileContent}}</textarea>
+								</div>
+							</div>
+							<div class="col-sm-12">	
+								<div class="col-sm-8"></div>
+								<div class="form-group col-sm-4 text-right">
+										<button class='btn btn-default' ng-click="close()">Close</button>
+								</div>
+							</div>
+						</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	</div>
+</div>

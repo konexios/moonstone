@@ -1,0 +1,59 @@
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+    manifest {
+        attributes(
+            "Implementation-Title": "moonstone-pegasus-core",
+            "Implementation-Version": version,
+            "Implementation-Vendor": "Arrow Electronics, Inc.",
+            "Built-By": System.getProperty('user.name'),
+            "Built-Date": new Date().format("yyyy-MM-dd"),
+            "Built-Jdk": "${System.getProperty('java.version')} (${System.getProperty('java.specification.vendor')})",
+            "Git-Branch": getCurrentGitBranch(),
+            "Git-Last-Commit": getLastGitCommit())
+    }
+}
+
+dependencies {
+    // spring boot starters
+    api("org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}")
+    api("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")    
+    api("org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}")
+    api("org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}")
+    api("org.springframework.boot:spring-boot-starter-amqp:${springBootVersion}")
+    api("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
+    api("org.springframework.boot:spring-boot-starter-log4j2:${springBootVersion}")
+    
+
+    // spring cloud config
+    api("org.springframework.cloud:spring-cloud-starter-config:${springCloudConfigVersion}")
+    api("org.springframework.retry:spring-retry:${springRetryVersion}")
+        
+    // session
+    api("org.springframework.session:spring-session-core:${springSessionVersion}")
+    api("org.springframework.session:spring-session-data-redis:${springSessionVersion}")   
+    
+    // validation
+    api("javax.validation:validation-api:${javaxValidationApiVersion}")  
+    api("org.glassfish:javax.el:${javaxElVersion}")    
+    api("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")        
+
+    // java mail
+    api("com.sun.mail:javax.mail:${javaxMailVersion}")        
+        
+    // freemarker
+    api("org.freemarker:freemarker:${freemarkerVersion}")            
+
+    // caffeine
+    api("com.github.ben-manes.caffeine:caffeine:${caffeineVersion}")
+
+    // jedis    
+    api("redis.clients:jedis")
+    
+    // commons
+    api("org.apache.commons:commons-lang3:${commonsLangVersion}")
+    api("org.apache.commons:commons-text:${commonsTextVersion}")   
+}

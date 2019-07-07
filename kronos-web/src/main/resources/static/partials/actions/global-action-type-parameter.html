@@ -1,0 +1,163 @@
+<div class="modal-header">
+    <h3 class="modal-title">Action Type Parameter</h3>
+</div>
+<form name="parameterForm" class="form-horizontal" novalidate ng-submit="paramVm.save(parameterForm)">
+    <div class="modal-body">
+
+        <div class="form-group">
+            <label for="name" class="col-sm-3 control-label">Name*</label>
+            <div class="col-sm-9">
+                <input type="text" id="name" name="name" class="form-control" ng-model="paramVm.parameter.name" required inject-custom-validator="paramVm.nonDuplicatingNamesValidation" />
+            </div>
+            <div class="col-sm-offset-3 col-sm-9" ng-messages="(parameterForm.$submitted || parameterForm.name.$touched || parameterForm.name.$dirty) && parameterForm.name.$error" role="alert">
+                <div class="alert-danger">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                    <div ng-show="parameterForm.name.$error.duplicatingNames">This Name is already exest</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="validationTypes" class="col-sm-3 control-label">Supported types*</label>
+            <div class="col-sm-9">
+
+                <div class="row">
+                    <div class="col-md-4" ng-repeat="(key, val) in paramVm.validationTypes">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="parameterTypes[]" ng-model="val.checked"> {{val.name}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-if="parameterForm.$submitted && paramVm.selectValidationTypes.length < 1">
+                    <div class="col-sm-12">
+                        <div class="alert-danger" role="alert">
+                            <div>Select one or more Supported types</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group" ng-if="paramVm.validationTypes['STRING'].checked">
+            <label for="string" class="col-sm-3 control-label">Default Value (String)</label>
+            <div class="col-sm-9">
+                <input type="text" id="string" name="string" class="form-control" ng-model="paramVm.validationTypes['STRING'].defaultValue" />
+                <div class="alert-danger" ng-messages="(parameterForm.$submitted || parameterForm.string.$touched || parameterForm.string.$dirty) && parameterForm.string.$error" role="alert">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" ng-if="paramVm.validationTypes['MULTILINE_STRING'].checked">
+            <label for="multilineString" class="col-sm-3 control-label">Default Value (Multiline-string)</label>
+            <div class="col-sm-9">
+                <textarea id="multilineString" name="multilineString" class="form-control" ng-model="paramVm.validationTypes['MULTILINE_STRING'].defaultValue"></textarea>
+                <div class="alert-danger" ng-messages="(parameterForm.$submitted || parameterForm.multilineString.$touched || parameterForm.multilineString.$dirty) && parameterForm.multilineString.$error" role="alert">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" ng-if="paramVm.validationTypes['EMAIL'].checked">
+            <label for="email" class="col-sm-3 control-label">Default Value (Email)</label>
+            <div class="col-sm-9">
+                <input type="email" id="email" name="email" class="form-control" ng-model="paramVm.validationTypes['EMAIL'].defaultValue" email-validation />
+                <div class="alert-danger" ng-messages="(parameterForm.$submitted || parameterForm.email.$touched || parameterForm.email.$dirty) && parameterForm.email.$error" role="alert">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SELECT -->
+        <div class="form-group select-constructor" ng-if="paramVm.validationTypes['SELECT'].checked">
+            <label class="col-sm-3 control-label">Select options*</label>
+            <div class="col-sm-9">
+                <div class="row" ng-repeat="option in paramVm.validationTypes['SELECT'].data track by $index">
+                    <div class="col-xs-10">
+                        <input type="text" name="{{'selectDefaultOption'+$index}}" class="form-control" ng-model="paramVm.validationTypes['SELECT'].data[$index]" required placeholder="Option text..." />
+                        <div class="alert-danger" ng-messages="(parameterForm['selectDefaultOption'+$index].$touched || parameterForm['selectDefaultOption'+$index].$dirty) && parameterForm['selectDefaultOption'+$index].$error" role="alert">
+                            <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-2">
+                        <button type="button" class="btn btn-link" ng-click="paramVm.validationTypes['SELECT'].data.splice($index, 1)" title="Remove option"><i class="glyphicon glyphicon-remove"></i></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2 col-xs-offset-10">
+                        <button type="button" class="btn btn-link" ng-click="paramVm.validationTypes['SELECT'].data.push('')" title="Add option"><i class="glyphicon glyphicon-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" ng-if="paramVm.validationTypes['SELECT'].checked">
+            <label for="selectDefault" class="col-sm-3 control-label">Default Value (Select)*</label>
+            <div class="col-sm-9">
+                <select name="selectDefault" id="selectDefault" ng-options="option for option in paramVm.validationTypes['SELECT'].data" ng-model="paramVm.validationTypes['SELECT'].defaultValue" required class="form-control customSelect"></select>
+                <div class="alert-danger" ng-messages="(parameterForm.$submitted || parameterForm.selectDefault.$touched || parameterForm.selectDefault.$dirty) && parameterForm.selectDefault.$error" role="alert">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+        <!-- END SELECT -->
+
+        <div class="form-group" ng-if="paramVm.validationTypes['JSON'].checked">
+            <label for="json" class="col-sm-3 control-label">Default Value (JSON)</label>
+            <div class="col-sm-9">
+                <textarea id="json" name="json" class="form-control" ng-model="paramVm.validationTypes['JSON'].defaultValue" valid-json></textarea>
+                <div class="alert-danger" ng-messages="(parameterForm.$submitted || parameterForm.json.$touched || parameterForm.json.$dirty) && parameterForm.json.$error" role="alert">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" ng-if="paramVm.validationTypes['XML'].checked">
+            <label for="xml" class="col-sm-3 control-label">Default Value (XML)</label>
+            <div class="col-sm-9">
+                <!-- todo:  xml-validation -->
+                <textarea id="xml" name="xml" class="form-control" ng-model="paramVm.validationTypes['XML'].defaultValue"></textarea>
+                <div class="alert-danger" ng-messages="(parameterForm.$submitted || parameterForm.xml.$touched || parameterForm.xml.$dirty) && parameterForm.xml.$error" role="alert">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" ng-if="paramVm.validationTypes['KEY_VALUE_PAIRS'].checked">
+            <label for="keyValuePairs" class="col-sm-3 control-label">Default Value (Key\Value pairs)</label>
+            <div class="col-sm-9">
+                <textarea id="keyValuePairs" name="keyValuePairs" class="form-control" ng-model="paramVm.validationTypes['KEY_VALUE_PAIRS'].defaultValue" key-value-pairs-validation></textarea>
+                <div class="alert-danger" ng-messages="(parameterForm.$submitted || parameterForm.keyValuePairs.$touched || parameterForm.keyValuePairs.$dirty) && parameterForm.keyValuePairs.$error" role="alert">
+                    <span ng-message="keyValuePairsValidation">Field should have correct "key=value" pairs format</span>
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" ng-if="paramVm.validationTypes['HTML'].checked">
+            <label for="html" class="col-sm-3 control-label">Default Value (Html)</label>
+            <div class="col-sm-9">
+                <!-- todo:  html-validation -->
+                <div id="html" name="html" ng-model="paramVm.validationTypes['HTML'].defaultValue" text-angular></div>
+                <div class="alert-danger" ng-messages="(parameterForm.$submitted || parameterForm.html.$touched || parameterForm.html.$dirty) && parameterForm.html.$error" role="alert">
+                    <!-- <span ng-message="html">Field should have correct html format</span> -->
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox col-sm-offset-3 col-sm-9">
+                <label><input type="checkbox" value="" ng-model="paramVm.parameter.required" /> Required</label>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="submit">{{ paramVm.isEdit ? 'Save' : 'Add' }}</button>
+        <button class="btn btn-default" type="button" ng-click="paramVm.cancel()">Cancel</button>
+    </div>
+</form>

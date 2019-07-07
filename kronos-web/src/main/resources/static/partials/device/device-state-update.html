@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h3 class="modal-title">Update Device State</h3>
+</div>
+<form name="deviceStateUpdateForm"
+    class="form-horizontal"
+    novalidate
+    ng-submit="save(deviceStateUpdateForm);">
+    <div class="modal-body">
+        <table class="table">
+            <thead class="hidden-xs">
+                <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(name, value) in deviceState">
+                    <td>{{stateMetadata[name].description || name}}</td>
+                    <td>{{value}}</td>
+                    <td><button type="button" class="btn btn-default" ng-click="delete(name)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="form-control customSelect" ng-model="model.name" ng-options="option.name as option.description for option in options">
+                            <option value="">Select state parameter</option>
+                        </select>
+                    </td>
+                    <td><input type="text" class="form-control" ng-model="model.value"/></td>
+                    <td><button type="button" class="btn btn-default" ng-click="add()" ng-disabled="model.name == null">Add</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default"
+            type="submit">Request</button>
+        <button class="btn btn-default"
+            type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en" ng-app="rhea">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<link rel="icon" href="assets/img/favicon.ico">
+	<title>Arrow Connect - Firmware Management Portal</title>
+    <!-- source:css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/node_modules/angular-ui-grid/ui-grid.min.css">
+    <link rel="stylesheet" href="/node_modules/angular-toastr/dist/angular-toastr.min.css">
+	<link rel="stylesheet" href="/assets/vender/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/vender/bootstrap/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="/assets/vender/bootstrap/datetimepicker.css">
+    <link rel="stylesheet" href="/assets/vender/malihu-custom-scrollbar-plugin-3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="/assets/css/shapes.css">
+    <link rel="stylesheet" href="/assets/css/wireframe.css">
+    <link rel="stylesheet" href="/assets/css/asi.css">
+    <!-- endinject -->
+</head>
+<body ng-controller="RheaController">
+    <span us-spinner spinner-on="showSpinner > 0" ng-class="{mask: showSpinner > 0}"></span>
+	<nav class="navbar navbar-fixed-top app-top-navbar">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button"
+					class="main-menu-navbar-toggle navbar-toggle collapsed"
+					data-toggle="collapse"
+					data-target="#app-top-navbar-collapse"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#/home">
+					<img class="logo-arrow"
+        				ng-cloak
+        				title="Arrow"
+        				src="assets/img/Arrow_Worm_ArrowConnect_lockup_h_2c_white_cmyk.png"><!--span ng-cloak>|</span-->
+					<!--img class="logo-connect"
+        				ng-cloak
+        				ng-show="app == null || !app.logoUrl || app.logoUrl == null || app.logoUrl == ''"
+        				title="Arrow Connect"
+        				src="assets/img/arrow-connect-logo-white.png">
+        			<img class="logo-connect"
+        				ng-cloak
+        				ng-show="app && app != null && app.logoUrl != null && app.logoUrl != ''"
+        				title="{{app.name}}"
+        				ng-src="{{app.logoUrl}}"-->
+      			</a>
+			</div>
+			<div id="app-top-navbar-collapse"  ng-scrollbars ng-scrollbars-config="scrollerConfig" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li ng-if="isLoggedIn()"
+						ng-class="isActivePath('/home')"
+						ng-cloak>
+						<a href="#/home">Home</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav no-margin"
+					ng-if="isLoggedIn()"
+					ng-cloak>
+					<li class="dropdown"
+						ng-class="isActivePath('/manufacturers', '/deviceproducts', '/devicetypes')">
+			          <a href=""
+			          	class="dropdown-toggle"
+			          	data-toggle="dropdown"
+			          	role="button"
+			          	aria-haspopup="true"
+			          	aria-expanded="false">
+			          	Hardware
+			          </a>
+                      <ul class="dropdown-menu">
+						  <li ng-if="isLoggedIn() &amp;&amp; canReadManufacturers()" ng-class="isActivePath('/manufacturers')"><a href="#/manufacturers">Hardware Manufacturers</a></li>
+						  <li ng-if="isLoggedIn() &amp;&amp; canReadDeviceProducts()" ng-class="isActivePath('/deviceproducts')"><a href="#/deviceproducts">Hardware Products</a></li>
+						  <li ng-if="isLoggedIn() &amp;&amp; canReadDeviceTypes()" ng-class="isActivePath('/devicetypes')"><a href="#/devicetypes">Hardware Versions</a></li>
+                      </ul>
+			        </li>
+				</ul>
+				<ul class="nav navbar-nav no-margin"
+					ng-if="isLoggedIn()"
+					ng-cloak>
+					<li class="dropdown"
+						ng-class="isActivePath('/softwarevendors', '/softwareproducts', '/softwarereleases', '/righttouserequests')">
+			          <a href=""
+			          	class="dropdown-toggle"
+			          	data-toggle="dropdown"
+			          	role="button"
+			          	aria-haspopup="true"
+			          	aria-expanded="false">
+			          	Software
+			          </a>
+                      <ul class="dropdown-menu">
+                        <li ng-if="isLoggedIn() &amp;&amp; canReadSoftwareVendors()" ng-class="isActivePath('/softwarevendors')"><a href="#/softwarevendors">Software Vendors</a></li>
+                        <li ng-if="isLoggedIn() &amp;&amp; canReadSoftwareProducts()" ng-class="isActivePath('/softwareproducts')"><a href="#/softwareproducts">Software Products</a></li>
+												<li ng-if="isLoggedIn() &amp;&amp; canReadSoftwareReleases()" ng-class="isActivePath('/softwarereleases')"><a href="#/softwarereleases">Software Releases</a></li>
+												<li ng-if="isLoggedIn() &amp;&amp; canReadRTURequest()" ng-class="isActivePath('/righttouserequests')"><a href="#/righttouserequests">Right To Use Requests</a></li>
+                      </ul>
+			        </li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" ng-if="!isLoggedIn()" ng-cloak>
+					<li ng-class="isActivePath('/signin')">
+						<a href="#/signin">Sign In</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right hidden-sm" ng-if="isLoggedIn()" ng-cloak>
+					<li class="dropdown"
+						ng-class="isActivePath('never')">
+			          <a href=""
+			          	class="dropdown-toggle"
+			          	data-toggle="dropdown"
+			          	role="button"
+			          	aria-haspopup="true"
+			          	aria-expanded="false"
+			          	style="line-height: 30px;">
+			          	<span>{{user.login}}
+			          	<br/>{{user.companyName}}</span>
+			          </a>
+			          <ul class="dropdown-menu">
+			               <li ng-if="user.applications.length > 1"><a href="" ng-click="selectApp()">Applications</a></li>
+				           <li><a href="" ng-click="logout()">Sign Out</a></li>
+			          </ul>
+			        </li>
+				</ul>
+                <ul class="hidden-xs hidden-md hidden-lg nav navbar-nav navbar-right" ng-if="isLoggedIn()" ng-cloak>
+                    <li class="profile-button" uib-dropdown is-open="statusProfile.isopen" ng-class="isActivePath('never')">
+                        <a id="profile-button" type="button" uib-dropdown-toggle ng-disabled="disabled">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </a>
+                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="profile-button">
+                            <li class="profile-info">
+                                <span>{{user.login}} <br/>{{user.companyName}}</span>
+                            </li>
+                            <li ng-if="user.applications.length > 1"><a href="" ng-click="selectApp()">Applications</a></li>
+                            <li><a href="" ng-click="logout()">Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid container-app">
+		<div id="errorModal"
+			class="modal fade"
+			ng-controller="ErrorController">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 id="title"
+							class="modal-title"></h4>
+					</div>
+					<div class="modal-body">
+						<p id="message"></p>
+					</div>
+					<div class="modal-footer">
+						<button type="button"
+							class="btn btn-default"
+							ng-click="hideModal()">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div ng-view class="container-partial view-slide-in"></div>
+	</div>
+
+	<footer class="footer hidden-xs hidden-sm">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-6">
+					<div class="version-info"  style="font-size:13px">
+						<div  style="margin-bottom:5px;"><span ng-bind-template="{{rheaVersion.description}} | Version: {{rheaVersion.major}}.{{rheaVersion.minor}}.{{rheaVersion.build}}"></span></div>
+						<div>&copy; <span ng-bind="currentDate | date:'yyyy'"></span> Arrow Electronics, Inc. All Rights Reserved. 
+						<a href="https://www.arrow.com/en/legal/privacy-policy" style="color:white;" target="_blank">Privacy Policy.</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div class="pull-right">
+						<img src="/assets/img/iot_v_fyo_white.png" style="height: 60px;" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- All external JS libraries must be placed outside of the "source.js" block below-->
+
+	<!-- source:js -->
+	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="/node_modules/spin.js/spin.min.js"></script>
+	<script src="/node_modules/angular/angular.min.js"></script>
+	<script src="/node_modules/angular-messages/angular-messages.min.js"></script>
+	<script src="/node_modules/angular-resource/angular-resource.min.js"></script>
+	<script src="/node_modules/angular-route/angular-route.min.js"></script>
+	<script src="/node_modules/angular-animate/angular-animate.min.js"></script>
+	<script src="/node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+	<script src="/node_modules/angular-cookies/angular-cookies.min.js"></script>
+	<script src="/node_modules/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+	<script src="/node_modules/angular-spinner/angular-spinner.min.js"></script>
+    <script src="/node_modules/moment/min/moment-with-locales.min.js"></script>
+    <script src="/node_modules/angular-moment/angular-moment.min.js"></script>
+    <script src="/node_modules/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+    <script src="/node_modules/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
+    <script src="/node_modules/angular-date-time-input/src/dateTimeInput.js"></script>
+
+    <script src="/assets/vender/malihu-custom-scrollbar-plugin-3.1.5/jquery.mCustomScrollbar.min.js"></script>
+    <script src="/assets/vender/malihu-custom-scrollbar-plugin-3.1.5/scrollbars.min.js"></script>
+    <script src="/assets/vender/bootstrap/ui-bootstrap-tpls-0.14.3.min.js"></script>
+
+	<script src="/scripts/util.js"></script>
+
+	<script src="/assets/vender/sockjs.min.js"></script>
+	<script src="/node_modules/stompjs/lib/stomp.min.js"></script>
+
+    <script src="/scripts/controllers/ListController.js"></script>
+
+	<script src="/scripts/rhea/Rhea.js"></script>
+	<script src="/scripts/rhea/Directives.js"></script>
+	<script src="/scripts/rhea/Filters.js"></script>
+    <script src="/scripts/rhea/RheaController.js"></script>
+	<script src="/scripts/controllers/FilterController.js"></script>
+	<script src="/scripts/controllers/SelectApplicationController.js"></script>
+
+	<script src="/scripts/rhea/RheaService.js"></script>
+
+	<script src="/scripts/services/ErrorService.js"></script>
+	<script src="/scripts/controllers/ErrorController.js"></script>
+	<script src="/scripts/services/ToastrService.js"></script>
+	<script src="/scripts/services/SpinnerService.js"></script>
+
+	<script src="/scripts/services/SecurityService.js"></script>
+	<script src="/scripts/services/AuthenticationService.js"></script>
+	<script src="/scripts/controllers/LoginController.js"></script>
+
+	<script src="/scripts/services/HomeService.js"></script>
+	<script src="/scripts/controllers/HomeController.js"></script>
+	<script src="/scripts/services/WebSocketsService.js"></script>
+
+	<script src="/scripts/services/DeviceProductService.js"></script>
+    <script src="/scripts/controllers/DeviceProductsController.js"></script>
+	<script src="/scripts/services/DeviceTypeService.js"></script>
+	<script src="/scripts/controllers/DeviceTypesController.js"></script>
+	<script src="/scripts/services/ManufacturerService.js"></script>
+    <script src="/scripts/controllers/ManufacturersController.js"></script>
+
+    <script src="/scripts/services/SoftwareVendorService.js"></script>
+    <script src="/scripts/controllers/SoftwareVendorsController.js"></script>
+    <script src="/scripts/services/SoftwareProductService.js"></script>
+    <script src="/scripts/controllers/SoftwareProductsController.js"></script>
+	<script src="/scripts/services/SoftwareReleaseService.js"></script>
+	<script src="/scripts/services/RightToUseRequestsService.js"></script>
+    <script src="/scripts/controllers/SoftwareReleasesController.js"></script>
+	<script src="/scripts/controllers/RightToUseRequestsController.js"></script>
+
+    <!-- endinject -->
+</body>
+</html>

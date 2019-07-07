@@ -1,0 +1,76 @@
+<div class="modal-header">
+    <h3 class="modal-title"><i class="fa fa-map-marker" aria-hidden="true"></i> Geographical Location</h3>
+</div>
+<div class="modal-body">
+    <form name="form"
+        class="form-horizontal"
+        novalidate>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <input name="search"
+                        type="search"
+                        class="form-control"
+                        ng-model="searchAddress.value"
+                        ng-disabled="loading"
+                        placeholder="Search address" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-disabled="loading" ng-click="search()">Search</button>
+                        <button class="btn btn-default" type="button" ng-disabled="loading" ng-click="setLocation()">Set Location</button>
+                        <button class="btn btn-default" type="button" ng-disabled="loading" ng-click="viewLocation()">View Location</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="lastLocationMap"></div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Latitude</label>
+            <div class="col-sm-10">
+                <input id="latitude"
+                    name="latitude"
+                    type="text"
+                    class="form-control"
+                    ng-model="lastLocation.latitude"
+                    ng-change="viewLocation()"
+                    ng-disabled="loading"
+                    ng-required="true"/>
+            </div>
+            <div class="col-sm-offset-2 col-sm-10"
+                ng-messages="form.latitude.$error"
+                ng-show="form.latitude.$touched || (form.$submitted && form.latitude.$invalid)"
+                role="alert">
+                <div class="alert-danger">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Longitude</label>
+            <div class="col-sm-10">
+                <input id="longitude"
+                    name="longitude"
+                    type="text"
+                    class="form-control"
+                    ng-model="lastLocation.longitude"
+                    ng-change="viewLocation()"
+                    ng-disabled="loading"
+                    ng-required="true"/>
+            </div>
+            <div class="col-sm-offset-2 col-sm-10"
+                ng-messages="form.longitude.$error"
+                ng-show="form.longitude.$touched || (form.$submitted && form.longitude.$invalid)"
+                role="alert">
+                <div class="alert-danger">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default"
+        type="button" ng-click="ok(form)">Save</button>
+    <button class="btn btn-default"
+        type="button" ng-click="cancel()">Cancel</button>
+</div>
+<div after-render></div>

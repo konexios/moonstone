@@ -1,0 +1,17 @@
+<div class="content-bd">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 ng-show="vm.pageTitleIcon && vm.pageTitle"><i class="fa {{vm.pageTitleIcon}}" aria-hidden="true"></i> {{vm.pageTitle}}</h1>
+        </div>
+        <div class="col-sm-6 text-right">
+            <div class="content-toolbar flex-row-end" ng-show="vm.toolbar && vm.toolbar.length > 0">
+                <button type="button"
+                        ng-repeat="button in vm.toolbar"
+                        class="btn btn-default"
+                        ng-click="button.onClick()"><i ng-class="button.icon"></i> {{button.caption}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <ng-include src="'partials/list/panel.html'"></ng-include>
+</div>

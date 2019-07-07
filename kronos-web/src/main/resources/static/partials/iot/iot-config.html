@@ -1,0 +1,259 @@
+<form name="iotConfigForm" class="form-horizontal" novalidate ng-submit="save(iotConfigForm);">
+    <div class="content-bd">
+        <div class="panel panel-default panel-content">
+            <div class="panel-heading">
+                <h3 class="panel-title">IoT Cloud Platform Options</h3>
+            </div>
+            <div class="panel-body">
+
+                <div class="callout callout-purple">
+                    <h4>IoT Cloud Platform</h4>
+                    <p>The IoT Cloud Platform configuration is a global configuration that will affect all gateways and devices associated.</p>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-2 radio" ng-if="userIoTConfig">
+                        <label>
+                            <input type="radio" ng-value="null" ng-model="config.iotProvider" />
+                            Inherit
+                        </label>
+                    </div>
+                    <div class="col-sm-2 radio" ng-class="{'col-sm-offset-2': !userIoTConfig}">
+                        <label>
+                            <input type="radio" value="ArrowConnect" ng-model="config.iotProvider" />
+                            Arrow Connect IoT
+                        </label>
+                    </div>
+                    <div class="col-sm-2 radio">
+                        <label>
+                            <input type="radio" value="AWS" ng-model="config.iotProvider">
+                            AWS IoT
+                        </label>
+                    </div>
+                    <div class="col-sm-2 radio">
+                        <label>
+                            <input type="radio" value="IBM" ng-model="config.iotProvider">
+                            IBM IoT
+                        </label>
+                    </div>
+                    <div class="col-sm-2 radio">
+                        <label>
+                            <input type="radio" value="AZURE" ng-model="config.iotProvider">
+                            Azure IoT
+                        </label>
+                    </div>
+                </div>
+                <div ng-if="config.iotProvider == 'AWS'">
+                    <div class="form-group">
+                        <label for="region" class="col-sm-2 control-label">Region</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="region" name="region" class="form-control" ng-model="config.aws.region" required="" />
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10"
+                            ng-messages="iotConfigForm.region.$error"
+                            role="alert">
+                            <div class="alert-danger">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login" class="col-sm-2 control-label">Login</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="login" name="login" class="form-control" ng-model="config.aws.login" required="" />
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10"
+                            ng-messages="iotConfigForm.login.$error"
+                            role="alert">
+                            <div class="alert-danger">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="accessKey" class="col-sm-2 control-label">Access Key</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="accessKey" name="accessKey" class="form-control" ng-model="config.aws.accessKey" required="" />
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10"
+                            ng-messages="iotConfigForm.accessKey.$error"
+                            role="alert">
+                            <div class="alert-danger">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="secretKey" class="col-sm-2 control-label">Secret Key</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="secretKey" name="secretKey" class="form-control" ng-model="config.aws.secretKey" required="" />
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10"
+                            ng-messages="iotConfigForm.secretKey.$error"
+                            role="alert">
+                            <div class="alert-danger">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="defaultPolicyArn" class="col-sm-2 control-label">Default Policy ARN</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="defaultPolicyArn" name="defaultPolicyArn" class="form-control" ng-model="config.aws.defaultPolicyArn" required="" />
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10"
+                            ng-messages="iotConfigForm.defaultPolicyArn.$error"
+                            role="alert">
+                            <div class="alert-danger">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="defaultPolicyName" class="col-sm-2 control-label">Default Policy Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="defaultPolicyName" name="defaultPolicyName" class="form-control" ng-model="config.aws.defaultPolicyName" required="" />
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10"
+                            ng-messages="iotConfigForm.defaultPolicyName.$error"
+                            role="alert">
+                            <div class="alert-danger">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="config.iotProvider == 'IBM'">
+                    <div class="form-group">
+                        <label for="organizationId" class="col-sm-2 control-label">Organization</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="organizationId" name="organizationId" class="form-control" ng-model="config.ibm.organizationId" required="" />
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10"
+                            ng-messages="iotConfigForm.organizationId.$error"
+                            role="alert">
+                            <div class="alert-danger">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="apiKey" class="col-sm-2 control-label">API Key</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="apiKey" name="apiKey" class="form-control" ng-model="config.ibm.apiKey" required="" />
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10"
+                            ng-messages="iotConfigForm.apiKey.$error"
+                            role="alert">
+                            <div class="alert-danger">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="authToken" class="col-sm-2 control-label">Auth Token</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="authToken" name="authToken" class="form-control" ng-model="config.ibm.authToken" required="" />
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10"
+                            ng-messages="iotConfigForm.authToken.$error"
+                            role="alert">
+                            <div class="alert-danger">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="config.iotProvider == 'AZURE'">
+                    <div class="form-group">
+                        <label for="hostName" class="col-sm-2 control-label">Host Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="hostName" name="hostName" class="form-control" ng-model="config.azure.hostName" required="" />
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10"
+                            ng-messages="iotConfigForm.hostName.$error"
+                            role="alert">
+                            <div class="alert-danger">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="accessKeyName" class="col-sm-2 control-label">Access Key Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="accessKeyName" name="accessKeyName" class="form-control" ng-model="config.azure.accessKeyName" required="" />
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10"
+                            ng-messages="iotConfigForm.accessKeyName.$error"
+                            role="alert">
+                            <div class="alert-danger">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="azureAccessKey" class="col-sm-2 control-label">Access Key</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="azureAccessKey" name="azureAccessKey" class="form-control" ng-model="config.azure.accessKey" required="" />
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10"
+                            ng-messages="iotConfigForm.azureAccessKey.$error"
+                            role="alert">
+                            <div class="alert-danger">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventHubName" class="col-sm-2 control-label">Event Hub Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="eventHubName" name="eventHubName" class="form-control" ng-model="config.azure.eventHubName" required="" />
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10"
+                            ng-messages="iotConfigForm.eventHubName.$error"
+                            role="alert">
+                            <div class="alert-danger">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventHubEndpoint" class="col-sm-2 control-label">Event Hub Endpoint</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="eventHubEndpoint" name="eventHubEndpoint" class="form-control" ng-model="config.azure.eventHubEndpoint" required="" />
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10"
+                            ng-messages="iotConfigForm.eventHubEndpoint.$error"
+                            role="alert">
+                            <div class="alert-danger">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="numPartitions" class="col-sm-2 control-label">Number of Partitions</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="numPartitions" name="numPartitions" class="form-control" ng-model="config.azure.numPartitions" required="" />
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10"
+                            ng-messages="iotConfigForm.numPartitions.$error"
+                            role="alert">
+                            <div class="alert-danger">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: right;">
+                    <button class="btn btn-default"
+                        ng-if="config.iotProvider == 'AWS' || config.iotProvider == 'IBM' || config.iotProvider == 'AZURE'"
+                        type="button"
+                        ng-click="testConnect(iotConfigForm);">Test Connection</button>
+                    <button class="btn btn-default" ng-disabled="iotConfigForm.$pristine || (config.iotProvider == 'AWS' && awsTest == false) || (config.iotProvider == 'IBM' && ibmTest == false) || (config.iotProvider == 'AZURE' && azureTest == false)" type="submit">Save</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</form>

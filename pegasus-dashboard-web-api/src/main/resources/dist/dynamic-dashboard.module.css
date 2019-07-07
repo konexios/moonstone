@@ -1,0 +1,65 @@
+[choice-key-value-list-string] .arrows-group {
+  margin-top: 60px;
+}
+
+[choice-key-value-list-string] .arrows-group .arrows-links-group {
+  margin-top: 10px;
+}
+
+[choice-key-value-list-string] .arrows-group .arrow-link {
+  cursor: pointer;
+  font-size: 35px;
+}
+widget-body {
+  background-color: white;
+  height: 100%;
+  display: block;
+  overflow-y: auto;
+}
+
+widget-body .widget-moving-overlay {
+  background-color: rgba(255, 255, 255, 0.45);
+  cursor: all-scroll;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+widget-body .widget-panel {
+  position: absolute;
+  top: 3px;
+  right: 0px;
+  padding: 0px 3px;
+}
+
+widget-body .widget-panel .btn {
+  color: #e9e9e9;
+  font-size: 17px;
+  min-width: 20px;
+}
+
+widget-body .widget-panel > div {
+  display: inline-block;
+}
+widget-user {
+  display: block;
+  padding: 10px 10px;
+  line-height: 1;
+}
+
+widget-user .user-name {
+  font-size: 23px;
+  margin: 0;
+}
+
+widget-user .user-company {
+  font-size: 18px;
+  margin: 0;
+}
+
+widget-user .user-application {
+  color: #8f8f8f;
+}

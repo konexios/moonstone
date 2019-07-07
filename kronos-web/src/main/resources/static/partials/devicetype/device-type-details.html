@@ -1,0 +1,655 @@
+<div class="row-content" on-resize>
+
+    <subscription-expiration></subscription-expiration>
+
+    <!-- CONTENT NAV -->
+    <div class="content-nav overflow-hidden arrow-collapsed-menu"
+         ng-class="{'mobile-view':mobileLayot, 'showed-menu':mobileMenuShowed, 'collapsed-view':collapsedView}">
+        <div class="nav nav-custom-scrollbar" ng-scrollbars ng-scrollbars-config="scrollerConfig">
+            <ul class="nav-pills nav-stacked">
+                <li role="presentation" ng-class="activeTab == 0 ? 'active' : ''">
+                    <a href="" ng-click="activeTab = 0; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-list" aria-hidden="true"></i></span><span
+                            class="title crop" ng-if="title == 'Edit'">{{deviceType.name}}</span><span
+                            class="title crop" ng-if="title != 'Edit'">Create New Device Type</span>
+                    </a>
+                </li>
+                <li role="presentation" ng-class="{'active' : activeTab == 1, 'disabled-item': !deviceType.id}"
+                    ng-disabled="!deviceType.id">
+                    <a href="" ng-click="activeTab = 1; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-line-chart" aria-hidden="true"></i></span><span
+                            class="title crop">Telemetry</span>
+                    </a>
+                </li>
+                <li ng-disabled="!deviceType.id" role="presentation"
+                    ng-class="{'active' : activeTab == 2, 'disabled-item': !deviceType.id}"
+                    ng-disabled="!deviceType.id">
+                    <a href="" ng-click="activeTab = 2; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-tasks" aria-hidden="true"></i></span><span
+                            class="title crop">Actions</span>
+                    </a>
+                </li>
+                <li ng-disabled="!deviceType.id" role="presentation"
+                    ng-class="{'active' : activeTab == 3, 'disabled-item': !deviceType.id}"
+                    ng-disabled="!deviceType.id">
+                    <a href="" ng-click="activeTab = 3; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-question" aria-hidden="true"></i></span><span
+                            class="title crop">Device State</span>
+                    </a>
+                </li>
+                <li ng-disabled="!deviceType.id" role="presentation"
+                    ng-class="{'active' : activeTab == 4, 'disabled-item': !deviceType.id}"
+                    ng-disabled="!deviceType.id">
+                    <a href="" ng-click="activeTab = 4; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-floppy-o" aria-hidden="true"></i></span><span
+                            class="title crop">Firmware Management</span>
+                    </a>
+                </li>
+                <li role="presentation">
+                    <hr/>
+                </li>
+                <li role="presentation">
+                    <a href="#devicetypes/">
+                        <span class="icon-wrapper"><i class="fa fa-share-square-o" aria-hidden="true"></i></span><span
+                            class="title crop">Asset Types</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <ul class="collapsed-button-wrap nav nav-pills">
+            <li role="presentation" class="collapse-button">
+                <a ng-click="collapseMenu()" class="text-right">
+                    <span class="icon-wrapper"><i class="fa fa-lg" ng-class="{
+                            'fa-angle-double-left': !mobileLayot && !collapsedView,
+                            'fa-angle-double-right': !mobileLayot && collapsedView,
+                            'mobile fa-angle-double-right': mobileLayot && !mobileMenuShowed,
+                            'mobile fa-angle-double-left': mobileLayot && mobileMenuShowed
+                        }" aria-hidden="true"></i></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /CONTENT NAV -->
+
+    <!-- CONTENT WRAPPER -->
+    <div class="content-wrapper"
+         ng-class="{'mobile-view':mobileLayot, 'showed-menu':mobileMenuShowed, 'collapsed-view':collapsedView}">
+        <div class="content-hd">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content-title">
+                        <h1 class="title" ng-if="title == 'Edit'">{{deviceType.name}}
+                            <i class="fa fa-check-circle"
+                               aria-hidden="true"
+                               style="color: green;"
+                               ng-if="deviceType.enabled"></i>
+                            <i class="fa fa-minus-circle"
+                               aria-hidden="true"
+                               style="color: red;"
+                               ng-if="!deviceType.enabled"></i></h1>
+                        <h1 class="title" ng-if="title != 'Edit'">Create New Asset Type</h1>
+                    </div>
+                </div>
+                <div class="col-md-12 text-right">
+                    <div class="content-toolbar">
+                        <button type="button"
+                                class="btn btn-default"
+                                ng-if="deviceType.enabled && canSaveDeviceType() && deviceType.id"
+                                ng-click="disableDeviceType()">Disable
+                        </button>
+                        <button type="button"
+                                class="btn btn-default"
+                                ng-if="!deviceType.enabled && canSaveDeviceType() && deviceType.id"
+                                ng-click="enableDeviceType()">Enable
+                        </button>
+                        <br ng-if="!deviceType.id"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT BODY WRAPPER -->
+        <div class="content-bd-wrapper">
+            <!-- DEVICE TAB -->
+            <div ng-if="activeTab == 0">
+                <form name="deviceTypeForm" novalidate ng-submit="saveGeneralDeviceType(deviceTypeForm);">
+                    <div class="content-bd">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default panel-content">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><i class="fa fa-cogs" aria-hidden="true"></i> General
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="form-group col-sm-12">
+                                                <label for="deviceTypeName">Name*</label>
+                                                <p class="form-control-static" ng-if="!canSaveDeviceType()">
+                                                    {{deviceType.name}}</p>
+                                                <input type="text" id="deviceTypeName" name="deviceTypeName"
+                                                    class="form-control"
+                                                    ng-if="canSaveDeviceType()" ng-model="deviceType.name"
+                                                    required="required"
+                                                    minlength="3"
+                                                    maxlength="100"/>
+                                                <div ng-if="(deviceTypeForm.$submitted || deviceTypeForm.deviceTypeName.$touched) && !deviceTypeForm.deviceTypeName.$valid" ng-messages="deviceTypeForm.deviceTypeName.$error" role="alert">
+                                                    <div class="alert-danger">
+                                                        <span ng-message="required">Name is required</span>
+                                                        <span ng-message="minlength, maxlength">Name must be between 3 and 100 characters long</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-sm-12">
+                                                <label for="deviceTypeDescription">Description*</label>
+                                                <p class="form-control-static" ng-if="!canSaveDeviceType()">
+                                                    {{deviceType.description}}</p>
+                                                <textarea id="deviceTypeDescription" name="deviceTypeDescription"
+                                                        class="form-control"
+                                                        rows="3"
+                                                        ng-if="canSaveDeviceType()" ng-model="deviceType.description"
+                                                        required="required"
+                                                        minlength="3" maxlength="1000"></textarea>
+                                                <div ng-if="(deviceTypeForm.$submitted || deviceTypeForm.deviceTypeDescription.$touched) && !deviceTypeForm.deviceTypeDescription.$valid" ng-messages="deviceTypeForm.deviceTypeDescription.$error" role="alert">
+                                                    <div class="alert-danger">
+                                                        <span ng-message="required">Description is required</span>
+                                                        <span ng-message="minlength, maxlength">Description must be between 3 and 1000 characters long</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-sm-12">
+                                                <label for="category">Asset Category*</label>
+                                                <select id="category" name="category" class="form-control customSelect"
+                                                        ng-model="general.modelDeviceCategory"
+                                                        ng-options="category as category for category in options.deviceCategories"
+                                                        ng-disabled="options.deviceCategories == null"
+                                                        ng-change="general.assetCategoryDirty = general.modelDeviceCategory != deviceType.deviceCategory"
+                                                        required="required">
+                                                    <option value="">Select Asset Category</option>
+                                                </select>
+                                                <div ng-if="(deviceTypeForm.$submitted || deviceTypeForm.category.$touched) && !deviceTypeForm.category.$valid" ng-messages="deviceTypeForm.category.$error" role="alert">
+                                                    <div class="alert-danger">
+                                                        <span ng-message="required">Asset Category is required</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+										<div class="form-group col-sm-12" ng-if="general.assetCategoryDirty && general.modelDeviceCategory && (title == 'Edit')">
+											<div class="alert alert-warning" role="alert">
+												If change Asset Category - Firmware Management options will be cleared.<br>
+												Current category is '{{deviceType.deviceCategory}}'
+											</div>
+										</div>
+
+                                            <div class="form-group col-sm-12" ng-if="!canSaveDeviceType()">
+                                                <label>
+                                                    Enabled: {{deviceType.enabled}}
+                                                    <span ng-show="deviceType.numDevices || deviceType.numDevices === 0">(Number of Devices: {{deviceType.numDevices}})</span>
+                                                </label>
+                                            </div>
+                                            <div ng-if="canSaveDeviceType()" class="checkbox col-sm-12">
+                                                <label>
+                                                    <input type="checkbox" value="" ng-model="deviceType.enabled"/>
+                                                    Enabled
+                                                    <span ng-show="deviceType.numDevices || deviceType.numDevices === 0">(Number of Devices: {{deviceType.numDevices}})</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer text-right">
+                                        <div class="row">
+                                            <div class="form-group col-sm-12 no-margin">
+                                                <button class="btn btn-default" ng-show="canSaveDeviceType()" type="submit">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div ng-if="activeTab == 1">
+                <form name="deviceTypeForm" novalidate ng-submit="saveDeviceTypeTelemetry(deviceTypeForm);">
+                    <div class="content-bd">
+                        <div class="row">
+                            <div class="col-md-10 col-xs-12">
+                                <h1><i class="fa fa-line-chart" aria-hidden="true"></i> Telemetries Definitions</h1>
+                            </div>
+                            <div class="col-md-2 col-xs-12 text-right">
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-default obj-btn-add-row"
+                                            ng-if="canSaveDeviceType()"
+                                            ng-click="add(deviceType.telemetries)">Add
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default panel-content">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-line-chart" aria-hidden="true"></i> Telemetries
+                                    Definitions
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="" style="margin-bottom: 0;">
+                                    <div class="scrollable-table device-type-details-table"
+                                         ng-show="deviceType.telemetries.length>0" style="min-height: 400px;">
+                                        <table class="table table-striped table-bordered"
+                                              >
+                                            <thead class="hidden-xs">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Description</th>
+                                                <th>Type</th>
+                                                <th>Unit</th>
+                                                <th>Variables</th>
+                                                <th ng-if="canSaveDeviceType()">Actions</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="telemetry in deviceType.telemetries track by $index">
+                                                <td class="hidden-xs" ng-if="!telemetry.editing">
+                                                    {{telemetry.name}}
+                                                </td>
+                                                <td class="hidden-xs" ng-if="telemetry.editing">
+                                                    <input type="text" name="{{'telemetry'+$index+'Name'}}"
+                                                           class="form-control"
+                                                           ng-model="telemetry.name" required minlength="3"
+                                                           maxlength="100"/>
+                                                    <div class="alert-danger"
+                                                         ng-messages="deviceTypeForm['telemetry'+$index+'Name'].$error"
+                                                         role="alert">
+                                                        <span ng-message="required">Name is required</span>
+                                                        <span ng-message="minlength, maxlength">Name must be between 3 and 100 characters long</span>
+                                                    </div>
+                                                </td>
+                                                <td class="hidden-xs" ng-if="!telemetry.editing">
+                                                    {{telemetry.description}}
+                                                </td>
+                                                <td class="hidden-xs" ng-if="telemetry.editing">
+                                                    <input type="text"
+                                                           name="{{'telemetry'+$index+'Description'}}"
+                                                           class="form-control" ng-model="telemetry.description"
+                                                           maxlength="1000"/>
+                                                    <div class="alert-danger"
+                                                         ng-messages="deviceTypeForm['telemetry'+$index+'Description'].$error"
+                                                         role="alert">
+                                                        <span ng-message="maxlength">Description must be maximum 1000 characters long</span>
+                                                    </div>
+                                                </td>
+                                                <td class="hidden-xs" ng-if="!telemetry.editing">
+                                                    {{telemetry.type}}
+                                                </td>
+                                                <td class="hidden-xs" ng-if="telemetry.editing"><select
+                                                        class="form-control customSelect"
+                                                        ng-model="telemetry.type"
+                                                        ng-options="type for type in options.telemetryTypes"></select>
+                                                </td>
+                                                <td class="hidden-xs" ng-if="!telemetry.editing">
+                                                    {{getTelemetryUnitName(telemetry)}}
+                                                </td>
+                                                <td class="hidden-xs" ng-if="telemetry.editing">
+                                                    <select class="form-control customSelect"
+                                                            ng-model="telemetry.telemetryUnitId"
+                                                            ng-options="unit.id as unit.name for unit in options.telemetryUnits">
+                                                        <option value="">Unassigned</option>
+                                                    </select>
+                                                </td>
+                                                <td class="hidden-xs" ng-if="!telemetry.editing">
+                                                    <span class="prettyJsonValue">{{telemetry.variables | keyValuePairsView : '---'}}</span>
+                                                </td>
+                                                <td class="hidden-xs" ng-if="telemetry.editing">
+                                                    <textarea key-value-pairs class="form-control" name="{{'telemetry'+$index+'Variables'}}" ng-model="telemetry.variables"></textarea>
+                                                    <div ng-messages="(deviceTypeForm.$submitted || deviceTypeForm['telemetry'+$index+'Variables'].$touched || deviceTypeForm['telemetry'+$index+'Variables'].$dirty) && deviceTypeForm['telemetry'+$index+'Variables'].$error" role="alert">
+                                                        <div class="alert-danger">
+                                                            <span ng-message="keyValuePairs">Field should have correct "key=value" pairs format</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="hidden-xs" ng-if="canSaveDeviceType()">
+                                                    <button type="button"
+                                                            class="btn btn-link col-sm-12 col-md-6"
+                                                            ng-click="edit(deviceType.telemetries, $index)"
+                                                            ng-disabled="telemetry.editing &amp;&amp; (deviceTypeForm['telemetry'+$index+'Description'].$invalid || deviceTypeForm['telemetry'+$index+'Name'].$invalid || deviceTypeForm['telemetry'+$index+'Variables'].$invalid)">
+                                                        {{telemetry.editing ? 'Done' : 'Edit'}}
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-link col-sm-12 col-md-6"
+                                                            ng-click="delete(deviceType.telemetries, $index)">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                                <!-- FOR MOBILE VIEW -->
+                                                <td class="hidden-sm hidden-md hidden-lg">
+                                                    <div ng-if="!telemetry.editing"><b>Name:</b>
+                                                        {{telemetry.name}}
+                                                    </div>
+                                                    <div ng-if="telemetry.editing">
+                                                        <b>Name:</b>
+                                                        <input type="text"
+                                                               name="{{'telemetry'+$index+'Name_m'}}"
+                                                               class="form-control" ng-model="telemetry.name"
+                                                               required
+                                                               minlength="3"
+                                                               maxlength="100"/>
+                                                        <div class="alert-danger"
+                                                             ng-messages="deviceTypeForm['telemetry'+$index+'Name_m'].$error"
+                                                             role="alert">
+                                                            <span ng-message="required">Name is required</span>
+                                                            <span ng-message="minlength, maxlength">Name must be between 3 and 100 characters long</span>
+                                                        </div>
+                                                    </div>
+                                                    <div ng-if="!telemetry.editing"><b>Description:</b>
+                                                        {{telemetry.description}}
+                                                    </div>
+                                                    <div ng-if="telemetry.editing" class="margin-top-20">
+                                                        <b>Description:</b>
+                                                        <input type="text"
+                                                               name="{{'telemetry'+$index+'Description_m'}}"
+                                                               class="form-control"
+                                                               ng-model="telemetry.description"
+                                                               maxlength="1000"/>
+                                                        <div class="alert-danger"
+                                                             ng-messages="deviceTypeForm['telemetry'+$index+'Description_m'].$error"
+                                                             role="alert">
+                                                            <span ng-message="maxlength">Description must be maximum 1000 characters long</span>
+                                                        </div>
+                                                    </div>
+                                                    <div ng-if="!telemetry.editing"><b>Type:</b>
+                                                        {{telemetry.type}}
+                                                    </div>
+                                                    <div ng-if="telemetry.editing" class="margin-top-20"><b>Type:</b>
+                                                        <select
+                                                                class="form-control customSelect" ng-model="telemetry.type"
+                                                                ng-options="type for type in options.telemetryTypes"></select>
+                                                    </div>
+                                                    <div ng-if="!telemetry.editing"><b>Unit:</b>
+                                                        {{getTelemetryUnitName(telemetry)}}
+                                                    </div>
+                                                    <div ng-if="telemetry.editing" class="margin-top-20"><b>Unit:</b>
+                                                        <select class="form-control customSelect"
+                                                                ng-model="telemetry.telemetryUnitId"
+                                                                ng-options="unit.id as unit.name for unit in options.telemetryUnits">
+                                                            <option value="">Unassigned</option>
+                                                        </select>
+                                                    </div>
+                                                    <div ng-if="!telemetry.editing"><b>Variables:</b>
+                                                        <span class="prettyJsonValue">{{telemetry.variables | keyValuePairsView : '---'}}</span>
+                                                    </div>
+                                                    <div ng-if="telemetry.editing" class="margin-top-20">
+                                                        <b>Variables:</b>
+                                                        <textarea key-value-pairs class="form-control" name="{{'telemetry'+$index+'Variables_m'}}" ng-model="telemetry.variables"></textarea>
+                                                        <div ng-messages="(deviceTypeForm.$submitted || deviceTypeForm['telemetry'+$index+'Variables_m'].$touched || deviceTypeForm['telemetry'+$index+'Variables_m'].$dirty) && deviceTypeForm['telemetry'+$index+'Variables_m'].$error" role="alert">
+                                                            <div class="alert-danger">
+                                                                <span ng-message="keyValuePairs">Field should have correct "key=value" pairs format</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div ng-if="canSaveDeviceType()"
+                                                         class="text-center margin-top-20">
+                                                        <button type="button" class="btn btn-link"
+                                                                ng-click="edit(deviceType.telemetries, $index)"
+                                                                ng-disabled="telemetry.editing &amp;&amp; (deviceTypeForm['telemetry'+$index+'Description_m'].$invalid || deviceTypeForm['telemetry'+$index+'Name_m'].$invalid || deviceTypeForm['telemetry'+$index+'Variables_m'].$invalid)">
+                                                            {{telemetry.editing ? 'Done' : 'Edit'}}
+                                                        </button>
+                                                        <button type="button" class="btn btn-link"
+                                                                ng-click="delete(deviceType.telemetries, $index)">
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                                <!-- /FOR MOBILE VIEW -->
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div ng-show="deviceType.telemetries.length == 0"
+                                         style="min-height: 25px;">
+                                        No telemetry definitions are defined for this device type
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" ng-show="canSaveDeviceType()"
+                                ng-disabled="deviceTypeForm.$invalid"
+                                type="submit">Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div ng-if="activeTab == 2" ng-include="'/partials/actions/action-template.html'"></div>
+
+            <div ng-if="activeTab == 3">
+                <form name="deviceTypeStateMetadataForm" novalidate ng-submit="saveDeviceTypeStateMetadata(deviceTypeStateMetadataForm);">
+                    <div class="content-bd">
+                        <div class="row">
+                            <div class="col-md-10 col-xs-12">
+                                <h1><i class="fa fa-question" aria-hidden="true"></i> Device State</h1>
+                            </div>
+                            <div class="col-md-2 col-xs-12 text-right">
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-default obj-btn-add-row"
+                                            ng-if="canSaveDeviceType()"
+                                            ng-click="add(deviceType.stateMetadata)">Add
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default panel-content">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-question" aria-hidden="true"></i> Device State
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group col-sm-12" style="margin-bottom: 0;">
+                                    <div class="scrollable-table device-type-details-table"
+                                         ng-show="deviceType.stateMetadata.length>0" style="min-height: 400px;">
+                                        <table class="table table-striped table-bordered" >
+                                            <thead class="hidden-xs">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Description</th>
+                                                <th>Type</th>
+                                                <th ng-if="canSaveDeviceType()">Actions</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="state in deviceType.stateMetadata track by $index">
+                                                <td class="hidden-xs" ng-if="!state.editing">{{state.name}}</td>
+                                                <td class="hidden-xs" ng-if="state.editing">
+                                                    <input type="text" name="{{'state'+$index+'Name'}}"
+                                                           class="form-control"
+                                                           ng-model="state.name" required/>
+                                                    <!--<input type="text" name="{{'state'+$index+'Name'}}"
+                                                           class="form-control"
+                                                           ng-model="state.name" required ng-change="verifyNameUnique()"
+                                                           ng-init="verifyNameUnique()"/>-->
+                                                    <div class="alert-danger"
+                                                         ng-messages="deviceTypeStateMetadataForm['state'+$index+'Name'].$error"
+                                                         role="alert">
+                                                        <span ng-message="required">Name is required</span>
+                                                        <span ng-message="duplicate">Name must be unique</span>
+                                                    </div>
+                                                </td>
+                                                <td class="hidden-xs" ng-if="!state.editing">{{state.description}}</td>
+                                                <td class="hidden-xs" ng-if="state.editing">
+                                                    <input type="text" name="{{'state'+$index+'Description'}}"
+                                                           class="form-control"
+                                                           ng-model="state.description"/>
+                                                </td>
+                                                <td class="hidden-xs" ng-if="!state.editing">{{state.type}}</td>
+                                                <td class="hidden-xs" ng-if="state.editing"><select class="form-control customSelect"
+                                                                                                    ng-model="state.type"
+                                                                                                    ng-options="type for type in options.deviceStateValueTypes"></select>
+                                                </td>
+                                                <td class="hidden-xs" ng-if="canSaveDeviceType()">
+                                                    <button type="button" class="btn btn-link col-sm-12 col-md-6"
+                                                            ng-click="edit(deviceType.stateMetadata, $index)"
+                                                            ng-disabled="state.editing &amp;&amp; (deviceTypeStateMetadataForm['state'+$index+'Description'].$invalid || deviceTypeStateMetadataForm['state'+$index+'Name'].$invalid)">
+                                                        {{state.editing ? 'Done' : 'Edit'}}
+                                                    </button>
+                                                    <button type="button" class="btn btn-link col-sm-12 col-md-6"
+                                                            ng-click="delete(deviceType.stateMetadata, $index)">Delete
+                                                    </button>
+                                                </td>
+                                                <!--FOR MOBILE VIEW-->
+                                                <td class="hidden-sm hidden-md hidden-lg">
+                                                    <div ng-if="!state.editing"><b>Name:</b> {{state.name}}</div>
+                                                    <div ng-if="state.editing">
+                                                        <b>Name:</b>
+                                                        <!--<input type="text" name="{{'state'+$index+'Name_m'}}"
+                                                               class="form-control"
+                                                               ng-model="state.name" required
+                                                               ng-change="verifyNameUnique()"
+                                                               ng-init="verifyNameUnique()"/>-->
+                                                        <input type="text" name="{{'state'+$index+'Name_m'}}"
+                                                               class="form-control"
+                                                               ng-model="state.name" required/>
+                                                        <div class="alert-danger"
+                                                             ng-messages="deviceTypeStateMetadataForm['state'+$index+'Name_m'].$error"
+                                                             role="alert">
+                                                            <span ng-message="required">Name is required</span>
+                                                            <span ng-message="duplicate">Name must be unique</span>
+                                                        </div>
+                                                    </div>
+                                                    <div ng-if="!state.editing"><b>Description:</b>
+                                                        {{state.description}}
+                                                    </div>
+                                                    <div ng-if="state.editing" class="margin-top-20">
+                                                        <b>Description:</b>
+                                                        <input type="text" name="{{'state'+$index+'Description_m'}}"
+                                                               class="form-control" ng-model="state.description"/>
+                                                    </div>
+                                                    <div ng-if="!state.editing"><b>Type:</b> {{state.type}}</div>
+                                                    <div ng-if="state.editing" class="margin-top-20"><b>Type:</b>
+                                                        <select
+                                                                class="form-control customSelect" ng-model="state.type"
+                                                                ng-options="type for type in options.deviceStateValueTypes"></select>
+                                                    </div>
+                                                    <div ng-if="canSaveDeviceType()" class="text-center margin-top-20">
+                                                        <button type="button" class="btn btn-link"
+                                                                ng-click="edit(deviceType.stateMetadata, $index)"
+                                                                ng-disabled="state.editing &amp;&amp; (deviceTypeStateMetadataForm['state'+$index+'Description_m'].$invalid || deviceTypeStateMetadataForm['state'+$index+'Name_m'].$invalid)">
+                                                            {{state.editing ? 'Done' : 'Edit'}}
+                                                        </button>
+                                                        <button type="button" class="btn btn-link"
+                                                                ng-click="delete(deviceType.stateMetadata, $index)">
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                                <!--/FOR MOBILE VIEW-->
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div ng-show="deviceType.stateMetadata.length == 0" style="min-height: 25px;">
+                                        Device state is not defined for this device type
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" ng-show="canSaveDeviceType()"
+                                ng-disabled="deviceTypeStateMetadataForm.$invalid"
+                                type="submit">Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div ng-if="activeTab == 4">
+                <form name="deviceTypeForm" novalidate ng-submit="saveDeviceTypeFirmwareManagment(deviceTypeForm);">
+                    <div class="content-bd">
+                        <div class="row">
+                            <div class="col-md-10 col-xs-12">
+                                <h1><i class="fa fa-floppy-o" aria-hidden="true"></i> Firmware Management</h1>
+                            </div>
+                        </div>
+                        <div class="panel panel-default panel-content">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-floppy-o" aria-hidden="true"></i> Firmware
+                                    Management
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group col-sm-6">
+                                    <label for="category">Hardware Category</label>
+                                    <input id="category" name="category" class="form-control"
+                                    		ng-model="deviceType.deviceCategory"
+                                            ng-disabled="true">
+                                    </input>
+                                    <div ng-messages="deviceTypeForm.category.$error" role="alert">
+                                        <div class="alert-danger">
+                                            <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                         
+                                <div class="form-group col-sm-6">
+                                    <label for="manufacturer">Hardware Manufacturer</label>
+                                    <select id="manufacturer" name="manufacturer" class="form-control customSelect"
+                                            ng-model="options.selection.manufacturerId"
+                                            ng-options="manufacturer.id as manufacturer.name for manufacturer in options.manufacturers"
+                                            ng-disabled="options.manufacturers == null"
+                                            ng-change="updateSelectionOptions(['productId', 'productTypeId'], true)">
+                                        <option value="">Select Hardware Manufacturer</option>
+                                    </select>
+                                    <div ng-messages="deviceTypeForm.manufacturer.$error" role="alert">
+                                        <div class="alert-danger">
+                                            <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-6">
+                                    <label for="product">Hardware Product</label>
+                                    <select id="product" name="product" class="form-control customSelect"
+                                            ng-model="options.selection.productId"
+                                            ng-options="product.id as product.name for product in options.products"
+                                            ng-disabled="options.products == null"
+                                            ng-change="updateSelectionOptions(['productTypeId'], true)">
+                                        <option value="">Select Hardware Product</option>
+                                    </select>
+                                    <div ng-messages="deviceTypeForm.product.$error" role="alert">
+                                        <div class="alert-danger">
+                                            <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="productType">Hardware Version</label>
+                                    <select id="productType" name="productType" class="form-control customSelect"
+                                            ng-model="options.selection.productTypeId"
+                                            ng-options="productType.id as productType.name for productType in options.productTypes"
+                                            ng-disabled="options.productTypes == null"
+                                            ng-change="updateSelectionOptions([], false)">
+                                        <option value="">Select Hardware Version</option>
+                                    </select>
+                                    <div ng-messages="deviceTypeForm.productType.$error" role="alert">
+                                        <div class="alert-danger">
+                                            <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" ng-show="canSaveDeviceType()"
+                                ng-disabled="deviceTypeForm.$invalid"
+                                type="submit">Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

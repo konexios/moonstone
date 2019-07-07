@@ -1,0 +1,81 @@
+<div left-menu is-collapsed="menuIsCollapsed">
+	<ul class="nav nav-pills nav-stacked">
+		<li role="presentation" ui-sref-active="active">
+			<a ui-sref="company.information({companyId: companyId})">{{companyNameMI || 'Tenant'}}</a>
+		</li>
+		<li role="presentation"
+			ng-cloak 
+			ui-sref-active="active"
+			ng-show="canReadCompanyBilling()"
+			ng-class="{'disabled' : companyId == 'new'}">
+			<a ng-if="companyId !== 'new'" ui-sref="company.billing({companyId: companyId})">Billing</a>
+			<a ng-if="companyId === 'new'">Billing</a>
+		</li>
+		<li role="presentation"
+			ng-cloak 
+			ui-sref-active="active"
+			ng-show="canReadCompanySubscriptions()"
+			ng-class="{'disabled' : companyId == 'new'}">
+			<a ng-if="companyId !== 'new'" ui-sref="company.subscriptions({companyId: companyId})">Subscriptions</a>
+			<a ng-if="companyId === 'new'">Subscriptions</a>
+		</li>
+		<li role="presentation"
+			ng-cloak 
+			ui-sref-active="active"
+			ng-show="canReadCompanyApplications()"
+			ng-class="{'disabled' : companyId == 'new'}">
+			<a  ng-if="companyId !== 'new'" ui-sref="company.applications({companyId: companyId})">Applications</a>
+			<a ng-if="companyId === 'new'">Applications</a>
+		</li>
+		<li role="presentation"
+			ng-cloak 
+			ui-sref-active="active"
+			ng-show="canReadCompanyHierarchy()"
+			ng-class="{'disabled' : companyId == 'new'}">
+			<a ng-if="companyId !== 'new'" ui-sref="company.hierarchy({companyId: companyId})">Hierarchy</a>
+			<a ng-if="companyId === 'new'">Hierarchy</a>
+		</li>
+		<li role="presentation" 
+			ng-cloak
+			ui-sref-active="active"
+			ng-show="canReadCompanyAuthentication()"
+			ng-class="{'disabled' : companyId == 'new'}">
+			<a ng-if="companyId !== 'new'" ui-sref="company.authentication({companyId: companyId})">Authentication</a>
+			<a ng-if="companyId === 'new'">Authentication</a>
+		</li>
+		<li role="presentation"
+			ng-cloak
+			ui-sref-active="active"
+			ng-show="canReadCompanyAccessKey()"
+			ng-class="{'disabled' : companyId == 'new'}">
+			<a ng-if="companyId !== 'new'" ui-sref="company.accesskeys({companyId: companyId})">Access Keys</a>
+			<a ng-if="companyId === 'new'">Access Keys</a>
+		</li>
+
+	</ul>
+</div>
+
+<div class="partial-page-content-container" ng-class="{'menu-collapsed': menuIsCollapsed}"
+	ng-scrollbars ng-scrollbars-config="scrollerConfig">
+	<div class="partial-page-content">
+		<!-- BEGIN PAGE BREADCRUMB -->
+		<ul class="page-breadcrumb breadcrumb">
+			<li>Provision</li>
+			<li><a ui-sref="companies">Tenants</a></li>
+			<li ng-if="$state.$current.self.url == '/information'" class="active">{{companyNameMI || 'Tenant'}}</li>
+			<li ng-if="$state.$current.self.url != '/information'"><a ui-sref="company.information({companyId: companyId})">{{companyNameMI || 'Tenant'}}</a></li>
+			<li ng-if="$state.$current.self.url == '/billing'" class="active">Billing</li>
+			<li ng-if="$state.$current.self.url == '/subscriptions'" class="active">Subscriptions</li>
+			<li ng-if="$state.$current.self.url == '/applications'" class="active">Applications</li>
+			<li ng-if="$state.$current.self.url == '/hierarchy'" class="active">Hierarchy</li>
+			<li ng-if="$state.$current.self.url == '/authentication'" class="active">Authentication</li>
+			<li ng-if="$state.$current.self.url == '/accesskeys'" class="active">Access Keys</li>
+		</ul>
+		<!-- END PAGE BREADCRUMB -->
+		
+		<!-- BEGIN TABS -->
+		<div ui-view></div>
+		<!-- END TABS -->
+
+	</div>
+</div>

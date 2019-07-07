@@ -1,0 +1,120 @@
+<div class="content-nav overflow-hidden arrow-collapsed-menu"
+     ng-class="{'mobile-view':vm.mobileLayot, 'showed-menu':vm.mobileMenuShowed, 'collapsed-view':vm.collapsedView}">
+    <div class="nav nav-custom-scrollbar" ng-scrollbars ng-scrollbars-config="scrollerConfig">
+        <div class="content-nav-filters">
+            <div ng-hide="vm.menuIsHidden()">
+                <div class="col-xs-12">
+                    <h3 class="filter-group-title break-word" ng-hide="vm.isEditJobPage">Create Job</h3>
+                    <h3 class="filter-group-title break-word" ng-show="vm.isEditJobPage">Edit {{vm.model.jobName}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="collapsed-button-wrap nav nav-pills">
+        <li role="presentation" class="collapse-button">
+            <a ng-click="vm.collapseMenu()" class="text-right">
+                    <span class="icon-wrapper"><i class="fa fa-lg" ng-class="{
+                        'fa-angle-double-left': !vm.mobileLayot && !vm.collapsedView,
+                        'fa-angle-double-right': !vm.mobileLayot && vm.collapsedView,
+                        'mobile fa-angle-double-right': vm.mobileLayot && !vm.mobileMenuShowed,
+                        'mobile fa-angle-double-left': vm.mobileLayot && vm.mobileMenuShowed
+                    }" aria-hidden="true"></i></span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div  class="content-wrapper device-selector"
+     ng-class="{'mobile-view':vm.mobileLayot, 'showed-menu':vm.mobileMenuShowed, 'collapsed-view':vm.collapsedView}">
+    <!--  CONTENT BODY -->
+    <form name="schedulingForm" class="margin-top-20 job-wizard-content">
+        <div class="row">
+            <div class="col-xs-12 text-right h-green">
+                Step 2 of 4
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group margin-top-20">
+                    <label for="jobName" class="h-green">Job Name</label>
+                    <input class="form-control" name="jobName" id="jobName"
+                        maxlength="20"
+                        ng-maxlength="20"
+                        required
+                        ng-model="vm.model.jobName">
+                    <div class="alert-danger"
+                        ng-messages="schedulingForm.jobName.$error"
+                        role="alert">
+                        <span ng-message="maxlength">Name must be between 1 and 20 characters long</span>
+                        <span ng-message="required">Name is required</span>
+                    </div>
+                </div>
+                <div class="form-group checkbox margin-top-20" ng-if="vm.canSchedulingOnDemand()">
+                    <h4 class="h-green">Scheduling</h4>
+                    <label>
+                        <input type="checkbox" name="scheduling" id="scheduling"
+                            ng-model="vm.model.onDemand">
+                        On Demand
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-12 line-with-text text-center">OR</div>
+            <div class="col-sm-12">
+                <div class="form-group dropdown margin-top-20" ng-if="vm.canSchedulingByDateTime()">
+                    <label for="dateTimeField">Date / Time</label>
+                    <a class="dropdown-toggle" id="dateTime" role="button" data-toggle="dropdown" data-target="#">
+                        <div class="input-group">
+                            <input type="text" id="dateTimeField" class="form-control"
+                                data-ng-model="vm.model.dateTime"
+                                data-date-time-input="MM/DD/YYYY hh:mm:ss A"
+                                autocomplete="off"
+                                ng-disabled="vm.model.onDemand">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul ng-if="!vm.model.onDemand" class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="vm.model.dateTime"
+                                        data-before-render="vm.startDateBeforeRender($dates, $view)"
+                                        data-datetimepicker-config="{ dropdownSelector: '#dateTime', minView: 'hour' }">
+                        </datetimepicker>
+                    </ul>
+                </div>
+                <div class="form-group" ng-if="vm.canSchedulingByDateTime()">
+                    <label for="timeZone">Time Zone</label>
+                    <select class="form-control customSelect" id="timeZone"
+                            ng-model="vm.model.timezone"
+                            ng-disabled="vm.model.onDemand"
+                            ng-options="timezone as timezone for timezone in vm.model.timezones">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="comments">Comments (500 character max)</label>
+                    <textarea class="form-control" name="comments" id="comments"
+                            maxlength="500"
+                            ng-maxlength="500"
+                            ng-model="vm.model.comments"></textarea>
+
+                    <div class="alert-danger"
+                        ng-messages="schedulingForm.comments.$error"
+                        role="alert">
+                        <span ng-message="maxlength">Name must be between 0 and 500 characters long</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="margin-right-15 next-back-buttons">
+                <button class="btn btn-brand btn-brand-left"
+                        ng-click="vm.goToBack()"
+                        ng-if="!vm.currentStep.isFirst">Back
+                </button>
+
+                <button class="btn btn-brand btn-brand-right"
+                        ng-click="vm.goToNext()"
+                        ng-disabled="(!vm.model.onDemand && !vm.model.dateTime) || !schedulingForm.jobName.$valid"
+                        ng-if="!vm.currentStep.isLast">Next
+                </button>
+            </div>
+        </div>
+    </form>
+    <!-- /CONTENT BODY -->
+</div>
+

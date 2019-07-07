@@ -1,0 +1,15 @@
+
+<!-- TODO: better using validation on whole page in configuration steps (framework) -->
+<!-- in this case is not possible to put two properties on one view -->
+<div class="form-group" ng-form="urlValidationForm" ng-class="{'has-error': urlValidationForm.url.$touched && !urlValidationForm.url.$valid}">
+    <label class="control-label" for="url">URL (https):</label>
+    <input type="url" name="url" class="form-control" ng-model="property.value" required ng-pattern="/^(https:\/\/){1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/" />
+    <div class="help-block" ng-show="urlValidationForm.url.$touched && !urlValidationForm.url.$valid">
+        <div ng-show="urlValidationForm.url.$error.required">Url required</div>
+        <div ng-show="urlValidationForm.url.$error.url || urlValidationForm.url.$error.pattern">Please enter correct https URL</div>
+    </div>
+</div>
+
+<div class="event-logo-preview" ng-if="!!property.value">
+    <img ng-src="{{property.value}}">
+</div>

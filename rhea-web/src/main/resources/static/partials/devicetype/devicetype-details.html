@@ -1,0 +1,70 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{canSaveDeviceType ? (deviceType.id ? 'Edit' : 'Add') : 'View'}} Hardware Version</h3>
+</div>
+<form name="deviceTypeForm"
+    class="form-horizontal"
+    novalidate
+    ng-submit="save();">
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="deviceTypeName" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <p class="form-control-static" ng-if="!canSaveDeviceType">{{deviceType.name}}</p>
+                <input type="text" id="deviceTypeName" name="deviceTypeName" class="form-control" ng-if="canSaveDeviceType" ng-model="deviceType.name" required="required" minlength="3" maxlength="100" />
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="deviceTypeForm.deviceTypeName.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Name is required</span>
+                    <span ng-message="minlength, maxlength">Name must be between 3 and 100 characters long</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="deviceTypeDescription" class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-10">
+                <p class="form-control-static" ng-if="!canSaveDeviceType">{{deviceType.description}}</p>
+                <textarea id="deviceTypeDescription" name="deviceTypeDescription" class="form-control" rows="3" ng-if="canSaveDeviceType" ng-model="deviceType.description" maxlength="1000" required="required"></textarea>
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="deviceTypeForm.deviceTypeDescription.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Description is required</span>
+                    <span ng-message="maxlength">Description must be maximum 1000 characters long</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="deviceTypeDeviceProduct" class="col-sm-2 control-label">Hardware Product</label>
+            <div class="col-sm-10">
+                <select id="deviceTypeDeviceProduct" name="deviceTypeDeviceProduct" class="form-control" ng-model="deviceType.deviceProduct" ng-options="deviceProduct.name for deviceProduct in deviceProducts track by deviceProduct.id" required>
+                    <option value="">-- select one --</option>
+                </select>
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="deviceTypeForm.deviceTypeDeviceProduct.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Hardware Product is required</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-if="!canSaveDeviceType">
+            <label class="col-sm-2 control-label">Enabled</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">{{deviceType.enabled}}</p>
+            </div>
+        </div>
+        <div class="form-group" ng-if="canSaveDeviceType">
+            <div class="checkbox col-sm-offset-2 col-sm-10">
+                <label>
+                <input type="checkbox" value="" ng-model="deviceType.enabled" />
+                Enabled
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default"
+            ng-if="canSaveDeviceType"
+            type="submit">Save</button>
+        <button class="btn btn-default"
+            type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

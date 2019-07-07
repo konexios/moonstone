@@ -1,0 +1,42 @@
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+    manifest {
+        attributes(
+            "Implementation-Title": "moonstone-pegasus-dashboard-api",
+            "Implementation-Version": version,
+            "Implementation-Vendor": "Arrow Electronics, Inc.",
+            "Built-By": System.getProperty('user.name'),
+            "Built-Date": new Date().format("yyyy-MM-dd"),
+            "Built-Jdk": "${System.getProperty('java.version')} (${System.getProperty('java.specification.vendor')})",
+            "Git-Branch": getCurrentGitBranch(),
+            "Git-Last-Commit": getLastGitCommit())
+    }
+}
+
+dependencies {
+	api("org.springframework.boot:spring-boot-starter-web")
+	api("org.springframework:spring-messaging")
+	api("org.springframework.boot:spring-boot-starter-data-mongodb")
+	api("org.springframework.boot:spring-boot-starter-websocket")
+    api("org.springframework.data:spring-data-mongodb")		
+	
+	testCompile("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+	testCompile("org.springframework:spring-test}")	
+	
+	api("org.webjars:bootstrap:${bootstrapVersion}")
+    api("org.webjars:angularjs:${angularJsVersion}")
+    api("org.webjars:jquery:${jQueryVersion}")    
+    api("org.webjars:sockjs-client:${sockJsClientVersion}")
+    api("org.webjars:stomp-websocket:${stompWebsocketVersion}")       
+    api("org.webjars.bower:angular-gridster:${angularGridsterVersion}")    
+	api("org.webjars:angular-ui-bootstrap:${angularUiBootstrapVersion}")    
+}
+
+task copyDependencies(type: Copy) {
+   from configurations.compile
+   into 'build/libs/libs'
+}

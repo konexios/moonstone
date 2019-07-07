@@ -1,0 +1,465 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+
+
+            <div class="portlet-body form">
+                <form name="form"
+                      class="form-horizontal"
+                      role="form"
+                      novalidate>
+                    <div class="form-body">
+
+                        <fieldset class="fieldset-form">
+                            <legend class="legend-form">Profile</legend>
+
+                            <!-- First Name -->
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': (form.firstName.$touched || form.$submitted) && form.firstName.$invalid, 'has-success': (form.firstName.$touched || form.$submitted) && !form.firstName.$invalid }">
+                                <label
+                                        for="firstName"
+                                        class="col-md-1 control-label">First Name
+                                    <span class="required" aria-required="true"> * </span>
+                                </label>
+                                <div class="col-md-11">
+                                    <div class="input-icon right">
+                                        <input id="firstName"
+                                               name="firstName"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="---"
+                                               ng-model="user.firstName"
+                                               ng-trim="true"
+                                               ng-required="true"
+                                               ng-minlength="2"
+                                               ng-maxlength="50"
+                                               ng-disabled="!hasAccess()">
+                                    </div>
+                                    <div class="help-block" ng-messages="form.firstName.$error"
+                                         ng-show="form.firstName.$touched || form.$submitted">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Middle Name -->
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': (form.middleName.$touched || form.$submitted) && form.middleName.$invalid, 'has-success': (form.middleName.$touched || form.$submitted) && !form.middleName.$invalid }">
+                                <label
+                                        for="middleName"
+                                        class="col-md-1 control-label">Middle Name
+                                </label>
+                                <div class="col-md-11">
+                                    <div class="input-icon right">
+                                        <input id="middleName"
+                                               name="middleName"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="---"
+                                               ng-model="user.middleName"
+                                               ng-trim="true"
+                                               ng-minlength="0"
+                                               ng-maxlength="50"
+                                               ng-disabled="!hasAccess()">
+                                    </div>
+                                    <div class="help-block" ng-messages="form.middleName.$error"
+                                         ng-show="form.middleName.$touched || form.$submitted">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Last Name -->
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': (form.lastName.$touched || form.$submitted) && form.lastName.$invalid, 'has-success': (form.lastName.$touched || form.$submitted) && !form.lastName.$invalid }">
+                                <label
+                                        for="lastName"
+                                        class="col-md-1 control-label">Last Name
+                                    <span class="required" aria-required="true"> * </span>
+                                </label>
+                                <div class="col-md-11">
+                                    <div class="input-icon right">
+                                        <input id="lastName"
+                                               name="lastName"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="---"
+                                               ng-model="user.lastName"
+                                               ng-trim="true"
+                                               ng-required="true"
+                                               ng-minlength="2"
+                                               ng-maxlength="50"
+                                               ng-disabled="!hasAccess()">
+                                    </div>
+                                    <div class="help-block" ng-messages="form.lastName.$error || form.$submitted"
+                                         ng-show="form.lastName.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tenant -->
+
+                            <!-- Parent User -->
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': form.parentUserId.$touched && form.parentUserId.$invalid, 'has-success': form.parentUserId.$touched && !form.parentUserId.$invalid }">
+                                <label for="parentUserId"
+                                       class="col-md-1 control-label">Parent User
+                                </label>
+                                <div class="col-md-11">
+                                    <div class="input-icon right">
+                                        <i ng-show="form.parentUserId.$touched && form.parentUserId.$invalid"
+                                           class="fa fa-warning"></i>
+                                        <i ng-show="form.parentUserId.$touched && !form.parentUserId.$invalid"
+                                           class="fa fa-check"></i>
+                                        <select id="parentUserId"
+                                                name="user.parentUserId"
+                                                class="form-control"
+                                                ng-model="user.parentUserId"
+                                                ng-disabled="!hasAccess()">
+                                            <option value="">[N/A]</option>
+                                            <option ng-repeat="option in companyUsers" value="{{option.id}}">
+                                                {{option.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="help-block" ng-messages="form.parentUserId.$error"
+                                         ng-show="form.parentUserId.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Office cell & Ext -->
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': form.office.$touched && form.office.$invalid, 'has-success': form.office.$touched && !form.office.$invalid }">
+                                <label
+                                        for="office"
+                                        class="col-md-1 control-label">Office
+                                </label>
+                                <div class="col-md-7">
+                                    <div class="input-icon right">
+                                        <input id="office"
+                                               name="office"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="---"
+                                               ng-model="user.office"
+                                               ng-trim="true"
+                                               ng-minlength="0"
+                                               ng-maxlength="20"
+                                               maxlength="20"
+                                               phone-formatter="user.office"
+                                               ng-disabled="!hasAccess()">
+                                    </div>
+                                    <div class="help-block" ng-messages="form.office.$error"
+                                         ng-show="form.office.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+
+                                <div ng-class="{ 'has-error': form.extension.$touched && form.extension.$invalid, 'has-success': form.extension.$touched && !form.extension.$invalid }">
+                                    <label for="extension" class="col-md-1 control-label">Ext.</label>
+                                    <div class="col-md-3">
+                                        <div class="input-icon right">
+                                            <input id="extension"
+                                                   name="extension"
+                                                   type="text"
+                                                   class="form-control"
+                                                   placeholder="---"
+                                                   ng-model="user.extension"
+                                                   ng-trim="true"
+                                                   ng-minlength="0"
+                                                   ng-maxlength="4"
+                                                   maxlength="4"
+                                                   three-dashes-on-default="user.extension"
+                                                   ng-disabled="!hasAccess()">
+
+                                            <div class="help-block" ng-messages="form.extension.$error"
+                                                 ng-show="form.extension.$touched">
+                                                <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Fax & Cell -->
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': form.fax.$touched && form.fax.$invalid, 'has-success': form.fax.$touched && !form.fax.$invalid }">
+
+                                <label
+                                        for="fax"
+                                        class="col-md-1 control-label">Fax
+                                </label>
+                                <div class="col-md-5"  ng-class="{ 'has-error': form.fax.$touched && form.fax.$invalid, 'has-success': form.fax.$touched && !form.fax.$invalid }">
+                                    <div class="input-icon right">
+                                        <input id="fax"
+                                               name="fax"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="---"
+                                               ng-model="user.fax"
+                                               ng-trim="true"
+                                               ng-minlength="0"
+                                               ng-maxlength="20"
+                                               maxlength="20"
+                                               phone-formatter="user.fax"
+                                               ng-disabled="!hasAccess()">
+
+                                        <div class="help-block" ng-messages="form.fax.$error"
+                                             ng-show="form.fax.$touched">
+                                            <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <label
+                                        for="cell"
+                                        class="col-md-1 control-label">Cell
+                                </label>
+                                <div class="col-md-5"  ng-class="{ 'has-error': form.cell.$touched && form.cell.$invalid, 'has-success': form.cell.$touched && !form.cell.$invalid }">
+                                    <div class="input-icon right">
+                                        <input id="cell"
+                                               name="cell"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="---"
+                                               ng-model="user.cell"
+                                               ng-trim="true"
+                                               ng-minlength="0"
+                                               ng-maxlength="20"
+                                               maxlength="20"
+                                               phone-formatter="user.cell"
+                                               ng-disabled="!hasAccess()">
+                                    </div>
+                                    <div class="help-block" ng-messages="form.cell.$error"
+                                         ng-show="form.cell.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Home & Email -->
+                            <div class="form-group">
+
+                                <label for="home" class="col-md-1 control-label">
+                                    Home
+                                </label>
+                                <div class="col-md-5" ng-class="{ 'has-error': form.home.$touched && form.home.$invalid, 'has-success': form.home.$touched && !form.home.$invalid }">
+                                    <div class="input-icon right">
+                                        <input id="home"
+                                               name="home"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="---"
+                                               ng-model="user.home"
+                                               ng-trim="true"
+                                               ng-minlength="0"
+                                               ng-maxlength="20"
+                                               maxlength="20"
+                                               phone-formatter="user.home"
+                                               ng-disabled="!hasAccess()">
+                                    </div>
+                                    <div class="help-block" ng-messages="form.home.$error"
+                                         ng-show="form.home.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+
+                                <label
+                                        for="email"
+                                        class="col-md-1 control-label">Email
+                                    <span class="required" aria-required="true"> * </span>
+                                </label>
+                                <div class="col-md-5" ng-class="{ 'has-error': (form.email.$touched || form.$submitted) && form.email.$invalid, 'has-success': (form.email.$touched || form.$submitted) && !form.email.$invalid }">
+                                    <div class="input-icon right">
+                                        <input id="email"
+                                               name="email"
+                                               type="email"
+                                               class="form-control"
+                                               placeholder="---"
+                                               ng-model="user.email"
+                                               ng-trim="true"
+                                               ng-required="true"
+                                               ng-minlength="6"
+                                               ng-maxlength="100"
+                                               ng-disabled="!hasAccess()"
+                                               email-validation="user.email">
+                                    </div>
+                                    <div class="help-block" ng-messages="form.email.$error.email || form.$submitted"
+                                         ng-show="form.email.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+
+                        <fieldset class="fieldset-form">
+                            <legend class="legend-form">Address</legend>
+
+                            <!-- Address 1 -->
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': form.address1.$touched && form.address1.$invalid, 'has-success': form.address1.$touched && !form.address1.$invalid }">
+                                <label for="address1"
+                                       class="col-md-1 control-label">Address 1
+                                </label>
+                                <div class="col-md-11">
+                                    <div class="input-icon right">
+                                        <input id="address1"
+                                                name="address1"
+                                                class="form-control"
+                                                placeholder="---"
+                                                ng-minlength="0"
+                                                ng-maxlength="255"
+                                                ng-model="user.address1"
+                                                ng-disabled="!hasAccess()">
+                                    </div>
+                                    <div class="help-block" ng-messages="form.address1.$error"
+                                         ng-show="form.address1.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Address 2 -->
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': form.address2.$touched && form.address2.$invalid, 'has-success': form.address2.$touched && !form.address2.$invalid }">
+                                <label for="address2"
+                                       class="col-md-1 control-label">Address 2
+                                </label>
+                                <div class="col-md-11">
+                                    <div class="input-icon right">
+                                        <input id="address2"
+                                               name="address2"
+                                               class="form-control"
+                                               placeholder="---"
+                                               ng-model="user.address2"
+                                               ng-minlength="0"
+                                               ng-maxlength="255"
+                                               ng-disabled="!hasAccess()">
+                                    </div>
+                                    <div class="help-block" ng-messages="form.address2.$error"
+                                         ng-show="form.address2.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- City & State -->
+                            <div class="form-group">
+
+                                <label for="home" class="col-md-1 control-label">City</label>
+                                <div class="col-md-5" ng-class="{ 'has-error': form.city.$touched && form.city.$invalid, 'has-success': form.city.$touched && !form.city.$invalid }">
+                                    <div class="input-icon right">
+                                        <input id="city"
+                                               name="city"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="---"
+                                               ng-model="user.city"
+                                               ng-trim="true"
+                                               ng-minlength="0"
+                                               ng-maxlength="100"
+                                               ng-disabled="!hasAccess()">
+                                    </div>
+                                    <div class="help-block" ng-messages="form.city.$error"
+                                         ng-show="form.city.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+
+                                <label for="state" class="col-md-1 control-label">State</label>
+                                <div class="col-md-5" ng-class="{ 'has-error': form.state.$touched && form.state.$invalid, 'has-success': form.state.$touched && !form.state.$invalid }">
+                                    <div class="input-icon right">
+                                        <input id="state"
+                                               name="state"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="---"
+                                               ng-model="user.state"
+                                               ng-trim="true"
+                                               ng-minlength="0"
+                                               ng-maxlength="100"
+                                               ng-disabled="!hasAccess()">
+                                    </div>
+                                    <div class="help-block" ng-messages="form.state.$error.email"
+                                         ng-show="form.state.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Postal code & Country -->
+                            <div class="form-group">
+
+                                <label for="postalCode" class="col-md-1 control-label">Postal Code</label>
+                                <div class="col-md-5" ng-class="{ 'has-error': form.postalCode.$touched && form.postalCode.$invalid, 'has-success': form.postalCode.$touched && !form.postalCode.$invalid }">
+                                    <div class="input-icon right">
+                                        <input id="postalCode"
+                                               name="postalCode"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="---"
+                                               ng-model="user.postalCode"
+                                               ng-trim="true"
+                                               ng-minlength="0"
+                                               ng-maxlength="50"
+                                               postcode-formatter="user.postalCode"
+                                               ng-disabled="!hasAccess()">
+                                    </div>
+                                    <div class="help-block" ng-messages="form.postalCode.$error"
+                                         ng-show="form.postalCode.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+
+                                <label for="state" class="col-md-1 control-label">Country</label>
+                                <div class="col-md-5" ng-class="{ 'has-error': form.country.$touched && form.country.$invalid, 'has-success': form.country.$touched && !form.country.$invalid }">
+                                    <div class="input-icon right">
+                                        <input id="country"
+                                               name="country"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="---"
+                                               ng-model="user.country"
+                                               ng-trim="true"
+                                               ng-minlength="0"
+                                               ng-maxlength="100"
+                                               ng-disabled="!hasAccess()">
+                                    </div>
+                                    <div class="help-block" ng-messages="form.country.$error.email"
+                                         ng-show="form.country.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <button type="submit"
+                                        class="btn green"
+                                        ng-disabled="busy || !hasAccess()"
+                                        ng-click="updateProfile(form, user)">Save
+                                </button>
+                                <button type="submit"
+                                        class="btn green"
+                                        ui-sref="users"
+                                        ng-disabled="busy">Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,158 @@
+<div class="row-content">
+    <!-- CONTENT WRAPPER -->
+    <div class="content-wrapper-fluid">
+
+        <div class="content-hd">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content-title">
+                        <h1>{{vm.pageTitle}}</h1><br/>
+                        <form class="form-inline arrow-quick-filter">
+                            <div class="form-group">
+                                <label for="filterString">QUICK FILTERS:</label>
+                                <input id="filterString" type="search" class="form-control" placeholder="Group name, device name or device owner" ng-model="vm.filterString">
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="vm.filterOption" value="enabled"> Enabled
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="vm.filterOption" value="disabled"> Disabled
+                                </label>
+                                <label class="radio-inline" ng-if="vm.canViewAllDevices">
+                                    <input type="radio" ng-model="vm.filterOption" value="my"> Only My Devices
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="vm.filterOption" value="updated"> Recently Updated
+                                </label>
+                            </div>
+                            <!--<div class="form-group">
+                                <label class="btn btn-default" ng-class="{'active':vm.filterOption=='enabled'}">
+                                    <input type="radio" class="hidden" ng-model="vm.filterOption" value="enabled"> Enabled
+                                </label>
+                                <label class="btn btn-default" ng-class="{'active':vm.filterOption=='disabled'}">
+                                    <input type="radio" class="hidden" ng-model="vm.filterOption" value="disabled"> Disabled
+                                </label>
+                                <label class="btn btn-default" ng-if="vm.canViewAllDevices" ng-class="{'active':vm.filterOption=='my'}">
+                                    <input type="radio" class="hidden" ng-model="vm.filterOption" value="my"> Only My Devices
+                                </label>
+                                <label class="btn btn-default" ng-class="{'active':vm.filterOption=='updated'}">
+                                    <input type="radio" class="hidden" ng-model="vm.filterOption" value="updated"> Recently Updated
+                                </label>
+                            </div>-->
+                        </form>
+                    </div>
+                </div>
+                 <div class="col-md-12 text-right">
+                    <div class="content-toolbar">
+                        <button type="button"
+                            ng-repeat="button in vm.toolbar"
+                            class="btn btn-default"
+                            ng-click="button.onClick()"><i ng-class="button.icon"></i> {{button.caption}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT BODY WRAPPER -->
+        <div class="content-bd-wrapper">
+            <!--  CONTENT BODY -->
+            <div class="content-bd">
+                <div class="row">
+                    <div ng-class="vm.selectedNode ? 'col-md-6' : 'col-md-12'">
+                        <!-- TREE PANEL -->
+                        <div class="panel panel-default panel-content">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-sitemap" aria-hidden="true"></i> Hierarchy</h3>
+                            </div>
+                            <div class="panel-body treecontrol">
+                                <treecontrol
+                                    on-node-toggle="vm.nodeToggle(node, expanded)"
+                                    filter-expression="vm.filter"
+                                    options="vm.treeOptions"
+                                    tree-model="vm.treeModel">
+                                    <span ng-if="node.type == 'node'" ng-class="{disabled: !node.model.enabled}">
+                                        {{node.model.name}}
+                                    </span>
+                                    <span ng-if="node.type == 'device'" ng-class="{disabled: !node.model.enabled}">
+                                        <a ng-click="vm.openDevice(node)">{{node.model.name}}</a>
+                                    </span>
+                                </treecontrol>
+                            </div>
+                        </div>
+                        <!-- /TREE PANEL -->
+                    </div>
+                    <div ng-if="vm.selectedNode" class="col-md-6">
+                        <!-- DEVICE PANEL -->
+                        <div class="panel panel-default panel-content">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-tablet" aria-hidden="true"></i> Device</h3>
+                            </div>
+                            <div class="panel-body panel-with-menu">
+                                <div class="panel-menu">
+                                    <ul class="nav nav-pills nav-stacked">
+                                        <li role="presentation" ng-class="{active: vm.activeTab == 'info'}"><a href="" ng-click="vm.activeTab = 'info'"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                                        <li role="presentation" ng-class="{active: vm.activeTab == 'control'}"><a href="" ng-click="vm.activeTab = 'control'"><i class="fa fa-terminal" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <div class="row" ng-if="vm.activeTab == 'info'">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Device:</label> {{vm.selectedNode.model.name}}
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Type:</label> {{vm.selectedNode.model.deviceTypeName}}
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">UID:</label> {{vm.selectedNode.model.uid}}
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Gateway:</label> {{vm.selectedNode.model.gatewayName}}
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Owner:</label> {{vm.selectedNode.model.ownerName || 'Unassigned'}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Last Seen:</label> {{vm.selectedNode.model.lastTelemetryDate | amDateFormat:'MM/DD/YYYY hh:mm:ss A'}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-if="vm.activeTab == 'control'">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Device:</label> {{vm.selectedNode.model.name}}
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Type:</label> {{vm.selectedNode.model.deviceTypeName}}
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">UID:</label> {{vm.selectedNode.model.uid}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <a href="" ng-click="vm.startDevice(vm.selectedNode)" class="device-action-button">
+                                                <i class="fa fa-play" aria-hidden="true"></i><br>
+                                                Start
+                                            </a>
+                                            <a href="" ng-click="vm.stopDevice(vm.selectedNode)" class="device-action-button">
+                                                <i class="fa fa-stop" aria-hidden="true"></i><br>
+                                                Stop
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /DEVICE PANEL -->
+                    </div>
+                </div>
+            </div>
+            <!-- /CONTENT BODY -->
+        </div>
+        <!-- /CONTENT BODY WRAPPER -->
+    </div>
+    <!-- /CONTENT WRAPPER -->
+</div>

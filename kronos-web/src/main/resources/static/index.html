@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en" ng-app="kronos">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<link rel="icon" href="assets/img/favicon.ico">
+	<title>Arrow Connect - Asset Management Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- source:css -->
+    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/node_modules/angular-ui-grid/ui-grid.min.css">
+    <link rel="stylesheet" href="/node_modules/angular-toastr/dist/angular-toastr.min.css">
+    <link rel="stylesheet" href="/node_modules/angular-tree-control/css/tree-control.css">
+    <link rel="stylesheet" href="/node_modules/textangular/dist/textAngular.css">
+	<link rel="stylesheet" href="/assets/vender/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/vender/bootstrap/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="/assets/vender/bootstrap/datetimepicker.css">
+    <link rel="stylesheet" href="/assets/vender/malihu-custom-scrollbar-plugin-3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="/assets/css/shapes.css">
+    <link rel="stylesheet" href="/assets/css/wireframe.css">
+	<link rel="stylesheet" href="/assets/css/asi.css">
+	<link rel="stylesheet" href="/node_modules/ladda/dist/ladda-themeless.min.css">
+    <!-- endinject -->
+	<style>[ng\:cloak], [ng-cloak], .ng-cloak {display: none !important;}</style>
+</head>
+<body ng-controller="KronosController">
+    <span us-spinner spinner-on="showSpinner > 0" ng-class="{mask: showSpinner > 0}"></span>
+	<nav class="navbar navbar-fixed-top app-top-navbar" watch-height>
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button"
+					class="main-menu-navbar-toggle navbar-toggle collapsed"
+					data-toggle="collapse"
+					data-target="#app-top-navbar-collapse"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#/home">
+					<img class="logo-arrow"
+        				ng-cloak
+        				title="Arrow"
+        				src="assets/img/Arrow_Worm_ArrowConnect_lockup_h_2c_white_cmyk.png"><!--span ng-cloak>|</span-->
+					<!--img class="logo-connect"
+        				ng-cloak
+        				ng-show="app == null || !app.logoUrl || app.logoUrl == null || app.logoUrl == ''"
+        				title="Arrow Connect"
+        				src="assets/img/arrow-connect-logo-white.png">
+        			<img class="logo-connect"
+        				ng-cloak
+        				ng-show="app && app != null && app.logoUrl != null && app.logoUrl != ''"
+        				title="{{app.name}}"
+        				ng-src="{{app.logoUrl}}"-->
+      			</a>
+			</div>
+          <div id="app-top-navbar-collapse"  
+            class="collapse navbar-collapse">
+            
+            
+                        <ul class="nav navbar-nav no-margin"
+                ng-if="isLoggedIn() && !isSubscriptionExpired()"
+                ng-cloak>
+                <li class="dropdown"
+                    ng-class="isActivePath('/home', '/gateways', '/gateway/', '/devices', '/device/', '/nodetree')">
+                    <a href=""
+                        class="dropdown-toggle"
+                        data-toggle="dropdown"
+                        role="button"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                        Assets
+                    </a>
+                    <ul class="dropdown-menu">
+                            <li ng-if="isLoggedIn()" ng-class="isActivePath('/home')">
+                                <a href="#/home">My Assets</a>
+                            </li>
+                            <li ng-if="isLoggedIn() &amp;&amp; canReadGateways()" ng-class="isActivePath('/gateways', '/gateway/')">
+                                <a href="#/gateways">Gateways</a>
+                            </li>
+                            <li ng-if="isLoggedIn()" ng-class="isActivePath('/devices', '/device/', '/nodetree')">
+                                <a href="#/devices">Devices</a>
+                            </li>
+                        </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav no-margin"
+                ng-if="isLoggedIn() && !isSubscriptionExpired()"
+                ng-cloak>
+                <li class="dropdown"
+                    ng-class="isActivePath('/fmsummary/', '/fmschedule', '/fmrighttouse', '/availableupdates', '/fmaudit')">
+                    <a href=""
+                        class="dropdown-toggle"
+                        data-toggle="dropdown"
+                        role="button"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                         Firmware Management <sup>Beta</sup>
+                    </a>
+                    <ul class="dropdown-menu">
+                            <li ng-if="isLoggedIn()" ng-class="isActivePath('/fmsummary/')">
+                                <a href="#/fmsummary/SCHEDULED">Job Summary</a>
+                            </li>
+                            <li ng-if="isLoggedIn() && canCreateSoftwareReleaseSchedule()" ng-class="isActivePath('/fmschedule')">
+                                <a href="#/fmschedule/?action=create">Schedule Update</a>
+                            </li>
+                            <li ng-if="isLoggedIn() && canReadRightToUse()" ng-class="isActivePath('/fmrighttouse')">
+                                <a href="#/fmrighttouse">Right To Use</a>
+                            </li>
+                            <li ng-if="isLoggedIn()" ng-class="isActivePath('/availableupdates')">
+                                <a href="#/availableupdates">Available Updates</a>
+                            </li>
+                            <!--li ng-if="isLoggedIn()" ng-class="isActivePath('/fmschedule')">
+                                <a href="#/fmsummary/ELIGIBLE">Available Updates</a>
+                            </li-->
+                        </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav no-margin"
+                ng-if="!isSubscriptionExpired() && isLoggedIn() &amp;&amp; (canReadDeviceTypes() || canReadNodeTypes() || canReadNodes() || canEditIoTConfig() || isAdmin())"
+                ng-cloak>
+                <li class="dropdown"
+                    ng-class="isActivePath('/devicetypes', '/deviceactiontypes', '/grouptypes', '/grouplist', '/settings', '/accesskeys', '/telemetryunits', '/devicetype/', '/globalactions', '/actiontypes', '/testprocedures', '/testresults')">
+                    <a href=""
+                        class="dropdown-toggle"
+                        data-toggle="dropdown"
+                        role="button"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                         Configuration
+                    </a>
+                    <ul class="dropdown-menu">
+                          <li ng-if="isLoggedIn() &amp;&amp; canReadAccessKeys()"
+                              ng-class="isActivePath('/accesskeys')"><a href="#/accesskeys">Access Keys</a></li>
+                          <li class="divider" ng-if="canReadAccessKeys()"></li>
+                          
+                          <!-- HARDWARE -->
+                          <li ng-if="isLoggedIn() &amp;&amp; canReadDeviceTypes()"
+                              ng-class="isActivePath('/devicetypes', '/devicetype/')"><a href="#/devicetypes">Asset Types</a></li>
+                          <li class="divider" ng-if="canReadDeviceTypes()"></li>
+                          <li ng-if="isLoggedIn() &amp;&amp; canReadGlobalActions()" ng-class="isActivePath('/globalactions')"><a href="#/globalactions">Global Actions</a></li>
+                          <li ng-if="isLoggedIn() &amp;&amp; canReadGlobalActionTypes()" ng-class="isActivePath('/actiontypes')"><a href="#/actiontypes">Global Action Types</a></li>
+                          <li ng-if="isLoggedIn() &amp;&amp; canReadDeviceActionTypes()"
+                              ng-class="isActivePath('/deviceactiontypes')"><a href="#/deviceactiontypes">Device Action Types</a></li>
+                          <li class="divider" ng-if="canReadDeviceActionTypes() || canReadGlobalActionTypes()"></li>
+                          <li ng-if="isLoggedIn() &amp;&amp; canReadNodeTypes()"
+                              ng-class="isActivePath('/grouptypes')"><a href="#/grouptypes">Group Types</a></li>
+                          <li ng-if="isLoggedIn() &amp;&amp; canReadNodes()"
+                              ng-class="isActivePath('/grouplist')"><a href="#/grouplist">Groups</a></li>
+                          <li class="divider" ng-if="canReadNodeTypes() || canReadNodes()"></li>
+                          <li ng-if="isLoggedIn() &amp;&amp; canReadSettings()"
+                              ng-class="isActivePath('/settings')"><a href="#/settings">Settings</a></li>
+                          <li class="divider" ng-if="canReadSettings()"></li>
+                          <li ng-if="isLoggedIn() &amp;&amp; isAdmin()"
+                              ng-class="isActivePath('/telemetryunits')"><a href="#/telemetryunits">Telemetry Units</a></li>
+                          <li class="divider" ng-if="canReadTestProcedures() || canReadTestResults()"></li>
+                          <li ng-if="isLoggedIn() &amp;&amp; canReadTestProcedures()"
+                              ng-class="isActivePath('/testprocedures')"><a href="#/testprocedures">Test Procedures</a></li>
+                          <li ng-if="isLoggedIn() &amp;&amp; canReadTestResults()"
+                              ng-class="isActivePath('/testresults')"><a href="#/testresults">Test Results</a></li>
+                      </ul>
+                </li>
+            </ul>
+            
+            <ul class="nav navbar-nav no-margin">
+                    <li ng-if="isLoggedIn()"
+                        ng-cloak>
+                        <a href="https://developer.arrowconnect.io/" target="_blank">Developer HUB<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            <!--ul class="nav navbar-nav no-margin"
+                ng-if="isLoggedIn()"
+                ng-cloak>
+                <li class="dropdown"
+                    ng-class="isActive('manage')">
+                    <a href=""
+                        class="dropdown-toggle"
+                        data-toggle="dropdown"
+                        role="button"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="fa fa-paper-plane"></i> Manage
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li ng-if="canManageCache()"
+                            ng-class="isActive('cache')"><a href="#/manage/cache">Cache</a></li>
+                    </ul>
+                </li>
+            </ul-->
+            <ul class="nav navbar-nav navbar-right" ng-if="!isLoggedIn()" ng-cloak>
+                    <li class=""><a href="http://iot.arrow.com/">Arrow IoT</a></li>
+                    <li ng-class="isActivePath('/signin')">
+                        <a href="#/signin">Sign In</a>
+                    </li>
+                    <li ng-class="isActivePath('/signup')"><a href="#/signup">Sign Up</a></li>
+                </ul>
+            <ul class="nav navbar-nav navbar-right hidden-sm hidden-md" ng-if="isLoggedIn()" ng-cloak>
+                <li class="dropdown"
+                    ng-class="isActivePath('/changepassword')">
+                    <a href=""
+                    class="dropdown-toggle account-info"
+                    data-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    style="line-height: 20px;">
+                    <span class="account-info-content" title="{{user.login}}">{{user.login}}</span>
+                    <span class="account-info-content" title="{{user.companyName}}">{{user.companyName}}</span>
+                    <span class="account-info-content" title="{{app.name}}">{{app.name}}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                                    <li ng-if="user.applications.length > 1"><a href="" ng-click="selectApp()">Applications</a></li>
+                                    <li ng-if="!isSubscriptionExpired()" ng-class="isActivePath('/changepassword')"><a href="#/changepassword">Change Password</a></li>
+                        <li><a href="" ng-click="logout()">Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="hidden-xs hidden-lg nav navbar-nav navbar-right" ng-if="isLoggedIn()" ng-cloak>
+                <li class="profile-button" uib-dropdown is-open="statusProfile.isopen" ng-class="isActivePath('/changepassword')">
+                    <a id="profile-button" type="button" uib-dropdown-toggle ng-disabled="disabled">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </a>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="profile-button">
+                        <li class="profile-info">
+                            <span>{{user.login}} <br/>{{user.companyName}}</span>
+                        </li>
+                        <li ng-if="user.applications.length > 1"><a href="" ng-click="selectApp()">Applications</a></li>
+                        <li ng-if="!isSubscriptionExpired()"ng-class="isActivePath('/changepassword')"><a href="#/changepassword">Change Password</a></li>
+                        <li><a href="" ng-click="logout()">Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+		</div>
+	</nav>
+	<div class="container-fluid container-app">
+		<div id="errorModal"
+			class="modal fade"
+			ng-controller="ErrorController">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 id="title"
+							class="modal-title"></h4>
+					</div>
+					<div class="modal-body">
+						<p id="message"></p>
+					</div>
+					<div class="modal-footer">
+						<button type="button"
+							class="btn btn-default"
+							ng-click="hideModal()">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div ng-view class="container-partial view-slide-in" get-height>
+            <div class="spa-loading">Loading...</div>
+        </div>
+	</div>
+
+	<footer class="footer hidden-xs hidden-sm">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-6">
+					<div class="version-info" style="font-size:13px;">
+            <div style="margin-bottom:5px;"><span ng-if="!isLoggedIn() || !user.admin" 
+              ng-bind-template="{{kronosVersion.description}} | Version: {{kronosVersion.major}}.{{kronosVersion.minor}}.{{kronosVersion.build}}"></span>
+              <a href="" ng-if="isLoggedIn() && user.admin" ng-click="openComponentsVersion();">
+                <span ng-bind-template="{{kronosVersion.description}} | Version: {{kronosVersion.major}}.{{kronosVersion.minor}}.{{kronosVersion.build}}"></span>
+              </a>
+            </div>
+            <div  >&copy; <span ng-bind="currentDate | date:'yyyy'"></span> Arrow Electronics, Inc. All Rights Reserved. 
+            <a href="https://www.arrow.com/en/legal/privacy-policy" style="color:white;" target="_blank">Privacy Policy.</a>
+            </div>
+          </div>
+				</div>
+				<div class="col-xs-6">
+					<div class="pull-right">
+						<img src="/assets/img/iot_v_fyo_white.png" style="height: 60px;" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- All external JS libraries must be placed outside of the "source.js" block below-->
+	<script src="//ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>
+
+	<!-- source:js -->
+	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="/node_modules/spin.js/spin.min.js"></script>
+	<script src="/node_modules/angular/angular.min.js"></script>
+	<script src="/node_modules/angular-messages/angular-messages.min.js"></script>
+	<script src="/node_modules/angular-resource/angular-resource.min.js"></script>
+	<script src="/node_modules/angular-route/angular-route.min.js"></script>
+	<script src="/node_modules/angular-animate/angular-animate.min.js"></script>
+	<script src="/node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+	<script src="/node_modules/angular-cookies/angular-cookies.min.js"></script>
+	<script src="/node_modules/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+	<script src="/node_modules/angular-spinner/angular-spinner.min.js"></script>
+    <script src="/node_modules/moment/min/moment-with-locales.min.js"></script>
+    <script src="/node_modules/angular-moment/angular-moment.min.js"></script>
+    <script src="/node_modules/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+    <script src="/node_modules/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
+    <script src="/node_modules/angular-date-time-input/src/dateTimeInput.js"></script>
+    <script src="/node_modules/angular-google-chart/ng-google-chart.min.js"></script>
+    <script src="/node_modules/angular-tree-control/angular-tree-control.js"></script>
+    <script src="/node_modules/angularjs-scroll-glue/src/scrollglue.js"></script>
+    <script src="/node_modules/angular-recaptcha/release/angular-recaptcha.js"></script>
+	<script src="/node_modules/textangular/dist/textAngular-rangy.min.js"></script>
+	<script src="/node_modules/textangular/dist/textAngular-sanitize.min.js"></script>
+	<script src="/node_modules/textangular/dist/textAngular.min.js"></script>
+	<script src="/node_modules/ladda/dist/ladda.min.js"></script>
+	<script src="/node_modules/ladda-angular/dist/ladda-angular.min.js"></script>
+
+    <script src="/assets/vender/malihu-custom-scrollbar-plugin-3.1.5/jquery.mCustomScrollbar.min.js"></script>
+    <script src="/assets/vender/malihu-custom-scrollbar-plugin-3.1.5/scrollbars.min.js"></script>
+    <script src="/assets/vender/bootstrap/ui-bootstrap-tpls-0.14.3.min.js"></script>
+
+	<script src="/scripts/util.js"></script>
+
+	<script src="/assets/vender/sockjs.min.js"></script>
+	<script src="/node_modules/@stomp/stompjs/lib/stomp.min.js"></script>
+
+    <script src="/scripts/controllers/ListController.js"></script>
+
+	<script src="/scripts/kronos/Kronos.js"></script>
+	<script src="/scripts/kronos/Directives.js"></script>
+	<script src="/scripts/kronos/Filters.js"></script>
+	<script src="/scripts/kronos/Components.js"></script>
+    <script src="/scripts/kronos/KronosController.js"></script>
+    <script src="/scripts/kronos/KronosConstants.js"></script>
+    <script src="/scripts/controllers/LogsController.js"></script>
+    <script src="/scripts/controllers/FilterController.js"></script>
+
+	<script src="/scripts/kronos/KronosService.js"></script>
+	<script src="/scripts/services/ErrorService.js"></script>
+	<script src="/scripts/controllers/ErrorController.js"></script>
+	<script src="/scripts/services/ToastrService.js"></script>
+	<script src="/scripts/services/SpinnerService.js"></script>
+    <script src="/scripts/services/EventService.js"></script>
+    <script src="/scripts/controllers/EventTrackerMixin.js"></script>
+    <script src="/scripts/services/BingMapService.js"></script>
+    <script src="/scripts/controllers/AlertPopupController.js"></script>
+    <script src="/scripts/controllers/ConfirmPopupController.js"></script>
+    <script src="/scripts/controllers/PromptPopupController.js"></script>
+	<script src="/scripts/controllers/TextModalController.js"></script>
+	<script src="/scripts/controllers/EventRegistrationController.js"></script>
+	<script src="/scripts/controllers/EventVerificationController.js"></script>
+    <script src="/scripts/services/EventRegistrationService.js"></script>
+
+	<script src="/scripts/services/SecurityService.js"></script>
+	<script src="/scripts/services/AuthenticationService.js"></script>
+	<script src="/scripts/controllers/RegistrationController.js"></script>
+	<script src="/scripts/controllers/VerifyController.js"></script>
+	<script src="/scripts/controllers/LoginController.js"></script>
+	<script src="/scripts/controllers/SelectApplicationController.js"></script>
+
+	<script src="/scripts/services/HomeService.js"></script>
+	<script src="/scripts/controllers/HomeController.js"></script>
+	<script src="/scripts/services/DeviceService.js"></script>
+	<script src="/scripts/services/WebSocketsService.js"></script>
+	<script src="/scripts/controllers/DevicesController.js"></script>
+	<script src="/scripts/controllers/DeviceController.js"></script>
+    <script src="/scripts/controllers/DeviceDetailsController.js"></script>
+    <script src="/scripts/controllers/DeviceEventsController.js"></script>
+    <script src="/scripts/controllers/DeviceTelemetryChartController.js"></script>
+    <script src="/scripts/controllers/DeviceTelemetryExportController.js"></script>
+    <script src="/scripts/controllers/DeviceLogsController.js"></script>
+    <script src="/scripts/controllers/DevicePayloadFeedController.js"></script>
+    <script src="/scripts/controllers/DeviceStateUpdateController.js"></script>
+
+	<script src="/scripts/services/DeviceTypeService.js"></script>
+	<script src="/scripts/controllers/DeviceTypesController.js"></script>
+	<script src="/scripts/controllers/DeviceTypeDetailsController.js"></script>
+
+    <script src="/scripts/services/NodeTypeService.js"></script>
+    <script src="/scripts/controllers/NodeTypesController.js"></script>
+
+    <script src="/scripts/services/NodeService.js"></script>
+    <script src="/scripts/controllers/NodesController.js"></script>
+    <script src="/scripts/controllers/NodeTreeController.js"></script>
+
+    <script src="/scripts/services/GatewayService.js"></script>
+    <script src="/scripts/controllers/GatewaysController.js"></script>
+    <script src="/scripts/controllers/GatewayController.js"></script>
+    <script src="/scripts/controllers/MoveGatewayController.js"></script>
+    <script src="/scripts/controllers/GatewayDetailsController.js"></script>
+    <script src="/scripts/controllers/GatewayDevicesController.js"></script>
+    <script src="/scripts/controllers/GatewayLogsController.js"></script>
+    <script src="/scripts/controllers/ObjectLocationController.js"></script>
+
+    <script src="/scripts/services/UserService.js"></script>
+    <script src="/scripts/controllers/ChangePasswordController.js"></script>
+    <script src="/scripts/controllers/ForgotPasswordController.js"></script>
+
+    <script src="/scripts/services/IoTConfigService.js"></script>
+    <script src="/scripts/controllers/IoTConfigController.js"></script>
+    <script src="/scripts/controllers/ProvisionAppController.js"></script>
+
+    <script src="/scripts/services/AccessKeyService.js"></script>
+    <script src="/scripts/controllers/AccessKeysController.js"></script>
+    <script src="/scripts/controllers/DeviceAccessKeysController.js"></script>
+    <script src="/scripts/controllers/GatewayAccessKeysController.js"></script>
+
+    <script src="/scripts/services/SettingsService.js"></script>
+    <script src="/scripts/controllers/SettingsController.js"></script>
+
+    <script src="/scripts/services/GlobalActionsService.js"></script>
+    <script src="/scripts/services/DeviceActionTypeService.js"></script>
+    <script src="/scripts/controllers/ActionTypesController.js"></script>
+    <script src="/scripts/controllers/DeviceActionTypesController.js"></script>
+    <script src="/scripts/controllers/GlobalActionsController.js"></script>
+
+    <script src="/scripts/services/TelemetryUnitService.js"></script>
+    <script src="/scripts/controllers/TelemetryUnitsController.js"></script>
+
+    <script src="/scripts/services/SoftwareReleaseScheduleService.js"></script>
+    <script src="/scripts/controllers/SoftwareReleaseScheduleController.js"></script>
+
+	<script src="/scripts/services/FMSummaryService.js"></script>
+	<script src="/scripts/controllers/FMSummaryController.js"></script>
+	<script src="/scripts/controllers/FMAvailableUpdatesController.js"></script>
+	<script src="/scripts/controllers/FMRightToUseController.js"></script>
+	<script src="/scripts/services/FMRightToUseService.js"></script>
+	<script src="/scripts/services/FMJobWizardService.js"></script>
+	<script src="/scripts/controllers/FMJobWizardController.js"></script>
+	<script src="/scripts/controllers/FMAuditController.js"></script>
+	<script src="/scripts/controllers/FMAuditAssetsController.js"></script>
+	<script src="/scripts/controllers/FMAuditLogsController.js"></script>
+	<script src="/scripts/controllers/FirmwareManagementController.js"></script>
+	<script src="/scripts/controllers/DeviceStatesController.js"></script>
+	<script src="/scripts/controllers/TestProceduresController.js"></script>
+	<script src="/scripts/services/TestProcedureService.js"></script>
+	<script src="/scripts/controllers/TestResultsController.js"></script>
+	<script src="/scripts/services/TestResultService.js"></script>
+
+	<script src="/scripts/services/BackupService.js"></script>
+	<script src="/scripts/controllers/GatewayBackupController.js"></script>
+	<script src="/scripts/controllers/DeviceBackupController.js"></script>
+	<script src="/scripts/controllers/BulkUpdateController.js"></script>
+
+	<script src="/scripts/services/ConfigurationService.js"></script>
+    <!-- endinject -->
+</body>
+</html>

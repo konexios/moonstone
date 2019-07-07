@@ -1,0 +1,340 @@
+<div class="form-group col-sm-12">
+    <label for="jdbcUrl" class="col-sm-4 control-label"> Local Database URL <span class="required" aria-required="true"> * </span>
+        <a ng-mouseover="showPopoverL=true;" ng-mouseleave="showPopoverL=false;">
+            <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverL">
+                <p>Local Database URL</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input type="text" ng-disabled="!editSeleneMode && editSeleneMode != undefined" class="form-control" id="jdbcUrl" name="jdbcUrl" ng-model="seleneProp.jdbcUrl" ng-required="true" />
+        <div class="help-block" ng-messages="form.jdbcUrl.$error" ng-show="form.jdbcUrl.$touched || (form.$submitted && form.jdbcUrl.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="jdbcUser" class="col-sm-4 control-label"> Database User
+        <a ng-mouseover="showPopoverU=true;" ng-mouseleave="showPopoverU=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverU">
+                <p>Database User</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input type="text" ng-disabled="!editSeleneMode && editSeleneMode != undefined" class="form-control" id="jdbcUser" name="jdbcUser" ng-model="seleneProp.jdbcUser" />
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="jdbcPassword" class="col-sm-4 control-label">
+        Database Password
+        <a ng-mouseover="showPopoverP=true;" ng-mouseleave="showPopoverP=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverP">
+                <p>Database Password</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input type="text" ng-disabled="!editSeleneMode && editSeleneMode != undefined" class="form-control" id="jdbcPassword" name="jdbcPassword" ng-model="seleneProp.jdbcPassword" />
+
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="databus" class="col-sm-4 control-label"> Databus <span class="required" aria-required="true"> * </span>
+        <a ng-mouseover="showPopoverN=true;" ng-mouseleave="showPopoverN=false;">
+            <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverN">
+                <p>Databus</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input type="text" ng-disabled="!editSeleneMode && editSeleneMode != undefined" class="form-control" id="databus" name="databus" ng-model="seleneProp.databus" ng-required="true" />
+        <div class="help-block" ng-messages="form.databus.$error" ng-show="form.databus.$touched || (form.$submitted && form.databus.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="mqttDatabusUrl" class="col-sm-4 control-label">
+        MQTT Databus URL <span class="required" aria-required="true"> *
+	</span>
+        <a ng-mouseover="showPopoverMQ=true;" ng-mouseleave="showPopoverMQ=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverMQ">
+                <p>MQTT Databus URL</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input type="text" ng-disabled="!editSeleneMode && editSeleneMode != undefined" class="form-control" id="mqttDatabusUrl" name="mqttDatabusUrl" ng-model="seleneProp.mqttDatabusUrl" ng-required="true" />
+        <div class="help-block" ng-messages="form.mqttDatabusUrl.$error" ng-show="form.mqttDatabusUrl.$touched || (form.$submitted && form.databus.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="mqttDatabusUsername" class="col-sm-4 control-label">
+        MQTT Databus Username
+        <a ng-mouseover="showPopoverMQU=true;" ng-mouseleave="showPopoverMQU=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverMQU">
+                <p>MQTT Databus Username</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input type="text" ng-disabled="!editSeleneMode && editSeleneMode != undefined" class="form-control" id="mqttDatabusUsername" name="mqttDatabusUsername" ng-model="seleneProp.mqttDatabusUsername" />
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="mqttDatabusUsername" class="col-sm-4 control-label">
+        MQTT Databus Password
+        <a ng-mouseover="showPopoverMQP=true;" ng-mouseleave="showPopoverMQP=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverMQP">
+                <p>MQTT Databus Password</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input type="text" ng-disabled="!editSeleneMode && editSeleneMode != undefined" class="form-control" id="mqttDatabusPassword" name="mqttDatabusPassword" ng-model="seleneProp.mqttDatabusPassword" />
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="databusMaxBuffer" class="col-sm-4 control-label">
+        Databus Max Buffer <span class="required" aria-required="true">
+			* </span>
+        <a ng-mouseover="showPopoverB=true;" ng-mouseleave="showPopoverB=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverB">
+                <p>Databus Max Buffer</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input type="text" ng-disabled="!editSeleneMode && editSeleneMode != undefined" class="form-control" id="databusMaxBuffer" name="databusMaxBuffer" ng-model="seleneProp.databusMaxBuffer" ng-required="true" />
+        <div class="help-block" ng-messages="form.databusMaxBuffer.$error" ng-show="form.databusMaxBuffer.$touched || (form.$submitted && form.databusMaxBuffer.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="databusPeekInterval" class="col-sm-4 control-label">
+        Databus Peek Interval <span class="required" aria-required="true">
+			* </span>
+        <a ng-mouseover="showPopoverB=true;" ng-mouseleave="showPopoverB=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverB">
+                <p>Databus Peek Interval</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input type="text" ng-disabled="!editSeleneMode && editSeleneMode != undefined" class="form-control" id="databusPeekInterval" name="databusPeekInterval" ng-model="seleneProp.databusPeekInterval" ng-required="true" />
+        <div class="help-block" ng-messages="form.databusPeekInterval.$error" ng-show="form.databusPeekInterval.$touched || (form.$submitted && form.databusPeekInterval.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="enabled" class="col-sm-4 control-label"> Engine Enabled <span class="required" aria-required="true"> * </span>
+        <a ng-mouseover="showPopoverE=true;" ng-mouseleave="showPopoverE=false;">
+            <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverE">
+                <p>Engine Enabled</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input type="text" ng-disabled="!editSeleneMode && editSeleneMode != undefined" class="form-control" id="enabled" name="enabled" ng-model="seleneProp.enabled" ng-required="true" />
+        <div class="help-block" ng-messages="form.enabled.$error" ng-show="form.enabled.$touched || (form.$submitted && form.enabled.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="moduleStrategy" class="col-sm-4 control-label">
+        Engine Module Strategy <span class="required" aria-required="true">
+			* </span>
+        <a ng-mouseover="showPopoverEMS=true;" ng-mouseleave="showPopoverEMS=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverEMS">
+                <p>Databus Peek Interval</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <select id="type" ng-disabled="!editSeleneMode && editSeleneMode != undefined" class="selectpicker form-control" name="type" ng-model="seleneProp.moduleStrategy" data-live-search="true">
+            <option ng-option value="PROPERTIES">PROPERTIES</option>
+            <option ng-option value="CLOUD">CLOUD</option>
+            <option ng-option value="DATABASE">DATABASE</option>
+        </select>
+        <div class="help-block" ng-messages="form.moduleStrategy.$error" ng-show="form.moduleStrategy.$touched || (form.$submitted && form.moduleStrategy.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="scriptingEngine" class="col-sm-4 control-label">
+        Scripting Engine <span class="required" aria-required="true"> *
+	</span>
+        <a ng-mouseover="showPopoverSE=true;" ng-mouseleave="showPopoverSE=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverSE">
+                <p>Scripting Engine</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input type="text" ng-disabled="!editSeleneMode && editSeleneMode != undefined" class="form-control" id="scriptingEngine" name="scriptingEngine" ng-model="seleneProp.scriptingEngine" ng-required="true" />
+        <div class="help-block" ng-messages="form.scriptingEngine.$error" ng-show="form.scriptingEngine.$touched || (form.$submitted && form.scriptingEngine.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="restartScriptFilename" class="col-sm-4 control-label">
+        Engine Restart Script File <span class="required" aria-required="true">
+			* </span>
+        <a ng-mouseover="showPopoverRS=true;" ng-mouseleave="showPopoverRS=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverRS">
+                <p>Engine Restart Script File</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input type="text" ng-disabled="!editSeleneMode && editSeleneMode != undefined" class="form-control" id="restartScriptFilename" name="restartScriptFilename" ng-model="seleneProp.restartScriptFilename" ng-required="true" />
+        <div class="help-block" ng-messages="form.restartScriptFilename.$error" ng-show="form.restartScriptFilename.$touched || (form.$submitted && form.restartScriptFilename.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="homeDirectory" class="col-sm-4 control-label"> Home Directory <span class="required" aria-required="true"> * </span>
+        <a ng-mouseover="showPopoverHD=true;" ng-mouseleave="showPopoverHD=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverHD">
+                <p>Home Directory</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input type="text" ng-disabled="!editSeleneMode && editSeleneMode != undefined" class="form-control" id="homeDirectory" name="homeDirectory" ng-model="seleneProp.homeDirectory" ng-required="true" />
+        <div class="help-block" ng-messages="form.homeDirectory.$error" ng-show="form.homeDirectory.$touched || (form.$submitted && form.homeDirectory.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="deviceDirectory" class="col-sm-4 control-label">
+        Engine Device Directory <span class="required" aria-required="true">
+			* </span>
+        <a ng-mouseover="showPopoverDD=true;" ng-mouseleave="showPopoverDD=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverDD">
+                <p>Engine Device Directory</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input disabled type="text" class="form-control" id="deviceDirectory" name="deviceDirectory" ng-model="seleneProp.deviceDirectory" ng-required="true" />
+        <div class="help-block" ng-messages="form.deviceDirectory.$error" ng-show="form.deviceDirectory.$touched || (form.$submitted && form.deviceDirectory.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group col-sm-12">
+    <label for="downloadDirectory" class="col-sm-4 control-label">
+        Engine Download Directory <span class="required" aria-required="true">
+			* </span>
+        <a ng-mouseover="showPopoverEDD=true;" ng-mouseleave="showPopoverEDD=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverEDD">
+                <p>Engine Download Directory</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input disabled type="text" class="form-control" id="downloadDirectory" name="downloadDirectory" ng-model="seleneProp.downloadDirectory" ng-required="true" />
+        <div class="help-block" ng-messages="form.downloadDirectory.$error" ng-show="form.downloadDirectory.$touched || (form.$submitted && form.downloadDirectory.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="backupDirectory" class="col-sm-4 control-label">
+        Engine Backup Directory <span class="required" aria-required="true">
+			* </span>
+        <a ng-mouseover="showPopoverBDD=true;" ng-mouseleave="showPopoverBDD=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverBDD">
+                <p>Engine Backup Directory</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input disabled type="text" class="form-control" id="backupDirectory" name="backupDirectory" ng-model="seleneProp.backupDirectory" ng-required="true" />
+        <div class="help-block" ng-messages="form.backupDirectory.$error" ng-show="form.backupDirectory.$touched || (form.$submitted && form.backupDirectory.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="engineJarPath" class="col-sm-4 control-label">
+        Engine Jar Directory <span class="required" aria-required="true">
+			* </span>
+        <a ng-mouseover="showPopoverJD=true;" ng-mouseleave="showPopoverJD=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverJD">
+                <p>Engine Jar Directory</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input disabled type="text" class="form-control" id="engineJarPath" name="engineJarPath" ng-model="seleneProp.engineJarPath" ng-required="true" />
+        <div class="help-block" ng-messages="form.engineJarPath.$error" ng-show="form.engineJarPath.$touched || (form.$submitted && form.engineJarPath.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="configDirectory" class="col-sm-4 control-label">
+        Engine Config Directory <span class="required" aria-required="true">
+			* </span>
+        <a ng-mouseover="showPopoverCD=true;" ng-mouseleave="showPopoverCD=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverCD">
+                <p>Engine Config Directory</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input disabled type="text" class="form-control" id="configDirectory" name="configDirectory" ng-model="seleneProp.configDirectory" ng-required="true" />
+        <div class="help-block" ng-messages="form.configDirectory.$error" ng-show="form.configDirectory.$touched || (form.$submitted && form.configDirectory.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="transponsePath" class="col-sm-4 control-label">
+        Transpose Directory <span class="required" aria-required="true">
+			* </span>
+        <a ng-mouseover="showPopoverTP=true;" ng-mouseleave="showPopoverTP=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverTP">
+                <p>Transpose Directory</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input disabled type="text" class="form-control" id="transponsePath" name="transponsePath" ng-model="seleneProp.transponsePath" ng-required="true" />
+        <div class="help-block" ng-messages="form.transponsePath.$error" ng-show="form.transponsePath.$touched || (form.$submitted && form.transponsePath.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>
+<div class="form-group col-sm-12">
+    <label for="centralKnowledgeBankPath" class="col-sm-4 control-label">
+        Central Knowledge-Bank Directory <span class="required" aria-required="true"> * </span>
+        <a ng-mouseover="showPopoverCB=true;" ng-mouseleave="showPopoverCB=false;"> <img src="/assets/img/blue_question_mark.png" height="13px" />
+            <div class="popover" ng-show="showPopoverCB">
+                <p>Central Knowledge-Bank Directory</p>
+            </div>
+        </a>
+    </label>
+    <div class="col-sm-4">
+        <input disabled type="text" class="form-control" id="centralKnowledgeBankPath" name="centralKnowledgeBankPath" ng-model="seleneProp.centralKnowledgeBankPath" ng-required="true" />
+        <div class="help-block" ng-messages="form.centralKnowledgeBankPath.$error" ng-show="form.centralKnowledgeBankPath.$touched || (form.$submitted && form.centralKnowledgeBankPath.$invalid)">
+            <div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+        </div>
+    </div>
+</div>

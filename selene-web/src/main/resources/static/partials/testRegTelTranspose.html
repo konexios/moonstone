@@ -1,0 +1,28 @@
+<div class="modal-header">
+	<h3 class="modal-title">Registration</h3>
+</div>
+<form name="form" class="form-horizontal" >
+	<div class="modal-body">
+        <div class="form-group">
+			<div class="row">
+				<div class="col-md-6 text-align-center">
+			       		<label class="control-label text-center" >Input JSON</label>
+	        	</div>
+	        	<div class="col-md-6 text-align-center">
+	        		<label class="control-label">Output JSON</label>  		
+			    </div>
+			    <div class="col-md-6">
+	        		<textarea id="inputJSON margin-left-eighteen" cols="47" rows="15"></textarea>
+	        	</div>
+	        	<div class="col-md-6">		        		
+			        <textarea  id="inputTextToSave"cols="45" rows="15">{{output}}</textarea>
+			    </div>
+			    
+			    <div class="col-md-12 margin-left-eighteen">
+			    	<button class='btn btn-default' ng-click = testRegTelTransposeFunc()>Execute</button>
+			    	<button class='btn btn-default' ng-click=close()>Close</button>
+			   	</div>
+			</div>
+		</div>
+	</div>
+</form>

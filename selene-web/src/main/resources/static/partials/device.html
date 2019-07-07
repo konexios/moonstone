@@ -1,0 +1,457 @@
+<div class="row-content">
+	<div ng-controller="DeviceController">
+		<div class="obj-page-hd">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12 col-sm-12 padding-zero">
+						<div class="page-title">
+							<h1>
+								{{device.name}}
+								<i class="fa fa-check-circle color-green"
+									 aria-hidden="true"
+									 ng-if="device.enabled"></i>
+								<i class="fa fa-minus-circle color-red"
+									 aria-hidden="true"
+									 ng-if="!device.enabled"></i>
+							</h1>
+							<span>{{device.uid}}</span>
+						</div>
+						<div class="tabs tabs__inner">
+							<div class="tabs__item"
+									 ng-click="activeSubTab = 2"
+									 ng-class="activeTab == 0 && activeSubTab == 2 ? 'active-sub-tab' : ''">
+								<a href="">Summary</a>
+							</div>
+							<div class="tabs__item"
+									 ng-click="activeSubTab = 1"
+									 ng-class="activeTab == 0 && activeSubTab == 1 ? 'active-sub-tab' : ''">
+								<a href="">Details</a>
+							</div>
+							<div
+									class="tabs__item"
+									ng-click="activeSubTab = 0"
+									ng-class="activeTab == 0 && activeSubTab == 0 ? 'active-sub-tab' : ''">
+								<a href="">Settings</a>
+							</div>
+							<div class="tabs__item"
+									 ng-click="activeSubTab = 3"
+									 ng-class="activeTab == 0 && activeSubTab == 3 ? 'active-sub-tab' : ''">
+								<a href="">Controls</a>
+							</div>
+							<div class="tabs__item"
+									 ng-click="activeSubTab = 4"
+									 ng-class="activeTab == 0 && activeSubTab == 4 ? 'active-sub-tab' : ''">
+								<a href="" ng-if="device.type=='mqtt-router'">Transpose Function</a>
+							</div>
+							<div class="pull-right" ng-if="!device.id==0">
+								<button class="btn btn-warning margin-bottom-ten" ng-click="deleteDevice()">Delete</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="obj-page-bd">
+			<div class="tabs-content">
+				<div id="tab-properties-content" class="row" ng-if="activeTab == 0 && activeSubTab == 0">
+					<form name="deviceForm" class="form-horizontal" novalidate>
+						<div class="col-md-9">
+							<div class="panel panel-default panel-content">
+								<header class="b-panel-header">
+									<i class="fa fa-cogs" aria-hidden="true"></i> General
+								</header>
+								<div class="b-panel-body">
+									<div class="form-group">
+										<label for="device-name" class="col-sm-4 control-label">Name</label>
+										<div class="col-sm-8">
+											<input
+													type="text"
+													id="device-name"
+													name="deviceName"
+													class="form-control"
+													ng-model="device.name"
+													required="required" />
+										</div>
+										<div class="col-sm-offset-4 col-sm-8"
+												 ng-messages="deviceForm.deviceName.$error"
+												 role="alert">
+											<div class="alert-danger">
+												<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-4 control-label">UID</label>
+										<div class="col-sm-8">
+											<p class="form-control-static">{{device.uid}}</p>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="device-type" class="col-sm-4 control-label">Device Type</label>
+										<div class="col-sm-8">
+											<select id="device-type" name="deviceType" class="form-control"
+															ng-model="device.type"
+															required="required"
+															ng-options="deviceType.type as deviceType.device for deviceType in options.deviceTypes"
+															ng-change="updateDeviceType(device.type)" ng-disabled="true">
+											</select>
+										</div>
+										<div class="col-sm-offset-4 col-sm-8"
+												 ng-messages="deviceForm.deviceType.$error"
+												 role="alert">
+											<div class="alert-danger">
+												<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="user" class="col-sm-4 control-label">Owner</label>
+										<div class="col-sm-8">
+											<select
+													id="user"
+													name="user"
+													class="form-control"
+													ng-model="device.user"
+													ng-options="user.name for user in options.users track by user.id">
+												<option value="">None</option>
+											</select>
+										</div>
+										<div class="col-sm-offset-4 col-sm-8"
+												 ng-messages="deviceForm.user.$error"
+												 role="alert">
+											<div class="alert-danger">
+												<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="node" class="col-sm-4 control-label">Group</label>
+										<div class="col-sm-8">
+											<select
+													id="node"
+													name="node"
+													class="form-control"
+													ng-model="device.node"
+													ng-options="node.name for node in options.nodes track by node.id">
+												<option value="">None</option>
+											</select>
+										</div>
+									</div>
+									<div class="text-align-right">
+										<button class="btn btn-default" ng-disabled="deviceForm.$pristine"  ng-click="saveDeviceSettings(deviceForm, device)">Save</button>
+									</div>
+								</div>
+							</div>
+
+							<div class="panel panel-default panel-content">
+								<header class="b-panel-header">
+									<i class="fa fa-cogs" aria-hidden="true"></i> Custom Settings
+								</header>
+								<div class="b-panel-body">
+									<div class="form-group"
+											 ng-repeat="prop in deviceProperties">
+										<label for="{{'property-' + prop}}"
+													 class="col-sm-4 control-label">{{prop}}</label>
+										<div class="col-sm-7">
+											<input type="text"
+														 id="{{'property-' + prop}}"
+														 name="{{'property'+prop}}" class="form-control"
+														 ng-model="device.properties[prop]" />
+
+										</div>
+										<div class="col-sm-offset-4 col-sm-8"
+												 ng-messages="deviceForm['property'+prop.key].$error"
+												 role="alert">
+											<div class="alert-danger">
+												<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="text-align-right">
+										<button class="btn btn-default" ng-disabled="deviceForm.$pristine" ng-click="saveDeviceSettings(deviceForm, device)">Save</button>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default panel-content" ng-if="device.info.thirdPartyDevice=='true'">
+								<header class="b-panel-header">
+									<i class="fa fa-cogs" aria-hidden="true"></i> Lookup Settings
+								</header>
+								<div class="b-panel-body">
+									<div class="form-group">
+										<label class="col-sm-4 control-label">Select File</label>
+										<div class="col-sm-7 margin-top-six">
+											<input type='file' name="file" id="file" accept='application/json' onchange='angular.element(this).scope().openFile(event);' >
+										</div>
+
+									</div>
+									<div class="text-align-right">
+										<button class="btn btn-default" ng-disabled="!visible" ng-click="viewFile()">View</button>
+										<button class="btn btn-default" ng-disabled="!visible" ng-click="importLookup()">Import</button>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="col-md-3"></div>
+					</form>
+				</div>
+
+				<div id="tab-info-content" class="row" ng-if="activeTab == 0 && activeSubTab == 1">
+					<div class="col-md-12">
+						<div class="panel panel-default">
+							<header class="b-panel-header">
+								<i class="fa fa-file" aria-hidden="true"></i> Details
+							</header>
+							<div class="b-panel-body">
+								<table class="table table-striped">
+									<thead>
+										<tr ng-if="showSmallTable">
+											<th>
+												<h3 class="small-table-title">Details</h3>
+											</th>
+										</tr>
+										<tr ng-if="!showSmallTable">
+											<th>Name</th>
+											<th>Value</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-if="showSmallTable">
+											<td>
+												<p>
+													<b>deviceClass: </b>
+													<span>{{ device.info.deviceClass }}</span>
+												</p>
+											</td>
+										</tr>
+										<tr ng-if="showSmallTable">
+											<td>
+												<p>
+													<b>Name: </b>
+													<span>{{ device.info.name }}</span>
+												</p>
+											</td>
+										</tr>
+										<tr ng-if="showSmallTable">
+											<td>
+												<p>
+													<b>Type: </b>
+													<span>{{ device.info.type }}</span>
+												</p>
+											</td>
+										</tr>
+										<tr ng-if="showSmallTable">
+											<td>
+												<p>
+													<b>UID: </b>
+													<span>{{ device.info.uid }}</span>
+												</p>
+											</td>
+										</tr>
+										<tr ng-if="showSmallTable && device.info.class">
+											<td>
+												<p>
+													<b>Class: </b>
+													<span>{{device.info.class}}</span>
+												</p>
+											</td>
+										</tr>
+										<tr ng-if="showSmallTable">
+											<td>
+												<p>
+													<b>{{device.info.type}}: </b>
+													<span><pre>{{device.info | json}}</pre></span>
+												</p>
+											</td>
+										</tr>
+
+
+										<tr ng-if="!showSmallTable">
+											<td>deviceClass</td>
+											<td>{{ device.info.deviceClass }}</td>
+										</tr>
+										<tr ng-if="!showSmallTable">
+											<td>Name</td>
+											<td>{{ device.info.name }}</td>
+										</tr>
+										<tr ng-if="!showSmallTable">
+											<td>Type</td>
+											<td>{{ device.info.type }}</td>
+										</tr>
+										<tr ng-if="!showSmallTable">
+											<td>UID</td>
+											<td>{{ device.info.uid }}</td>
+										</tr>
+										<tr ng-if="device.info.class && !showSmallTable">
+											<td>Class</td>
+											<td>{{ device.info.class }}</td>
+										</tr>
+										<tr ng-if="!showSmallTable">
+											<td>{{device.type}}</td>
+											<td><pre>{{device.info | json}}</pre></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="tab-telemetry-content" class="row"  ng-if="activeTab == 0 && activeSubTab == 2">
+					<div class="col-md-9">
+						<div class="panel panel-default panel-content">
+							<header class="b-panel-header">
+								<i class="fa fa-bolt" aria-hidden="true"></i> Most Recent Telemetry
+							</header>
+                            <div class="b-panel-body overflow-height">
+								<table class="table table-striped">
+									<thead>
+										<tr ng-if="showSmallTable">
+											<th>
+												<h3 class="small-table-title">Telemetry</h3>
+											</th>
+										</tr>
+										<tr ng-if="!showSmallTable">
+											<th ng-repeat="header in telemetryHeaders">{{ header.label }}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-if="showSmallTable" ng-repeat="param in telemetryList | orderBy: '-timestamp'">
+											<td>{{param.name}}</td>
+
+											<td>{{param.value}}</td>
+											<td>{{param.timestamp}}</td>
+										</tr>
+										<tr ng-if="!showSmallTable" ng-repeat="param in telemetryList| orderBy: '-timestamp'">
+											<td>{{param.name}}</td>
+
+											<td>{{param.value}}</td>
+											<td>{{param.timestamp}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3"></div>
+				</div>
+
+				<div id="tab-conttols-content" class="row"  ng-if="activeTab == 0 && activeSubTab == 3">
+					<div class="col-md-9">
+						<div class="panel panel-default panel-content">
+							<div class="b-panel-body">
+								<a href="" ng-click="startDevice(device.id)" class="device-action-button">
+									<i class="fa fa-play" aria-hidden="true"></i><br>
+									Start
+								</a>
+								<a href="" ng-click="stopDevice(device.id)" class="device-action-button">
+									<i class="fa fa-stop" aria-hidden="true"></i><br>
+									Stop
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3"></div>
+				</div>
+				<div id="tab-conttols-content" class="row"  ng-if="activeTab == 0 && activeSubTab == 4 && device.type=='mqtt-router'" >
+					<div class="col-md-12">
+						<div class="panel panel-default">
+							<header class="b-panel-header">
+								<i class="fa fa-file" aria-hidden="true"></i> Transpose Details
+							</header>
+							<div class="b-panel-body">
+							<form name="form" class="form-horizontal css-form" novalidate>
+							<fieldset ng-disabled="busy">
+								<div class="form-group pull-left">
+									<div class="col-sm-1"></div>
+									<div class="col-sm-11">
+										<label class="control-label  col-sm-5"> Registration Transpose File
+											<a ng-mouseover="showPopoverR=true;" ng-mouseleave="showPopoverR=false;">
+												<img src="/assets/img/blue_question_mark.png" height="13px" />
+												<div class="popover" ng-show="showPopoverR">
+													<pre>{{regTranspose|json}}</pre>
+												</div>
+											</a>
+										</label>
+										<div class="col-sm-2 transpose padding-five" ng-if="!device.properties.registrationTransposerScript">
+											<button id="registration" class='btn btn-default' ng-click="createRegistration(form,device)" ng-model="createRegistration">
+												Create
+											</button>
+										</div>
+										<div class="col-sm-2 transpose padding-five" ng-if="device.properties.registrationTransposerScript">
+											<button id="registration" class='btn btn-default' ng-click="editRegistration(form,device)" ng-model="editRegistration">
+												Edit
+											</button>
+
+											<button id="registration" class='btn btn-default' ng-click="deleteRegistration(form,device)" ng-model="deleteTelemetry">
+												Delete
+											</button>
+										</div>
+									</div>
+									<div class="col-sm-1"></div>
+									<div class="col-sm-11">
+										<label class="col-sm-5 control-label"> Telemetry Transpose File
+											<a ng-mouseover="showPopoverT=true;" ng-mouseleave="showPopoverT=false;">
+												<img src="/assets/img/blue_question_mark.png" height="13px" />
+												<div class="popover" ng-show="showPopoverT">
+													<pre>{{telemetryTransposeExample|json}}</pre>
+												</div>
+											</a>
+										</label>
+										<div class="col-sm-2 transpose padding-five" ng-if="!device.properties.telemetryTransposerScript">
+											<button id="telemetry" class='btn btn-default' ng-click="createTelemetry(form,device)" ng-model="createTelemetry">
+												Create
+											</button>
+										</div>
+										<div class="col-sm-2 transpose padding-five" ng-if="device.properties.telemetryTransposerScript">
+											<button id="telemetry" class='btn btn-default' ng-click="editTelemetry(form,device)" ng-model="editTelemetry">
+												Edit
+											</button>
+
+											<button id="telemetry" class='btn btn-default' ng-click="deleteTelemetry(form,device)" ng-model="deleteTelemetry">
+												Delete
+											</button>
+										</div>
+
+									</div>
+									<div class="col-sm-1"></div>
+									<div class="col-sm-11">
+										<label class="col-sm-5 control-label "> State Transpose File
+											<a ng-mouseover="showPopoverS=true;" ng-mouseleave="showPopoverS=false;">
+												<img src="/assets/img/blue_question_mark.png" height="13px" />
+												<div class="popover" ng-show="showPopoverS">
+													<pre>{{stateTranspose|json}}</pre>
+												</div>
+											</a>
+										</label>
+										<div class="col-sm-2 transpose padding-five" ng-if="!device.properties.stateTransposerScript">
+											<button id="state" class='btn btn-default' ng-click="createState(form,device)" ng-model="createState">
+												Create
+											</button>
+										</div>
+										<div class="col-sm-2 transpose padding-five" ng-if="device.properties.stateTransposerScript">
+											<button id="state" class='btn btn-default' ng-click="editState(form,device)" ng-model="editState">
+												Edit
+											</button>
+
+											<button id="state" class='btn btn-default' ng-click="deleteState(form,device)" ng-model="deleteState">
+												Delete
+											</button>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="obj-page-ft"></div>
+	</div>
+</div>

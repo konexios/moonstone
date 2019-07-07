@@ -1,0 +1,43 @@
+<div left-menu is-collapsed="menuIsCollapsed">
+	<ul class="nav nav-pills nav-stacked">
+	    <li role="presentation" ui-sref-active="active">
+	        <a ui-sref="product.information({productId: productId})">{{productNameMI || 'Product'}}</a>
+	    </li>
+		<li role="presentation"
+			ui-sref-active="active"
+			ng-class="{'disabled' : productId === 'new'}">
+	        <a ng-if="productId !== 'new'" ui-sref="product.features({productId: productId})">
+	            Features <span class="badge">{{product.features.length}}</span>
+			</a>
+			<a ng-if="productId === 'new'">Features</a>
+	    </li>
+		<li role="presentation"
+			ui-sref-active="active"
+			ng-class="{'disabled' : productId === 'new'}">
+	        <a ng-if="productId !== 'new'" ui-sref="product.configurations({productId: productId})">
+	            Configurations <span class="badge">{{product.configurations.length}}</span>
+			</a>
+			<a ng-if="productId === 'new'">Configurations</a>
+	    </li>
+	</ul>
+</div>
+
+<div class="partial-page-content-container" ng-class="{'menu-collapsed': menuIsCollapsed}"
+	ng-scrollbars ng-scrollbars-config="scrollerConfig">
+	<div class="partial-page-content">
+		<!-- BEGIN PAGE BREADCRUMB -->
+		<ul class="page-breadcrumb breadcrumb">
+		    <li>Provision</li>
+		    <li><a ui-sref="products">Products</a></li>
+			<li ng-if="$state.$current.self.url != '/information'"><a ui-sref="product.information({productId: productId})">{{productNameMI || 'Product'}}</a></li>
+			<li ng-if="$state.$current.self.url == '/information'">{{productNameMI || 'Product'}}</li>
+			<li ng-if="$state.$current.self.url == '/features'" class="active">Features</li>
+			<li ng-if="$state.$current.self.url == '/configurations'" class="active">Configurations</li>
+		</ul>
+		<!-- END PAGE BREADCRUMB -->
+
+		<!-- BEGIN TABS -->
+		<div ui-view></div>
+		<!-- END TABS -->
+	</div>
+</div>

@@ -1,0 +1,628 @@
+[{
+	"name": "gateway",
+	"description": "gateway",
+	"enabled": true,
+	"editable": false,
+	"telemetries": []
+}, {
+	"name": "android",
+	"description": "android",
+	"enabled": true,
+	"editable": true,
+	"telemetries": [{
+		"name": "magnometerXYZ",
+		"description": "magnometerXYZ",
+		"type": "FloatCube",
+		"controllable": false
+	},{
+		"name": "gyrometerXYZ",
+		"description": "gyrometerXYZ",
+		"type": "FloatCube",
+		"controllable": false
+	},{
+		"name": "accelerometerXYZ",
+		"description": "accelerometerXYZ",
+		"type": "FloatCube",
+		"controllable": false
+	},{
+		"name": "latitude",
+		"description": "latitude",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "latlong",
+		"description": "latlong",
+		"type": "FloatSquare",
+		"controllable": false
+	},{
+		"name": "barometer",
+		"description": "barometer",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "pressure",
+		"description": "pressure",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "gyroscopeX",
+		"description": "gyroscopeX",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "magnometerZ",
+		"description": "magnometerZ",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "magnometerY",
+		"description": "magnometerY",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "accelerometerX",
+		"description": "accelerometerX",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "magnometerX",
+		"description": "magnometerX",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "light",
+		"description": "light",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "gyroscopeZ",
+		"description": "gyroscopeZ",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "accelerometerZ",
+		"description": "accelerometerZ",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "gyroscopeY",
+		"description": "gyroscopeY",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "accelerometerY",
+		"description": "accelerometerY",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "longitude",
+		"description": "longitude",
+		"type": "Float",
+		"controllable": false
+	}]
+}, {
+	"name": "IPhoneDevice",
+	"description": "IPhoneDevice",
+	"enabled": true,
+	"editable": true,
+	"telemetries": [{
+		"name": "gyrometerXYZ",
+		"description": "gyrometerXYZ",
+		"type": "FloatCube",
+		"controllable": false
+	},{
+		"name": "gyrometerZ",
+		"description": "gyrometerZ",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "accelerometerXYZ",
+		"description": "accelerometerXYZ",
+		"type": "FloatCube",
+		"controllable": false
+	},{
+		"name": "latitude",
+		"description": "latitude",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "latlong",
+		"description": "latlong",
+		"type": "FloatSquare",
+		"controllable": false
+	},{
+		"name": "magnetometerXYZ",
+		"description": "magnetometerXYZ",
+		"type": "FloatCube",
+		"controllable": false
+	},{
+		"name": "accelerometerX",
+		"description": "accelerometerX",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "accelerometerZ",
+		"description": "accelerometerZ",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "GyroXY",
+		"description": "GyroXY",
+		"type": "FloatSquare",
+		"controllable": false
+	},{
+		"name": "accelerometerY",
+		"description": "accelerometerY",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "magnetometerY",
+		"description": "magnetometerY",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "magnetometerX",
+		"description": "magnetometerX",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "gyrometerX",
+		"description": "gyrometerX",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "magnetometerZ",
+		"description": "magnetometerZ",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "gyrometerY",
+		"description": "gyrometerY",
+		"type": "Float",
+		"controllable": false
+	},{
+		"name": "longitude",
+		"description": "longitude",
+		"type": "Float",
+		"controllable": false
+	}]
+}, {
+	"name": "microsoft-band",
+	"description": "Microsoft Band",
+	"enabled": true,
+	"editable": true,
+	"telemetries": [{
+		"name": "heartRate",
+		"description": "Heart Rate",
+		"type": "Integer",
+		"controllable": false
+	}]
+}, {
+	"name": "silabs-sensor-puck",
+	"description": "silabs-sensor-puck",
+	"enabled": true,
+	"editable": true,
+	"telemetries": [{
+		"name": "light",
+		"description": "Light",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "uvIndex",
+		"description": "UV Index",
+		"type": "Integer",
+		"controllable": false
+	}, {
+		"name": "temperature",
+		"description": "Temperature",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "humidity",
+		"description": "Humidity",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "heartRate",
+		"description": "Heart Rate",
+		"type": "Integer",
+		"controllable": false
+	}]
+}, {
+	"name": "rhythm-plus",
+	"description": "rhythm-plus",
+	"enabled": true,
+	"editable": true,
+	"telemetries": [{
+		"name": "heartRate",
+		"description": "heartRate",
+		"type": "Integer",
+		"controllable": false
+	}]
+}, {
+	"name": "senseability-2",
+	"description": "senseability-2",
+	"enabled": true,
+	"editable": true,
+	"telemetries": [{
+		"name": "temperature",
+		"description": "temperature",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "humidity",
+		"description": "humidity",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "magnet",
+		"description": "magnet",
+		"type": "Boolean",
+		"controllable": false
+	}, {
+		"name": "pressure",
+		"description": "pressure",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "airflow",
+		"description": "airflow",
+		"type": "Float",
+		"controllable": false
+	}]
+}, {
+	"name": "xbee-sensor",
+	"description": "xbee-sensor",
+	"enabled": true,
+	"editable": true,
+	"telemetries": [{
+		"name": "light",
+		"description": "light",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "humidity",
+		"description": "humidity",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "temperature",
+		"description": "temperature",
+		"type": "Float",
+		"controllable": false
+	}]
+}, {
+	"name": "digi-gps",
+	"description": "digi-gps",
+	"enabled": true,
+	"editable": true,
+	"telemetries": [{
+		"name": "longitude",
+		"description": "longitude",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "numSatellites",
+		"description": "numSatellites",
+		"type": "Integer",
+		"controllable": false
+	}, {
+		"name": "dilution",
+		"description": "dilution",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "quality",
+		"description": "quality",
+		"type": "String",
+		"controllable": false
+	}, {
+		"name": "latitude",
+		"description": "latitude",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "altitude",
+		"description": "altitude",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "geoidHeight",
+		"description": "geoidHeight",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "time",
+		"description": "time",
+		"type": "String",
+		"controllable": false
+	}]
+}, {
+	"name": "st-sensortile",
+	"description": "st-sensortile",
+	"enabled": true,
+	"editable": true,
+	"telemetries": [{
+		"name": "micLevel",
+		"description": "Microphone level",
+		"type": "Integer",
+		"controllable": false
+	}, {
+		"name": "pressure",
+		"description": "Pressure",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "humidity",
+		"description": "Humidity",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "surfaceTemperature",
+		"description": "Surface Temperature",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "ambientTemperature",
+		"description": "Ambient Temperature",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "accelerometerX",
+		"description": "Accelerometer X",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "accelerometerY",
+		"description": "Accelerometer Y",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "accelerometerZ",
+		"description": "Accelerometer Z",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "gyroscopeX",
+		"description": "Gyroscope X",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "gyroscopeY",
+		"description": "Gyroscope Y",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "gyroscopeZ",
+		"description": "Gyroscope Z",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "magnetometerX",
+		"description": "Magnetometer X",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "magnetometerY",
+		"description": "Magnetometer Y",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "magnetometerZ",
+		"description": "Magnetometer Z",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "fusionX",
+		"description": "Fusion X",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "fusionY",
+		"description": "Fusion Y",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "fusionZ",
+		"description": "Fusion Z",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "fusionW",
+		"description": "Fusion W",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "accelerationEvent",
+		"description": "Acceleration Event",
+		"type": "Integer",
+		"controllable": false
+	}, {
+		"name": "activity",
+		"description": "Activity",
+		"type": "Integer",
+		"controllable": false
+	}, {
+		"name": "carryPosition",
+		"description": "Carry Position",
+		"type": "Integer",
+		"controllable": false
+	}, {
+		"name": "memsGesture",
+		"description": "MEMS Gesture",
+		"type": "Integer",
+		"controllable": false
+	}, {
+		"name": "switch",
+		"description": "Switch",
+		"type": "Integer",
+		"controllable": false
+	}]
+}, {
+	"name": "silabs-thunderboard-react",
+	"description": "silabs-thunderboard-react",
+	"enabled": true,
+	"editable": true,
+	"telemetries": [{
+		"name": "humidity",
+		"description": "Humidity",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "light",
+		"description": "Light",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "temperature",
+		"description": "Temperature",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "keys",
+		"description": "Keys",
+		"type": "Integer",
+		"controllable": false
+	}, {
+		"name": "accelerometerX",
+		"description": "Accelerometer X",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "accelerometerY",
+		"description": "Accelerometer Y",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "accelerometerZ",
+		"description": "Accelerometer Z",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "orientationX",
+		"description": "Orientation X",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "orientationY",
+		"description": "Orientation Y",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "orientationZ",
+		"description": "Orientation Z",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "leds",
+		"description": "LEDs",
+		"type": "Integer",
+		"controllable": false
+	}]
+}, {
+	"name": "simba-pro",
+	"description": "simba-pro",
+	"enabled": true,
+	"editable": false,
+	"telemetries": [{
+		"name": "humidity",
+		"description": "Humidity",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "light",
+		"description": "Light",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "temperature",
+		"description": "Temperature",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "accelerometerX",
+		"description": "Accelerometer X",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "accelerometerY",
+		"description": "Accelerometer Y",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "accelerometerZ",
+		"description": "Accelerometer Z",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "gyrometerX",
+		"description": "Gyrometer X",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "gyrometerY",
+		"description": "Gyrometer Y",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "gyrometerZ",
+		"description": "Gyrometer Z",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "pressure",
+		"description": "Pressure",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "magnetometerX",
+		"description": "Magnetometer X",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "magnetometerY",
+		"description": "Magnetometer Y",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "magnetometerZ",
+		"description": "Magnetometer Z",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "micLevel",
+		"description": "Microphone level",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "longitude",
+		"description": "Longitude",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "latitude",
+		"description": "Latitude",
+		"type": "Float",
+		"controllable": false
+	}, {
+		"name": "latlong",
+		"description": "Latlong",
+		"type": "FloatSquare",
+		"controllable": false
+	}, {
+		"name": "gyrometerXYZ",
+		"description": "Gyrometer XYZ",
+		"type": "FloatCube",
+		"controllable": false
+	}, {
+		"name": "magnetometerXYZ",
+		"description": "Magnetometer XYZ",
+		"type": "FloatCube",
+		"controllable": false
+	}, {
+		"name": "accelerometerXYZ",
+		"description": "Accelerometer XYZ",
+		"type": "FloatCube",
+		"controllable": false
+	}]
+}]

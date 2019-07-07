@@ -1,0 +1,228 @@
+<div class="row-content" on-resize>
+
+  <subscription-expiration></subscription-expiration>
+
+  <div class="content-nav overflow-hidden arrow-collapsed-menu" ng-class="{'mobile-view':mobileLayot, 'showed-menu':mobileMenuShowed, 'collapsed-view':collapsedView}">
+    <div class="nav nav-custom-scrollbar" ng-scrollbars ng-scrollbars-config="scrollerConfig">
+      <div class="content-nav-filters" ng-if="tab !== 'ELIGIBLE'">
+        <h3 ng-class="{'text-center': menuIsHidden() }">
+          <i class="fa fa-filter"></i>
+          <span ng-hide="menuIsHidden()">Filters</span>
+        </h3>
+        <div ng-hide="menuIsHidden()">
+          <!--FILTERS-->
+          <div class="form-group" ng-if="filterOptions.statuses && activeTab === 'requestedFirmware'">
+            <label for="statuses">Status <sup>{{filter.statuses.length}}</sup></label>
+            <select class="form-control " name="statuses" id="statuses" multiple
+                    ng-model="filter.statuses" ng-change="filterUpdated()"
+                    ng-options="option for option in filterOptions.statuses | orderBy:orderByValue">
+            </select>
+          </div>
+          <div class="form-group" ng-if="filterAvailableOptions.deviceTypes && activeTab === 'availableFirmware'">
+            <label for="assetTypes">
+              Asset Types <sup>{{filterAvailable.deviceTypeIds.length}}</sup>
+            </label>
+            <select class="form-control" name="assetTypes" id="assetTypes" multiple
+                    ng-model="filterAvailable.deviceTypeIds" ng-change="filterAvailableUpdated()"
+                    ng-options="option.id as option.name for option in filterAvailableOptions.deviceTypes | orderBy:'name'">
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="collapsed-button-wrap nav nav-pills">
+      <li role="presentation" class="collapse-button">
+        <a ng-click="collapseMenu()" class="text-right">
+                    <span class="icon-wrapper"><i class="fa fa-lg" ng-class="{
+                        'fa-angle-double-left': !mobileLayot && !collapsedView,
+                        'fa-angle-double-right': !mobileLayot && collapsedView,
+                        'mobile fa-angle-double-right': mobileLayot && !mobileMenuShowed,
+                        'mobile fa-angle-double-left': mobileLayot && mobileMenuShowed
+                    }" aria-hidden="true"></i></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="content-wrapper" ng-class="{'mobile-view':mobileLayot, 'showed-menu':mobileMenuShowed, 'collapsed-view':collapsedView}">
+    <div class="content-hd">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="content-title fm-title">
+            <h1>Right To Use Asset Types</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-sub-tabs">
+      <ul class="nav nav-pills" ng-class="{'mobile-tabs': mobileLayot}">
+        <li role="presentation" ng-class="tab.id === activeTab ? 'active': ''" ng-repeat="tab in tabs">
+          <a href="" ng-click="changeActiveTab(tab.id)">
+            {{tab.name}}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="content-bd">
+      <div class="panel panel-default panel-content" ng-if="activeTab === 'requestedFirmware'">
+        <div class="panel-heading">
+          <h3 class="panel-title ng-binding">Right To Use Asset Types</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row table-toolbar">
+            <div class="col-sm-12 height-50">
+              <arrow-items-per-page-dropdown
+                  data-classes="pull-right-for-mobile margin-bottom-15"
+                  data-items-per-page="pagination.itemsPerPage"
+                  data-total-items="30"
+                  data-change="changeItemsPerPage(numberOfItems)"></arrow-items-per-page-dropdown>
+            </div>
+          </div>
+          <table class="table table-striped table-bordered" style="table-layout: fixed;">
+            <thead>
+              <tr>
+                <th class="hidden-xs" ng-repeat="header in eligibleColumns">{{header.label}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-if="eligibleGroups && eligibleGroups.length > 0" ng-repeat="item in eligibleGroups" >
+                <td class="hidden-xs">{{item.availableFirmwareVersion.softwareReleaseName}}</td>
+                <td class="hidden-xs">{{item.status}}</td>
+                <td class="hidden-xs">{{item.ownerName}}</td>
+                <td class="hidden-xs">{{item.ownerEmail}}</td>
+                <td class="hidden-lg hidden-md hidden-sm" colspan="{{eligibleGroups.length}}">
+                  <div class="white-space-normal">
+                    <strong>RTU Firmware Version:</strong> {{item.availableFirmwareVersion.softwareReleaseName}}
+                  </div>
+                  <div class="white-space-normal">
+                    <strong>Status:</strong> {{item.status}}
+                  </div>
+                  <div class="white-space-normal" ng-if="item.ownerName.length > 0">
+                    <strong>Owner:</strong> {{item.ownerName}}
+                  </div>
+                  <div class="white-space-normal" ng-if="item.ownerEmail.length > 0">
+                    <strong>Owner Email:</strong> {{item.ownerEmail}}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td class="hidden-xs" colspan="{{eligibleColumns.length}}">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <arrow-showing-items
+                          data-page-index="pagination.pageIndex"
+                          data-items-per-page="pagination.itemsPerPage"
+                          data-total-items="pagination.totalItems"
+                          data-topic="requests"></arrow-showing-items>
+                    </div>
+                    <div class="col-sm-6 page-navigation-wrap">
+                      <arrow-pagination
+                          data-page-index="pagination.pageIndex"
+                          data-total-pages="pagination.totalPages"
+                          data-first="pagination.first"
+                          data-last="pagination.last"
+                          data-previous="previousPage()"
+                          data-next="nextPage()"
+                          data-go="gotoPage(pageNumber)"></arrow-pagination>
+                    </div>
+                  </div>
+                </td>
+                <td class="hidden-lg hidden-md hidden-sm" colspan="{{eligibleGroups.length}}">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <arrow-showing-items
+                          data-page-index="pagination.pageIndex"
+                          data-items-per-page="pagination.itemsPerPage"
+                          data-total-items="pagination.totalItems"
+                          data-topic="requests"></arrow-showing-items>
+                    </div>
+                    <div class="col-sm-6 page-navigation-wrap">
+                      <arrow-pagination
+                          data-page-index="pagination.pageIndex"
+                          data-total-pages="pagination.totalPages"
+                          data-first="pagination.first"
+                          data-last="pagination.last"
+                          data-previous="previousPage()"
+                          data-next="nextPage()"
+                          data-go="gotoPage(pageNumber)"></arrow-pagination>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel panel-default panel-content" ng-if="activeTab === 'availableFirmware'">
+        <div class="panel-heading">
+          <h3 class="panel-title ng-binding">Right To Use Available Firmware</h3>
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped table-bordered" style="table-layout: fixed;">
+            <thead>
+              <tr>
+                <th class="hidden-xs" ng-repeat="header in eligibleAvailableColumns">{{header.label}}</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr ng-if="eligibleAvailableGroups && eligibleAvailableGroups.length > 0" ng-repeat="item in eligibleAvailableGroups" >
+              <td class="hidden-xs">{{item.deviceType.name}}</td>
+              <td class="hidden-xs">{{item.numberOfAssets}}</td>
+              <td class="hidden-xs">{{item.hardwareVersionName}}</td>
+              <td class="hidden-xs">{{item.currentFirmwareVersion.softwareReleaseName}}</td>
+              <td class="hidden-xs">
+                <a
+                    href=""
+                    style="display: inline-block; margin: 0 3px;"
+                    ng-if="canSendRequest"
+                    ng-repeat="fmVersion in item.availableFirmwareVersion"
+                    ng-click="statusClickHandler(fmVersion.softwareReleaseId, item.deviceType)">
+                  {{fmVersion.softwareReleaseName}}
+                </a>
+                <span
+                    ng-if="!canSendRequest"
+                    ng-repeat="fmVersion in item.availableFirmwareVersion">
+                  {{fmVersion.softwareReleaseName}}
+                </span>
+              </td>
+              <td class="hidden-lg hidden-md hidden-sm" colspan="{{eligibleAvailableGroups.length}}">
+                <div class="white-space-normal">
+                  <strong>Asset Type</strong> {{item.deviceType.name}}
+                </div>
+                <div class="white-space-normal">
+                  <strong>Assets</strong> {{item.numberOfAssets}}
+                </div>
+                <div class="white-space-normal">
+                  <strong>Hardware Version</strong> {{item.hardwareVersionName}}
+                </div>
+                <div class="white-space-normal">
+                  <strong>Firmware Version</strong> {{item.currentFirmwareVersion.softwareReleaseName}}
+                </div>
+                <div class="white-space-normal">
+                  <strong>RTU Firmware Version</strong>&nbsp;
+                  <a
+                      href=""
+                      style="display: inline-block; margin: 0 3px;"
+                      ng-if="canSendRequest"
+                      ng-repeat="fmVersion in item.availableFirmwareVersion"
+                      ng-click="statusClickHandler(fmVersion.softwareReleaseId, item.deviceType)">
+                    {{fmVersion.softwareReleaseName}}
+                  </a>
+                  <span
+                      ng-if="!canSendRequest"
+                      ng-repeat="fmVersion in item.availableFirmwareVersion">
+                  {{fmVersion.softwareReleaseName}}
+                </span>
+                </div>
+              </td>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+[
+	{
+		"name": "default-zone",
+		"systemName": "default-zone",
+		"description": "Default Zone",
+		"enabled": true
+	}
+]

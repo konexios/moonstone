@@ -1,0 +1,427 @@
+<!-- BEGIN MAIN CONTENT -->
+<div class="row">
+	<div class="col-md-12">
+		<div class="portlet light bordered">
+			<div class="portlet-body form">
+				<form name="form"
+					class="form-horizontal"
+					role="form"
+					novalidate>
+					<div class="form-body">
+						<!-- APPLICATION -->
+						<fieldset class="fieldset-form">
+							<legend class="legend-form">Application</legend>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.name.$touched || form.$submitted) && form.name.$invalid, 'has-success': (form.name.$touched || form.$submitted) && !form.name.$invalid }">
+										<label
+											for="name"
+											class="col-md-3 control-label">Name
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.name.$touched || form.$submitted) && form.name.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.name.$touched || form.$submitted) && !form.name.$invalid" class="fa fa-check"></i>
+												<input id="name"
+													name="name"
+													type="text"
+													class="form-control"
+													placeholder="Name"
+													ng-model="application.name"
+													ng-trim="true"
+													ng-required="true"
+													ng-minlength="5"
+													ng-maxlength="255"
+													ng-disabled="!hasAccess()">
+											</div>
+											<div class="help-block" ng-messages="form.name.$error" ng-show="form.name.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.description.$touched || form.$submitted) && form.description.$invalid, 'has-success': (form.description.$touched || form.$submitted) && !form.description.$invalid }">
+										<label for="description"
+											class="col-md-3 control-label">Description
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.description.$touched || form.$submitted) && form.description.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.description.$touched || form.$submitted) && !form.description.$invalid" class="fa fa-check"></i>
+												<textarea id="description"
+													name="description"
+													class="form-control"
+													rows="3"
+													ng-model="application.description"
+													ng-trim="true"
+													ng-required="true"
+													ng-minlength="3"
+													ng-maxlength="255"
+													ng-disabled="!hasAccess()"></textarea>
+											</div>
+											<div class="help-block" ng-messages="form.description.$error" ng-show="form.description.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.company.$touched || form.$submitted) && form.company.$invalid, 'has-success': (form.company.$touched || form.$submitted) && !form.company.$invalid }">
+										<label for="company"
+											class="col-md-3 control-label">Tenant
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.company.$touched || form.$submitted) && form.company.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.company.$touched || form.$submitted) && !form.company.$invalid" class="fa fa-check"></i>
+												<select id="company"
+													name="company"
+													class="form-control"
+													ng-model="application.companyId"
+													ng-change="onCompanyChange()"
+													ng-required="true"
+													ng-disabled="!hasAccess() || (application.id && !user.admin)">
+													<option ng-repeat="option in companyOptions"
+														value="{{option.id}}">{{option.name}}</option>
+												</select>
+											</div>
+											<div class="help-block" ng-messages="form.company.$error" ng-show="form.company.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.subscription.$touched || form.$submitted) && form.subscription.$invalid, 'has-success': (form.subscription.$touched || form.$submitted) && !form.subscription.$invalid }">
+										<label for="subscription"
+											class="col-md-3 control-label">Subscription
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.subscription.$touched || form.$submitted) && form.subscription.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.subscription.$touched || form.$submitted) && !form.subscription.$invalid" class="fa fa-check"></i>
+												<select id="subscription"
+													name="subscription"
+													class="form-control"
+													ng-model="application.subscriptionId"
+													ng-required="true"
+													ng-disabled="!hasAccess() || loadingSubscriptions || (application.id && !user.admin)">
+													<option ng-repeat="option in subscriptionOptions"
+														value="{{option.id}}">{{option.name}}</option>
+												</select>
+											</div>
+											<div class="help-block" ng-messages="form.subscription.$error" ng-show="form.subscription.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group"
+										ng-class="{ 'has-error': form.code.$touched && form.code.$invalid, 'has-success': form.code.$touched && !form.code.$invalid }">
+										<label
+											for="code"
+											class="col-md-3 control-label">Code
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="form.code.$touched && form.code.$invalid" class="fa fa-warning"></i>
+												<i ng-show="form.code.$touched && !form.code.$invalid" class="fa fa-check"></i>
+												<input id="code"
+													name="code"
+													type="text"
+													class="form-control"
+													placeholder="Application Code"
+													ng-model="application.code"
+													ng-trim="true"
+													ng-minlength="5"
+													ng-maxlength="50"
+													ng-disabled="!hasAccess()">
+											</div>
+											<div class="help-block">
+												<small>Auto generated if left blank</small>
+											</div>
+											<div class="help-block" ng-messages="form.code.$error" ng-show="form.code.$touched">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.apiSigningRequired.$touched || form.$submitted) && form.apiSigningRequired.$invalid, 'has-success': (form.apiSigningRequired.$touched || form.$submitted) && !form.apiSigningRequired.$invalid }">
+										<label for="apiSigningRequired"
+											class="col-md-3 control-label">API Signing Required
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.apiSigningRequired.$touched || form.$submitted) && form.apiSigningRequired.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.apiSigningRequired.$touched || form.$submitted) && !form.apiSigningRequired.$invalid" class="fa fa-check"></i>
+												<select id="apiSigningRequired"
+													name="apiSigningRequired"
+													class="form-control"
+													ng-model="application.apiSigningRequired"
+													ng-required="true"
+													ng-disabled="!hasAccess() || (application.companyId != 'new' && user.companyId == application.companyId && !user.admin)">
+													<option ng-repeat="option in apiSigningRequiredOptions"
+														value="{{option.id}}">{{option.name}}</option>
+												</select>
+											</div>
+											<div class="help-block" ng-messages="form.apiSigningRequired.$error" ng-show="form.apiSigningRequired.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+		
+									<div class="form-group"
+										ng-class="{ 'has-error': form.enabled.$touched && form.enabled.$invalid, 'has-success': form.enabled.$touched && !form.enabled.$invalid }">
+										<div class="col-md-offset-3 col-md-9">
+											<div class="checkbox">
+												<label>
+													<div class="checker">
+														<span ng-class="application.enabled ? 'checked' : ''">
+															<input id="enabled" name="enabled" type="checkbox" 
+																ng-model="application.enabled" 
+																ng-disabled="!hasAccess() || (application.companyId != 'new' && user.companyId == application.companyId && !user.admin)"/>
+														</span>
+													</div>
+													Enabled
+												</label>
+											</div>
+											<div class="help-block" ng-messages="form.enabled.$error" ng-show="form.enabled.$touched">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<!-- /APPLICATION -->
+						
+						<div class="row">
+							<div class="col-md-6">
+								<!-- PRODUCT -->
+								<fieldset class="fieldset-form">
+									<legend class="legend-form">Product</legend>
+		
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.product.$touched || form.$submitted) && form.product.$invalid, 'has-success': (form.product.$touched || form.$submitted) && !form.product.$invalid }">
+										<label for="product"
+											class="col-md-3 control-label">Product
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.product.$touched || form.$submitted) && form.product.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.product.$touched || form.$submitted) && !form.product.$invalid" class="fa fa-check"></i>
+												<select id="product"
+													name="product"
+													class="form-control"
+													ng-model="application.productId"
+													ng-disabled="application.id || !hasAccess() || (application.companyId != 'new' && user.companyId == application.companyId && !user.admin)"
+													ng-change="onProductChange()"
+													ng-required="true">
+													<option ng-repeat="option in parentProductOptions"
+														value="{{option.id}}">{{option.name}}</option>
+												</select>
+											</div>
+											<div class="help-block" ng-messages="form.product.$error" ng-show="form.product.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+			
+									<div class="form-group"
+										ng-class="{ 'has-error': form.productExtensions.$touched && form.productExtensions.$invalid, 'has-success': form.productExtensions.$touched && !form.productExtensions.$invalid }">
+										<label for="productExtensions"
+											class="col-md-3 control-label">Product Extensions
+										</label>
+										<div class="col-md-9">
+											<select id="productExtensions"
+												name="productExtensions"
+												class="form-control"
+												ng-model="application.productExtensionIds"
+												ng-disabled="!hasAccess() || (application.companyId != 'new' && user.companyId == application.companyId && !user.admin)"
+												size="5"
+												multiple>
+												<option ng-repeat="option in productExtensionOptions"
+													value="{{option.id}}">{{option.name}}</option>
+											</select>
+											<div class="help-block" ng-messages="form.productExtensions.$error" ng-show="form.productExtensions.$touched">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="form-group"
+										ng-class="{ 'has-error': form.productFeatures.$touched && form.productFeatures.$invalid, 'has-success': form.productFeatures.$touched && !form.productFeatures.$invalid }">
+										<label for="productFeatures"
+											class="col-md-3 control-label">Product Features
+										</label>
+										<div class="col-md-9">
+											<select id="productFeatures"
+												name="productFeatures"
+												class="form-control"
+												ng-model="application.productFeatures"
+												ng-disabled="!hasAccess() || (application.companyId != 'new' && user.companyId == application.companyId && !user.admin)"
+												size="5"
+												multiple>
+												<option ng-repeat="option in productFeatureOptions"
+													value="{{option.value}}">{{option.name}}</option>
+											</select>
+											<div class="help-block" ng-messages="form.productFeatures.$error" ng-show="form.productFeatures.$touched">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+		
+								</fieldset>
+								<!-- /PRODUCT -->
+							</div>
+							<div class="col-md-6">
+								<!-- LOCATION -->
+								<fieldset class="fieldset-form">
+									<legend class="legend-form">Geographical Location</legend>
+		
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.region.$touched || form.$submitted) && form.region.$invalid, 'has-success': (form.region.$touched || form.$submitted) && !form.region.$invalid }">
+										<label for="region"
+											class="col-md-3 control-label">Region
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.region.$touched || form.$submitted) && form.region.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.region.$touched || form.$submitted) && !form.region.$invalid" class="fa fa-check"></i>
+												<select id="region"
+													name="region"
+													class="form-control"
+													ng-model="application.regionId"
+													ng-change="onRegionChange()"
+													ng-required="true"
+													ng-disabled="!hasAccess() || (application.companyId != 'new' && user.companyId == application.companyId && !user.admin)">
+													<option ng-repeat="option in regionOptions"
+														value="{{option.id}}">{{option.name}}</option>
+												</select>
+											</div>
+											<div class="help-block" ng-messages="form.region.$error" ng-show="form.region.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.zone.$touched || form.$submitted) && form.zone.$invalid, 'has-success': (form.zone.$touched || form.$submitted) && !form.zone.$invalid }">
+										<label for="zone"
+											class="col-md-3 control-label">Zone
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.zone.$touched || form.$submitted) && form.zone.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.zone.$touched || form.$submitted) && !form.zone.$invalid" class="fa fa-check"></i>
+												<select id="zone"
+													name="zone"
+													class="form-control"
+													ng-model="application.zoneId"
+													ng-change="onZoneChange()"
+													ng-required="true"
+													ng-disabled="loadingZones || !application.regionId || !hasAccess() || (application.companyId != 'new' && user.companyId == application.companyId && !user.admin)">
+													<option ng-repeat="option in zoneOptions"
+														value="{{option.id}}">{{option.name}}</option>
+												</select>
+											</div>
+											<div class="help-block" ng-messages="form.zone.$error" ng-show="form.zone.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': form.applicationEngine.$touched && form.applicationEngine.$invalid, 'has-success': form.applicationEngine.$touched && !form.applicationEngine.$invalid }">
+										<label for="applicationEngine"
+											class="col-md-3 control-label">Engine
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="form.applicationEngine.$touched && form.applicationEngine.$invalid" class="fa fa-warning"></i>
+												<i ng-show="form.applicationEngine.$touched && !form.applicationEngine.$invalid" class="fa fa-check"></i>
+												<select id="applicationEngine"
+													name="applicationEngine"
+													class="form-control"
+													ng-model="application.applicationEngineId"
+													ng-disabled="loadingEngines || !application.zoneId || !hasAccess() || (application.companyId != 'new' && user.companyId == application.companyId && !user.admin)">
+													<option ng-repeat="option in applicationEngineOptions"
+														value="{{option.id}}">{{option.name}}</option>
+												</select>
+											</div>
+											<div class="help-block" ng-messages="form.applicationEngine.$error" ng-show="form.applicationEngine.$touched">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+								
+								</fieldset>
+								<!-- /LOCATION -->
+
+								<!-- SECURITY -->
+								<fieldset class="fieldset-form">
+									<legend class="legend-form">Optional Security</legend>
+		
+									<div class="form-group"
+										ng-class="{ 'has-error': form.defaultSamlEntityId.$touched && form.defaultSamlEntityId.$invalid, 'has-success': form.defaultSamlEntityId.$touched && !form.defaultSamlEntityId.$invalid }">
+										<label
+											for="defaultSamlEntityId"
+											class="col-md-3 control-label">Default Saml Entity
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="form.defaultSamlEntityId.$touched && form.defaultSamlEntityId.$invalid" class="fa fa-warning"></i>
+												<i ng-show="form.defaultSamlEntityId.$touched && !form.defaultSamlEntityId.$invalid" class="fa fa-check"></i>
+												<input id="defaultSamlEntityId"
+													name="defaultSamlEntityId"
+													type="text"
+													class="form-control"
+													placeholder="Default Saml Entity"
+													ng-model="application.defaultSamlEntityId"
+													ng-trim="true"
+													ng-minlength="5"
+													ng-maxlength="50"
+													ng-disabled="!hasAccess()">
+											</div>
+											<div class="help-block" ng-messages="form.defaultSamlEntityId.$error" ng-show="form.defaultSamlEntityId.$touched">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+		
+								</fieldset>
+								<!-- /SECURITY -->
+
+							</div>
+						</div>
+						
+					</div>
+					<div class="form-actions">
+						<div class="row">
+							<div class="col-md-offset-3 col-md-9 text-right">
+								<button type="submit"
+									class="btn green"
+									ng-disabled="busy || !hasAccess()"
+									ng-click="save(form, application)">Save</button>
+
+								<button type="button"
+									class="btn green"
+									ng-cloak
+									ng-if="user.admin && application.pendingVaultLogin && application.id"
+									ng-disabled="busy"
+									ng-click="openVaultLogin()">Create Vault Login</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

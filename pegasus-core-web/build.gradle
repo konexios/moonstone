@@ -1,0 +1,46 @@
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+    manifest {
+        attributes(
+            "Implementation-Title": "moonstone-pegasus-core-web",
+            "Implementation-Version": version,
+            "Implementation-Vendor": "Arrow Electronics, Inc.",
+            "Built-By": System.getProperty('user.name'),
+            "Built-Date": new Date().format("yyyy-MM-dd"),
+            "Built-Jdk": "${System.getProperty('java.version')} (${System.getProperty('java.specification.vendor')})",
+            "Git-Branch": getCurrentGitBranch(),
+            "Git-Last-Commit": getLastGitCommit())
+    }
+}
+
+dependencies {
+    // validation
+    api("javax.validation:validation-api:${javaxValidationApiVersion}")  
+    api("org.glassfish:javax.el:${javaxElVersion}")    
+    api("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")        
+
+    api("org.springframework.boot:spring-boot-starter-undertow:${springBootVersion}")
+    api("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    api("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
+
+    // security
+    api("org.springframework.security:spring-security-core:${springSecurityVersion}")
+    api("org.springframework.security:spring-security-config:${springSecurityVersion}")
+    api("org.springframework.security:spring-security-web:${springSecurityVersion}")
+
+	api("org.apache.logging.log4j:log4j-web:${log4jVersion}")
+
+    api("org.springframework.security.extensions:spring-security-saml2-core:${saml2CoreVersion}")       
+    api("org.opensaml:opensaml:${opensamlVersion}")    
+    api("xalan:xalan:${xalanVersion}")
+    api("org.apache.httpcomponents:httpclient:${httpclientVersion}")    
+               
+    api("javax.servlet:javax.servlet-api:${javaxServletVersion}")  
+    
+    api("io.springfox:springfox-swagger2:${swaggerVersion}")
+    api("io.springfox:springfox-swagger-ui:${swaggerVersion}")
+}

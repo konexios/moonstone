@@ -1,0 +1,253 @@
+package com.arrow.selene.device.uvc;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import javax.imageio.ImageIO;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+import org.opencv.highgui.VideoCapture;
+
+import com.arrow.selene.engine.DeviceModuleAbstract;
+
+public class CameraModule extends DeviceModuleAbstract<CameraInfo, CameraProperties, CameraData> {
+
+    private static final String DATE_TIME_FORMATTER = "yyyyMMddHHmmss";
+    private static final String PRODUCT_URL = "http://iot.arrow.com";
+
+    private VideoCapture camera;
+    private Timer timer;
+    private long currentFrequenceInSecs;
+
+    @Override
+    protected void startDevice() {
+        super.startDevice();
+
+        // load native library
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+
+        currentFrequenceInSecs = getProperties().getFrequencyInSecs();
+        restartTimer();
+    }
+
+    @Override
+    public void stop() {
+        String method = "stop";
+        super.stop();
+
+        if (timer != null) {
+            logInfo(method, "cancelling timer ...");
+            timer.cancel();
+            timer = null;
+        }
+        closeCamera();
+    }
+
+    @Override
+    public void performCommand(Map<String, String> properties) {
+        String method = "performCommand";
+        String command = properties.get("command");
+        String payload = properties.get("payload");
+        logInfo(method, "command: %s, payload: %s", command, payload);
+        if (StringUtils.equalsIgnoreCase(command, "capture")) {
+            capture();
+        } else {
+            logInfo(method, "command was ignored");
+        }
+    }
+
+    @Override
+    public void notifyPropertiesChanged(Map<String, String> properties) {
+        String method = "notifyPropertiesChanged";
+        super.notifyPropertiesChanged(properties);
+        try {
+            long frequency = Long.parseLong(properties.get("frequencyInSecs"));
+            if (frequency != currentFrequenceInSecs) {
+                currentFrequenceInSecs = frequency;
+                logInfo(method, "restartTimer with new frequencyInSecs: %d", currentFrequenceInSecs);
+                restartTimer();
+            }
+        } catch (Throwable t) {
+            logError(method, t);
+        }
+    }
+
+    private void restartTimer() {
+        if (timer != null) {
+            timer.cancel();
+        }
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new CaptureTimerTask(), currentFrequenceInSecs * 1000, currentFrequenceInSecs * 1000);
+    }
+
+    private synchronized void capture() {
+        String method = "checkAndOpenCamera";
+        try {
+            if (camera != null && !camera.isOpened()) {
+                closeCamera();
+            }
+
+            // open camera
+            if (camera == null) {
+                String streamUrl = getProperties().getStreamUrl();
+                if (StringUtils.isNotEmpty(streamUrl)) {
+                    logInfo(method, "opening camera from streamUrl: %s", streamUrl);
+                    camera = new VideoCapture(streamUrl);
+                } else {
+                    logInfo(method, "opening camera with index: %d", getProperties().getIndex());
+                    camera = new VideoCapture(getProperties().getIndex());
+                }
+            }
+
+            int width = getProperties().getWidth();
+            if ((int) camera.get(Highgui.CV_CAP_PROP_FRAME_WIDTH) != width) {
+                logInfo(method, "set frameWidth: %d", width);
+                camera.set(Highgui.CV_CAP_PROP_FRAME_WIDTH, width);
+            }
+
+            int height = getProperties().getHeight();
+            if ((int) camera.get(Highgui.CV_CAP_PROP_FRAME_HEIGHT) != height) {
+                logInfo(method, "set frameHeight: %d", height);
+                camera.set(Highgui.CV_CAP_PROP_FRAME_HEIGHT, height);
+            }
+
+            Mat frame = new Mat();
+
+            logInfo(method, "capturing image ...");
+            if (camera.read(frame)) {
+
+                // convert frame to image
+                BufferedImage buffer = matToBufferedImage(frame);
+
+                // add timestamp overlay
+                buffer = addOverlay(buffer);
+
+                // convert image to JPG
+                byte[] image = bufferedImageToByteArray(buffer);
+
+                logInfo(method, "image size: %d", image.length);
+
+                if (getProperties().isSaveLocal()) {
+                    if (!StringUtils.isEmpty(getProperties().getDirectory())) {
+                        try {
+                            String timestamp = DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER)
+                                    .format(ZonedDateTime.now(ZoneOffset.UTC));
+                            String fileName = String.format("%s-%s.jpg", getDevice().getUid(), timestamp);
+                            File file = new File(getProperties().getDirectory(), fileName);
+                            FileUtils.writeByteArrayToFile(file, image);
+                            logInfo(method, "saved image to file: %s", file.getAbsolutePath());
+                        } catch (Exception e) {
+                            logError(method, "unable to save image locally", e);
+                        }
+                    } else {
+                        logWarn(method, "image can't be saved locally because the directory is not defined");
+                    }
+                }
+
+                CameraDataImpl data = new CameraDataImpl();
+                data.setWidth(width);
+                data.setHeight(height);
+                data.setSize(image.length);
+                data.setFormat(getProperties().getFormat());
+                data.setImage(image);
+
+                logInfo(method, "queueDataForSending ...");
+                queueDataForSending(data);
+            } else {
+                logError(method, "camera is not available");
+            }
+        } catch (Throwable t) {
+            logError(method, "error capturing image", t);
+        }
+    }
+
+    private BufferedImage addOverlay(BufferedImage image) {
+        Graphics graphics = image.getGraphics();
+        graphics.setColor(Color.YELLOW);
+        graphics.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
+        graphics.drawString(PRODUCT_URL, 16, image.getHeight() - 16);
+        graphics.drawString(Instant.now().toString(), 16, image.getHeight() - 48);
+        return image;
+    }
+
+    private BufferedImage matToBufferedImage(Mat mat) {
+        byte[] data = new byte[mat.rows() * mat.cols() * (int) (mat.elemSize())];
+        mat.get(0, 0, data);
+        if (mat.channels() == 3) {
+            for (int i = 0; i < data.length; i += 3) {
+                byte temp = data[i];
+                data[i] = data[i + 2];
+                data[i + 2] = temp;
+            }
+        }
+        BufferedImage image = new BufferedImage(mat.cols(), mat.rows(), BufferedImage.TYPE_3BYTE_BGR);
+        image.getRaster().setDataElements(0, 0, mat.cols(), mat.rows(), data);
+        return image;
+    }
+
+    private byte[] bufferedImageToByteArray(BufferedImage image) {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        try {
+            ImageIO.write(image, getProperties().getFormat(), bos);
+            bos.flush();
+            return bos.toByteArray();
+        } catch (Exception e) {
+            return new byte[0];
+        } finally {
+            IOUtils.closeQuietly(bos);
+        }
+    }
+
+    private void closeCamera() {
+        String method = "closeCamera";
+        if (camera != null) {
+            try {
+                logInfo(method, "closing camera ...");
+                camera.release();
+            } catch (Throwable t) {
+            }
+            camera = null;
+        }
+    }
+
+    @Override
+    protected CameraProperties createProperties() {
+        return new CameraProperties();
+    }
+
+    @Override
+    protected CameraInfo createInfo() {
+        return new CameraInfo();
+    }
+
+    private class CaptureTimerTask extends TimerTask {
+        private AtomicBoolean running = new AtomicBoolean(false);
+
+        @Override
+        public void run() {
+            if (!isShuttingDown()) {
+                if (running.compareAndSet(false, true)) {
+                    capture();
+                    running.set(false);
+                }
+            }
+        }
+    }
+}

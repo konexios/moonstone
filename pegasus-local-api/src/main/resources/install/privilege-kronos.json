@@ -1,0 +1,630 @@
+[
+	{
+		"systemName": "KRONOS_SOFTWARE_RELEASE_TRANSACTION_RETRY_ON_ERROR",
+		"hidden": true,
+		"category": "Firmware Management",
+		"name": "Retry In-progress Software Release Asset",
+		"description": "Retry In-progress Software Release Asset",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_CANCEL_SOFTWARE_RELEASE_TRANSACTION",
+		"hidden": false,
+		"category": "Firmware Management",
+		"name": "Cancel Software Release Asset",
+		"description": "Cancel Software Release Asset",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_SOFTWARE_RELEASE_TRANSACTION_MOVE_TO_ERROR",
+		"hidden": false,
+		"category": "Firmware Management",
+		"name": "Move Software Release Asset to Failed",
+		"description": "Move Software Release Asset to Failed",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_RETRY_SOFTWARE_RELEASE_TRANSACTION",
+		"hidden": false,
+		"category": "Firmware Management",
+		"name": "Retry Software Release Asset",
+		"description": "Retry Software Release Asset",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_DELETE_DEVICE_TELEMETRY",
+		"hidden": false,
+		"name": "Delete Device Telemetry",
+		"description": "Delete Device Telemetry",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_CREATE_GLOBAL_ACTION",
+		"hidden": false,
+		"name": "Create Global Action",
+		"description": "Enables the user to create global actions.",
+		"enabled": false
+	},
+	{
+		"systemName": "KRONOS_CREATE_GLOBAL_ACTION_TYPE",
+		"hidden": false,
+		"name": "Create Global Action Type",
+		"description": "Enables the user to create global action types.",
+		"enabled": false
+	},
+	{
+		"systemName": "KRONOS_VIEW_GLOBAL_ACTIONS",
+		"hidden": false,
+		"name": "View Global Actions",
+		"description": "Enables the user to view existing global actions.",
+		"enabled": false
+	},
+	{
+		"systemName": "KRONOS_DELETE_DEVICE_STATE",
+		"hidden": false,
+		"name": "Delete Device State",
+		"description": "Delete Device State",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_RIGHT_TO_REQUEST_FIRMWARE",
+		"hidden": false,
+		"name": "Right To Request Firmware",
+		"description": "Right To Request Firmware",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_EDIT_GLOBAL_ACTION",
+		"hidden": false,
+		"name": "Edit Global Action",
+		"description": "Enables the user to edit attributes of global actions.",
+		"enabled": false
+	},
+	{
+		"systemName": "KRONOS_EDIT_GLOBAL_ACTION_TYPE",
+		"hidden": false,
+		"name": "Edit Global Action Type",
+		"description": "Enables the user to modify existing global action types.",
+		"enabled": false
+	},
+	{
+		"systemName": "KRONOS_RIGHT_TO_USE_FIRMWARE",
+		"hidden": false,
+		"category": "Firmware Management",
+		"name": "Right To Use Firmware",
+		"description": "Right To Use Firmware",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_GLOBAL_ACTION_TYPES",
+		"hidden": false,
+		"name": "View Global Action Types",
+		"description": "Enables the user to view existing global action types.",
+		"enabled": false
+	},
+	{
+		"systemName": "KRONOS_EDIT_DEVICE_STATE",
+		"hidden": false,
+		"name": "Kronos Edit Device State",
+		"description": "Kronos Edit Device State",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_DELETE_GLOBAL_ACTION",
+		"hidden": false,
+		"name": "Delete Global  Action",
+		"description": "Enables the user to global delete actions.",
+		"enabled": false
+	},
+	{
+		"systemName": "RHEA_PRIVATE_SOFTWARE_RELEASE",
+		"hidden": false,
+		"name": "Private Software Release",
+		"description": "Private Software Release",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_CANCEL_SOFTWARE_RELEASE_SCHEDULE",
+		"hidden": false,
+		"name": "Cancel Software Release Schedule",
+		"description": "Cancel Software Release Schedule",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_FWM_DATETIME_SCHEDULING",
+		"hidden": false,
+		"name": "Firmware Management Date and Time Scheduling",
+		"description": "Firmware Management Date and Time Scheduling",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_START_SOFTWARE_RELEASE_SCHEDULE",
+		"hidden": false,
+		"name": "Start Software Release Schedule",
+		"description": "Start Software Release Schedule on demand",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_FWM_ON_DEMAND_SCHEDULING",
+		"hidden": false,
+		"name": "Firmware Management On Demand Scheduling",
+		"description": "Firmware Management On Demand Scheduling",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_DELETE_DEVICE",
+		"hidden": false,
+		"name": "Delete Device",
+		"description": "Enables the user to delete a device",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_READ_DEVICE_STATE",
+		"hidden": false,
+		"name": "Read Device State",
+		"description": "Read Device State",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_SOFTWARE_VENDORS",
+		"hidden": false,
+		"name": "View Software Vendors",
+		"description": "View Software Vendors",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_UPDATE_SOFTWARE_RELEASE_SCHEDULE",
+		"hidden": false,
+		"name": "Update Software Release Schedule",
+		"description": "Update Software Release Schedule",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_MANUFACTURERS",
+		"hidden": false,
+		"name": "View Manufacturers",
+		"description": "View Manufacturers",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_READ_SOFTWARE_RELEASE_SCHEDULE",
+		"hidden": false,
+		"name": "Read Software Release Schedule",
+		"description": "Read Software Release Schedule",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_CREATE_DEVICE_PRODUCT",
+		"hidden": false,
+		"name": "Create Device Product",
+		"description": "Create Device Product",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_EDIT_DEVICE_PRODUCT",
+		"hidden": false,
+		"name": "Edit Device Product",
+		"description": "Edit Device Product",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_EDIT_SOFTWARE_VENDOR",
+		"hidden": false,
+		"name": "Edit Software Vendor",
+		"description": "Edit Software Vendor",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_CREATE_MANUFACTURER",
+		"hidden": false,
+		"name": "Create Manufacturer",
+		"description": "Create Manufacturer",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_CREATE_GATEWAY",
+		"hidden": false,
+		"name": "Create Gateway",
+		"description": "Enables the user to create gateways",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_DEVICE_PRODUCTS",
+		"hidden": false,
+		"name": "View Device Products",
+		"description": "View Device Products",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_MOVE_GATEWAY",
+		"hidden": false,
+		"name": "Move Gateway between Applications",
+		"description": "Enables the user to move the registered gateway and related devices from another application to the user's application",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_UPDATE_DEVICE_STATE",
+		"hidden": false,
+		"name": "Update Device State",
+		"description": "Update Device State",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_EDIT_MANUFACTURER",
+		"hidden": false,
+		"name": "Edit Manufacturer",
+		"description": "Edit Manufacturer",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_DELETE_GATEWAY",
+		"hidden": false,
+		"name": "Delete Gateway",
+		"description": "Enables the user to delete a gateway",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_CREATE_SOFTWARE_RELEASE_SCHEDULE",
+		"hidden": false,
+		"name": "Create Software Release Schedule",
+		"description": "Create Software Release Schedule",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_READ_SOFTWARE_RELEASE_TRANS",
+		"hidden": false,
+		"name": "Read Software Release Trans",
+		"description": "Read Software Release Trans",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_KRONOS_APPLICATION",
+		"hidden": false,
+		"name": "View Kronos Application",
+		"description": "View Kronos Application",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_UPDATE_TEST_RESULT",
+		"hidden": false,
+		"name": "Update Test Result",
+		"description": "Update Test Result",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_UPDATE_TEST_PROCEDURE",
+		"hidden": false,
+		"name": "Update Test Procedure",
+		"description": "Update Test Procedure",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_UPDATE_KRONOS_APPLICATION",
+		"hidden": false,
+		"name": "Update Kronos Application",
+		"description": "Update Kronos Application",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_READ_TEST_RESULTS",
+		"hidden": false,
+		"name": "Read Test Results",
+		"description": "Read Test Results",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_READ_TEST_PROCEDURES",
+		"hidden": false,
+		"name": "Read Test Procedures",
+		"description": "Read Test Procedures",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_READ_GATEWAY_TEST_RESULTS",
+		"hidden": false,
+		"name": "Read Gateway Test Results",
+		"description": "Read Gateway Test Results",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_READ_DEVICE_TEST_RESULTS",
+		"hidden": false,
+		"name": "Read Device Test Results",
+		"description": "Read Device Test Results",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_READ_DEVICE_STATE_TRANS",
+		"hidden": false,
+		"name": "Read Device State Trans",
+		"description": "Read Device State Trans",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_CREATE_TEST_PROCEDURE",
+		"hidden": false,
+		"name": "Create Test Procedure",
+		"description": "Create Test Procedure",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_EDIT_USER_IOT_CONFIGURATION",
+		"hidden": false,
+		"name": "Edit User IoT Configuration",
+		"description": "Edit User IoT Configuration",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_DEVELOPER_DEVICE_PAYLOAD",
+		"hidden": false,
+		"name": "Developer Device Payload",
+		"description": "Enables the user to view the developers section of the device.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_DEVICE_ACTION_TYPES",
+		"hidden": false,
+		"name": "View Device Action Types",
+		"description": "Enables the user to view existing device action types.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_PROVISION_APPLICATION",
+		"hidden": false,
+		"name": "Provision Application",
+		"description": "Enables the user to provision the Kronos Application.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_EDIT_DEVICE_ACTION_TYPE",
+		"hidden": false,
+		"name": "Edit Device Action Type",
+		"description": "Enables the user to modify existing device action types.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_CREATE_DEVICE_ACTION_TYPE",
+		"hidden": false,
+		"name": "Create Device Action Type",
+		"description": "Enables the user to create device action types.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_EDIT_APPLICATION_SETTINGS",
+		"hidden": false,
+		"name": "Edit Application Settings",
+		"description": "Enables the user to edit the application settings.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_APPLICATION_SETTINGS",
+		"hidden": false,
+		"name": "View Application Settings",
+		"description": "Enables the user to view the application settings.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_EDIT_ACCESS_KEY",
+		"hidden": false,
+		"name": "Edit Access Key",
+		"description": "Edit Access Key",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_CREATE_ACCESS_KEY",
+		"hidden": false,
+		"name": "Create Access Key",
+		"description": "Create Access Key",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_ACCESS_KEYS",
+		"hidden": false,
+		"name": "View Access Keys",
+		"description": "View Access Keys",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_CREATE_DEVICE_TAG",
+		"hidden": false,
+		"name": "Create Device Tag",
+		"description": "Enables the user to create a new tag that can be added to a device.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_EDIT_DEVICE_EVENT",
+		"hidden": false,
+		"name": "Edit Device Event",
+		"description": "Enables the user to update and edit the device events.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_DELETE_DEVICE_ACTION",
+		"hidden": false,
+		"name": "Delete Device Action",
+		"description": "Enables the user to delete device actions.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_ALL_GATEWAYS",
+		"hidden": false,
+		"name": "View All Gateways",
+		"description": "Enables the user to view all gateways for their application instance.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_DEVICES",
+		"hidden": false,
+		"name": "View Devices",
+		"description": "Enables the user to view their devices only.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_EDIT_IOT_CONFIGURATION",
+		"hidden": false,
+		"name": "Edit IoT Provider Settings",
+		"description": "Enables a user to edit the IoT Provider Settings",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_DEVICE_AUDIT_LOGS",
+		"hidden": false,
+		"name": "View Device Audit Logs",
+		"description": "Enables the user to view the audit logs of a device.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_GATEWAY_AUDIT_LOGS",
+		"hidden": false,
+		"name": "View Gateway Audit Logs",
+		"description": "Enables the user to view the audit logs for a gateway.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_EDIT_GATEWAY",
+		"hidden": false,
+		"name": "Edit Gateway",
+		"description": "Enables the user to edit the properties of a gateway.",
+		"enabled": true
+	},
+	{
+		"systemName": "SMART_BUILDING_ACCESS",
+		"hidden": false,
+		"name": "Smart Building Access",
+		"description": "Smart Building Access description",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_SEND_COMMAND_TO_DEVICE",
+		"hidden": false,
+		"name": "Send Command to Device",
+		"description": "Enables the user to send commands to a given device.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_CREATE_DEVICE",
+		"hidden": false,
+		"name": "Create Device",
+		"description": "Enables the user to create devices.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_GATEWAYS",
+		"hidden": false,
+		"name": "View Gateways",
+		"description": "Enables the user to view the list of Gateways",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_EDIT_NODE_TYPE",
+		"hidden": false,
+		"name": "Edit Node Type",
+		"description": "Enables the user to edit node types.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_CREATE_NODE_TYPE",
+		"hidden": false,
+		"name": "Create Node Type",
+		"description": "Enabled the user to create node types.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_NODES",
+		"hidden": false,
+		"name": "View Nodes",
+		"description": "Enables the user to view the nodes.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_NODE_TYPES",
+		"hidden": false,
+		"name": "View Node Types",
+		"description": "Enabled the user to view the node types.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_REMOVE_DEVICE_TAG",
+		"hidden": false,
+		"name": "Remove Device Tag",
+		"description": "Enables the user to remove tags from the device.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_ADD_DEVICE_TAG",
+		"hidden": false,
+		"name": "Add Device Tag",
+		"description": "Enables the user to associated tags to the device.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_EDIT_DEVICE_ACTION",
+		"hidden": false,
+		"name": "Edit Device Action",
+		"description": "Enabled the user to edit attributes of the device action.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_CREATE_DEVICE_ACTION",
+		"hidden": false,
+		"name": "Create Device Action",
+		"description": "Enables the user to create device actions.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_EDIT_NODE",
+		"hidden": false,
+		"name": "Edit Node",
+		"description": "Enables the user to edit nodes.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_CREATE_NODE",
+		"hidden": false,
+		"name": "Create Node",
+		"description": "Enabled the user to create nodes.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_EDIT_DEVICE",
+		"hidden": false,
+		"name": "Edit Device",
+		"description": "Enables the user to edit the device attributes.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_CREATE_DEVICE_TYPE",
+		"hidden": false,
+		"name": "Create Device Type",
+		"description": "Enables the user to create a device type.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_EDIT_DEVICE_TYPE",
+		"hidden": false,
+		"name": "Edit Device Type",
+		"description": "Enables the user to edit the properties of a device type.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_DEVICE_TYPES",
+		"hidden": false,
+		"name": "View Device Types",
+		"description": "Enables the user to view devices types.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_VIEW_ALL_DEVICES",
+		"hidden": false,
+		"name": "View All Devices",
+		"description": "Enables the user to view all devices associated to the user's application instance.",
+		"enabled": true
+	},
+	{
+		"systemName": "KRONOS_ACCESS",
+		"hidden": false,
+		"name": "IoTConnect Access",
+		"description": "All roles for IoTConnect should have this privilege associated. Removing this privilege from a role will prevent all users with that role from accessing IoTConnect.",
+		"enabled": true
+	}
+]

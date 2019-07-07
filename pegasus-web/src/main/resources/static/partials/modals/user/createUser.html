@@ -1,0 +1,138 @@
+<div class="modal-header">
+	<h3 class="modal-title" id="modal-title">
+		New User
+	</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <form name="form"
+          class="form-horizontal"
+          role="form"
+          novalidate>
+        <div class="form-body">
+            <div class="form-group" ng-class="{ 'has-error': (form.firstName.$touched || form.$submitted) && form.firstName.$invalid, 'has-success': (form.firstName.$touched || form.$submitted) && !form.firstName.$invalid }">
+                <label for="firstName" class="col-md-3 control-label">
+                    First Name<span class="required" aria-required="true"> * </span>
+                </label>
+                <div class="col-md-9">
+                    <div class="input-icon right">
+                        <i ng-show="(form.firstName.$touched || form.$submitted) && form.firstName.$invalid" class="fa fa-warning"></i>
+                        <i ng-show="(form.firstName.$touched || form.$submitted) && !form.firstName.$invalid" class="fa fa-check"></i>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="firstName"
+                                name="firstName"
+                                ng-trim="true"
+                                ng-model="user.firstName"
+                                placeholder="First Name"
+                                ng-required="true"
+                                ng-minlength="2"
+                                ng-maxlength="50">
+                    </div>
+                    <div class="help-block" ng-messages="form.firstName.$error" ng-show="form.firstName.$touched || form.$submitted">
+                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': (form.lastName.$touched || form.$submitted) && form.lastName.$invalid, 'has-success': (form.lastName.$touched || form.$submitted) && !form.lastName.$invalid }">
+                <label for="lastName" class="col-md-3 control-label">
+                    Last Name<span class="required" aria-required="true"> * </span>
+                </label>
+                <div class="col-md-9">
+                    <div class="input-icon right">
+                        <i ng-show="(form.lastName.$touched || form.$submitted) && form.lastName.$invalid" class="fa fa-warning"></i>
+                        <i ng-show="(form.lastName.$touched || form.$submitted) && !form.lastName.$invalid" class="fa fa-check"></i>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="lastName"
+                                name="lastName"
+                                ng-trim="true"
+                                ng-model="user.lastName"
+                                placeholder="Last Name"
+                                ng-required="true"
+                                ng-minlength="2"
+                                ng-maxlength="50">
+
+                        <div class="help-block" ng-messages="form.lastName.$error" ng-show="form.lastName.$touched || form.$submitted">
+                            <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': (form.email.$touched || form.$submitted) && form.email.$invalid, 'has-success': (form.email.$touched || form.$submitted) && !form.email.$invalid }">
+                <label for="email" class="col-md-3 control-label">
+                    Email<span class="required" aria-required="true"> * </span>
+                </label>
+                <div class="col-md-9">
+                    <div class="input-icon right">
+                        <i ng-show="(form.email.$touched || form.$submitted) && form.email.$invalid" class="fa fa-warning"></i>
+                        <i ng-show="(form.email.$touched || form.$submitted) && !form.email.$invalid" class="fa fa-check"></i>
+                        <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                name="email"
+                                ng-required="true"
+                                ng-trim="true"
+                                ng-model="user.email"
+                                email-validation="model.email"
+                                placeholder="Email">
+                    </div>
+                    <div class="help-block" ng-messages="form.email.$error" ng-show="form.email.$touched || form.$submitted">
+                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': (form.company.$touched || form.$submitted) && form.company.$invalid, 'has-success': (form.company.$touched || form.$submitted) && !form.company.$invalid }">
+                <label for="company" class="col-md-3 control-label">
+                    Tenant<span class="required" aria-required="true"> * </span>
+                </label>
+                <div class="col-md-9">
+                    <div class="input-icon right">
+                        <i ng-show="(form.company.$touched || form.$submitted) && form.company.$invalid" class="fa fa-warning"></i>
+                        <i ng-show="(form.company.$touched || form.$submitted) && !form.company.$invalid" class="fa fa-check"></i>
+                            <select
+                                class="form-control"
+                                id="company"
+                                name="company"
+                                ng-required="true"
+                                ng-model="user.companyId"
+                                ng-options="company.id as company.name for company in companies">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': (form.login.$touched || form.$submitted) && form.login.$invalid, 'has-success': (form.login.$touched || form.$submitted) && !form.login.$invalid }">
+                <label for="login" class="col-md-3 control-label">
+                    Login<span class="required" aria-required="true"> * </span>
+                </label>
+                <div class="col-md-9">
+                    <div class="input-icon right">
+                        <i ng-show="(form.login.$touched || form.$submitted) && form.login.$invalid" class="fa fa-warning"></i>
+                        <i ng-show="(form.login.$touched || form.$submitted) && !form.login.$invalid" class="fa fa-check"></i>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="login"
+                                name="login"
+                                ng-trim="true"
+                                ng-model="user.login"
+                                placeholder="Login"
+                                ng-minlength="3"
+                                ng-maxlength="100"
+                                ng-required="true"
+                                login-validation="user.login">
+                    </div>
+                    <div class="help-block" ng-messages="form.login.$error" ng-show="form.login.$touched || form.$submitted">
+                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+	<button type="submit" class="btn btn-default" ng-disabled="busy" ng-click="save(form, user)">Save</button>
+	<button type="button" class="btn btn-default" ng-disabled="busy" ng-click="cancel()">Cancel</button>
+</div>	

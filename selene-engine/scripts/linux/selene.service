@@ -1,0 +1,14 @@
+[Unit]
+Description=selene
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/selene
+ExecStart=/usr/bin/java -DseleneConfig=config/selene.properties -Dlog4j.configurationFile=config/log4j2.xml -Djava.library.path=/usr/lib/jni -jar lib/selene-engine.jar
+User=linaro
+Group=linaro
+
+[Install]
+WantedBy=multi-user.target
+Alias=selene.service

@@ -1,0 +1,58 @@
+<div class="modal-header">
+    <h3 class="modal-title">Search</h3>
+</div>
+<div class="modal-body">
+    <form name="form"
+        class="form-horizontal"
+        novalidate>
+
+        <div class="form-group">
+            <label for="filterDeviceManufacturerIds"
+                class="col-sm-3 control-label">Hardware Manufacturer <span class="label label-default">{{filter.deviceManufacturerIds.length}}</span></label>
+            <div class="col-sm-9">
+                <select id="filterDeviceManufacturerIds"
+                    class="form-control"
+                    size="4"
+                    multiple
+                    ng-model="filter.deviceManufacturerIds"
+                    ng-options="manufacturer.id as manufacturer.name for manufacturer in filterOptions.manufacturers">
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="filterDeviceCategoryIds"
+                class="col-sm-3 control-label">Hardware Category <span class="label label-default">{{filter.deviceCategories.length}}</span></label>
+            <div class="col-sm-9">
+                <select id="filterDeviceCategoryIds"
+                    class="form-control"
+                    size="2"
+                    multiple
+                    ng-model="filter.deviceCategories"
+                    ng-options="deviceCategory as deviceCategory for deviceCategory in filterOptions.deviceCategories">
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox col-sm-offset-3 col-sm-9">
+              <label class="radio-inline">
+                <input type="radio" ng-model="filter.enabled" ng-value="true"> Enabled
+              </label>
+              <label class="radio-inline">
+                <input type="radio" ng-model="filter.enabled" ng-value="false"> Disabled
+              </label>
+              <label class="radio-inline">
+                <input type="radio" ng-model="filter.enabled" ng-value="null"> Both
+              </label>
+            </div>
+        </div>
+        
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default"
+        type="submit" ng-click="ok()">Search</button>
+    <button class="btn btn-default"
+        type="button" ng-click="cancel()">Cancel</button>
+</div>

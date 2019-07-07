@@ -1,0 +1,114 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ vm.canSaveActionType ? (vm.actionType.id ? 'Edit' : 'Add') : 'View' }} Action Type</h3>
+</div>
+<form name="actionTypeForm" class="form-horizontal" novalidate ng-submit="vm.save(actionTypeForm, vm.actionType)">
+    <div class="modal-body">
+
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Name*</label>
+            <div class="col-sm-10">
+                <p class="form-control-static" ng-if="!vm.canSaveActionType">{{vm.actionType.name}}</p>
+                <input type="text" id="name" name="name" ng-if="vm.canSaveActionType" class="form-control" ng-model="vm.actionType.name" required />
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="(actionTypeForm.$submitted || actionTypeForm.name.$touched || actionTypeForm.name.$dirty) && actionTypeForm.name.$error" role="alert">
+                <div class="alert-danger">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="systemName" class="col-sm-2 control-label">System name*</label>
+            <div class="col-sm-10">
+                <p class="form-control-static" ng-if="!vm.canSaveActionType">{{vm.actionType.systemName}}</p>
+                <input type="text" id="systemName" name="systemName" ng-if="vm.canSaveActionType" class="form-control" ng-model="vm.actionType.systemName" required />
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="(actionTypeForm.$submitted || actionTypeForm.systemName.$touched || actionTypeForm.systemName.$dirty) && actionTypeForm.systemName.$error" role="alert">
+                <div class="alert-danger">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">Description*</label>
+            <div class="col-sm-10">
+                <p class="form-control-static" ng-if="!vm.canSaveActionType">{{vm.actionType.description}}</p>
+                <textarea id="description" name="description" ng-if="vm.canSaveActionType" class="form-control" ng-model="vm.actionType.description" required></textarea>
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="(actionTypeForm.$submitted || actionTypeForm.description.$touched || actionTypeForm.description.$dirty) && actionTypeForm.description.$error" role="alert">
+                <div class="alert-danger">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" ng-if="!vm.canSaveActionType">
+            <label class="col-sm-2 control-label">Enabled</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">{{vm.actionType.enabled}}</p>
+            </div>
+        </div>
+        <div class="form-group" ng-if="vm.canSaveActionType">
+            <div class="checkbox col-sm-offset-2 col-sm-10">
+                <label><input type="checkbox" value="" ng-model="vm.actionType.enabled" /> Enabled</label>
+            </div>
+        </div>
+
+        <div class="form-group" ng-if="!vm.canSaveActionType && vm.isAdmin">
+            <label class="col-sm-2 control-label">Editable</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">{{vm.actionType.editable}}</p>
+            </div>
+        </div>
+        <div class="form-group" ng-if="vm.canSaveActionType && vm.isAdmin">
+            <div class="checkbox col-sm-offset-2 col-sm-10">
+                <label><input type="checkbox" value="" ng-model="vm.actionType.editable" /> Editable</label>
+            </div>
+        </div>
+
+        <hr>
+        <div class="row">
+            <div class="col-xs-6">
+                <h3 style="margin-top: 0px;">Parameters</h3>
+            </div>
+            <div class="col-xs-6 text-right">
+                <button class="btn btn-default" type="button" ng-if="vm.canSaveActionType" ng-click="vm.openParameterDetails()">Add parameter</button>
+            </div>
+        </div>
+
+        <table class="table table-striped table-bordered" style="table-layout: fixed;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Supported types</th>
+                    <th>Required</th>
+                    <th ng-if="vm.canSaveActionType">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="parameter in vm.actionType.parameters | orderBy:'order'">
+                    <td>{{parameter.name}}</td>
+                    <td><span ng-repeat="type in parameter.validationTypes">{{ type.type + ($index === parameter.validationTypes.length - 1 ? '' : ', ') }}</span></td>
+                    <td>{{parameter.required ? 'Yes' : 'No'}}</td>
+                    <td ng-if="vm.canSaveActionType">
+                        <button type="button" class="btn btn-link" ng-click="vm.openParameterDetails(parameter, true)">Edit</button>
+                        <button type="button" class="btn btn-link" ng-click="vm.deleteParameter(parameter)">Delete</button>
+
+                        <button type="button" class="btn btn-link btn-xs" ng-click="vm.orderDown(parameter)" ng-disabled="$index == vm.actionType.parameters.length - 1">
+                            <i class="glyphicon glyphicon-triangle-bottom"></i>
+                        </button>
+                        <button type="button" class="btn btn-link btn-xs" ng-click="vm.orderUp(parameter)" ng-disabled="$index == 0">
+                            <i class="glyphicon glyphicon-triangle-top"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="submit" ng-if="vm.canSaveActionType">{{ vm.actionType.id ? 'Save' : 'Create'}}</button>
+        <button class="btn btn-default" type="button" ng-click="vm.cancel()">{{vm.canSaveActionType ? 'Cancel' : 'Close'}}</button>
+    </div>
+</form>

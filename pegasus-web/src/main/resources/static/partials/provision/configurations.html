@@ -1,0 +1,277 @@
+<!-- BEGIN MAIN CONTENT -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <form name="form"
+                  class="form-horizontal"
+                  role="form"
+                  novalidate>
+
+                <!-- configurations tab -->
+                <div>
+                    <div class="callout callout-default">
+                        <h4>{{entityName}} Configurations</h4>
+                        <p>Configurations can be added, removed or modified using these features. To add a new configuration, click "Add". To remove a configuration, click the "Remove" button below the configuration you want to remove. If you want to duplicate a configuration, click the "Clone" button below the configuration you want to duplicate. After making your desired changes click "Save" to store your changes.</p>
+                    </div>
+
+                    <div class="panel panel-default panel-page">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-12">
+                                    <div ng-if="configurationFilters.visible">
+
+                                        <div class="form-group">
+                                            <label for="nameFilter"
+                                                   class="col-md-1 control-label">Name
+                                            </label>
+                                            <div class="col-md-11">
+                                                <input id="nameFilter"
+                                                       name="nameFilter"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="Name"
+                                                       ng-model="configurationFilters.name"
+                                                       ng-trim="true"
+                                                       ng-disabled="!hasAccess()">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="categoryFilter"
+                                                   class="col-md-1 control-label">Category
+                                            </label>
+                                            <div class="col-md-11">
+                                                <select id="categoryFilter"
+                                                        name="categoryFilter"
+                                                        class="form-control"
+                                                        ng-model="configurationFilters.category"
+                                                        ng-required="true"
+                                                        ng-disabled="!hasAccess()">
+                                                    <option value="">All</option>
+                                                    <option ng-repeat="option in categoryOptions"
+                                                            value="{{option}}">{{option}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="table-group-actions pull-right">
+                                        <span></span>
+                                        <div class="btn-group" role="group" aria-label="...">
+                                            <!--button type="button"
+                                                class="btn btn-default"
+                                                ng-disabled="busy"
+                                                ng-click="toggleFilters()">Filter</button-->
+                                            <button type="button"
+                                                    class="btn btn-default"
+                                                    ng-disabled="busy || !hasAccess()"
+                                                    ng-click="addConfiguration()">Add</button>
+                                            <button type="submit"
+                                                    class="btn btn-default"
+                                                    ng-disabled="busy || !hasAccess()"
+                                                    ng-click="save(form, entity)">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="portlet-body form">
+                        <div class="form-body">
+                            <div ng-repeat = "item in entity.configurations track by $index" ng-init="itemConfiguration = $index">
+                                <div class="well">
+                                    <!-- Name -->
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error': form.configuration_name_{{itemConfiguration}}.$touched && form.configuration_name_{{itemConfiguration}}.$invalid, 'has-success': form.configuration_name_{{itemConfiguration}}.$touched && !form.configuration_name_{{itemConfiguration}}.$invalid }">
+                                        <label for="configuration_name_{{itemConfiguration}}"
+                                               class="col-md-1 control-label">Name
+                                            <span class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-md-11">
+                                            <div class="input-icon right">
+                                                <i ng-show="form.configuration_name_{{itemConfiguration}}.$touched && form.configuration_name_{{itemConfiguration}}.$invalid" class="fa fa-warning"></i>
+                                                <i ng-show="form.configuration_name_{{itemConfiguration}}.$touched && !form.configuration_name_{{itemConfiguration}}.$invalid" class="fa fa-check"></i>
+                                                <input id="configuration_name_{{itemConfiguration}}"
+                                                       name="configuration_name_{{itemConfiguration}}"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="Name"
+                                                       ng-model="item.name"
+                                                       ng-trim="true"
+                                                       ng-required="true"
+                                                       ng-minlength="3"
+                                                       ng-maxlength="50"
+                                                       ng-disabled="!hasAccess()">
+                                            </div>
+                                            <div class="help-block" ng-messages="form['configuration_name_'+itemConfiguration].$error" ng-show="form.configuration_name_{{itemConfiguration}}.$touched">
+                                                <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Name -->
+
+                                    <!-- Category -->
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error': form.configuration_category_{{itemConfiguration}}.$touched && form.configuration_category_{{itemConfiguration}}.$invalid, 'has-success': form.configuration_category_{{itemConfiguration}}.$touched && !form.configuration_category_{{itemConfiguration}}.$invalid }">
+                                        <label for="configuration_category_{{itemConfiguration}}"
+                                               class="col-md-1 control-label">Category
+                                            <span class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-md-11">
+                                            <div class="input-icon right">
+                                                <i ng-show="form.configuration_category_{{itemConfiguration}}.$touched && form.configuration_category_{{itemConfiguration}}.$invalid" class="fa fa-warning"></i>
+                                                <i ng-show="form.configuration_category_{{itemConfiguration}}.$touched && !form.configuration_category_{{itemConfiguration}}.$invalid" class="fa fa-check"></i>
+                                                <select id="configuration_category_{{itemConfiguration}}"
+                                                        name="configuration_category_{{itemConfiguration}}"
+                                                        class="form-control" ng-model="item.category"
+                                                        ng-required="true"
+                                                        ng-disabled="!hasAccess()">
+                                                    <option ng-repeat="option in categoryOptions"
+                                                            value="{{option}}">{{option}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="help-block" ng-messages="form['configuration_category_'+itemConfiguration].$error" ng-show="form.configuration_category_{{itemConfiguration}}.$touched">
+                                                <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Category -->
+
+                                    <!-- Data Type -->
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error': form.configuration_dataType_{{itemConfiguration}}.$touched && form.configuration_dataType_{{itemConfiguration}}.$invalid, 'has-success': form.configuration_dataType_{{itemConfiguration}}.$touched && !form.configuration_dataType_{{itemConfiguration}}.$invalid }">
+                                        <label for="configuration_dataType_{{itemConfiguration}}"
+                                               class="col-md-1 control-label">Data Type
+                                            <span class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-md-11">
+                                            <div class="input-icon right">
+                                                <i ng-show="form.configuration_dataType_{{itemConfiguration}}.$touched && form.configuration_dataType_{{itemConfiguration}}.$invalid" class="fa fa-warning"></i>
+                                                <i ng-show="form.configuration_dataType_{{itemConfiguration}}.$touched && !form.configuration_dataType_{{itemConfiguration}}.$invalid" class="fa fa-check"></i>
+                                                <select id="configuration_dataType_{{itemConfiguration}}"
+                                                        name="configuration_dataType_{{itemConfiguration}}"
+                                                        class="form-control" ng-model="item.dataType"
+                                                        ng-required="true"
+                                                        ng-disabled="!hasAccess()">
+                                                    <option ng-repeat="option in dataTypeOptions"
+                                                            value="{{option}}">{{option}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="help-block" ng-messages="form['configuration_dataType_'+itemConfiguration].$error" ng-show="form.configuration_dataType_{{itemConfiguration}}.$touched">
+                                                <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Data Type -->
+
+                                    <!-- Json Class -->
+                                    <div class="form-group"
+                                         ng-if="item.dataType=='Json'"
+                                         ng-class="{ 'has-error': form.configuration_jsonClass_{{itemConfiguration}}.$touched && form.configuration_jsonClass_{{itemConfiguration}}.$invalid, 'has-success': form.configuration_jsonClass_{{itemConfiguration}}.$touched && !form.configuration_jsonClass_{{itemConfiguration}}.$invalid }">
+                                        <label for="constant"
+                                               class="col-md-1 control-label">Json Class
+                                            <span class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-md-11">
+                                            <div class="input-icon right">
+                                                <i ng-show="form.configuration_jsonClass_{{itemConfiguration}}.$touched && form.configuration_jsonClass_{{itemConfiguration}}.$invalid" class="fa fa-warning"></i>
+                                                <i ng-show="form.configuration_jsonClass_{{itemConfiguration}}.$touched && !form.configuration_jsonClass_{{itemConfiguration}}.$invalid" class="fa fa-check"></i>
+                                                <input id="configuration_jsonClass_{{itemConfiguration}}"
+                                                       name="configuration_jsonClass_{{itemConfiguration}}"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="Json Class"
+                                                       ng-model="item.jsonClass"
+                                                       ng-trim="true"
+                                                       ng-required="true"
+                                                       ng-minlength="3"
+                                                       ng-maxlength="255"
+                                                       ng-disabled="!hasAccess()">
+                                            </div>
+                                            <div class="help-block" ng-messages="form['configuration_jsonClass_'+itemConfiguration].$error" ng-show="form.configuration_jsonClass_{{itemConfiguration}}.$touched">
+                                                <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Json Class -->
+
+                                    <!-- Value -->
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error': form.configuration_value_{{itemConfiguration}}.$touched && form.configuration_value_{{itemConfiguration}}.$invalid, 'has-success': form.configuration_value_{{itemConfiguration}}.$touched && !form.configuration_value_{{itemConfiguration}}.$invalid }">
+                                        <label for="constant"
+                                               class="col-md-1 control-label">Value
+                                            <span class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-md-11">
+                                            <div class="input-icon right">
+                                                <i ng-show="form.configuration_value_{{itemConfiguration}}.$touched && form.configuration_value_{{itemConfiguration}}.$invalid" class="fa fa-warning"></i>
+                                                <i ng-show="form.configuration_value_{{itemConfiguration}}.$touched && !form.configuration_value_{{itemConfiguration}}.$invalid" class="fa fa-check"></i>
+                                                <div ng-if="item.dataType=='Json'">
+                                                            <textarea id="configuration_value_{{itemConfiguration}}"
+                                                                      name="configuration_value_{{itemConfiguration}}"
+                                                                      class="form-control"
+                                                                      placeholder="Value"
+                                                                      ng-model="item.value"
+                                                                      ng-trim="true"
+                                                                      rows="7"
+                                                                      ng-disabled="!hasAccess()"></textarea>
+                                                </div>
+                                                <div ng-if="item.dataType!='Json'">
+                                                    <input id="configuration_value_{{itemConfiguration}}"
+                                                           name="configuration_value_{{itemConfiguration}}"
+                                                           type="text"
+                                                           class="form-control"
+                                                           placeholder="Value"
+                                                           ng-model="item.value"
+                                                           ng-trim="true"
+                                                           ng-disabled="!hasAccess()"></input>
+                                                </div>
+                                            </div>
+                                            <div class="help-block" ng-messages="form['configuration_value_'+itemConfiguration].$error" ng-show="form.configuration_value_{{itemConfiguration}}.$touched">
+                                                <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Value -->
+                                </div>
+
+                                <!-- BUTTONS -->
+                                <div class="form-group">
+                                    <div class="col-md-offset-1 col-md-11 text-right">
+                                        <div class="btn-group" role="group" aria-label="...">
+                                            <button type="button"
+                                                    class="btn btn-default"
+                                                    ng-disabled="busy || !hasAccess()"
+                                                    ng-click="cloneConfiguration($index)">Clone</button>
+                                            <button type="button"
+                                                    class="btn btn-default"
+                                                    ng-disabled="busy || !hasAccess()"
+                                                    ng-click="removeConfiguration($index)">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /BUTTONS -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /configurations -->
+
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-11 text-right">
+                            <button type="submit"
+                                    class="btn btn-default"
+                                    ng-disabled="busy || !hasAccess()"
+                                    ng-click="save(form, entity)">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

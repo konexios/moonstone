@@ -1,0 +1,231 @@
+<div class="content-bd-wrapper">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 ng-show="vm.pageTitleIcon && vm.pageTitle"><i class="fa {{vm.pageTitleIcon}}" aria-hidden="true"></i> {{vm.pageTitle}}</h1>
+        </div>
+        <div class="col-sm-6 text-right">
+            <div class="content-toolbar flex-row-end" ng-show="vm.toolbar && vm.toolbar.length > 0">
+                <button type="button"
+                        ng-repeat="button in vm.toolbar"
+                        class="btn btn-default"
+                        ng-click="button.onClick()"><i ng-class="button.icon"></i> {{button.caption}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+	<!-- TABS -->
+	<div style="margin-top: -1px;" class="content-sub-tabs" ng-if="job.scheduleStatus != 'SCHEDULED' && job.scheduleStatus != 'CANCELLED'">
+	    <ul class="nav nav-pills">
+	    	<li ng-class="vm.selectedStatus == 'ALL' ? 'active' : ''">
+	    		<a href="" ng-click="vm.changeSelectedStatus('ALL');">
+	    			All <sup><span class="badge badge-iot">{{job.devices}}</span></sup>
+	    		</a>
+	    	</li>
+	    	<li ng-class="vm.selectedStatus == 'PENDING' ? 'active' : ''">
+	    		<a href="" ng-click="vm.changeSelectedStatus('PENDING');">
+	    			Pending <sup><span class="badge badge-iot badge-fota-pending">{{vm.job.progressMetrics.pending.count}}</span></sup>
+	    		</a>
+	    	</li>
+	    	<li ng-class="vm.selectedStatus == 'INPROGRESS' ? 'active' : ''">
+	    		<a href="" ng-click="vm.changeSelectedStatus('INPROGRESS');">
+	    			In Progress <sup><span class="badge badge-iot badge-fota-inprogress">{{vm.job.progressMetrics.inprogress.count}}</span></sup>
+	    		</a>
+	    	</li>
+	    	<li ng-class="vm.selectedStatus == 'RECEIVED' ? 'active' : ''">
+	    		<a href="" ng-click="vm.changeSelectedStatus('RECEIVED');">
+	    			Received <sup><span class="badge badge-iot badge-fota-received">{{vm.job.progressMetrics.received.count}}</span></sup>
+	    		</a>
+	    	</li>
+	    	<li ng-class="vm.selectedStatus == 'COMPLETE' ? 'active' : ''">
+	    		<a href="" ng-click="vm.changeSelectedStatus('COMPLETE');">
+	    			Complete <sup><span class="badge badge-iot badge-fota-complete">{{vm.job.progressMetrics.complete.count}}</span></sup>
+	    		</a>
+	    	</li>
+	    	<li ng-class="vm.selectedStatus == 'CANCELLED' ? 'active' : ''">
+	    		<a href="" ng-click="vm.changeSelectedStatus('CANCELLED');">
+	    			Cancelled <sup><span class="badge badge-iot badge-fota-cancelled">{{vm.job.progressMetrics.cancelled.count}}</span></sup>
+	    		</a>
+	    	</li>
+	    	<li ng-class="vm.selectedStatus == 'EXPIRED' ? 'active' : ''">
+	    		<a href="" ng-click="vm.changeSelectedStatus('EXPIRED');">
+	    			Expired <sup><span class="badge badge-iot badge-fota-expired">{{vm.job.progressMetrics.expired.count}}</span></sup>
+	    		</a>
+	    	</li>
+	    	<li ng-class="vm.selectedStatus == 'ERROR' ? 'active' : ''">
+	    		<a href="" ng-click="vm.changeSelectedStatus('ERROR');">
+	    			Failed <sup><span class="badge badge-iot badge-fota-error">{{vm.job.progressMetrics.failed.count}}</span></sup>
+	    		</a>
+	    	</li>
+	    </ul>
+    </div>
+    <!-- /TABS -->
+
+	<div class="content-bd">
+
+		<div ng-if="job.scheduleStatus != 'SCHEDULED' && job.scheduleStatus != 'CANCELLED'">
+			<p><i class="fa fa-square" aria-hidden="true"></i> Updating to {{job.newSwVersion}}</p>
+
+			<!-- PROGRESS BAR -->
+			<div>
+				<div class="progress">
+				  <div class="progress-bar progress-bar-fota fota-bg-pending" role="progressbar" ng-style="{'width': vm.job.progressMetrics.pending.percent + '%'}" aria-valuenow="{{vm.job.progressMetrics.pending.percent}}" aria-valuemin="0" aria-valuemax="100" tooltip="Pending">{{job.progressMetrics.pending.count}}</div>
+				  <div class="progress-bar progress-bar-fota fota-bg-inprogress" role="progressbar" ng-style="{'width': vm.job.progressMetrics.inprogress.percent + '%'}" aria-valuenow="{{vm.job.progressMetrics.inprogress.percent}}" aria-valuemin="0" aria-valuemax="100" tooltip="In progress">{{job.progressMetrics.inprogress.count}}</div>
+				  <div class="progress-bar progress-bar-fota fota-bg-received" role="progressbar" ng-style="{'width': vm.job.progressMetrics.received.percent + '%'}" aria-valuenow="{{vm.job.progressMetrics.received.percent}}" aria-valuemin="0" aria-valuemax="100" tooltip="Received">{{job.progressMetrics.received.count}}</div>
+				  <div class="progress-bar progress-bar-fota fota-bg-complete" role="progressbar" ng-style="{'width': vm.job.progressMetrics.complete.percent + '%'}" aria-valuenow="{{vm.job.progressMetrics.complete.percent}}" aria-valuemin="0" aria-valuemax="100" tooltip="Complete">{{job.progressMetrics.complete.count}}</div>
+				  <div class="progress-bar progress-bar-fota fota-bg-cancelled" role="progressbar" ng-style="{'width': vm.job.progressMetrics.cancelled.percent + '%'}" aria-valuenow="{{vm.job.progressMetrics.cancelled.percent}}" aria-valuemin="0" aria-valuemax="100" tooltip="Cancelled">{{job.progressMetrics.cancelled.count}}</div>
+				  <div class="progress-bar progress-bar-fota fota-bg-expired" role="progressbar" ng-style="{'width': vm.job.progressMetrics.expired.percent + '%'}" aria-valuenow="{{vm.job.progressMetrics.expired.percent}}" aria-valuemin="0" aria-valuemax="100" tooltip="Expired">{{job.progressMetrics.expired.count}}</div>
+				  <div class="progress-bar progress-bar-fota fota-bg-error" role="progressbar" ng-style="{'width': vm.job.progressMetrics.failed.percent + '%'}" aria-valuenow="{{vm.job.progressMetrics.failed.percent}}" aria-valuemin="0" aria-valuemax="100" tooltip="Failed">{{job.progressMetrics.failed.count}}</div>
+				</div>
+			</div>
+			<!-- /PROGRESS BAR -->
+		</div>
+
+		<div class="panel panel-default panel-content">
+		    <div class="panel-heading" ng-show="vm.resultTitle">
+		        <h3 class="panel-title"><i class="fa fa-list" aria-hidden="true" ng-if="!vm.hideResultIcon"></i> {{vm.resultTitle}}</h3>
+		    </div>
+		    <div class="panel-body">
+		        <div class="row table-toolbar">
+		            <div class="col-sm-6 height-50">
+		                <arrow-items-per-page-dropdown
+		                    data-classes="pull-right-for-mobile margin-bottom-15"
+		                    data-items-per-page="vm.pagination.itemsPerPage"
+		                    data-total-items="vm.pagination.totalItems"
+		                    data-change="vm.changeItemsPerPage(numberOfItems)"></arrow-items-per-page-dropdown>
+		            </div>
+		            <div class="col-sm-6 page-navigation-wrap">
+		                <div class="btn-group flex-row-end" role="group" aria-label="">
+		                    <button type="button" class="btn btn-default" ng-disabled="!vm.bulkMoveToError" ng-click="vm.moveTransactionsToError()">Mark as Failed</button>
+		                    <!--button type="button" class="btn btn-default" ng-disabled="!vm.bulkRetryOnError" ng-click="vm.retryTransactionsOnError()">Mark as Error</button-->
+		                    <button type="button" class="btn btn-default" ng-disabled="!vm.bulkRetry && !vm.bulkRetryOnError" ng-click="vm.retryTransactions()">Retry</button>
+		                    <button type="button" class="btn btn-default" ng-disabled="!vm.bulkCancel" ng-click="vm.cancelTransactions()">Cancel</button>
+		                </div>
+		            </div>
+		        </div>
+		
+		        <table class="table table-striped table-bordered" style="table-layout: fixed;">
+		            <thead>
+		            <tr>
+		                <th class="table-checkbox" ng-if="vm.bulkEdit"><a href="" ng-click="vm.toggleSelectThisPage();"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></th>
+		                <th class="hidden-xs" ng-repeat="header in vm.columnHeaders"
+		                    arrow-column-header
+		                    label="header.label"
+		                    value="header.value"
+		                    sort-field="vm.pagination.sort.property"
+		                    sort-direction="vm.pagination.sort.direction"
+		                    sortable="header.sortable"
+		                    sort="vm.sortColumn(column)">
+		                </th>
+		                <th class="hidden-lg hidden-md hidden-sm">
+		                    <div class="btn-group" uib-dropdown is-open="status.isopen">
+		                        <button id="single-button" type="button" class="btn btn-default"
+		                                uib-dropdown-toggle ng-disabled="disabled">
+		                            Sort by: {{vm.getHeaderLabel(vm.columnHeaders, vm.pagination.sort.property)}}
+		                            &nbsp;&nbsp;
+		                            <i ng-if="vm.pagination.sort.direction=='DESC'" class="fa fa-sort-desc"></i>
+		                            <i ng-if="vm.pagination.sort.direction=='ASC'" class="fa fa-sort-asc"></i>
+		                        </button>
+		                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+		                            <li ng-repeat="header in vm.columnHeaders"
+		                                arrow-column-header-small-desktop
+		                                label="header.label"
+		                                value="header.value"
+		                                sort-field="vm.pagination.sort.property"
+		                                sort-direction="vm.pagination.sort.direction"
+		                                sortable="header.sortable"
+		                                role="menuitem"
+		                                sort="vm.sortColumn(column)">
+		                            </li>
+		                        </ul>
+		                    </div>
+		                </th>
+		            </tr>
+		            </thead>
+		            <tbody>
+		            <tr ng-if="(!vm.pagination.content || vm.pagination.content.length <= 0) && vm.noResultsMsg">
+		            	<td colspan="{{vm.columnHeaders.length + 1}}" class="text-center">{{vm.noResultsMsg}}</td>
+		            </tr>
+		            <tr ng-if="vm.pagination.content && vm.pagination.content.length > 0" ng-repeat="item in vm.pagination.content track by $index" >
+		                <td class="table-checkbox" ng-if="vm.bulkEdit">
+		                	<input type="checkbox" value="" ng-checked="vm.isSelected(item)" 
+		                		ng-click="vm.toggleSelection(item)" ng-if="vm.canSelect(item)"
+		                		ng-disabled="!vm.bulkMoveToError && !vm.bulkRetry && !vm.bulkCancel" /></td>
+		                	<td>
+		                		{{item.name}}
+		                		<br><small><em>{{item.firmwareFrom}}</em></small>
+		                	</td>
+		                	<td>{{item.uid}}</td>
+		                	<td>
+		                		<span class="badge badge-iot badge-fota-{{item.status.toLowerCase()}}">{{item.status}}</span>
+		                		<span ng-if="item.status == 'ERROR'"><br/>{{item.error}}</span>
+		                	</td>
+		                	<td>{{item.started | date: "MM/dd/yyyy h:mm a"}}</td>
+		                	<td>{{item.remainingMinutes}}</td>
+		                	<td>{{item.retryCount}}</td>
+		                <!--td class="hidden-xs" ng-repeat="column in vm.columnHeaders" ng-style="column.style">
+		                    <a href="" ng-if="vm.displayState($index,column,item) === 'edit'" ng-click="vm.openDetails(item)">123{{vm.getCellText(item,column)}}</a>
+		                    <span ng-if="vm.displayState($index,column,item) === 'text'">{{vm.getCellText(item,column)!==null?vm.getCellText(item, column):'---'}}</span>
+		                    <a href="" ng-if="vm.displayState($index,column,item) === 'action'" ng-click="column.cellAction(item)">{{vm.getCellText(item,column)}}</a>
+		                </td>
+		                <td class="hidden-lg hidden-md hidden-sm">
+		                    <div class="white-space-normal" ng-repeat="column in vm.columnHeaders">
+		                        <b>{{column.label}}:</b>
+		                        <a href="" ng-if="vm.displayState($index,column,item) === 'edit'" ng-click="vm.openDetails(item)">{{vm.getCellText(item, column)}}</a>
+		                        <span ng-if="vm.displayState($index,column,item) === 'text'">{{vm.getCellText(item, column)!==null?vm.getCellText(item, column):'---'}}</span>
+		                        <a href="" ng-if="vm.displayState($index,column,item) === 'action'" ng-click="column.cellAction(item)">{{vm.getCellText(item,column)}}</a>
+		                    </div>
+		                </td-->
+		            </tr>
+		            </tbody>
+		            <tfoot>
+		            <tr>
+		                <td class="hidden-xs" colspan="{{vm.columnHeaders.length + (vm.bulkEdit ? 1 : 0)}}">
+		                    <div class="row">
+		                        <div class="col-sm-6">
+		                            <arrow-showing-items
+		                                data-page-index="vm.pagination.pageIndex"
+		                                data-items-per-page="vm.pagination.itemsPerPage"
+		                                data-total-items="vm.pagination.totalItems"
+		                                data-topic="{{vm.tfootTopic}}"></arrow-showing-items>
+		                        </div>
+		                        <div class="col-sm-6 page-navigation-wrap">
+		                            <arrow-pagination
+		                                data-page-index="vm.pagination.pageIndex"
+		                                data-total-pages="vm.pagination.totalPages"
+		                                data-first="vm.pagination.first"
+		                                data-last="vm.pagination.last"
+		                                data-previous="vm.previousPage()"
+		                                data-next="vm.nextPage()"
+		                                data-go="vm.gotoPage(pageNumber)"></arrow-pagination>
+		                        </div>
+		                    </div>
+		                </td>
+		                <td class="hidden-lg hidden-md hidden-sm" colspan="{{vm.bulkEdit ? 1 : 0}}">
+		                    <div class="row">
+		                        <div class="col-sm-6">
+		                            <arrow-showing-items
+		                                data-page-index="vm.pagination.pageIndex"
+		                                data-items-per-page="vm.pagination.itemsPerPage"
+		                                data-total-items="vm.pagination.totalItems"
+		                                data-topic="{{vm.tfootTopic}}"></arrow-showing-items>
+		                        </div>
+		                        <div class="col-sm-6 page-navigation-wrap">
+		                            <arrow-pagination
+		                                data-page-index="vm.pagination.pageIndex"
+		                                data-total-pages="vm.pagination.totalPages"
+		                                data-first="vm.pagination.first"
+		                                data-last="vm.pagination.last"
+		                                data-previous="vm.previousPage()"
+		                                data-next="vm.nextPage()"
+		                                data-go="vm.gotoPage(pageNumber)"></arrow-pagination>
+		                        </div>
+		                    </div>
+		                </td>
+		            </tr>
+		            </tfoot>
+		        </table>
+		    </div>
+		</div>
+	</div>
+</div>

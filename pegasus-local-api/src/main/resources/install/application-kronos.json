@@ -1,0 +1,12 @@
+[
+    {
+        "name": "default-kronos",
+        "description": "Default Kronos Application",
+        "code": "DEFAULT-KRONOS",
+        "apiSigningRequired": "INHERIT",
+        "configurations": [],
+        "productExtensionIds": [],
+        "productFeatures": [],
+        "enabled": true
+    }
+]

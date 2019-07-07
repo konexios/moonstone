@@ -1,0 +1,166 @@
+<!-- BEGIN MAIN CONTENT -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <form name="form"
+                  class="form-horizontal"
+                  role="form"
+                  novalidate>
+
+                <!-- features tab -->
+                <div>
+                    <div class="callout callout-default">
+                        <h4>Product Features</h4>
+                        <p>Product Features can be added, removed or modified using these features. To add a new Product Feature, click "Add". To remove a Product Feature, click the "Remove" button below the product feature you want to remove. After making your desired changes click "Save" to store your changes.</p>
+                    </div>
+
+                    <div class="panel panel-default panel-page">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-12">&nbsp;</div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="table-group-actions pull-right">
+                                        <span></span>
+                                        <div class="btn-group" role="group" aria-label="...">
+                                            <button type="button"
+                                                    class="btn btn-default"
+                                                    ng-disabled="busy || !hasAccess()"
+                                                    ng-click="addFeature()">Add</button>
+                                            <button type="submit"
+                                                    class="btn btn-default"
+                                                    ng-disabled="busy || !hasAccess()"
+                                                    ng-click="save(form, product)">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="portlet-body form">
+                        <div class="form-body">
+                            <div ng-repeat = "item in product.features track by $index" ng-init="itemFeature = $index">
+                                <div class="well">
+                                    <!-- Name -->
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error': form.feature_name_{{itemFeature}}.$touched && form.feature_name_{{itemFeature}}.$invalid, 'has-success': form.feature_name_{{itemFeature}}.$touched && !form.feature_name_{{itemFeature}}.$invalid }">
+                                        <label for="feature_name_{{itemFeature}}"
+                                               class="col-md-2 control-label">Name
+                                            <span class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+                                            <div class="input-icon right">
+                                                <i ng-show="form.feature_name_{{itemFeature}}.$touched && form.feature_name_{{itemFeature}}.$invalid" class="fa fa-warning"></i>
+                                                <i ng-show="form.feature_name_{{itemFeature}}.$touched && !form.feature_name_{{itemFeature}}.$invalid" class="fa fa-check"></i>
+                                                <input id="feature_name_{{itemFeature}}"
+                                                       name="feature_name_{{itemFeature}}"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="Name"
+                                                       ng-model="item.name"
+                                                       ng-trim="true"
+                                                       ng-required="true"
+                                                       ng-minlength="3"
+                                                       ng-maxlength="50"
+                                                       ng-disabled="!hasAccess()">
+                                            </div>
+                                            <div class="help-block" ng-messages="form['feature_name_'+itemFeature].$error" ng-show="form.feature_name_{{itemFeature}}.$touched">
+                                                <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Name -->
+
+                                    <!-- Description -->
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error': form.feature_description_{{itemFeature}}.$touched && form.feature_description_{{itemFeature}}.$invalid, 'has-success': form.feature_description_{{itemFeature}}.$touched && !form.feature_description_{{itemFeature}}.$invalid }">
+                                        <label for="feature_description_{{itemFeature}}"
+                                               class="col-md-2 control-label">Description
+                                            <span class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+                                            <div class="input-icon right">
+                                                <i ng-show="form.feature_description_{{itemFeature}}.$touched && form.feature_description_{{itemFeature}}.$invalid" class="fa fa-warning"></i>
+                                                <i ng-show="form.feature_description_{{itemFeature}}.$touched && !form.feature_description_{{itemFeature}}.$invalid" class="fa fa-check"></i>
+                                                <input id="feature_description_{{itemFeature}}"
+                                                       name="feature_description_{{itemFeature}}"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="Description"
+                                                       ng-model="item.description"
+                                                       ng-trim="true"
+                                                       ng-required="true"
+                                                       ng-minlength="3"
+                                                       ng-maxlength="50"
+                                                       ng-disabled="!hasAccess()">
+                                            </div>
+                                            <div class="help-block" ng-messages="form['feature_description_'+itemFeature].$error" ng-show="form.feature_description_{{itemFeature}}.$touched">
+                                                <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Description -->
+
+                                    <!-- System Name -->
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error': form.feature_systemName_{{itemFeature}}.$touched && form.feature_systemName_{{itemFeature}}.$invalid, 'has-success': form.feature_systemName_{{itemFeature}}.$touched && !form.feature_systemName_{{itemFeature}}.$invalid }">
+                                        <label for="feature_systemName_{{itemFeature}}"
+                                               class="col-md-2 control-label">System Name
+                                            <span class="required" aria-required="true"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+                                            <div class="input-icon right">
+                                                <i ng-show="form.feature_systemName_{{itemFeature}}.$touched && form.feature_systemName_{{itemFeature}}.$invalid" class="fa fa-warning"></i>
+                                                <i ng-show="form.feature_systemName_{{itemFeature}}.$touched && !form.feature_systemName_{{itemFeature}}.$invalid" class="fa fa-check"></i>
+                                                <input id="feature_systemName_{{itemFeature}}"
+                                                       name="feature_systemName_{{itemFeature}}"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="System Name"
+                                                       ng-model="item.systemName"
+                                                       ng-trim="true"
+                                                       ng-required="true"
+                                                       ng-minlength="3"
+                                                       ng-maxlength="50"
+                                                       ng-disabled="!hasAccess()">
+                                            </div>
+                                            <div class="help-block" ng-messages="form['feature_systemName_'+itemFeature].$error" ng-show="form.feature_systemName_{{itemFeature}}.$touched">
+                                                <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Description -->
+
+                                    <!-- BUTTONS -->
+                                    <div class="form-group">
+                                        <div class="col-md-offset-1 col-md-11 text-right">
+                                            <div class="btn-group" role="group" aria-label="...">
+                                                <button type="button"
+                                                        class="btn btn-default"
+                                                        ng-disabled="busy || !hasAccess()"
+                                                        ng-click="removeFeature(itemFeature)">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /BUTTONS -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-11 text-right">
+                            <button type="submit"
+                                    class="btn btn-default"
+                                    ng-disabled="busy || !hasAccess()"
+                                    ng-click="save(form, product)">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1380 @@
+<!-- ROW CONTENT -->
+<div class="row-content"
+    on-resize
+	ng-controller="DeviceDetailsController"
+	ng-show="!loading">
+
+	<subscription-expiration></subscription-expiration>
+
+	<!-- CONTENT NAV -->
+	<div class="content-nav overflow-hidden arrow-collapsed-menu" ng-class="{'mobile-view':mobileLayot, 'showed-menu':mobileMenuShowed, 'collapsed-view':collapsedView}">
+        <div class="nav nav-custom-scrollbar" ng-scrollbars ng-scrollbars-config="scrollerConfig">
+            <ul class="nav-pills nav-stacked">
+                <li role="presentation" ng-class="activeTab == 0 ? 'active' : ''">
+                    <a href="" ng-click="activeTab = 0; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-tablet" aria-hidden="true"></i></span><span class="title crop">{{device.name}}</span>
+                    </a>
+                </li>
+                <li role="presentation" ng-class="activeTab == 3 ? 'active' : ''">
+                    <a href="" ng-click="activeTab = 3; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-tasks" aria-hidden="true"></i></span><span class="title crop">Actions</span>
+                    </a>
+                </li>
+                <li role="presentation" ng-class="activeTab == 5 ? 'active' : ''">
+                    <a href="" ng-click="activeTab = 5; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-exclamation" aria-hidden="true"></i></span><span class="title crop">Notification</span>
+                    </a>
+                </li>
+                <li role="presentation" ng-class="activeTab == 6 ? 'active' : ''">
+                    <a href="" ng-click="activeTab = 6; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-line-chart" aria-hidden="true"></i></span><span class="title crop">Telemetry</span>
+                    </a>
+                </li>
+                <li role="presentation" ng-class="activeTab == 10 ? 'active' : ''">
+                    <a href="" ng-click="activeTab = 10; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-floppy-o" aria-hidden="true"></i></span><span class="title crop">Export Telemetry</span>
+                    </a>
+                </li>
+				<li role="presentation" ng-show="canReadDeviceState || canReadDeviceStateTrans" ng-class="activeTab == 13 ? 'active' : ''">
+                    <a href="" ng-click="activeTab = 13; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-question" aria-hidden="true"></i></span><span class="title crop">Device State</span>
+                    </a>
+                </li>
+				<li role="presentation" ng-show="canReadSoftwareReleaseTrans" ng-class="activeTab == 12 ? 'active' : ''">
+                    <a href="" ng-click="activeTab = 12; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-cloud-download" aria-hidden="true"></i></span><span class="title crop">Firmware History</span>
+                    </a>
+                </li>
+                <li role="presentation" ng-show="canViewLogs" ng-class="activeTab == 7 ? 'active' : ''">
+                    <a href="" ng-click="activeTab = 7; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-history" aria-hidden="true"></i></span><span class="title crop">Audit Logs</span>
+                    </a>
+                </li>
+				<li ng-show="canViewDevicePayload" role="presentation" ng-class="activeTab == 9 ? 'active' : ''">
+                    <a href="" ng-click="activeTab = 9; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-code" aria-hidden="true"></i></span><span class="title crop">Developer</span>
+                    </a>
+                </li>
+				<li ng-show="canReadDeviceTestResults" role="presentation" ng-class="activeTab == 11 ? 'active' : ''">
+                    <a href="" ng-click="activeTab = 11; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-cubes" aria-hidden="true"></i></span><span class="title crop">Test Results</span>
+                    </a>
+                </li>
+				<li role="presentation"
+					ng-class="activeTab == 14 ? 'active' : ''">
+					<a href="" ng-click="activeTab = 14; mobileMenuShowed=false">
+						<span class="icon-wrapper">
+						<i class="glyphicon glyphicon-hdd" aria-hidden="true"></i>
+						</span><span class="title crop">Config Backups</span></a>
+				</li>
+                <li role="presentation" ng-show="canAddTag || canViewAccessKeys">
+                    <hr/>
+                </li>
+                <li ng-show="canAddTag" role="presentation" ng-class="activeTab == 4 ? 'active' : ''">
+                    <a href="" ng-click="activeTab = 4; mobileMenuShowed=false">
+                        <span class="icon-wrapper"><i class="fa fa-tags" aria-hidden="true"></i></span><span class="title crop">Tags</span>
+                    </a>
+                </li>
+                <li role="presentation" ng-show="device.gateway.id &amp;&amp; canReadGateways()">
+                    <hr/>
+                </li>
+                <li ng-show="device.gateway.id &amp;&amp; canReadGateways()" role="presentation">
+                    <a href="#gateway/{{device.gateway.id}}">
+                        <span class="icon-wrapper"><i class="fa fa-share-square-o" aria-hidden="true"></i></span><span class="title crop">Gateway</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <ul class="collapsed-button-wrap nav nav-pills">
+            <li role="presentation" class="collapse-button">
+                <a ng-click="collapseMenu()" class="text-right">
+                    <span class="icon-wrapper"><i class="fa fa-lg" ng-class="{
+                            'fa-angle-double-left': !mobileLayot && !collapsedView,
+                            'fa-angle-double-right': !mobileLayot && collapsedView,
+                            'mobile fa-angle-double-right': mobileLayot && !mobileMenuShowed,
+                            'mobile fa-angle-double-left': mobileLayot && mobileMenuShowed
+                        }" aria-hidden="true"></i></span>
+                </a>
+            </li>
+        </ul>
+	</div>
+	<!-- /CONTENT NAV -->
+
+	<!-- CONTENT WRAPPER -->
+	<div class="content-wrapper" ng-class="{'mobile-view':mobileLayot, 'showed-menu':mobileMenuShowed, 'collapsed-view':collapsedView}">
+		<div class="content-hd">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="content-title">
+						<h1 class="title">{{device.name}}
+							<i class="fa fa-check-circle"
+								aria-hidden="true"
+								style="color: green;"
+								ng-if="device.enabled"></i>
+							<i class="fa fa-minus-circle"
+								aria-hidden="true"
+								style="color: red;"
+								ng-if="!device.enabled"></i>
+							<a href=""
+	                        	ng-click="openObjectLocation('lg')">
+	                        	<i class="fa fa-map-marker"
+	                        		aria-hidden="true"
+	                        		ng-style="{color: (device.lastLocation.validLocation ? 'green' : 'red')}"
+	                        		title="Geographical Location"></i>
+	                        </a>
+						</h1>
+						<br/>
+						<span>{{device.uid}}</span>
+					</div>
+				</div>
+				<div class="col-md-12 text-right">
+					<div class="content-toolbar">
+					  <button type="button"
+					  	class="btn btn-warning"
+					  	ng-if="canDeleteDevice"
+					  	ng-click="deleteDevice()">Delete</button>
+					  <button type="button"
+					  	class="btn btn-default"
+					  	ng-if="!device.enabled && canEditDevice"
+					  	ng-click="enableDevice()">Enable</button>
+					  <button type="button"
+					  	class="btn btn-default"
+					  	ng-if="device.enabled && canEditDevice"
+					  	ng-click="disableDevice()">Disable</button>
+                      <button type="button"
+                        class="btn btn-default"
+                        ng-if="device.gateway.id"
+                        ng-click="switchDevice()">Switch Device</button>
+						<button type="button"
+								class="btn btn-default"
+								ng-if="canEditDevice"
+								ng-click="syncDeviceConfigToCloud()">Sync Config To Cloud</button>
+						<button type="button"
+								class="btn btn-default"
+								ng-if="canEditDevice"
+								ng-click="syncConfigToDevice()">Sync Config To Device</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- CONTENT BODY WRAPPER -->
+		<div class="content-bd-wrapper">
+	        	<!-- DEVICE TAB -->
+	        	<div ng-if="activeTab == 0">
+	        		<!-- SUB TABS -->
+	        		<div class="content-sub-tabs">
+						<ul class="nav nav-pills" ng-class="{'mobile-tabs':mobileLayot}">
+							<li role="presentation"
+								ng-class="activeTab == 0 && activeSubTab == 0 ? 'active' : ''"><a href="" ng-click="activeSubTab = 0">Summary</a></li>
+							<li role="presentation"
+								ng-class="activeTab == 0 && activeSubTab == 1 ? 'active' : ''"><a href="" ng-click="activeSubTab = 1">Details</a></li>
+							<li role="presentation"
+								ng-class="activeTab == 0 && activeSubTab == 2 ? 'active' : ''"><a href="" ng-click="activeSubTab = 2">Settings</a></li>
+							<li role="presentation"
+                                ng-show="canSendCommandToDevice"
+								ng-class="activeTab == 0 && activeSubTab == 3 ? 'active' : ''"><a href="" ng-click="activeSubTab = 3">Controls</a></li>
+						</ul>
+					</div>
+					<!-- /SUB TABS -->
+					<!-- SUMMARY SUB TAB -->
+					<div ng-if="activeTab == 0 && activeSubTab == 0">
+						<div class="content-bd">
+
+							<!-- STATS -->
+							<div class="row row-stats">
+								<!--div class="col-md-2 text-center">
+									<div class="circle circle-lg bg-red">
+										<div class="stats">
+											<div class="stat">
+												<span class="icon"><i class="fa fa-tasks" aria-hidden="true"></i></span>
+												<br/><span class="value">{{device.actions.length}}</span>
+												<br/><span class="name">Actions</span>
+											</div>
+										</div>
+									</div>
+								</div-->
+								<div class="col-md-2 hidden-sm hidden-xs text-center">
+									<div class="circle-widget bg-blue">
+										<div class="circle-widget-content circle-widget-3-rows">
+											<span class="circle-widget-icon"><i class="fa fa-bolt" aria-hidden="true"></i></span>
+											<span class="circle-widget-value"title="{{device.deviceStats.telemetryItemCount}}">{{device.deviceStats.telemetryItemCount | bigDigFormatter}}</span>
+											<span class="circle-widget-caption">telemetry</span>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-2 hidden-sm hidden-xs text-center">
+									<div class="circle-widget bg-purple">
+										<div class="circle-widget-content circle-widget-3-rows">
+											<span class="circle-widget-icon"><i class="fa fa-exclamation" aria-hidden="true"></i></span>
+											<span class="circle-widget-value"title="{{device.deviceStats.deviceEventCount}}">{{device.deviceStats.deviceEventCount | bigDigFormatter}}</span>
+											<span class="circle-widget-caption">notifications</span>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-8 col-sm-12 text-center">
+									<div google-chart chart="sevenDayChart"
+										style="height:225px; width:100%; margin: auto;" ng-if="sevenDayChart"></div>
+								</div>
+							</div>
+							<!-- /STATS -->
+							<!-- LAST TELEMETRY -->
+							<div class="row">
+								<div class="col-md-12">
+									<div class="panel panel-default panel-content">
+										<div class="panel-heading">
+											<h3 class="panel-title">
+												<i class="fa fa-bolt" aria-hidden="true"></i> Most Recent Telemetry <small>(as of {{lastStatLoad | date: "MM/dd/yyyy hh:mm:ss a"}})</small>
+												<i class="dropdown b_right" style="min-width: 160px; text-align: right;">
+													<a href=""
+														 class="dropdown-toggle e_tdn"
+														 data-toggle="dropdown"
+														 role="button"
+														 aria-haspopup="true"
+														 aria-expanded="false"
+														 style="color: #fff; font-size: 8px;">
+														<i class="fa fa-circle" aria-hidden="true"></i> <i class="fa fa-circle" aria-hidden="true"></i> <i class="fa fa-circle" aria-hidden="true"></i>
+													</a>
+													<ul class="dropdown-menu" style="left: auto; right: 0;">
+														<li ng-show="isAdmin || device.deviceTypeEditable">
+															<a href="" ng-click="syncDeviceType()">Sync Asset Type</a>
+														</li>
+														<li ng-if="canDeleteDeviceTelemetry">
+															<a href="" ng-click="updateManageTelemetry(true)">Manage Most Recent Telemetry</a>
+														</li>
+													</ul>
+												</i>
+											</h3>
+										</div>
+										<div class="panel-body">
+											<form name="telemetryToRemove" ng-submit="removeTelemetry(telemetryToRemove)">
+												<div ng-if="manageTelemetry" class="remove-telemetry">
+													<div class="remove-telemetry__control">
+														<input type="checkbox" ng-click="updateRemoveTelemetryDefinition()">
+														Remove telemetry definition <span class="small-hide">if exists</span>
+													</div>
+													<div class="btn-group flex-block">
+														<button type="submit"
+																		class="btn btn-default">
+															Remove <span class="small-hide">Selected Telemetry</span>
+														</button>
+														<button type="button"
+																		class="btn btn-default"
+																		ng-click="updateManageTelemetry(false)"> Cancel
+														</button>
+													</div>
+												</div>
+												<table class="table" style="table-layout: fixed;">
+														<thead class="hidden-xs">
+																<tr>
+																		<th ng-if="manageTelemetry" style="width: 10%"></th>
+																		<th>Name</th>
+																		<th>Value</th>
+																		<th>Timestamp</th>
+																</tr>
+														</thead>
+														<tbody>
+															<!--tr class="hidden-xs">
+																<td>timestamp</td>
+																<td>{{device.lastTelemetry.timestamp}}</td>
+															</tr>
+																				<tr class="hidden-lg hidden-md hidden-sm">
+																						<td>
+																								<div><b>timestamp:</b> {{device.lastTelemetry.timestamp}}</div>
+																						</td>
+																				</tr-->
+
+															<tr ng-repeat="telemetryItem in device.lastTelemetry.telemetryItems track by $index">
+																<td ng-if="manageTelemetry"
+																		class="hidden-xs table-checkbox">
+																	<input type="checkbox" ng-click="changeSelectedTelemetry(telemetryItem.id)">
+																</td>
+																<td class="hidden-xs">{{telemetryItem.name}}</td>
+																<td class="hidden-xs">
+																	<span ng-bind-html="formatLastTelemetryItemValue(telemetryItem.value)"></span>
+																</td>
+																<td class="hidden-xs">{{telemetryItem.timestamp | date: "MM/dd/yyyy hh:mm:ss a"}}</td>
+																<td class="hidden-lg hidden-md hidden-sm white-space-normal">
+																	<div>
+																		<b>Name:</b> {{telemetryItem.name}} <input type="checkbox" ng-click="changeSelectedTelemetry(telemetryItem.id)">
+																	</div>
+																	<div class="white-space-normal">
+																		<b>Value:</b> {{telemetryItem.value}}
+																	</div>
+																	<div class="white-space-normal">
+																		<b>Timestamp:</b> {{telemetryItem.timestamp | date: "MM/dd/yyyy hh:mm:ss a"}}
+																	</div>
+																</td>
+															</tr>
+														</tbody>
+												</table>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /LAST TELEMETRY -->
+					</div>
+					<!-- /SUMMARY SUB TAB -->
+					<!-- DETAIL SUB TAB -->
+					<div ng-if="activeTab == 0 && activeSubTab == 1">
+						<div class="content-bd">
+							<div class="row">
+								<div class="col-md-12">
+
+									<div class="panel panel-default panel-content">
+										<div class="panel-heading">
+											<h3 class="panel-title"><i class="fa fa-file" aria-hidden="true"></i> Details</h3>
+										</div>
+										<div class="panel-body">
+											<table class="table" style="table-layout: fixed;">
+												<col class="hidden-xs" style="width:30%">
+										        <col class="hidden-xs" style="width:70%">
+											    <thead class="hidden-xs">
+											        <tr>
+											            <th>Name</th>
+											            <th>Value</th>
+											        </tr>
+											    </thead>
+											    <tbody>
+											        <tr ng-repeat="(key, value) in device.info">
+											            <td class="hidden-xs">{{key}}</td>
+											            <td class="hidden-xs" ng-hide="_isJson(value)">{{value}}</td>
+											            <td class="hidden-xs" ng-show="_isJson(value)"><pre class="prettyJsonValue">{{value|prettyJSON}}</pre></td>
+                                                        <td class="hidden-lg hidden-md hidden-sm">
+                                                            <div>
+                                                                <b>Name:</b> {{key}}
+                                                            </div>
+                                                            <div ng-hide="_isJson(value)" class="white-space-normal">
+                                                                <b>Value:</b> {{value}}
+                                                            </div>
+                                                            <div ng-show="_isJson(value)" class="white-space-normal">
+                                                                <b>Value:</b> <pre class="prettyJsonValue">{{value|prettyJSON}}</pre>
+                                                            </div>
+                                                        </td>
+											        </tr>
+											    </tbody>
+											</table>
+										</div>
+									</div>
+
+								</div>
+								<div class="col-md-3"></div>
+							</div>
+						</div>
+					</div>
+					<!-- /DETAIL SUB TAB -->
+					<!-- SETTINGS SUB TAB -->
+					<div ng-if="activeTab == 0 && activeSubTab == 2">
+                    <!-- DEVICE FORM -->
+                    <form name="deviceForm" class="form-horizontal" novalidate ng-submit="save(deviceForm);">
+						<div class="content-bd">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="panel panel-default panel-content">
+										<div class="panel-heading">
+											<h3 class="panel-title"><i class="fa fa-cogs" aria-hidden="true"></i> General</h3>
+										</div>
+										<div class="panel-body">
+
+
+											<div class="form-group">
+												<label for="deviceName" class="col-sm-4 control-label">Name</label>
+												<div class="col-sm-8">
+													<p class="form-control-static" ng-if="!canEditDevice">{{device.name}}</p>
+													<input type="text" id="deviceName" name="deviceName" class="form-control" ng-model="device.name" required="required" ng-if="canEditDevice" />
+												</div>
+												<div class="col-sm-offset-4 col-sm-8"
+													ng-messages="deviceForm.deviceName.$error"
+												 	role="alert">
+													<div class="alert-danger">
+														<div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4 control-label">UID</label>
+												<div class="col-sm-8">
+													<p class="form-control-static">{{device.uid}}</p>
+												</div>
+											</div>
+											<div class="form-group" ng-if="device.softwareName">
+												<label class="col-sm-4 control-label">Software Name</label>
+												<div class="col-sm-8">
+													<p class="form-control-static">{{device.softwareName}}</p>
+												</div>
+											</div>
+											<div class="form-group" ng-if="device.softwareVesrion">
+												<label class="col-sm-4 control-label">Software Version</label>
+												<div class="col-sm-8">
+													<p class="form-control-static">{{device.softwareVesrion}}</p>
+												</div>
+											</div>
+											<div class="form-group">
+											    <label for="deviceType" class="col-sm-4 control-label">Asset Type</label>
+											    <div class="col-sm-8">
+											        <p class="form-control-static" ng-if="!canEditDevice">{{options.deviceTypes[device.deviceTypeId].name}}</p>
+											        <select id="deviceType" name="deviceType" class="form-control customSelect"
+														ng-model="device.deviceTypeId"
+														required="required"
+														ng-if="canEditDevice"
+														ng-options="deviceType.id as deviceType.name for deviceType in options.deviceTypes"
+														ng-change="device.softwareRelease = null; getOptions(device.deviceTypeId)">
+											        </select>
+											    </div>
+											    <div class="col-sm-offset-4 col-sm-8"
+											    	ng-messages="deviceForm.deviceType.$error"
+											    	role="alert">
+											        <div class="alert-danger">
+											            <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+											        </div>
+											    </div>
+											</div>
+											<div class="form-group">
+												<label for="softwareRelease" class="col-sm-4 control-label">Software Release</label>
+												<div class="col-sm-8">
+													<p class="form-control-static" ng-if="!canEditDevice">{{device.softwareRelease.name}}</p>
+													<select id="softwareRelease" name="softwareRelease" class="form-control customSelect" 
+														ng-model="device.softwareRelease" 
+														ng-if="canEditDevice" 
+														ng-disabled="device.deviceTypeId == null"
+														ng-options="softwareRelease.name for softwareRelease in options.softwareReleases track by softwareRelease.id">
+														<option value="">Unknown</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+											    <label for="user" class="col-sm-4 control-label">Owner</label>
+											    <div class="col-sm-8">
+											        <p class="form-control-static" ng-if="!canEditDevice">{{device.user.name}}</p>
+											        <select id="user" name="user" class="form-control customSelect" ng-model="device.user" ng-if="canEditDevice" ng-options="user.name for user in options.users track by user.id">
+											        	<option value="">None</option>
+											        </select>
+											    </div>
+											    <div class="col-sm-offset-4 col-sm-8"
+											    	ng-messages="deviceForm.user.$error"
+											    	role="alert">
+											        <div class="alert-danger">
+											            <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+											        </div>
+											    </div>
+											</div>
+											<div class="form-group">
+											    <label for="node" class="col-sm-4 control-label">Group</label>
+											    <div class="col-sm-8">
+											        <p class="form-control-static" ng-if="!canEditDevice">{{device.node.name}}</p>
+											        <select id="node" name="node" class="form-control customSelect" ng-model="device.node" ng-if="canEditDevice" ng-options="node.name for node in options.nodes track by node.id">
+											        	<option value="">None</option>
+											        </select>
+											    </div>
+											</div>
+
+								            <div style="text-align: right;" ng-if="canEditDevice">
+							                	<button class="btn btn-default" ng-disabled="deviceForm.$pristine" type="submit">Save</button>
+							            	</div>
+
+										</div>
+									</div>
+
+									<div class="panel panel-default panel-content" ng-show="!isObjectEmpty(device.properties)">
+										<div class="panel-heading">
+											<h3 class="panel-title"><i class="fa fa-cogs" aria-hidden="true"></i> Custom</h3>
+										</div>
+										<div class="panel-body">
+
+											 <div class="form-group"
+												 ng-if="canEditDevice"
+												 ng-repeat="prop in deviceCustomProp | orderBy:'key'">
+												<label for="{{'property'+prop.key}}"
+													   class="col-sm-4 control-label">{{prop.key}}</label>
+												<div class="col-sm-8">
+													<p class="form-control-static"
+													   ng-if="!canEditDevice">{{prop.value}}</p>
+													<input type="text"
+														   id="{{'property'+prop.key}}"
+														   name="{{'property'+prop.key}}" class="form-control"
+														   ng-model="device.properties[prop.key]"
+														   ng-if="canEditDevice" />
+												</div>
+												<div class="col-sm-offset-4 col-sm-8"
+													 ng-messages="deviceForm['property'+prop.key].$error"
+													 role="alert">
+													<div class="alert-danger">
+														<div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+													</div>
+												</div>
+											</div>
+
+											<div style="text-align: right;" ng-if="canEditDevice">
+												<button class="btn btn-default" ng-disabled="deviceForm.$pristine" type="submit">Save</button>
+											</div>
+
+										</div>
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+                    </form>
+                    <!-- /DEVICE FORM -->
+					</div>
+					<!-- /SETTINGS SUB TAB -->
+                    <!-- DETAIL SUB TAB -->
+                    <div ng-if="canSendCommandToDevice && activeTab == 0 && activeSubTab == 3">
+                        <div class="content-bd">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default panel-content">
+                                        <div class="panel-body">
+                                            <a href="" ng-click="startDevice()" class="device-action-button">
+                                                <i class="fa fa-play" aria-hidden="true"></i><br>
+                                                Start
+                                            </a>
+                                            <a href="" ng-click="stopDevice()" class="device-action-button">
+                                                <i class="fa fa-stop" aria-hidden="true"></i><br>
+                                                Stop
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /DETAIL SUB TAB -->
+	        	</div>
+	        	<!-- /DEVICE TAB -->
+	        	<!-- ACTIONS TAB -->
+                <div ng-if="activeTab == 3" ng-include="'/partials/actions/action-template.html'"></div>
+				<!-- /ACTIONS TAB -->
+				<!-- TAGS TAB -->
+                <div ng-if="activeTab == 4">
+                    <div class="content-bd">
+
+                    	<div class="row">
+                    		<div class="col-md-10">
+                    			<h1><i class="fa fa-tags" aria-hidden="true"></i> Tags</h1>
+                    		</div>
+                            <div class="col-md-2 text-right">
+                                <button type="button"
+                                    class="btn btn-default"
+                                    ng-click="openNewDeviceTagModal()"
+                                    ng-if="canCreateTag">New Tag</button>
+                            </div>
+                    	</div>
+
+                        <div class="panel panel-default panel-content">
+                            <div class="panel-heading">
+                               	<h3 class="panel-title">Tag List</h3>
+                            </div>
+                            <div class="panel-body">
+
+								<div class="callout callout-purple">
+									<h4>Using Tags</h4>
+									<p>Use tags to flag the device as a participant in one or more demonstrations.</p>
+								</div>
+
+		                        <ul class="list-group">
+		                            <li class="list-group-item obj-checkbox-list-item obj-noselect" ng-repeat="tag in options.tags track by $index" ng-if="canAddTag || device.tags.indexOf(tag.id) >= 0">
+		                                <label>
+		                                    <input type="checkbox" value="" ng-checked="device.tags.indexOf(tag.id) >= 0" ng-click="toggleTag(tag)" ng-if="canRemoveTag || device.tags.indexOf(tag.id) < 0" />
+		                                    {{tag.name}}
+		                                </label>
+		                            </li>
+		                        </ul>
+
+				            <div style="text-align: right;" ng-if="canAddTag || canRemoveTag">
+			                	<button class="btn btn-default" type="button" ng-click="saveTags()">Save</button>
+				            	</div>
+
+		                    </div>
+		                </div>
+                    </div>
+                </div>
+				<!-- /TAGS TAB -->
+				<!-- EVENTS TAB -->
+                <div ng-if="activeTab == 5"
+                	ng-controller="DeviceEventsController as vm">
+                       <div class="content-bd">
+                    	<div class="row">
+                    		<div class="col-md-10 col-xs-12">
+                    			<h1><i class="fa fa-exclamation" aria-hidden="true"></i> Notifications</h1>
+                    		</div>
+                    		<div class="col-md-2 col-xs-12 text-right margin-bottom-15">
+                                <div class="pull-right">
+                                    <button type="button"
+                                        class="btn btn-default"
+                                        ng-if="vm.canEditDeviceEvent"
+                                        ng-disabled="vm.selectedEventIds.length <= 0"
+                                        ng-click="vm.closeEvents()">Close</button>
+                                    <button type="button"
+                                        class="btn btn-default"
+                                        ng-click="vm.open('lg', options)">Search</button>
+                                </div>
+                    		</div>
+                    	</div>
+
+
+						<div class="panel panel-default panel-content">
+							<div class="panel-heading">
+								<h3 class="panel-title">Notification List</h3>
+							</div>
+							<div class="panel-body">
+
+	                            <div class="row table-toolbar"
+	                            	 ng-if="vm.pagination.content.length > 0">
+	                                <div class="col-sm-6 col-xs-12">
+	                                    <arrow-items-per-page-dropdown
+                                            data-classes="pull-right-for-mobile margin-bottom-15"
+	                                        data-items-per-page="vm.pagination.itemsPerPage"
+	                                        data-total-items="vm.pagination.totalItems"
+	                                        data-change="vm.changeItemsPerPage(numberOfItems)"></arrow-items-per-page-dropdown>
+	                                </div>
+	                                <div class="col-sm-6 col-xs-12">
+	                                    <arrow-pagination
+	                                        data-page-index="vm.pagination.pageIndex"
+	                                        data-total-pages="vm.pagination.totalPages"
+	                                        data-first="vm.pagination.first"
+	                                        data-last="vm.pagination.last"
+	                                        data-previous="vm.previousPage()"
+	                                        data-next="vm.nextPage()"
+	                                        data-go="vm.gotoPage(pageNumber)"></arrow-pagination>
+	                                </div>
+	                            </div>
+
+	                            <table class="table table-striped table-bordered" style="table-layout: fixed;">
+	                                <thead>
+	                                    <tr>
+                                            <th class="table-checkbox" ng-if="vm.canEditDeviceEvent"><input type="checkbox" value="" ng-checked="vm.selectedEventIds.length == vm.openEventsCount" ng-click="vm.toggleAllEvents()" ng-if="vm.openEventsCount > 0" /></th>
+	                                        <th class="hidden-xs" ng-repeat="header in vm.columnHeaders"
+	                                            arrow-column-header
+	                                            label="header.label"
+	                                            value="header.value"
+	                                            sort-field="vm.pagination.sort.property"
+	                                            sort-direction="vm.pagination.sort.direction"
+	                                            sortable="header.sortable"
+	                                            sort="vm.sortColumn(column)">
+	                                        </th>
+                                            <th class="hidden-lg hidden-md hidden-sm">
+                                                <div class="btn-group" uib-dropdown is-open="status.isopen">
+                                                    <button id="single-button" type="button" class="btn btn-default"
+                                                            uib-dropdown-toggle ng-disabled="disabled">
+                                                        Sort by: {{vm.getHeaderLabel(vm.columnHeaders, vm.pagination.sort.property)}}
+                                                        &nbsp;&nbsp;
+                                                        <i ng-if="vm.pagination.sort.direction=='DESC'" class="fa fa-sort-desc"></i>
+                                                        <i ng-if="vm.pagination.sort.direction=='ASC'" class="fa fa-sort-asc"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                                        <li ng-repeat="header in vm.columnHeaders"
+                                                            arrow-column-header-small-desktop
+                                                            label="header.label"
+                                                            value="header.value"
+                                                            sort-field="vm.pagination.sort.property"
+                                                            sort-direction="vm.pagination.sort.direction"
+                                                            sortable="header.sortable"
+                                                            role="menuitem"
+                                                            sort="vm.sortColumn(column)">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </th>
+	                                    </tr>
+	                                </thead>
+	                                <tbody ng-if="vm.pagination.content.length > 0">
+	                                    <tr ng-repeat="deviceEvent in vm.pagination.content track by $index">
+                                            <td class="table-checkbox" ng-if="vm.canEditDeviceEvent"><input type="checkbox" value="" ng-checked="vm.selectedEventIds.indexOf(deviceEvent.id) >= 0" ng-click="vm.toggleEvent(deviceEvent.id)" ng-if="deviceEvent.status == 'Open'" /></td>
+	                                        <td class="hidden-xs">{{deviceEvent.deviceActionTypeName}}</td>
+	                                        <td class="hidden-xs">{{deviceEvent.criteria}}</td>
+                                            <td class="hidden-xs">{{deviceEvent.counter}}</td>
+	                                        <td class="hidden-xs">{{deviceEvent.status}}</td>
+	                                        <td class="hidden-xs">{{deviceEvent.createdDate | amFromUnix | amDateFormat:'MM/DD/YYYY hh:mm:ss A'}}</td>
+                                            <td class="hidden-lg hidden-md hidden-sm">
+                                                <div class="white-space-normal" ng-repeat="header in vm.columnHeaders">
+                                                    <div ng-if="header.value != 'createdDate'">
+                                                        <b>{{header.label}}:</b> {{deviceEvent[header.value]}}
+                                                    </div>
+                                                    <div ng-if="header.value == 'createdDate'">
+                                                        <b>{{header.label}}:</b> {{deviceEvent.createdDate | amFromUnix | amDateFormat:'MM/DD/YYYY hh:mm:ss A'}}
+                                                    </div>
+                                               </div>
+                                            </td>
+                                        </tr>
+	                                </tbody>
+	                                <tfoot ng-if="vm.pagination.content.length > 0">
+	                                    <tr>
+	                                        <td class="hidden-xs" colspan="{{vm.columnHeaders.length+(vm.canEditDeviceEvent ? 1 : 0)}}">
+	                                            <arrow-showing-items
+	                                                data-page-index="vm.pagination.pageIndex"
+	                                                data-items-per-page="vm.pagination.itemsPerPage"
+	                                                data-total-items="vm.pagination.totalItems"
+	                                                data-topic="device notifications"></arrow-showing-items>
+	                                        </td>
+                                            <td class="hidden-lg hidden-md hidden-sm" colspan="{{vm.canEditDeviceEvent ? 2 : 1}}">
+                                                <arrow-showing-items
+                                                    data-page-index="vm.pagination.pageIndex"
+                                                    data-items-per-page="vm.pagination.itemsPerPage"
+                                                    data-total-items="vm.pagination.totalItems"
+                                                    data-topic="devices"></arrow-showing-items>
+                                            </td>
+	                                    </tr>
+	                                </tfoot>
+	                                <tbody ng-if="vm.pagination.content.length === 0">
+	                                	<tr>
+	                                		<td class="hidden-xs" colspan="{{vm.columnHeaders.length+(vm.canEditDeviceEvent ? 1 : 0)}}">No notifications have been recorded for this device.</td>
+                                            <td class="hidden-lg hidden-md hidden-sm white-space-word" colspan="{{vm.canEditDeviceEvent ? 2 : 1}}">No notifications have been recorded for this device.</td>
+	                                	</tr>
+	                                </tbody>
+	                            </table>
+							</div>
+						</div>
+					</div>
+                </div>
+                <!-- /EVENTS TAB -->
+            <!-- LOGS TAB -->
+            <div ng-if="activeTab == 7" ng-controller="DeviceLogsController as vm" ng-include="'partials/logs-tab.html'"></div>
+            <!-- /LOGS TAB -->
+            
+			<!-- CHART TAB -->
+			<form name="chartForm" class="form-horizontal" novalidate>
+				<div ng-if="activeTab == 6">
+					<div class="content-bd"
+						ng-controller="DeviceTelemetryChartController as vm">
+						<div class="row">
+							<div class="col-md-10">
+								<h1><i class="fa fa-line-chart" aria-hidden="true"></i> Telemetry</h1>
+							</div>
+							<div class="col-md-2 text-right">
+							</div>
+						</div>
+						<!-- CHART PANEL -->
+						<div class="panel panel-default panel-content">
+							<div class="panel-heading">
+								<h3 class="panel-title">Telemetry Settings</h3>
+							</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Telemetry</label>
+									<div class="col-sm-4">
+										<select class="form-control customSelect"
+										    ng-model="vm.telemetry"
+										    ng-change="vm.onChange()"
+										    ng-options="telemetry.description for telemetry in device.telemetries | filter:{chartable:true}:true">
+										    <option value="">-- select --</option>
+										</select>
+									</div>
+									<label class="col-sm-2 control-label">Date/Time</label>
+									<div class="col-sm-4">
+										<label class="radio-inline"><input type="radio" name="telemetryChartType"
+										    ng-model="vm.telemetryChartType" ng-change="vm.onChange()" value="range"> Range </label>
+										<label class="radio-inline"><input type="radio" name="telemetryChartType"
+										    ng-model="vm.telemetryChartType" ng-change="vm.onChange()" value="current"> Current </label>
+									</div>
+								</div>
+								<div class="form-group" ng-if="vm.telemetryChartType == 'range'">
+									<label class="col-sm-2 control-label">From</label>
+									<div class="dropdown col-sm-4">
+										<a class="dropdown-toggle" id="rangeFrom" role="button"
+											data-toggle="dropdown" data-target="#">
+											<div class="input-group">
+												<input type="text" name="from" class="form-control" autocomplete="off"
+													data-ng-model="vm.range.from" ng-change="vm.onChange()"
+													data-date-time-input="MM/DD/YYYY hh:mm:ss A" required
+													date-required date-range="vm.range.to" date-less date-from-less-current> <span
+													class="input-group-addon"><i class="fa fa-calendar"></i></span>
+											</div>
+										</a>
+										<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+											<datetimepicker data-ng-model="vm.range.from"
+												data-on-set-time="vm.onChange()"
+												data-datetimepicker-config="{ dropdownSelector: '#rangeFrom' }">
+											</datetimepicker>
+										</ul>
+										<div ng-messages="chartForm.from.$error" role="alert">
+											<div class="alert-danger">
+												<div
+													ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<label class="col-sm-2 control-label">To</label>
+									<div class="dropdown col-sm-4">
+										<a class="dropdown-toggle" id="rangeTo" role="button"
+											data-toggle="dropdown" data-target="#">
+											<div class="input-group">
+												<input type="text" name="to" class="form-control" autocomplete="off"
+													data-ng-model="vm.range.to" ng-change="vm.onChange()"
+													data-date-time-input="MM/DD/YYYY hh:mm:ss A" required
+													date-required> <span class="input-group-addon"><i
+													class="fa fa-calendar"></i></span>
+											</div>
+										</a>
+										<ul class="dropdown-menu dropdown-menu-right" role="menu"
+											aria-labelledby="dLabel">
+											<datetimepicker data-ng-model="vm.range.to"
+												data-on-set-time="vm.onChange()"
+												data-datetimepicker-config="{ dropdownSelector: '#rangeTo' }">
+											</datetimepicker>
+										</ul>
+										<div ng-messages="chartForm.to.$error" role="alert">
+											<div class="alert-danger">
+												<div
+													ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-offset-2 col-sm-10"
+										ng-messages="chartForm.from.$error" role="alert">
+										<div class="alert-danger">
+											<p ng-message="dateLess">From date/time must be less than To date/time</p>
+											<p ng-message="dateFromLessCurrent">From date/time must be less than Current date/time</p>
+										</div>
+									</div>
+								</div>
+								<div class="form-group" ng-if="vm.telemetryChartType == 'current'">
+									<label for="user" class="col-sm-2 control-label">Display last</label>
+									<div class="col-sm-4">
+										<select class="form-control customSelect" ng-model="vm.current.interval" ng-change="vm.onChange()"
+										    ng-options="interval.value as interval.name for interval in vm.intervalOptions"></select>
+									</div>
+									<label for="user" class="col-sm-2 control-label">Refresh Rate</label>
+									<div class="col-sm-4">
+										<select class="form-control customSelect" ng-model="vm.current.refresh" ng-change="vm.onChange()"
+										    ng-options="refresh.value as refresh.name for refresh in vm.refreshOptions"></select>
+									</div>
+								</div>
+								<div google-chart chart="vm.chartObject" style="height:300px; width:100%;" ng-if="vm.showChart"></div>
+							</div>
+						</div>
+						<!-- /CHART PANEL -->
+					</div>
+				</div>
+			</form>
+			<!-- /CHART TAB -->
+            <!-- EXPORT TAB -->
+            <div ng-if="activeTab == 10" ng-controller="DeviceTelemetryExportController as vm" ng-include="'partials/device/export-telemetry.html'"></div>
+            <!-- /EXPORT TAB -->
+			<!-- FIRMWARE MANAGEMENT TAB -->
+            <div ng-if="activeTab == 12" ng-controller="DeviceFirmwareManagementController as vm" ng-include="'partials/list-tab.html'"></div>
+            <!-- /FIRMWARE MANAGEMENT TAB -->
+			<!-- DEVICE STATE TAB -->
+            <div ng-if="activeTab == 13" ng-init="activeSubTab = canReadDeviceState ? 0 : 1">
+                <!-- SUB TABS -->
+                <div class="content-sub-tabs">
+                    <ul class="nav nav-pills" ng-class="{'mobile-tabs':mobileLayot}">
+                        <li role="presentation" ng-show="canReadDeviceState"
+                            ng-class="activeTab == 13 && activeSubTab == 0 ? 'active' : ''"><a href="" ng-click="activeSubTab = 0">Device State</a></li>
+                        <li role="presentation" ng-show="canReadDeviceStateTrans"
+                            ng-class="activeTab == 13 && activeSubTab == 1 ? 'active' : ''"><a href="" ng-click="activeSubTab = 1">History</a></li>
+                    </ul>
+                </div>
+                <!-- /SUB TABS -->
+                <!-- DEVICE STATE SUB TAB -->
+                <div ng-if="activeTab == 13 && activeSubTab == 0" ng-init="refreshDeviceState()">
+                    <div class="content-bd">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="panel panel-default panel-content">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            Device State
+                                            <!--<a href="" ng-click="refreshDeviceState()" class="pull-right" title="Refresh"><i class="fa fa-refresh" aria-hidden="true"></i></a>-->
+																						<i class="dropdown b_right" style="min-width: 160px; text-align: right;">
+																								<a href=""
+																									 class="dropdown-toggle e_tdn"
+																									 data-toggle="dropdown"
+																									 role="button"
+																									 aria-haspopup="true"
+																									 aria-expanded="false"
+																									 style="color: #fff; font-size: 8px;">
+																										<i class="fa fa-circle" aria-hidden="true"></i> <i class="fa fa-circle" aria-hidden="true"></i> <i class="fa fa-circle" aria-hidden="true"></i>
+																								</a>
+																								<ul class="dropdown-menu" style="left: auto; right: 0;">
+																										<li>
+																											<a href="" ng-click="refreshDeviceState()">Refresh</a>
+																										</li>
+																										<li ng-if="canUpdateDeviceState">
+																												<a href="" ng-click="updateDeviceState()">Set Device States</a>
+																										</li>
+																										<li ng-if="canDeleteDeviceState">
+																												<a href="" ng-click="updateManageState(true)">Manage Device States</a>
+																										</li>
+																								</ul>
+																						</i>
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+																				<form ng-submit="removeStates()">
+																						<div ng-if="manageState" class="remove-telemetry">
+																								<div class="remove-telemetry__control">
+																										<input type="checkbox" ng-click="updateRemoveStateDefinition()">
+																										Remove <span class="small-hide">device</span> state definition <span class="small-hide">if exists</span>
+																								</div>
+																								<div class="btn-group flex-block">
+																										<button type="submit"
+																														class="btn btn-default">
+																												Remove <span class="small-hide">Selected States</span>
+																										</button>
+																										<button type="button"
+																														class="btn btn-default"
+																														ng-click="updateManageState(false)">
+																												Cancel
+																										</button>
+																								</div>
+																						</div>
+																						<table class="table" style="table-layout: fixed;">
+																								<thead class="hidden-xs">
+																										<tr>
+																												<th ng-if="manageState" style="width: 10%"></th>
+																												<th>Name</th>
+																												<th>Value</th>
+																												<th>Timestamp</th>
+																										</tr>
+																								</thead>
+																								<tbody>
+																										<tr ng-repeat="(name, state) in deviceState">
+																												<td class="hidden-xs table-checkbox" ng-if="manageState">
+																													<input type="checkbox" ng-click="changeSelectedStates(name)">
+																												</td>
+																												<td class="hidden-xs">{{device.stateMetadata[name].description || name}}</td>
+																												<td class="hidden-xs">{{state.value}}</td>
+																												<td class="hidden-xs">{{state.timestamp | date: "MM/dd/yyyy hh:mm:ss a"}}</td>
+																												<td class="hidden-lg hidden-md hidden-sm white-space-normal">
+																														<div>
+																																<b>Name:</b> {{device.stateMetadata[name].description || name}} <input type="checkbox" ng-click="changeSelectedStates(name)">
+																														</div>
+																														<div class="white-space-normal">
+																																<b>Value:</b> {{state.value}}
+																														</div>
+																														<div class="white-space-normal">
+																																<b>Timestamp:</b> {{state.timestamp | date: "MM/dd/yyyy hh:mm:ss a"}}
+																														</div>
+																												</td>
+																										</tr>
+																								</tbody>
+																						</table>
+																				</form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /DEVICE STATE SUB TAB -->
+                <!-- HISTORY SUB TAB -->
+                <div ng-if="activeTab == 13 && activeSubTab == 1" ng-controller="DeviceStatesController as vm" ng-include="'partials/list-tab.html'"></div>
+                <!-- /HISTORY SUB TAB -->
+            </div>
+            <!-- /DEVICE STATE TAB -->
+            <!-- DEVELOPER TAB -->
+            <div ng-if="activeTab == 9" style="height: 100%;" ng-init="activeDevTab = 0">
+				<div class="content-sub-tabs">
+					<ul class="nav nav-pills" ng-class="{'mobile-tabs':mobileLayot}">
+						<li role="presentation" ng-class="activeTab == 9 && activeDevTab == 0 ? 'active' : ''">
+							<a href="" ng-click="activeDevTab = 0">Ingestion</a>
+						</li>
+						<li role="presentation" ng-class="activeTab == 9 && activeDevTab == 1 ? 'active' : ''" ng-show="canViewAccessKeys">
+							<a href="" ng-click="activeDevTab = 1">Access keys</a>
+						</li>
+						<li role="presentation" ng-class="activeTab == 9 && activeDevTab == 2 ? 'active' : ''" ng-show="canSendCommandToDevice">
+							<a href="" ng-click="activeDevTab = 2">Command</a>
+						</li>
+						<li role="presentation" ng-class="activeTab == 9 && activeDevTab == 3 ? 'active' : ''" ng-show="canSendCommandToDevice">
+							<a href="" ng-click="activeDevTab = 3">Events</a>
+						</li>
+					</ul>
+				</div>
+
+				<div ng-if="activeTab == 9 && activeDevTab == 0">
+					<div class="content-bd device-developer-tab" style="height: 100%;" ng-controller="DevicePayloadFeedController as vm">
+						<div class="row">
+							<div class="col-md-6">
+								<!-- DEVICE PANEL -->
+								<div class="panel panel-default panel-content">
+									<div class="panel-heading">
+										<h3 class="panel-title">Device</h3>
+									</div>
+									<div class="panel-body">
+										<!-- <p><b>Device Type:</b> <span>{{device.info.type}}</span></p> -->
+
+										<p><b>Asset Type:</b> <span>{{options.deviceTypes[device.deviceTypeId].name}}</span></p>
+										<p><b>UID:</b> <span>{{device.uid}}</span></p>
+										<p><b>HID:</b> <span>{{device.hid}}</span></p>
+									</div>
+								</div>
+								<!-- DEVICE PANEL -->
+							</div>
+							<div class="col-md-6">
+								<!-- GATEWAY PANEL -->
+								<div class="panel panel-default panel-content">
+									<div class="panel-heading">
+										<h3 class="panel-title">Gateway</h3>
+									</div>
+									<div class="panel-body">
+										<p><b>Gateway Type:</b> <span>{{device.gateway.type || '-'}}</span></p>
+										<p><b>UID:</b> <span>{{device.gateway.uid || '-'}}</span></p>
+										<p><b>HID:</b> <span>{{device.gateway.hid || '-'}}</span></p>
+									</div>
+								</div>
+								<!-- GATEWAY PANEL -->
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<!-- PAYLOAD FEED TABLE -->
+								<div class="panel panel-default panel-content">
+									<div class="panel-heading">
+										<h3 class="panel-title">Feed</h3>
+									</div>
+									<div class="panel-body" style="overflow-y: scroll; height: 300px;">
+										<table class="table table-hover payloads-table no-margin" ng-hide="vm.payloadFeed.length === 0">
+											<thead>
+												<tr>
+													<th>#</th>
+													<th>Date</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="payload in vm.payloadFeed track by $index"
+													ng-click="vm.selectPayload(payload)"
+													ng-class="{'active': payload.isSelected}">
+													<td>{{payload.index}}</td>
+													<td>{{payload.date | date : 'yyyy-MM-dd hh:mm:ss'}}</td>
+												</tr>
+											</tbody>
+										</table>
+										<p ng-show="vm.payloadFeed.length === 0" class="text-center text-muted">{{vm.payloadState === 'stoped' ? 'No payloads' : 'Receiving...'}}</p>
+									</div>
+									<div class="panel-footer">
+										<div class="row">
+											<div class="col-xs-6 form-horizontal" ng-class="{'has-error': !vm.payloadsLimit || vm.payloadsLimit < 1}">
+												<div class="form-group no-margin">
+													<label for="showLast" class="col-md-6 col-lg-4 control-label">Show last</label>
+													<div class="col-md-6 col-lg-6">
+														<input type="number" id="showLast" name="showLast" class="form-control" ng-model="vm.payloadsLimit" ng-model-options="{ debounce: 500 }" ng-change="vm.payloadLimitUpdated()" placeholder="{{vm.defaultPayloadLimit}}" />
+													</div>
+												</div>
+											</div>
+											<div class="col-xs-6 text-right">
+													<button class="btn btn-default" type="button" ng-click="vm.start()" data-ng-disabled="vm.payloadState === 'started'">Start</button>
+													<button class="btn btn-default" type="button" ng-click="vm.stop()" data-ng-disabled="vm.payloadState === 'stoped'">Stop</button>
+													<button class="btn btn-default" type="button" ng-click="vm.clear()">Clear</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /PAYLOAD FEED TABLE -->
+							</div>
+							<div class="col-md-6">
+								<!-- PAYLOAD PANEL -->
+								<div class="panel panel-default panel-content">
+									<div class="panel-heading">
+										<h3 class="panel-title">Payload <span ng-if="vm.payloadDetails != null">#{{vm.payloadDetails.index}}</span> </h3>
+									</div>
+									<div class="panel-body" style="overflow-y: scroll;">
+										<pre ng-show="vm.payloadDetails != null">{{vm.payloadDetails.data | json}}</pre>
+										<p ng-show="vm.payloadDetails === null" class="text-center text-muted">Select payload for details</p>
+									</div>
+								</div>
+								<!-- PAYLOAD PANEL -->
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div ng-if="activeTab == 9 && activeDevTab == 1">
+					<!-- ACCESS KEYS TAB -->
+					<div ng-controller="DeviceAccessKeysController as vm" ng-include="'partials/list-tab.html'"></div>
+					<!-- /ACCESS KEYS TAB -->
+				</div>
+
+                <div ng-if="canSendCommandToDevice && activeTab == 9 && activeDevTab == 2">
+                    <div class="content-bd">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <form name="deviceCommandForm" class="form-horizontal" novalidate ng-submit="sendCommand(deviceCommandForm);">
+                                    <div class="panel panel-default panel-content">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send Command</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <label for="command" class="col-sm-1 control-label">Command</label>
+                                                <div class="col-sm-11">
+                                                    <input type="text" id="command" name="command" class="form-control" ng-model="deviceCommand.command" required="required" />
+                                                </div>
+                                                <div class="col-sm-offset-1 col-sm-11"
+                                                    ng-messages="deviceCommandForm.command.$error"
+                                                    role="alert">
+                                                    <div class="alert-danger">
+                                                        <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                                                    </div>
+                                               </div>
+											</div>
+											
+											<div class="form-group">
+												<label for="expiration" class="col-sm-1 control-label">Expiration</label>
+												<div class="col-sm-11">
+													<div class="input-group">
+														<input id="expiration" name="expiration" type="number" 
+															min="0" 
+															max="9223372036854775807" 
+															class="form-control" 
+															ng-model="deviceCommand.expiration" />
+														<span class="input-group-addon">milliseconds</span>
+													</div>
+												</div>
+												<div class="col-sm-offset-1 col-sm-11" ng-messages="deviceCommandForm.expiration.$error" role="alert">
+													<div class="alert-danger">
+														<div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+													</div>
+												</div>
+												<div class="col-sm-offset-1 col-sm-11" role="alert" ng-if="!deviceCommand.expiration">
+													<div class="alert-info">
+														<p>If not specified, the command will expire in 24 hours.</p>
+													</div>
+												</div>
+											</div>
+
+                                            <div class="form-group">
+                                                <label for="payload" class="col-sm-1 control-label">Payload</label>
+                                                <div class="col-sm-11">
+                                                    <textarea id="payload" name="payload" class="form-control" rows="4" ng-model="deviceCommand.payload" valid-json></textarea>
+                                                </div>
+                                                <div class="col-sm-offset-1 col-sm-11"
+                                                    ng-messages="deviceCommandForm.payload.$error"
+                                                    role="alert">
+                                                    <div class="alert-danger">
+                                                        <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="text-right">
+                                                <button class="btn btn-default" type="submit">Send</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+				<div ng-if="activeTab == 9 && activeDevTab == 3">
+					<!-- EVENTS TAB -->
+					<div class="content-bd">
+						<div class="col-md-12">
+				            <h1>Monitored</h1>
+				        </div>
+						<table class="table table-striped table-bordered">
+							<tr>
+								<th>Created</th>
+								<th>Status</th>
+								<th style="width: 70%;">Event</th>
+							</tr>
+							<tr ng-repeat="monitoredEvent in monitoredEvents track by $index">
+								<td>{{monitoredEvent.event.createdDate | amDateFormat:'MM/DD/YYYY hh:mm:ss A'}}</td>
+								<td>{{monitoredEvent.event.status}}</td>
+								<td>
+									<b>Event HID:</b> {{monitoredEvent.event.hid}}
+									<br/><b>Name:</b> {{monitoredEvent.event.name}}
+									<br/><b>Type:</b> {{monitoredEvent.event.type}}
+									<br/><b>Parameters:</b>
+									<br/><pre>{{monitoredEvent.event.parameters | json}}</pre>
+								</td>
+							</tr>
+							<tr ng-if="monitoredEventIds.length == 0">
+								<td colspan="3">No monitored events currently</td>
+							</tr>
+						</table>
+						<div class="col-md-12">
+				            <h1>Processed</h1>
+				        </div>
+						<table class="table table-striped table-bordered">
+							<tr>
+								<th>Created</th>
+								<th>Status</th>
+								<th style="width: 70%;">Event</th>
+							</tr>
+							<tr ng-repeat="processedEvent in processedEvents track by $index">
+								<td>{{processedEvent.event.createdDate | amDateFormat:'MM/DD/YYYY hh:mm:ss A'}}</td>
+								<td>
+									{{processedEvent.event.status}}
+									<br/><span ng-if="processedEvent.event.error">Error: {{processedEvent.event.error}}</span>
+								</td>
+								<td>
+									<b>Event HID:</b> {{processedEvent.event.hid}}
+									<br/><b>Name:</b> {{processedEvent.event.name}}
+									<br/><b>Type:</b> {{processedEvent.event.type}}
+									<br/><b>Parameters:</b>
+									<br/><pre>{{processedEvent.event.parameters | json}}</pre>
+								</td>
+							</tr>
+							<tr ng-if="processedEvents.length == 0">
+								<td colspan="3">No processed events currently</td>
+							</tr>
+						</table>
+					</div>
+					<!-- /EVENTS TAB -->
+				</div>
+            </div>
+            <!-- /DEVELOPER TAB -->
+			<!-- BACKUP TAB -->
+			<div ng-if="activeTab == 14" ng-controller="DeviceBackupController as vm">
+				<div class="content-bd">
+					<div class="row">
+						<div class="col-md-6">
+							<h1><i class="glyphicon glyphicon-hdd" aria-hidden="true"></i> Config Device Backups</h1>
+						</div>
+						<div class="col-sm-6 text-right">
+							<div class="content-toolbar flex-row-end">
+								<button type="button"
+										class="btn btn-default"
+										ng-click="vm.open('lg')"> Search
+								</button>
+								<button type="button"
+										class="btn btn-default"
+										ng-click="vm.createBackupNow()"> Backup Now
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel panel-default panel-content">
+						<div class="panel-heading">
+							<h3 class="panel-title">Device Backups List <a href=""
+																		   ng-click="vm.findDeviceBackups()"
+																		   class="pull-right"
+																		   title="Refresh"><i class="fa fa-refresh" ng-class="vm.loadingData ? 'fa-spin' : ''" aria-hidden="true"></i></a></h3>
+						</div>
+						<div class="panel-body">
+							<div class="obj-hd">
+								<div class="row">
+									<div class="col-sm-6 col-xs-12">
+										<arrow-items-per-page-dropdown
+												data-classes="pull-right-for-mobile margin-bottom-15"
+												data-items-per-page="vm.pagination.itemsPerPage"
+												data-total-items="vm.pagination.totalItems"
+												data-change="vm.changeItemsPerPage(numberOfItems)"></arrow-items-per-page-dropdown>
+									</div>
+									<div class="col-sm-6 col-xs-12 page-navigation-wrap">
+										<arrow-pagination
+												data-page-index="vm.pagination.pageIndex"
+												data-total-pages="vm.pagination.totalPages"
+												data-first="vm.pagination.first"
+												data-last="vm.pagination.last"
+												data-previous="vm.previousPage()"
+												data-next="vm.nextPage()"
+												data-go="vm.gotoPage(pageNumber)"></arrow-pagination>
+									</div>
+								</div>
+							</div>
+							<div class="obj-bd">
+								<table class="table table-striped table-bordered" style="table-layout: fixed;">
+									<thead>
+									<tr>
+										<th class="hidden-xs" ng-repeat="header in vm.columnHeaders"
+											arrow-column-header
+											label="header.label"
+											value="header.value"
+											sort-field="vm.pagination.sort.property"
+											sort-direction="vm.pagination.sort.direction"
+											sortable="header.sortable"
+											sort="vm.sortColumn(column)">
+										</th>
+										<th class="hidden-lg hidden-md hidden-sm">
+											<div class="btn-group" uib-dropdown is-open="status.isopen">
+												<button type="button" class="btn btn-default"
+														uib-dropdown-toggle ng-disabled="disabled">
+													Sort by: {{vm.getHeaderLabel(vm.columnHeaders, vm.pagination.sort.property)}}
+													&nbsp;&nbsp;
+													<i ng-if="vm.pagination.sort.direction=='DESC'" class="fa fa-sort-desc"></i>
+													<i ng-if="vm.pagination.sort.direction=='ASC'" class="fa fa-sort-asc"></i>
+												</button>
+												<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+													<li ng-repeat="header in vm.columnHeaders"
+														arrow-column-header-small-desktop
+														label="header.label"
+														value="header.value"
+														sort-field="vm.pagination.sort.property"
+														sort-direction="vm.pagination.sort.direction"
+														sortable="header.sortable"
+														role="menuitem"
+														sort="vm.sortColumn(column)">
+													</li>
+												</ul>
+											</div>
+										</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr ng-repeat="backup in vm.pagination.content track by $index">
+										<td class="hidden-xs">{{backup.name}}</a></td>
+										<td class="hidden-xs">{{backup.createdDate | amDateFormat:'MM/DD/YYYY hh:mm:ss A'}}</td>
+										<td class="hidden-xs">{{backup.createBy}}</td>
+										<td class="hidden-xs">
+                                                <span>
+                                                    <button type="button"
+															class="btn btn-link"
+															ng-click="vm.restoreBackupDeviceConfiguration(backup.id)">Restore</button>
+													<!--<button type="button"
+                                                            class="btn btn-link"
+                                                            ng-click="vm.deleteBackupConfiguration(backup.id)">Delete</button>-->
+                                                </span>
+										</td>
+										<td class="hidden-lg hidden-md hidden-sm">
+											<div class="white-space-normal" ng-repeat="header in vm.columnHeaders">
+												<b>{{header.label}}:</b> {{device[header.value]}}
+												<div class="text-center" ng-if="header.value==''">
+                                                    <span>
+                                                        <button type="button"
+																class="btn btn-link"
+																ng-click="vm.restoreBackupGatewayConfiguration(backup.id)">Restore</button>
+														<!--<button type="button"
+                                                                class="btn btn-link"
+                                                                ng-click="vm.deleteBackupConfiguration(backup.id)">Delete</button>-->
+                                                    </span>
+												</div>
+											</div>
+										</td>
+									</tr>
+									</tbody>
+									<tfoot>
+									<tr>
+										<td class="hidden-xs" colspan="{{vm.columnHeaders.length}}">
+											<arrow-showing-items
+													data-page-index="vm.pagination.pageIndex"
+													data-items-per-page="vm.pagination.itemsPerPage"
+													data-total-items="vm.pagination.totalItems"
+													data-topic="device backup configuration"></arrow-showing-items>
+										</td>
+										<td class="hidden-lg hidden-md hidden-sm">
+											<arrow-showing-items
+													data-page-index="vm.pagination.pageIndex"
+													data-items-per-page="vm.pagination.itemsPerPage"
+													data-total-items="vm.pagination.totalItems"
+													data-topic="device backup configuration"></arrow-showing-items>
+										</td>
+									</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /BACKUP TAB -->
+			<!-- TEST RESULTS TAB -->
+			<div ng-if="activeTab == 11" ng-controller="TestResultsController as vm" ng-include="'/partials/list-tab.html'"></div>
+			<!-- /TEST RESULTS TAB -->
+		</div>
+        <!-- /CONTENT BODY WRAPPER -->
+	</div>
+	<!-- /CONTENT WRAPPER -->
+	<!-- CONTENT FOOTER -->
+	<div class="content-ft">
+	</div>
+	<!-- /CONTENT FOOTER -->
+</div>
+<!-- /ROW CONTENT -->

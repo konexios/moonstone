@@ -1,0 +1,87 @@
+<div class="content-nav overflow-hidden arrow-collapsed-menu"
+     ng-class="{'mobile-view':vm.mobileLayot, 'showed-menu':vm.mobileMenuShowed, 'collapsed-view':vm.collapsedView}">
+    <div class="nav nav-custom-scrollbar" ng-scrollbars ng-scrollbars-config="scrollerConfig">
+        <div class="content-nav-filters">
+            <div ng-hide="vm.menuIsHidden()">
+                <div class="col-xs-12">
+                    <h3 class="filter-group-title break-word" ng-hide="vm.isEditJobPage">Create Job</h3>
+                    <h3 class="filter-group-title break-word" ng-show="vm.isEditJobPage">Edit {{vm.model.jobName}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="collapsed-button-wrap nav nav-pills">
+        <li role="presentation" class="collapse-button">
+            <a ng-click="vm.collapseMenu()" class="text-right">
+                    <span class="icon-wrapper"><i class="fa fa-lg" ng-class="{
+                        'fa-angle-double-left': !vm.mobileLayot && !vm.collapsedView,
+                        'fa-angle-double-right': !vm.mobileLayot && vm.collapsedView,
+                        'mobile fa-angle-double-right': vm.mobileLayot && !vm.mobileMenuShowed,
+                        'mobile fa-angle-double-left': vm.mobileLayot && vm.mobileMenuShowed
+                    }" aria-hidden="true"></i></span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="content-wrapper device-selector"
+     ng-class="{'mobile-view':vm.mobileLayot, 'showed-menu':vm.mobileMenuShowed, 'collapsed-view':vm.collapsedView}">
+    <!--  CONTENT BODY -->
+    <div class="col-sm-12 margin-top-20 job-wizard-content">
+
+        <div class="col-xs-12 text-right h-green">
+            Step 4 of 4
+        </div>
+
+        <div class="margin-bottom-15">
+            <h1>Job Summary</h1>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Job Name</th>
+                    <th>Requester</th>
+                    <th>Assets</th>
+                    <th>Asset Type</th>
+                    <th>Hardware Version</th>
+                    <th>New Firmware version</th>
+                    <th>Schedule</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="type in vm.summary.devicesByType">
+                    <td>{{vm.model.jobName}}</td>
+                    <td>{{vm.model.requester.firstName}} {{vm.model.requester.lastName}}</td>
+                    <td>{{type.devices.length}}</td>
+                    <td>{{type.typeName}}</td>
+                    <td>{{type.hwVersionName}}</td>
+                    <td>{{vm.model.softwareRelease.name}}</td>
+                    <td>{{vm.model.onDemand ? 'On Demand' : vm.model.dateTime | date: 'MM/dd/yyyy HH:mm:ss'}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div ng-if="vm.model.comments !== undefined && vm.model.comments.length > 0">
+            <div class="h-green">Comment:</div>
+            <p class="break-word">{{vm.model.comments}}</p>
+        </div>
+
+        <div class="row">
+            <div class="margin-right-15 next-back-buttons">
+
+                <button class="btn btn-brand btn-brand-left"
+                        ng-click="vm.makeChanges()"
+                        ng-if="!vm.currentStep.isFirst">Make Changes
+                </button>
+
+                <button class="btn btn-brand btn-brand-right"
+                        ng-disabled="vm.summary.busy"
+                        ng-click="vm.submit()">Submit
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- /CONTENT BODY -->
+</div>

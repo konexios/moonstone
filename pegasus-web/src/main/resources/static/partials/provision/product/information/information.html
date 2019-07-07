@@ -1,0 +1,196 @@
+<!-- BEGIN MAIN CONTENT -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <form name="form"
+                  class="form-horizontal"
+                  role="form"
+                  novalidate>
+
+                <!-- product tab -->
+                <div class="portlet-body form">
+                        <div class="form-body">
+
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': (form.name.$touched || form.$submitted) && form.name.$invalid, 'has-success': (form.name.$touched || form.$submitted) && !form.name.$invalid }">
+                                <label
+                                        for="name"
+                                        class="col-md-1 control-label">Name
+                                    <span class="required" aria-required="true"> * </span>
+                                </label>
+                                <div class="col-md-11">
+                                    <div class="input-icon right">
+                                        <i ng-show="(form.name.$touched || form.$submitted) && form.name.$invalid" class="fa fa-warning"></i>
+                                        <i ng-show="(form.name.$touched || form.$submitted) && !form.name.$invalid" class="fa fa-check"></i>
+                                        <input id="name"
+                                               name="name"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="Name"
+                                               ng-model="product.name"
+                                               ng-trim="true"
+                                               ng-required="true"
+                                               ng-minlength="5"
+                                               ng-maxlength="50"
+                                               ng-disabled="!hasAccess()">
+                                    </div>
+                                    <div class="help-block" ng-messages="form.name.$error" ng-show="form.name.$touched || form.$submitted">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': (form.description.$touched || form.$submitted) && form.description.$invalid, 'has-success': (form.description.$touched || form.$submitted) && !form.description.$invalid }">
+                                <label for="description"
+                                       class="col-md-1 control-label">Description
+                                    <span class="required" aria-required="true"> * </span>
+                                </label>
+                                <div class="col-md-11">
+                                    <div class="input-icon right">
+                                        <i ng-show="(form.description.$touched || form.$submitted) && form.description.$invalid" class="fa fa-warning"></i>
+                                        <i ng-show="(form.description.$touched || form.$submitted) && !form.description.$invalid" class="fa fa-check"></i>
+                                        <textarea id="description"
+                                                  name="description"
+                                                  class="form-control"
+                                                  rows="3"
+                                                  ng-model="product.description"
+                                                  ng-trim="true"
+                                                  ng-required="true"
+                                                  ng-minlength="3"
+                                                  ng-maxlength="255"
+                                                  ng-disabled="!hasAccess()"></textarea>
+                                    </div>
+                                    <div class="help-block" ng-messages="form.description.$error" ng-show="form.description.$touched || form.$submitted">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': (form.systemName.$touched || form.$submitted) && form.systemName.$invalid, 'has-success': (form.systemName.$touched || form.$submitted) && !form.systemName.$invalid }">
+                                <label for="systemName"
+                                       class="col-md-1 control-label">System Name
+                                    <span class="required" aria-required="true"> * </span>
+                                </label>
+                                <div class="col-md-11">
+                                    <div class="input-icon right">
+                                        <i ng-show="(form.systemName.$touched || form.$submitted) && form.systemName.$invalid" class="fa fa-warning"></i>
+                                        <i ng-show="(form.systemName.$touched || form.$submitted) && !form.systemName.$invalid" class="fa fa-check"></i>
+                                        <input id="systemName"
+                                               name="systemName"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="Name"
+                                               ng-model="product.systemName"
+                                               ng-trim="true"
+                                               ng-required="true"
+                                               ng-minlength="3"
+                                               ng-maxlength="50"
+                                               ng-disabled="!hasAccess()">
+                                    </div>
+                                    <div class="help-block" ng-messages="form.systemName.$error" ng-show="form.systemName.$touched || form.$submitted">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': form.apiSigningRequired.$touched && form.apiSigningRequired.$invalid, 'has-success': form.apiSigningRequired.$touched && !form.apiSigningRequired.$invalid }">
+                                <div class="col-md-offset-1 col-md-11">
+                                    <div class="checkbox">
+                                        <label>
+                                            <div class="checker">
+					                        			<span ng-class="product.apiSigningRequired ? 'checked' : ''">
+															<input id="apiSigningRequired" name="apiSigningRequired" type="checkbox" ng-model="product.apiSigningRequired" ng-disabled="!hasAccess()" />
+														</span>
+                                            </div>
+                                            API Signing Required
+                                        </label>
+                                    </div>
+                                    <div class="help-block" ng-messages="form.apiSigningRequired.$error" ng-show="form.apiSigningRequired.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': form.enabled.$touched && form.enabled.$invalid, 'has-success': form.enabled.$touched && !form.enabled.$invalid }">
+                                <div class="col-md-offset-1 col-md-11">
+                                    <div class="checkbox">
+                                        <label>
+                                            <div class="checker">
+					                        			<span ng-class="product.enabled ? 'checked' : ''">
+															<input id="enabled" name="enabled" type="checkbox" ng-model="product.enabled" ng-disabled="!hasAccess()" />
+														</span>
+                                            </div>
+                                            Enabled
+                                        </label>
+                                    </div>
+                                    <div class="help-block" ng-messages="form.enabled.$error" ng-show="form.enabled.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': form.hidden.$touched && form.hidden.$invalid, 'has-success': form.hidden.$touched && !form.hidden.$invalid }">
+                                <div class="col-md-offset-1 col-md-11">
+                                    <div class="checkbox">
+                                        <label>
+                                            <div class="checker">
+			                        			<span ng-class="product.hidden ? 'checked' : ''">
+													<input id="hidden" name="hidden" type="checkbox" ng-model="product.hidden" ng-disabled="!hasAccess()" />
+												</span>
+                                            </div>
+                                            Private
+                                        </label>
+                                    </div>
+                                    <div class="help-block" ng-messages="form.hidden.$error" ng-show="form.hidden.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': form.parentProductId.$touched && form.parentProductId.$invalid, 'has-success': form.parentProductId.$touched && !form.parentProductId.$invalid }">
+                                <label for="parentProductId"
+                                       class="col-md-1 control-label">Parent Product</label>
+                                <div class="col-md-11">
+                                    <div class="input-icon right">
+                                        <i ng-show="form.parentProductId.$touched && form.parentProductId.$invalid" class="fa fa-warning"></i>
+                                        <i ng-show="form.parentProductId.$touched && !form.parentProductId.$invalid" class="fa fa-check"></i>
+                                        <select id="parentProductId"
+                                                name="parentProductId"
+                                                class="form-control"
+                                                ng-model="product.parentProductId"
+                                                ng-disabled="!hasAccess()">
+                                            <option value="">None</option>
+                                            <option ng-repeat="option in productOptions"
+                                                    value="{{option.id}}">{{option.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="help-block" ng-messages="form.parentProductId.$error" ng-show="form.parentProductId.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                <!-- /product tab -->
+
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-11 text-right">
+                            <button type="submit"
+                                    class="btn btn-default"
+                                    ng-disabled="busy || !hasAccess()"
+                                    ng-click="save(form, product)">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+{
+  "name": "rhea-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "angular": "~1.5.8",
+    "angular-animate": "~1.5.8",
+    "angular-bootstrap-datetimepicker": "~1.0.1",
+    "angular-cookies": "~1.5.8",
+    "angular-date-time-input": "~1.1.0",
+    "angular-messages": "~1.5.8",
+    "angular-moment": "~1.0.0-beta.6",
+    "angular-resource": "~1.5.8",
+    "angular-route": "~1.5.8",
+    "angular-sanitize": "~1.5.8",
+    "angular-spinner": "~0.8.1",
+    "angular-toastr": "~1.7.0",
+    "angular-ui-grid": "~3.0.7",
+    "bootstrap": "~3.3.6",
+    "font-awesome": "~4.7.0",
+    "jquery": "~2.1.3",
+    "moment": "~2.13.0",
+    "moment-timezone": "~0.5.4",
+    "spin.js": "~2.3.2",
+    "stompjs": "~2.3.3"
+  },
+  "devDependencies": {}
+}

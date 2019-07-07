@@ -1,0 +1,139 @@
+<div class="modal-header">
+	<h3 class="modal-title" id="modal-title">
+		Clone Role
+	</h3>
+</div>
+<div class="modal-body" id="modal-body">
+	<form name="form" 
+		class="form-horizontal" 
+		role="form"
+		novalidate>
+	    <div class="form-body">
+
+	        <div class="form-group"
+	        	ng-class="{ 'has-error': form.name.$touched && form.name.$invalid, 'has-success': form.name.$touched && !form.name.$invalid }">
+	            <label
+	            	for="name" 
+	            	class="col-md-3 control-label">Name
+	            	<span class="required" aria-required="true"> * </span>
+	            </label>
+	            <div class="col-md-9">
+	                <div class="input-icon right">
+	                	<i ng-show="form.name.$touched && form.name.$invalid" class="fa fa-warning"></i>
+	                	<i ng-show="form.name.$touched && !form.name.$invalid" class="fa fa-check"></i>
+		                <input id="name"
+		                	name="name" 
+		                	type="text" 
+		                	class="form-control" 
+		                	placeholder="Name" 
+		                	ng-model="role.name"
+		                	ng-trim="true"
+		           			ng-required="true"
+		           			ng-minlength="5"
+		           			ng-maxlength="50">
+	                </div>
+	                <div class="help-block" ng-messages="form.name.$error" ng-show="form.name.$touched">
+	                	<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+	                </div>
+	            </div>
+	        </div>
+
+	        <div class="form-group"
+	        	ng-class="{ 'has-error': form.description.$touched && form.description.$invalid, 'has-success': form.description.$touched && !form.description.$invalid }">
+	            <label for="description"
+	            	class="col-md-3 control-label">Description
+	            	<span class="required" aria-required="true"> * </span>
+	            </label>
+	            <div class="col-md-9">
+	            	<div class="input-icon right">
+	                	<i ng-show="form.description.$touched && form.description.$invalid" class="fa fa-warning"></i>
+	                	<i ng-show="form.description.$touched && !form.description.$invalid" class="fa fa-check"></i>
+		                <textarea id="description" 
+		                	name="description"
+		                	class="form-control" 
+		                	rows="3" 
+		                	ng-model="role.description"
+		                	ng-trim="true"
+		           			ng-required="true"
+		           			ng-minlength="3"
+		           			ng-maxlength="255"></textarea>
+		            </div>
+	                <div class="help-block" ng-messages="form.description.$error" ng-show="form.description.$touched">
+	                	<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+	                </div>
+	            </div>
+	        </div>
+
+	        <div class="form-group"
+	        	ng-class="{ 'has-error': form.application.$touched && form.application.$invalid, 'has-success': form.application.$touched && !form.application.$invalid }">
+	            <label for="application"
+	            	class="col-md-3 control-label">Application
+	            	<span class="required" aria-required="true"> * </span>
+	            </label>
+	            <div class="col-md-9">
+	                <div class="input-icon right">
+	                	<i ng-show="form.application.$touched && form.application.$invalid" class="fa fa-warning"></i>
+	                	<i ng-show="form.application.$touched && !form.application.$invalid" class="fa fa-check"></i>
+		                <select id="application"
+		                	name="application"
+		                	class="form-control" 
+		                	ng-model="role.applicationId"
+		                	ng-required="true">
+		                    <option ng-repeat="option in applicationOptions" 
+		                    	value="{{option.id}}">{{option.name}}</option>
+		                </select>
+		            </div>
+	                <div class="help-block" ng-messages="form.application.$error" ng-show="form.application.$touched">
+	                	<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+	                </div>
+	            </div>
+	        </div>
+
+	        <div class="form-group"
+	        	ng-class="{ 'has-error': form.enabled.$touched && form.enabled.$invalid, 'has-success': form.enabled.$touched && !form.enabled.$invalid }">
+	            <div class="col-md-offset-3 col-md-9">
+                       <div class="checkbox">
+                       	<label>
+                       		<div class="checker">
+                       			<span ng-class="role.enabled ? 'checked' : ''"><input id="enabled" name="enabled" type="checkbox" ng-model="role.enabled" /></span>
+                       		</div>
+                       		Enabled
+                       	</label>
+                       </div>
+	                <div class="help-block" ng-messages="form.enabled.$error" ng-show="form.enabled.$touched">
+	                	<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+	                </div>
+	            </div>
+	        </div>
+
+	        <div class="form-group"
+	        	ng-class="{ 'has-error': form.editable.$touched && form.editable.$invalid, 'has-success': form.editable.$touched && !form.editable.$invalid }"
+	        	ng-if="user.admin">
+	            <div class="col-md-offset-3 col-md-9">
+                       <div class="checkbox">
+                       	<label>
+                       		<div class="checker">
+                       			<span ng-class="role.editable ? 'checked' : ''"><input id="editable" name="editable" type="checkbox" ng-model="role.editable" /></span>
+                       		</div>
+                       		Editable
+                       	</label>
+                       </div>
+	                <div class="help-block" ng-messages="form.editable.$error" ng-show="form.editable.$touched">
+	                	<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+	                </div>
+	            </div>
+	        </div>
+
+		</div>	
+	</form>
+</div>
+<div class="modal-footer">
+	<button type="submit" 
+		class="btn btn-default" 
+		ng-disabled="busy"
+		ng-click="ok(form)">OK</button>
+	<button type="button" 
+		class="btn btn-default" 
+		ng-disabled="busy"
+		ng-click="cancel()">Cancel</button>
+</div>	

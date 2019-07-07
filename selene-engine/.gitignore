@@ -1,0 +1,8 @@
+/build/
+/log/
+/deb/selene-gateway/opt/selene/config/
+/deb/selene-gateway/opt/selene/lib/
+/db/
+/backup/
+/download/
+*.deb

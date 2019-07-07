@@ -1,0 +1,131 @@
+<div class="row-content no-list-page">
+    <div class="content-wrapper-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div loading="vm.apiCalls.getEvents" class="loading-rectangled loading-lg">
+
+                        <div ng-if="vm.events && vm.events.length === 0">
+                            <div class="paragraph-with-icon">
+                                <i class="icon color-brand glyphicon glyphicon-info-sign"></i>
+                                <p class="paragraph middle font-x2">There are currently no active events. Click the Developer Registration button below to register as a developer.</p>
+                            </div>
+                            <div class="text-center">
+                                <a href="#/signup" class="btn btn-brand btn-lg">Developer registration</a>
+                            </div>
+                        </div>
+
+                        <form ng-if="vm.events && vm.events.length > 0" class="form-horizontal panel-registration" name="vm.registrationForm" ng-submit="vm.registration(vm.eventRegistration)" novalidate autocomplete="off">
+
+                            <div class="paragraph-with-icon">
+                                <i class="icon color-brand glyphicon glyphicon-info-sign"></i>
+                                <p class="paragraph middle font-x2">Complete the form to register for your account</p>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': (vm.registrationForm.$submitted || vm.registrationForm.event.$touched) && !vm.registrationForm.event.$valid}">
+                                <label for="registrationEmail" class="col-sm-3 control-label required">Event</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control customSelect" ng-model="vm.eventRegistration.eventId" id="event" name="event" ng-options="option.id as option.name for option in vm.events" required>
+                                    <option value="">Please select</option>
+                                </select>
+                                    <div class="help-block" ng-show="(vm.registrationForm.$submitted || vm.registrationForm.event.$touched) && !vm.registrationForm.event.$valid">
+                                        <div ng-show="vm.registrationForm.event.$error.required">Event required</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': (vm.registrationForm.$submitted || vm.registrationForm.name.$touched) && !vm.registrationForm.name.$valid}">
+                                <label for="name" class="col-sm-3 control-label required">Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" ng-model="vm.eventRegistration.name" required>
+                                    <div class="help-block" ng-show="(vm.registrationForm.$submitted || vm.registrationForm.name.$touched) && !vm.registrationForm.name.$valid">
+                                        <div ng-show="vm.registrationForm.name.$error.required">Name required</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': (vm.registrationForm.$submitted || vm.registrationForm.email.$touched) && !vm.registrationForm.email.$valid}">
+                                <label for="email" class="col-sm-3 control-label required">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" ng-model="vm.eventRegistration.email" required email-validation>
+                                    <div class="help-block" ng-show="(vm.registrationForm.$submitted || vm.registrationForm.email.$touched) && !vm.registrationForm.email.$valid">
+                                        <div ng-show="vm.registrationForm.email.$error.required">Email required</div>
+                                        <div ng-show="vm.registrationForm.email.$error.email">Invalid email</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': (vm.registrationForm.$submitted || vm.registrationForm.password.$touched) && !vm.registrationForm.password.$valid}">
+                                <label for="password" class="col-sm-3 control-label required">Password</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="vm.eventRegistration.password" required>
+                                    <div class="help-block" ng-show="(vm.registrationForm.$submitted || vm.registrationForm.password.$touched) && !vm.registrationForm.password.$valid">
+                                        <div ng-show="vm.registrationForm.password.$error.required">Password required</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': (vm.registrationForm.$submitted || vm.registrationForm.confirmPassword.$touched) && !vm.registrationForm.confirmPassword.$valid}">
+                                <label for="confirmPassword" class="col-sm-3 control-label required">Confirm password</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" ng-model="vm.eventRegistration.confirmPassword" equals="vm.eventRegistration.password" required>
+                                    <div class="help-block" ng-show="(vm.registrationForm.$submitted || vm.registrationForm.confirmPassword.$touched) && !vm.registrationForm.confirmPassword.$valid">
+                                        <div ng-show="vm.registrationForm.confirmPassword.$error.required">Confirm password required</div>
+                                        <div ng-show="vm.registrationForm.confirmPassword.$error.equals">Passwords do not match</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': (vm.registrationForm.$submitted || vm.registrationForm.eventCode.$touched) && !vm.registrationForm.eventCode.$valid}">
+                                <label for="eventCode" class="col-sm-3 control-label required">Application Code</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="eventCode" name="eventCode" placeholder="Application Code" ng-model="vm.eventRegistration.eventCode" required>
+                                    <div class="help-block" ng-show="(vm.registrationForm.$submitted || vm.registrationForm.eventCode.$touched) && !vm.registrationForm.eventCode.$valid">
+                                        <div ng-show="vm.registrationForm.eventCode.$error.required">Application Code required</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div ng-show="vm.errorMessage" class="alert alert-danger" role="alert">
+                                        <ul>
+                                            <li ng-repeat="(field, error) in vm.errorMessage">{{error}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <button type="submit" class="btn btn-brand btn-lg" ladda-button="vm.registrationLoading" data-style="expand-left">
+                                        <span class="ladda-label">Next</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <hr class="divider dark visible-sm visible-xs">
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="paragraph-with-icon">
+                        <i class="icon color-brand glyphicon glyphicon-question-sign"></i>
+                        <p class="paragraph middle font-x2">Already registered and have your verification code?</p>
+                    </div>
+
+                    <div class="text-center">
+                        <a href="#/event/verification" class="btn btn-brand btn-lg">Yes</a>
+                    </div>
+
+                    <hr class="divider dark">
+
+                    <resend-event-code></resend-event-code>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

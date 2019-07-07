@@ -1,0 +1,126 @@
+<div class="content-nav overflow-hidden arrow-collapsed-menu"
+     ng-class="{'mobile-view':vm.mobileLayot, 'showed-menu':vm.mobileMenuShowed, 'collapsed-view':vm.collapsedView}">
+    <div class="nav nav-custom-scrollbar" ng-scrollbars ng-scrollbars-config="scrollerConfig">
+        <div class="content-nav-filters">
+
+            <div ng-hide="vm.menuIsHidden()">
+                <div class="col-xs-12">
+                    <h3 class="filter-group-title break-word" ng-hide="vm.isEditJobPage">Create Job</h3>
+                    <h3 class="filter-group-title break-word" ng-show="vm.isEditJobPage">Edit {{vm.model.jobName}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="collapsed-button-wrap nav nav-pills">
+        <li role="presentation" class="collapse-button">
+            <a ng-click="vm.collapseMenu()" class="text-right">
+                    <span class="icon-wrapper"><i class="fa fa-lg" ng-class="{
+                        'fa-angle-double-left': !vm.mobileLayot && !vm.collapsedView,
+                        'fa-angle-double-right': !vm.mobileLayot && vm.collapsedView,
+                        'mobile fa-angle-double-right': vm.mobileLayot && !vm.mobileMenuShowed,
+                        'mobile fa-angle-double-left': vm.mobileLayot && vm.mobileMenuShowed
+                    }" aria-hidden="true"></i></span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="content-wrapper device-selector"
+     ng-class="{'mobile-view':vm.mobileLayot, 'showed-menu':vm.mobileMenuShowed, 'collapsed-view':vm.collapsedView}">
+    <!--  CONTENT BODY -->
+    <form name="notificationForm" class="margin-top-20 job-wizard-content">
+        <div class="row">
+            <div class="col-xs-12 text-right h-green">
+                Step 3 of 4
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group checkbox">
+                    <h4 class="h-green">Notification</h4>
+                    <label>
+                        <input type="checkbox" name="scheduling"
+                            ng-model="vm.model.notification.sendWhenSubmitted">
+                        Send when submitted
+                    </label>
+                </div>
+                <div class="form-group checkbox">
+                    <label>
+                        <input type="checkbox" name="scheduling"
+                            ng-model="vm.model.notification.sendWhenStarted">
+                        Send when started
+                    </label>
+                </div>
+                <div class="form-group checkbox">
+                    <label>
+                        <input type="checkbox" name="scheduling"
+                            ng-model="vm.model.notification.sendWhenCompleted">
+                        Send when completed
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <textarea id="email" class="form-control"
+                            ng-model="vm.model.notification.email"
+                            ng-change="vm.checkValidEmails()"></textarea>
+
+                    <div ng-if="!vm.hasNotifications()" role="alert">
+                        <div class="alert-danger">
+                            <span>Email is required, if was checked options</span>
+                        </div>
+                    </div>
+
+                    <div ng-if="!vm.notification.emailsIsValid" role="alert">
+                        <div class="alert-danger">
+                            <span>Email addresses are invalid</span>
+                        </div>
+                    </div>
+
+                    <div>Enter email addresses separated by a comma.</div>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <h4 class="h-green">Expiration</h4>
+                            <div class="input-group">
+                                <input id="timeToExpireSeconds" name="timeToExpireSeconds" type="number" min="1" max="525600" class="form-control" ng-model="vm.model.timeToExpireSeconds" required />
+                                <span class="input-group-addon">minutes</span>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" ng-click="vm.model.timeToExpireSeconds = 525600">Set Max</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" ng-messages="notificationForm.timeToExpireSeconds.$error" role="alert">
+                            <div class="alert-danger">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" role="alert">
+                            <div class="alert-info">
+                                <p>Minimum of 1 minute and a maximum of 525,600 minutes. The default value is 7 calendar days.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="margin-right-15 next-back-buttons">
+                    <button class="btn btn-brand btn-brand-left"
+                            ng-click="vm.goToBack()"
+                            ng-if="!vm.currentStep.isFirst">Back
+                    </button>
+
+                    <button class="btn btn-brand btn-brand-right"
+                            ng-click="vm.goToNext()"
+                            ng-disabled="!vm.hasNotifications() || !vm.notification.emailsIsValid || !notificationForm.$valid"
+                            ng-if="!vm.currentStep.isLast">Next
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- /CONTENT BODY -->
+</div>

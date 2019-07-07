@@ -1,0 +1,45 @@
+<div left-menu is-collapsed="menuIsCollapsed">
+	<ul class="nav nav-pills nav-stacked">
+
+		<li role="presentation" ui-sref-active="active">
+			<a ui-sref="subscription.information({subscriptionId: subscriptionId})">{{subscriptionNameMI || 'Subscription'}}</a>
+		</li>
+		<li role="presentation"
+			ng-cloak
+			ui-sref-active="active"
+			ng-show="canReadSubscriptionApplications()"
+			ng-class="{'disabled' : subscriptionId == 'new'}">
+			<a ng-if="subscriptionId !== 'new'" ui-sref="subscription.applications({subscriptionId: subscriptionId})">Application</a>
+			<a ng-if="subscriptionId === 'new'">Application</a>
+		</li>
+		<!-- TODO: Change conditions -->
+		<li role="presentation"
+			ng-cloak
+			ui-sref-active="active"
+			ng-show="canReadSubscriptionAccessKey()"
+			ng-class="{'disabled' : subscriptionId == 'new'}">
+			<a ng-if="subscriptionId !== 'new'" ui-sref="subscription.accesskeys({subscriptionId: subscriptionId})">Access Keys</a>
+			<a ng-if="subscriptionId === 'new'" >Access Keys</a>
+		</li>
+	</ul>
+</div>
+
+<div class="partial-page-content-container" ng-class="{'menu-collapsed': menuIsCollapsed}"
+	ng-scrollbars ng-scrollbars-config="scrollerConfig">
+	<div class="partial-page-content">
+		<!-- BEGIN PAGE BREADCRUMB -->
+		<ul class="page-breadcrumb breadcrumb">
+		    <li>Provision</li>
+		    <li><a ui-sref="subscriptions">Subscriptions</a></li>
+		    <li ng-if="$state.$current.self.url == '/information'" class="active">{{subscriptionNameMI || 'Subscription'}}</li>
+		    <li ng-if="$state.$current.self.url != '/information'"><a ui-sref="subscription.information({subscriptionId: subscriptionId})">{{subscriptionNameMI || 'Subscription'}}</a></li>
+			<li ng-if="$state.$current.self.url == '/applications'" class="active">Application</li>
+			<li ng-if="$state.$current.self.url == '/accesskeys'" class="active">Access Keys</li>
+		</ul>
+		<!-- END PAGE BREADCRUMB -->
+		<!-- BEGIN TABS -->
+		<div ui-view></div>
+		<!-- END TABS -->
+
+	</div>
+</div>

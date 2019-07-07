@@ -1,0 +1,172 @@
+<div class="content-nav overflow-hidden arrow-collapsed-menu" ng-class="{'mobile-view':vm.mobileLayot, 'showed-menu':vm.mobileMenuShowed, 'collapsed-view':vm.collapsedView}">
+    <div class="nav nav-custom-scrollbar" ng-scrollbars ng-scrollbars-config="scrollerConfig">
+        <div class="content-nav-filters">
+
+            <div ng-hide="vm.menuIsHidden()">
+                <div class="col-xs-12">
+                    <h3 class="filter-group-title break-word" ng-hide="vm.isEditJobPage">Create Job</h3>
+                    <h3 class="filter-group-title break-word" ng-show="vm.isEditJobPage">Edit {{vm.model.jobName}}</h3>
+                </div>
+                <div class="device-selection">
+                    <h4 ng-class="{'text-center': vm.menuIsHidden()}" class="col-sm-12">
+                        <span class="filter-group-title" ng-hide="vm.menuIsHidden()">Asset Selection</span>
+                    </h4>
+                    <div class="form-group col-sm-12">
+                        <label for="deviceTypes">Asset Types</label>
+                        <select class="form-control customSelect" name="deviceTypes" id="deviceTypes" ng-model="vm.filter.deviceTypeId" ng-change="vm.selectionUpdated()"
+                                ng-disabled="vm.model.id != null"
+                                ng-options="option.id as option.name for option in vm.filterOptions.deviceTypes | orderBy:'name'">
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label for="softwareRelease">New Firmware version</label>
+                        <select class="form-control customSelect" id="softwareRelease"
+                                ng-model="vm.filter.softwareReleaseId"
+                                ng-disabled="vm.filterOptions.softwareReleases === undefined || vm.filterOptions.softwareReleases.length === 0 || vm.model.id != null"
+                                ng-change="vm.changeSoftwareVersion()">
+                             <option value=""
+                                     ng-if="vm.filterOptions.softwareReleases === undefined || vm.filterOptions.softwareReleases.length === 0" disabled>Not available</option>
+                             <option ng-repeat="option in vm.filterOptions.softwareReleases" value="{{option.id}}">{{option.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12">
+                        <button class="btn btn-brand pull-right"
+                                ng-disabled="vm.filter.softwareReleaseId === undefined  || vm.filter.softwareReleaseId === null || vm.model.id != null"
+                                ng-click="vm.find()">Find</button>
+                    </div>
+                </div>
+
+                <form name="filterForm" class="device-filter">
+
+                    <h4 ng-class="{'text-center': vm.menuIsHidden()}" class="col-sm-12">
+                        <span class="filter-group-title" ng-hide="vm.menuIsHidden()">Filters</span>
+                    </h4>
+
+                    <div class="form-group col-sm-12">
+                        <label for="deviceName">Asset Name</label>
+                        <input class="form-control"
+                               name="deviceName"
+                               id="deviceName"
+                               ng-model="vm.filterResult.name"
+                               maxlength="100"
+                               ng-maxlength="99"
+                               ng-change="vm.filterUpdate()">
+                        <div class="alert-danger"
+                             ng-messages="filterForm.deviceName.$error"
+                             role="alert">
+                            <span ng-message="maxlength">Asset Name must be between 0 and 100 characters long</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <label for="deviceUid">UID</label>
+                        <input class="form-control"
+                               name="deviceUid"
+                               id="deviceUid"
+                               maxlength="100"
+                               ng-maxlength="99"
+                               ng-model="vm.filterResult.uid"
+                               ng-change="vm.filterUpdate()">
+                        <div class="alert-danger"
+                             ng-messages="filterForm.deviceUid.$error"
+                             role="alert">
+                            <span ng-message="maxlength">UID must be between 0 and 100 characters long</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <label for="deviceGroupFilter">GROUP</label>
+                        <select class="form-control " id="deviceGroupFilter"
+                                ng-model="vm.filterResult.group"
+                                ng-options="option.group as option.group for option in vm.model.availableObjects | unique:'group'"
+                                ng-change="vm.filterUpdate()"
+                                size="5"
+                                multiple>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <label for="deviceOwnerFilter">OWNER</label>
+                        <select class="form-control" id="deviceOwnerFilter"
+                                ng-model="vm.filterResult.ownerId"
+                                ng-options="option.ownerId as option.ownerName for option in vm.model.availableObjects | unique:'ownerId'"
+                                ng-change="vm.filterUpdate()"
+                                size="5"
+                                multiple>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <label for="deviceSoftwareVersionFilter">FIRMWARE VERSION</label>
+                        <select class="form-control" id="deviceSoftwareVersionFilter"
+                                ng-model="vm.filterResult.softwareReleaseId"
+                                ng-options="option.id as option.name for option in vm.model.softwareReleases  | unique:'id'"
+                                ng-change="vm.filterUpdate()"
+                                size="5"
+                                multiple>
+                        </select>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+    <ul class="collapsed-button-wrap nav nav-pills">
+        <li role="presentation" class="collapse-button">
+            <a ng-click="vm.collapseMenu()" class="text-right">
+                <span class="icon-wrapper"><i class="fa fa-lg" ng-class="{
+                    'fa-angle-double-left': !vm.mobileLayot && !vm.collapsedView,
+                    'fa-angle-double-right': !vm.mobileLayot && vm.collapsedView,
+                    'mobile fa-angle-double-right': vm.mobileLayot && !vm.mobileMenuShowed,
+                    'mobile fa-angle-double-left': vm.mobileLayot && vm.mobileMenuShowed
+                }" aria-hidden="true"></i></span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="content-wrapper device-selector" ng-class="{'mobile-view':vm.mobileLayot, 'showed-menu':vm.mobileMenuShowed, 'collapsed-view':vm.collapsedView}">
+
+    <!--  CONTENT BODY -->
+    <div class="margin-top-20 job-wizard-content">
+        <div class="row">
+            <div class="col-xs-12 text-right h-green">
+                Step 1 of 4
+            </div>
+            <div class="device-selection-table" ng-controller="FMWizardAvailableDevicesTable as vm">
+                <!-- DEVICE AVAILABLE -->
+                <div class="col-xs-12">
+                    <div ng-include="'partials/list/panel.html'"></div>
+                </div>
+                <div class="col-xs-12 content-toolbar text-right">
+                    <button class="btn btn-default" ng-click="vm.addDevice()">Add Selected</button>
+                </div>
+                <!-- /DEVICE AVAILABLE -->
+            </div>
+
+            <div class="device-selection-table" ng-controller="FMWizardChosenDevicesTable as vm">
+                <!-- DEVICE CHOSEN -->
+                <div class="col-xs-12">
+                    <div ng-include="'partials/list/panel.html'"></div>
+                </div>
+                <div class="col-xs-12 content-toolbar text-right">
+                    <button class="btn btn-default" ng-click="vm.removeDevice()">Remove Selected</button>
+                </div>
+                <!-- /DEVICE CHOSEN -->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="margin-right-15 next-back-buttons">
+                <button class="btn btn-brand btn-brand-left" ng-click="vm.goToBack()" ng-if="!vm.currentStep.isFirst">Back</button>
+                <button class="btn btn-brand btn-brand-right"
+                        ng-click="vm.goToNext()"
+                        ng-disabled="vm.model.chosen.length < 1"
+                        ng-if="!vm.currentStep.isLast">Next</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- /CONTENT BODY -->
+</div>

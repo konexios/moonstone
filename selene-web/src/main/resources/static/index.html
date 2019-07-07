@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en" ng-app="selene">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=11"/>
+  <link rel="icon" href="assets/img/favicon.ico">
+  <title>Selene</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/vender/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/vender/bootstrap/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/webjars/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/webjars/angular-toastr/1.5.0/angular-toastr.min.css">
+  <link rel="stylesheet" href="/assets/css/shapes.css">
+  <link rel="stylesheet" href="/assets/css/wireframe.css">
+  <link rel="stylesheet" href="/assets/css/asi.css">
+<link rel="stylesheet" href="/assets/css/jquery-ui.min.css">
+  <!--link rel="stylesheet" href="/assets/css/selene.css"--> 
+</head>
+<div ng-controller="SeleneController">
+  <span us-spinner spinner-on="showSpinner > 0" ng-class="{mask: showSpinner > 0}"></span>
+  <div class="b-wrapper">
+    <nav class="app-top-navbar b-page-header">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button"
+                  class="navbar-toggle collapsed"
+                  data-toggle="collapse"
+                  data-target="#app-top-navbar-collapse"
+                  aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#/home">
+            <img class="logo" alt="Arrow Connect" src="assets/img/arrow-connect-logo-white.png">
+          </a>
+        </div>
+        <div id="app-top-navbar-collapse" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li ng-if="isLoggedIn()"
+                ng-class="isActivePath('/home')"
+                ng-cloak>
+              <a href="#/home">Home</a>
+            </li>
+            <li ng-if="isLoggedIn()"
+                ng-class="isActivePath('/gateway')"
+                ng-cloak>
+              <a href="#/gateway">Gateway</a>
+            </li>
+            <li ng-if="isLoggedIn()"
+                ng-class="isActivePath('/devices')"
+                ng-cloak>
+              <a href="#/devices">Devices</a>
+            </li>
+            <li ng-if="isLoggedIn()"
+                ng-class="isActivePath('/messages')"
+                ng-cloak>
+              <a href="#/messages">Error messages</a>
+            </li>
+            <li ng-if="isLoggedIn()"
+                ng-class="isActivePath('/cbk')"
+                ng-cloak>
+              <a href="#/cbk">Central Knowledge Bank</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav no-margin"
+              ng-if="isLoggedIn()"
+              ng-cloak>
+            <li class="dropdown"
+                ng-class="isActivePath('/logs', '/upload')"
+                ng-cloak>
+              <a href=""
+                 class="dropdown-toggle"
+                 data-toggle="dropdown"
+                 role="button"
+                 aria-haspopup="true"
+                 aria-expanded="false">
+                Software
+              </a>
+              <ul class="dropdown-menu">
+                <li ng-if="isLoggedIn()"
+                    ng-class="isActivePath('/logs')">
+                  <a href="#/logs">Selene Logs</a>
+                </li>
+                <li ng-if="isLoggedIn()"
+                    ng-class="isActivePath('/upload')">
+                  <a href="#/upload">Upload & Download</a>
+                </li>
+              </ul>
+            </li>
+            
+          </ul>
+          <!-- <ul class="nav navbar-nav no-margin"
+              ng-if="isLoggedIn()"
+              ng-cloak>
+            <li class="dropdown"
+                ng-class="isActivePath('/aws', '/ibm', '/azure')"
+                ng-cloak>
+              <a href=""
+                 class="dropdown-toggle"
+                 data-toggle="dropdown"
+                 role="button"
+                 aria-haspopup="true"
+                 aria-expanded="false">
+                Cloud Providers
+              </a>
+              <ul class="dropdown-menu">
+                <li ng-if="isLoggedIn()"
+                    ng-class="isActivePath('/aws')">
+                  <a href="#/aws">AWS</a>
+                </li>
+                <li ng-if="isLoggedIn()"
+                    ng-class="isActivePath('/ibm')">
+                  <a href="#/ibm">IBM</a>
+                </li>
+                <li ng-if="isLoggedIn()"
+                    ng-class="isActivePath('/azure')">
+                  <a href="#/azure">Azure</a>
+                </li>
+              </ul>
+            </li>
+            
+          </ul> -->
+          <ul class="nav navbar-nav navbar-right" ng-if="!isLoggedIn()" ng-cloak>
+            <li ng-class="isActivePath('/signin')">
+              <a href="#/signin">Sign In</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right"
+              ng-if="isLoggedIn()"
+              ng-cloak>
+            <li class="dropdown"
+                ng-class="isActiveNavbarMenu('profile')">
+              <a href=""
+                 class="dropdown-toggle"
+                 data-toggle="dropdown"
+                 role="button"
+                 aria-haspopup="true"
+                 aria-expanded="false">
+                {{principal.username}}
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="" ng-click="logout()">Sign Out</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-app b-page-content">
+      <!--<div class="container-fluid">-->
+        <div id="errorModal"
+             class="modal fade"
+             ng-controller="ErrorController">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="title"
+                    class="modal-title"></h4>
+              </div>
+              <div class="modal-body">
+                <p id="message"></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-default"
+                        ng-click="hideModal()">Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-view class="view-slide-in"></div>
+      <!--</div>-->
+    </div>
+    <footer class="footer b-page-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="footer__copyright">&copy; <span ng-bind="currentDate | date:'yyyy'"></span> Arrow Electronics, Inc. All Rights Reserved.</div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="pull-right">
+                        <img src="/assets/img/Arrow_worm_white.png"  style="height: 60px;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+  </div>
+</div>
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="/assets/css/jquery-ui.min.js"></script>
+<script src="/node_modules/moment/min/moment-with-locales.min.js"></script>
+<script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/node_modules/angular/angular.min.js"></script>
+<script src="/node_modules/spin.js/spin.min.js"></script>
+<script src="/node_modules/angular-messages/angular-messages.min.js"></script>
+<script src="/node_modules/angular-resource/angular-resource.min.js"></script>
+<script src="/node_modules/angular-route/angular-route.min.js"></script>
+<script src="/node_modules/angular-animate/angular-animate.min.js"></script>
+<script src="/node_modules/angular-date-time-input/src/dateTimeInput.js"></script>
+<script src="/node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="/node_modules/angular-cookies/angular-cookies.min.js"></script>
+<script src="/node_modules/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+<script src="/node_modules/angular-spinner/angular-spinner.min.js"></script>
+<script src="/assets/vender/sockjs.min.js"></script>
+<script src="/node_modules/@stomp/stompjs/lib/stomp.min.js"></script>
+<script src="/assets/vender/bootstrap/ui-bootstrap-tpls-0.14.3.min.js"></script>
+<script src="/scripts/portal/util.js"></script>
+  
+<script src="/scripts/portal/Selene.js"></script>
+<script src="/scripts/portal/Directives.js"></script>
+<script src="/scripts/portal/Filters.js"></script>
+<script src="/scripts/portal/SeleneController.js"></script>
+<script src="/scripts/services/ErrorService.js"></script>
+<script src="/scripts/controllers/ErrorController.js"></script>
+<script src="/scripts/services/SecurityService.js"></script>
+<script src="/scripts/services/AuthenticationService.js"></script>
+<script src="/scripts/services/SpinnerService.js"></script>
+<script src="/scripts/services/ToastrService.js"></script>
+<script src="/scripts/services/GatewayService.js"></script>
+<script src="/scripts/services/AwsService.js"></script>
+<script src="/scripts/services/AzureService.js"></script>
+<script src="/scripts/services/IbmService.js"></script>
+<script src="/scripts/services/DeviceService.js"></script>
+<script src="/scripts/services/TelemetryService.js"></script>
+<script src="/scripts/services/MessageService.js"></script>
+<script src="/scripts/services/WebSocketsService.js"></script>
+<script src="/scripts/services/TransposeService.js"></script>
+<script src="/scripts/services/SoftwareService.js"></script>
+<script src="/scripts/controllers/LoginController.js"></script>
+<script src="/scripts/controllers/HomeController.js"></script>
+<script src="/scripts/controllers/GatewayController.js"></script>
+<script src="/scripts/controllers/DevicesController.js"></script>
+<script src="/scripts/controllers/DeviceController.js"></script>
+<script src="/scripts/controllers/DeleteDeviceController.js"></script>
+<script src="/scripts/controllers/AwsController.js"></script>
+<script src="/scripts/controllers/AzureController.js"></script>
+<script src="/scripts/controllers/IbmController.js"></script>
+<script src="/scripts/controllers/MessagesController.js"></script>
+<script src="/scripts/controllers/MessageController.js"></script>
+<script src="/scripts/controllers/TestDeviceController.js"></script>
+<script src="/scripts/controllers/RegistrationController.js"></script>
+<script src="/scripts/controllers/StateController.js"></script>
+<script src="/scripts/controllers/TelemetryController.js"></script>
+<script src="/scripts/controllers/DeleteTransposeController.js"></script>
+<script src="/scripts/controllers/SoftwareController.js"></script>
+<script src="/scripts/controllers/ViewLogFileController.js"></script>
+<script src="/scripts/controllers/CentralKnowledgeBankController.js"></script>
+<script src="/scripts/controllers/ViewLookupFileController.js"></script>
+<script src="/scripts/controllers/ScanMacAddressController.js"></script>
+</body>
+</html>

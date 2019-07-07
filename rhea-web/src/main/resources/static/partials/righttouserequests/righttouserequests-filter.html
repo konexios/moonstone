@@ -1,0 +1,43 @@
+<div class="modal-header">
+  <h3 class="modal-title">Search</h3>
+</div>
+<div class="modal-body">
+  <form name="form"
+        class="form-horizontal"
+        novalidate>
+    <div class="form-group">
+      <label for="TenantIds"
+             class="col-sm-3 control-label">Tenants <span class="label label-default">{{filter.companyIds.length}}</span></label>
+      <div class="col-sm-9">
+        <select id="TenantIds"
+                class="form-control"
+                size="5"
+                multiple
+                ng-model="filter.companyIds"
+                ng-options="tenant.id as tenant.name for tenant in filterOptions.tenants">
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="statuses"
+             class="col-sm-3 control-label">Statuses <span class="label label-default">{{filter.statuses.length}}</span></label>
+      <div class="col-sm-9">
+        <select id="statuses"
+                class="form-control"
+                size="5"
+                multiple
+                ng-model="filter.statuses"
+                ng-options="status as status for status in filterOptions.statuses">
+        </select>
+      </div>
+    </div>
+
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default"
+          type="submit" ng-click="ok()">Search</button>
+  <button class="btn btn-default"
+          type="button" ng-click="cancel()">Cancel</button>
+</div>

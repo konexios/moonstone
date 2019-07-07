@@ -1,0 +1,60 @@
+<!-- BEGIN PAGE BREADCRUMB -->
+<ul class="page-breadcrumb breadcrumb">
+    <li>Manage</li>
+    <li class="active">Cache</li>
+</ul>
+<!-- END PAGE BREADCRUMB -->
+<!-- BEGIN MAIN CONTENT -->
+<div class="row">
+    <div class="col-md-12">
+		<div class="portlet light portlet-fit portlet-datatable bordered">
+			<div class="portlet-title">
+			    <div class="caption">
+                    Cache List 
+                </div>
+			    <div class="actions">
+			    </div>
+			</div>
+			<div class="portlet-body">
+				<div class="table-container">
+					<div class="dataTables_wrapper dataTables_extended_wrapper no-footer">
+						<div class="row">
+							<div class="col-md-8 col-sm-12">
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="table-group-actions pull-right">
+			                        <span></span>
+			                    </div>
+							</div>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover dataTable table-ellipsis">
+								<thead>
+									<tr class="heading">
+										<th>Remote Cache</th>
+									</tr>
+								</thead>
+								<tbody ng-repeat="item in remoteCache">
+									<tr>
+										<td>{{item.groupName}}</td>
+									</tr>
+									<tr ng-repeat="key in item.keys">
+										<td><a href="" ng-click="onCacheKeyClick(key);">{{key}}</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="row">
+							<div class="col-md-8 col-sm-12">
+							</div>
+							<div class="col-md-4 col-sm-12">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+<!-- END MAIN CONTENT -->
+<pre>{{remoteCache | json}}</pre>

@@ -1,0 +1,34 @@
+<div class="content-wrapper-fluid">
+    <div class="container-fluid">
+        <div class="row" ng-show="!vm.loading">
+            <div class="col-md-12">
+                <h3>{{vm.board.name}} <small>{{vm.board.description}}</small></h3>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="action-button-container" ng-show="vm.boardIsReady">
+                <label class="switch" ng-if="vm.canManageBoard()">
+                    <input type="checkbox" name="editMode" id="editMode" ng-model="vm.editMode">
+                    <span class="slider round" for="editMode"></span>
+                </label>
+                <button ng-show="vm.editMode" class="actoin-button collapsed" data-toggle="collapse" data-target="#actionMenu"><span>+</span></button>
+                <ul id="actionMenu" class="action-menu collapse" ng-show="vm.editMode">
+                    <li>
+                        <button ng-click="vm.openAddWidgetModal()" class="action-menu-button" data-toggle="collapse" data-target="#actionMenu">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                        <a class="btn btn-link" ng-click="vm.openAddWidgetModal()">Add Widget</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div ng-if="!vm.loading">
+                <dashboard options="vm.ddBoardOptions" edit-mode="vm.editMode"></dashboard>
+            </div>
+        </div>
+    </div>
+</div>

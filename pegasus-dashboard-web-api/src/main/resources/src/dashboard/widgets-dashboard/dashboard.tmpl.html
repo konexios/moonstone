@@ -1,0 +1,13 @@
+<!--h3>Dashboard</h3>
+<pre>{{vm.dashboard | json}}</pre-->
+<div gridster="vm.options.gridster" ng-style="vm.gridStyles">
+    <ul>
+        <li gridster-item="widgetPos" ng-repeat="widgetPos in vm.widgetsGrid.widgetPositions">
+            <widget-body widget="vm.widgets[widgetPos.id]" ng-class="vm.widgets[widgetPos.id].directive" edit-mode="vm.editMode"></widget-body>
+        </li>
+    </ul>
+</div>
+<!--h3>Options</h3>
+<pre>{{vm.options | json}}</pre>
+<h3>Widgets</h3>
+<pre>{{vm.widgets | json}}</pre-->

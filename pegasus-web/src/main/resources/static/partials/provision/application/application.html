@@ -1,0 +1,46 @@
+<div left-menu is-collapsed="menuIsCollapsed">
+	<ul class="nav nav-pills nav-stacked">
+
+		<li role="presentation" ui-sref-active="active">
+			<a ui-sref="application.information({applicationId: applicationId})">{{applicationNameMI || 'Application'}}</a>
+		</li>
+		<!-- TODO: remove condition -->
+		<li role="presentation"
+			ng-cloak
+			ui-sref-active="active"
+			ng-show="canReadApplicationAccessKey()"
+			ng-class="{'disabled' : applicationId == 'new'}">
+			<a ng-if="applicationId !== 'new'" ui-sref="application.accesskeys({applicationId: applicationId})">Access Keys</a>
+			<a ng-if="applicationId === 'new'">Access Keys</a>
+		</li>
+		<li role="presentation" 
+			ng-cloak
+			ui-sref-active="active"
+			ng-show="canReadApplicationConfiguration()"
+			ng-class="{'disabled' : applicationId == 'new'}">
+			<a ng-if="applicationId !== 'new'" ui-sref="application.configurations({applicationId: applicationId})">
+				Configurations <span class="badge">{{application.configurations.length}}</span>
+			</a>
+			<a ng-if="applicationId === 'new'">Configurations</a>
+		</li>
+	</ul>
+</div>
+
+<div class="partial-page-content-container" ng-class="{'menu-collapsed': menuIsCollapsed}"
+	ng-scrollbars ng-scrollbars-config="scrollerConfig">
+	<div class="partial-page-content">
+		<!-- BEGIN PAGE BREADCRUMB -->
+		<ul class="page-breadcrumb breadcrumb">
+		    <li>Provision</li>
+			<li><a ui-sref="applications">Applications</a></li>
+			<li ng-if="$state.$current.self.url != '/information'"><a ui-sref="application.information({applicationId: applicationId})">{{applicationNameMI || 'Application'}}</a></li>
+			<li ng-if="$state.$current.self.url == '/information'" class="active">{{applicationNameMI || 'Application'}}</li>
+		    <li ng-if="$state.$current.self.url == '/accesskeys'" class="active">Access Keys</li>
+		    <li ng-if="$state.$current.self.url == '/configurations'" class="active">Configurations</li>
+		</ul>
+		<!-- END PAGE BREADCRUMB -->
+		<!-- BEGIN TABS -->
+		<div ui-view></div>
+		<!-- END TABS -->
+	</div>
+</div>

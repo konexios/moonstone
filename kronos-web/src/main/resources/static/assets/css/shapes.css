@@ -1,0 +1,82 @@
+/* deprecated, use .circle-widget instead */
+.circle {
+	display: inline-block;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+}
+
+.circle-sm { width: 100px; height: 100px; }
+.circle-md { width: 150px; height: 150px; }
+.circle-lg { width: 200px; height: 200px; }
+
+.dimond {
+  width: 100px;
+  height: 100px;
+  margin: 25px;
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  overflow: hidden;
+}
+
+.circle-widget {
+	display: inline-block;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+  border-radius: 50%;
+  width: 100%;
+  padding-top: 100%; /* 1:1 Aspect Ratio */
+  position: relative;
+}
+
+.circle-widget-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: rgba(245,245,245,1);
+  text-align: center;
+}
+
+.circle-widget-content span {
+  display: block;
+}
+
+.circle-widget-content.circle-widget-2-rows span:first-child {
+  margin-top: 30%;
+}
+
+.circle-widget-content.circle-widget-3-rows span:first-child {
+  margin-top: 15%;
+}
+
+
+.circle-widget-icon {
+  font-size: 4vw;
+  line-height: 4vw;
+  font-weight: bold;
+}
+
+.circle-widget-value {
+  font-size: 2.3vw;
+  line-height: 2.3vw;
+  font-weight: bold;
+}
+
+.circle-widget-caption {
+  font-size: 0.8vw;
+  line-height: 0.8vw;
+  text-transform: uppercase;
+}
+
+.circle-widget-2-rows .circle-widget-value {
+  font-size: 4vw;
+  line-height: 4vw;
+}
+
+.circle-widget-2-rows .circle-widget-caption {
+  font-size: 1vw;
+  line-height: 1vw;
+}

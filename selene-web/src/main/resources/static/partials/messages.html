@@ -1,0 +1,65 @@
+<div class="row-content">
+	<div ng-controller="MessagesController">
+		<div class="obj-page-hd">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12 col-sm-12 padding-zero">
+						<div class="page-title">
+							<h1>
+								{{pageTitle}}
+								
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="obj-page-bd">
+			<div class="panel panel-default panel-content">
+				<header class="b-panel-header">
+					<i class="fa fa-table"></i> Messages
+				</header>
+				<div class="b-panel-body">
+					<table class="table table-striped table-bordered table-layout-fixed">
+						<thead>
+							<tr ng-if="!showSmallTable">
+								<th ng-repeat="header in columnHeaders"
+										arrow-column-header
+										label="header.label"
+										value="header.value"
+										sort-field="pagination.sort.property"
+										sort-direction="pagination.sort.direction"
+										sortable="header.sortable"
+										sort="sortColumn(column)">
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-if="showSmallTable" ng-repeat="message in messages">
+								<td>
+									<p ng-repeat="header in columnHeaders">
+										<b>{{ header.label }}: </b>
+										<span ng-switch="header.value">
+											<a ng-switch-when="message" ng-href="#/message/{{message.id}}">{{message.message}}</a>
+											<span ng-switch-when="timestamp">{{message.timestamp}}</span>
+											<span ng-switch-default>{{message[header.value]}}</span>
+										</span>
+									</p>
+								</td>
+							</tr>
+							<tr ng-if="!showSmallTable" ng-repeat="message in messages">
+								<td ng-repeat="header in columnHeaders" ng-switch="header.value">
+									<a ng-switch-when="message" ng-href="#/message/{{message.id}}">{{message.message}}</a>
+									<span ng-switch-when="timestamp">{{message.timestamp}}</span>
+									<span ng-switch-default>{{message[header.value]}}</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="obj-page-ft">
+		</div>
+	</div>
+</div>

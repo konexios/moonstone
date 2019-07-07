@@ -1,0 +1,552 @@
+buildscript {
+    ext {
+        log4jVersion = '2.12.0'
+        jacksonVersion = '2.9.9'
+        httpclientVersion = '4.5.8'
+        
+        springBootVersion = '2.0.9.RELEASE'
+        springSecurityVersion = '5.0.12.RELEASE'
+        springSessionVersion = '2.0.10.RELEASE'
+        springCloudConfigVersion = '2.0.5.RELEASE'
+        
+        springKafkaVersion = '2.1.12.RELEASE'
+        springRetryVersion = '1.2.4.RELEASE'
+
+        pahoVersion = '1.2.1'
+        gsonVersion = '2.8.5'
+        bouncycastleVersion = '1.62'
+        
+        watsonIotVersion = '0.2.6'
+        azureIotVersion = '1.17.3'       
+        
+        commonsLangVersion = '3.9'
+        commonsIoVersion = '2.6'
+        commonsCodecVersion = '1.11'
+        commonsValidatorVersion = '1.6'
+        commonsTextVersion = '1.6'
+        commonsFileuploadVersion = '1.3.3'
+        commonsNetVersion = '3.6'       
+        commonsJexl3Version = '3.0'        
+        commonsCollection4Version = '4.1'
+        commonsConfiguration2Version = '2.5'
+        
+        javaxValidationApiVersion = '2.0.0.Final'
+        javaxElVersion = '3.0.1-b08'
+        javaxMailVersion = '1.6.0'
+        javaxServletVersion = '3.1.0'
+        
+        hibernateValidatorVersion = '6.0.13.Final'
+        freemarkerVersion = '2.3.28'
+        caffeineVersion = '2.6.2'
+        
+        saml2CoreVersion = '1.0.2.RELEASE'
+        opensamlVersion = '2.6.4'
+        xalanVersion = '2.7.2'
+        swaggerVersion = '2.9.2'
+        passayVersion = '1.3.1'        
+        poiVersion = '4.0.0' 
+        
+        awsSdkVersion = '1.11.420'
+        awsIotVersion = '1.2.0'
+        azureServiceClientVersion = '1.15.0'         
+        azureEventHubVersion = '0.15.1'
+        azureDeviceClientVersion = '1.14.0'
+        
+        tomcatJdbcVersion = '9.0.21'
+        rabbitmqClientVersion = '5.7.1'
+        squareupTapeVersion = '1.2.3'
+        redisClientVersion = '2.10.2'
+        kuraApiVersion = '2.0.0'
+        kuraLinuxBluetoothVersion = '1.0.500'
+        dbusJavaVersion = '2.7'
+        
+        junitVersion = '5.3.1'
+        bootstrapVersion = '3.3.7'
+        angularJsVersion = '1.4.9'
+        jQueryVersion = '3.2.1'
+        sockJsClientVersion = '1.0.2'
+        stompWebsocketVersion = '2.3.3'
+        angularGridsterVersion = '0.13.15'
+        angularUiBootstrapVersion = '2.2.0'        
+    }
+    
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://repo.spring.io/libs-release'
+        }    
+    }
+    
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+        classpath("io.spring.gradle:dependency-management-plugin:1.0.7.RELEASE")
+    }        
+}
+
+def getCurrentGitBranch() {
+    def gitBranch = "Unknown"
+    try {
+        def workingDir = new File("${project.projectDir}")
+        def result = 'git rev-parse --abbrev-ref HEAD'.execute(null, workingDir)
+        result.waitFor()
+        if (result.exitValue() == 0) {
+            gitBranch = result.text.trim()
+        }
+    } catch (e) {
+    }
+    return gitBranch
+}
+
+def getLastGitCommit() {
+    def lastGitCommit = "Unknown"
+    try {
+        def workingDir = new File("${project.projectDir}")
+        def result = 'git log --pretty=format:"%h | %ad | %an" --date=iso -1'.execute(null, workingDir)
+        result.waitFor()
+        if (result.exitValue() == 0) {
+            lastGitCommit = result.text.trim()
+        }
+    } catch (e) {
+    }
+    return lastGitCommit
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'eclipse'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8    
+
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://repo.spring.io/libs-release'
+        }    
+        maven { 
+            url 'https://repo.eclipse.org/content/repositories/kura-releases' 
+        }
+    }
+
+    dependencies {
+        testCompile 'junit:junit:4.12'
+    }
+
+    version = '19.0'
+    
+    compileJava.dependsOn(processResources)
+
+    configurations {
+        all*.exclude module: "logback-classic"
+        all*.exclude module: "slf4j-log4j12"
+        all*.exclude module: "log4j-to-slf4j"
+        all*.exclude module: "lettuce"
+        all*.exclude module: "lettuce-core"        
+        all*.exclude module: "spring-boot-starter-tomcat"
+        all*.exclude module: "spring-boot-starter-logging"
+        all*.exclude module: "log4j"    
+    }
+
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            if (details.requested.name == 'log4j') {
+                details.useTarget 'log4j:log4j:1.2.+'
+            }
+        }
+    }
+    
+    eclipse {
+        classpath {
+             containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+             containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+        }
+    }
+}
+
+project(':acs-core') {
+    dependencies {
+    }
+}
+
+project(':acs-client') {
+    dependencies {
+        compile project(':acs-core')
+    }
+}
+
+project(':acn-core') {
+    dependencies {
+        compile project(':acs-core')
+    }
+}
+
+project(':acn-client') {
+    dependencies {
+        compile project(':acn-core')
+        compile project(':acs-client')
+    }
+}
+
+project(':acn-client-ibm') {
+    dependencies {
+        compile project(':acn-client')
+    }
+}
+
+project(':acn-client-azure') {
+    dependencies {
+        compile project(':acn-client')
+    }
+}
+
+project(':acn-client-aws') {
+    dependencies {
+        compile project(':acn-client')
+    }
+}
+
+project(':pegasus-private-client') {
+    dependencies {
+        compile project(':pegasus-core')
+        testCompile project(':pegasus-local-api')
+    }
+}
+
+
+project(':pegasus-security') {
+    dependencies {
+    }
+}
+
+project(':pegasus-core') {
+    dependencies {
+        compile project(':acs-client')
+        compile project(':pegasus-security')
+    }
+}
+
+project(':pegasus-core-hub') {
+    dependencies {
+        compile project(':pegasus-core')
+    }
+}
+
+project(':pegasus-local-db') {
+    dependencies {
+        compile project(':pegasus-core-db')
+    }
+}
+
+project(':pegasus-local-web') {
+    dependencies {
+        compile project(':pegasus-local-db')
+        compile project(':pegasus-core-web')
+    }
+}
+
+project(':pegasus-public-api') {
+    dependencies {
+        compile project(':pegasus-local-web')
+    }
+}
+
+project(':pegasus-local-api') {
+    dependencies {
+        compile project(':pegasus-local-web')
+    }
+}
+
+project(':pegasus-core-web') {
+    dependencies {
+        compile project(':pegasus-core-db')
+    }
+}
+
+project(':pegasus-core-db') {
+    dependencies {
+        compile project(':pegasus-core')
+    }
+}
+
+project(':pegasus-web') {
+    dependencies {
+        compile project(':pegasus-local-web')
+        compile project(':pegasus-core-web')
+        compile project(':pegasus-core-hub')
+    }
+}
+
+project(':pegasus-dashboard-db') {
+    dependencies {
+        compile project(':pegasus-core')
+        compile project(':pegasus-core-db')
+    }
+}
+
+project(':pegasus-dashboard-core') {
+    dependencies {
+        compile project(':pegasus-core')
+        compile project(':pegasus-core-web')
+        compile project(':pegasus-private-client')
+        compile project(':pegasus-dashboard-db')
+    }
+}
+
+project(':pegasus-dashboard-api') {
+    dependencies {
+        compile project(':pegasus-core')
+        compile project(':pegasus-core-db')
+        compile project(':pegasus-dashboard-db')
+    }
+}
+
+project(':pegasus-dashboard-web-api') {
+    dependencies {
+    }
+}
+
+project(':rhea-core') {
+    dependencies {
+        compile project(':pegasus-core')
+        compile project(':acn-client')
+    }
+}
+
+project(':rhea-core-db') {
+    dependencies {
+        compile project(':rhea-core')
+        compile project(':pegasus-core-db')
+    }
+}
+
+project(':rhea-private-api') {
+    dependencies {
+        compile project(':rhea-core-db')
+        compile project(':pegasus-core-web')
+        compile project(':pegasus-private-client')
+    }
+}
+
+project(':rhea-private-client') {
+    dependencies {
+        compile project(':rhea-core')
+    }
+}
+
+project(':rhea-web') {
+    dependencies {
+        compile project(':rhea-core-db')
+        compile project(':pegasus-core-web')
+        compile project(':pegasus-private-client')
+    }
+}
+
+project(':kronos-core') {
+    dependencies {
+        compile project(':pegasus-core')
+        compile project(':pegasus-core-db')
+    }
+}
+
+project(':kronos-core-cloud') {
+    dependencies {
+        compile project(':kronos-core')
+        compile project(':pegasus-core-web')
+        compile project(':acn-client')
+        compile project(':pegasus-core-hub')
+        compile project(':pegasus-private-client')
+        compile project(':rhea-private-client')      
+    }
+}
+
+project(':kronos-api') {
+    dependencies {
+        compile project(':kronos-core-cloud')        
+    }
+}
+
+project(':kronos-engine') {
+    dependencies {
+        compile project(':kronos-core-cloud')
+    }
+}
+
+project(':kronos-web') {
+    dependencies {
+        compile project(':kronos-core-cloud')
+    }
+}
+
+project(':kronos-cron') {
+    dependencies {
+        compile project(':kronos-core-cloud')
+    }
+}
+
+project(':apollo-core') {
+    dependencies {
+        compile project(':acn-client')
+        compile project(':pegasus-core')
+        compile project(':pegasus-dashboard-core')
+        compile project(':pegasus-dashboard-db')
+        compile project(':kronos-core')
+    }
+}
+
+project(':apollo-web') {
+    dependencies {
+        compile project(':apollo-core')
+        compile project(':pegasus-core-web')
+        compile project(':pegasus-private-client')
+        compile project(':pegasus-dashboard-api')
+        compile project(':kronos-core-cloud')
+    }
+}
+
+project(':selene-core') {
+    dependencies {
+        compile project(':pegasus-security')    
+        compile project(':acn-client')
+    }
+}
+
+project(':selene-engine-core') {
+    dependencies {
+        compile project(':selene-core')
+    }
+}
+
+project(':selene-device-uvc') {
+    dependencies {
+        compile project(':selene-engine-core')
+    }
+}
+
+project(':selene-device-peripheral') {
+    dependencies {
+        compile project(':selene-engine-core')
+    }
+}
+
+project(':selene-device-cellular') {
+    dependencies {
+        compile project(':selene-engine-core')
+    }
+}
+
+project(':selene-device-libelium') {
+    dependencies {
+        compile project(':selene-engine-core')
+    }
+}
+
+project(':selene-device-udp') {
+    dependencies {
+        compile project(':selene-engine-core')
+    }
+}
+
+project(':selene-device-wifi') {
+    dependencies {
+        compile project(':selene-engine-core')
+    }
+}
+
+project(':selene-device-zigbee') {
+    dependencies {
+        compile project(':selene-engine-core')
+    }
+}
+
+project(':selene-device-ble') {
+    dependencies {
+        compile project(':selene-engine-core')
+    }
+}
+
+project(':selene-device-rfid') {
+    dependencies {
+        compile project(':selene-engine-core')
+    }
+}
+
+project(':selene-device-conduit') {
+    dependencies {
+        compile project(':selene-engine-core')
+    }
+}
+
+
+project(':selene-device-monnit') {
+    dependencies {
+        compile project(':selene-engine-core')
+    }
+}
+
+project(':selene-device-mqttrouter') {
+    dependencies {
+        compile project(':selene-engine-core')
+    }
+}
+
+project(':selene-cloud-ibm') {
+    dependencies {
+        compile project(':acn-client-ibm')
+        compile project(':selene-engine-core')
+    }
+}
+
+project(':selene-cloud-aws') {
+    dependencies {
+        compile project(':acn-client-aws')
+        compile project(':selene-engine-core')
+    }
+}
+
+project(':selene-cloud-azure') {
+    dependencies {
+        compile project(':acn-client-azure')
+        compile project(':selene-engine-core')
+    }
+}
+
+project(':selene-databus-redis') {
+    dependencies {
+        compile project(':selene-core')
+    }
+}
+
+project(':selene-databus-rabbitmq') {
+    dependencies {
+        compile project(':selene-core')
+    }
+}
+
+project(':selene-engine') {
+    dependencies {
+        compile project(':selene-engine-core')
+                
+        // compile project(':selene-device-ble')
+        // compile project(':selene-device-monnit')
+        //compile project(':selene-device-mqttrouter')
+        //compile project(':selene-device-peripheral')
+        //compile project(':selene-device-rfid')
+        //compile project(':selene-device-udp')
+        //compile project(':selene-device-uvc')
+        //compile project(':selene-device-wifi')
+        //compile project(':selene-device-zigbee')
+        
+        // compile project(':selene-cloud-aws')
+        // compile project(':selene-cloud-azure')
+        // compile project(':selene-cloud-ibm')
+    }
+}
+
+project(':selene-web') {
+    dependencies {
+        compile project(':selene-core')
+    }
+}

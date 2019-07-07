@@ -1,0 +1,143 @@
+<div class="modal-header">
+    <h3 class="modal-title">Create New Device</h3>
+</div>
+<form name="form" class="form-horizontal" novalidate ng-submit="save(form);">
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="deviceName" class="col-sm-3 control-label">Name*</label>
+            <div class="col-sm-9">
+                <input type="text" id="deviceName" name="deviceName" class="form-control"
+                    ng-model="device.name"
+                    required="required"/>
+                <div ng-messages="(form.$submitted || form.deviceName.$touched) && form.deviceName.$error" role="alert">
+                    <div class="alert-danger">
+                        <span ng-message="required">Name is required</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">UID*</label>
+            <div class="col-sm-9">
+                <input type="text"
+                    id="uid"
+                    name="uid"
+                    class="form-control"
+                    ng-model="device.uid"
+                    required="required" />
+                <div ng-messages="(form.$submitted || form.uid.$touched) && form.uid.$error" role="alert">
+                    <div class="alert-danger">
+                        <span ng-message="required">UID is required</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="gateway" class="col-sm-3 control-label">Gateway*</label>
+            <div class="col-sm-9">
+                <select id="gateway" name="gateway" class="form-control customSelect"
+                    ng-model="device.gateway"
+                    required="required"
+                    ng-options="gateway.name for gateway in options.gateways track by gateway.id">
+                        <option value="">None</option>
+                </select>
+                <div ng-messages="(form.$submitted || form.gateway.$touched) && form.gateway.$error" role="alert">
+                    <div class="alert-danger">
+                        <span ng-message="required">Gateway is required</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="deviceType" class="col-sm-3 control-label">Asset Type*</label>
+            <div class="col-sm-9">
+                <select id="deviceType" name="deviceType" class="form-control customSelect"
+                    ng-model="device.deviceTypeId"
+                    required="required"
+                    ng-options="option.id as option.name for option in options.deviceTypes"
+                    ng-change="device.softwareRelease = null; getOptions(device.deviceTypeId)">
+                        <option value="">[Asset Type]</option>
+                </select>
+                <div ng-messages="(form.$submitted || form.deviceType.$touched) && form.deviceType.$error" role="alert">
+                    <div class="alert-danger">
+                        <span ng-message="required">Asset Type is required</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="softwareRelease" class="col-sm-3 control-label">Software Release</label>
+            <div class="col-sm-9">
+                <select id="softwareRelease" name="softwareRelease" class="form-control customSelect" 
+                    ng-model="device.softwareRelease" 
+                    ng-disabled="device.deviceTypeId == null"
+                    ng-options="softwareRelease.name for softwareRelease in options.softwareReleases track by softwareRelease.id">
+                    <option value="">Unknown</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="user" class="col-sm-3 control-label">Owner</label>
+            <div class="col-sm-9">
+                <select id="user" name="user" class="form-control customSelect"
+                    ng-model="device.user"
+                    ng-options="user.name for user in options.users track by user.id">
+                    <option value="">None</option>
+                </select>
+            </div>
+            <div class="col-sm-offset-3 col-sm-9" ng-messages="form.user.$error" role="alert">
+                <div class="alert-danger">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="node" class="col-sm-3 control-label">Group</label>
+            <div class="col-sm-9">
+                <select id="node" name="node" class="form-control customSelect"
+                    ng-model="device.node"
+                    ng-options="node.name for node in options.nodes track by node.id">
+                    <option value="">None</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="infoFields" class="col-sm-3 control-label">INFO fields</label>
+            <div class="col-sm-9">
+                <textarea key-value-pairs class="form-control" id="infoFields" name="infoFields" ng-model="device.info"></textarea>
+                <div ng-messages="(form.$submitted || form.infoFields.$touched || form.infoFields.$dirty) && form.infoFields.$error" role="alert">
+                    <div class="alert-danger">
+                        <span ng-message="keyValuePairs">Field should have correct "key=value" pairs format</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="propFields" class="col-sm-3 control-label">PROPERTIES fields</label>
+            <div class="col-sm-9">
+                <textarea key-value-pairs class="form-control" id="propFields" name="propFields" ng-model="device.properties"></textarea>
+                <div ng-messages="(form.$submitted || form.propFields.$touched || form.propFields.$dirty) && form.propFields.$error" role="alert">
+                    <div class="alert-danger">
+                        <span ng-message="keyValuePairs">Field should have correct "key=value" pairs format</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox col-sm-offset-3 col-sm-9">
+              <label>
+                <input type="checkbox" value="" ng-model="device.enabled" />
+                Enabled
+              </label>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-default" type="submit">Save</button>
+    </div>
+</form>

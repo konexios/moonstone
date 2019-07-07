@@ -1,0 +1,10 @@
+[
+    {
+        "editable": false,
+        "privilegeIds": [],
+        "hidden": true,
+        "name": "default-rhea-admin",
+        "description": "Default Rhea Admin",
+        "enabled": true
+    }
+]

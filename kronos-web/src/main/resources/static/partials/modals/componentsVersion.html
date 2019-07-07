@@ -1,0 +1,82 @@
+<div class="modal-header">
+	<h3 class="modal-title" id="modal-title">Build Information</h3>
+</div>
+<div class="modal-body" id="modal-body">
+
+    <form name="form"
+          class="form-horizontal"
+          role="form"
+          novalidate>
+		<div class="form-body">
+            <div class="form-group">
+            	<label class="col-md-2 control-label">Name</label>
+                <div class="col-md-10">{{componentsVersion.versionModel.name || "---"}}</div>
+            </div>
+            <div class="form-group">
+            	<label class="col-md-2 control-label">Description</label>
+                <div class="col-md-10">{{componentsVersion.versionModel.description || "---"}}</div>
+            </div>
+            <div class="form-group">
+            	<label class="col-md-2 control-label">Version</label>
+                <div class="col-md-4">{{(componentsVersion.versionModel.major + "." + componentsVersion.versionModel.minor + "." + componentsVersion.versionModel.build) || "---"}}</div>
+
+            	<label class="col-md-2 control-label">Date</label>
+                <div class="col-md-4">{{(componentsVersion.versionModel.builtDate | date:"MM/dd/yyyy hh:mm:ss a") || "---"}}</div>
+            </div>
+            <div class="form-group">
+            	<label class="col-md-2 control-label">Compatible</label>
+                <div class="col-md-4">
+                	<span ng-if="componentsVersion.versionModel.compatibleMajor && componentsVersion.versionModel.compatibleMinor">{{(componentsVersion.versionModel.compatibleMajor }}.{{componentsVersion.versionModel.compatibleMinor}}</span>
+                	<span ng-if="!componentsVersion.versionModel.compatibleMajor || !componentsVersion.versionModel.compatibleMinor">---</span>
+                </div>
+
+            	<label class="col-md-2 control-label">JDK</label>
+                <div class="col-md-4">{{componentsVersion.versionModel.builtJdk || "---"}}</div>
+            </div>
+            <div class="form-group">
+            	<label class="col-md-2 control-label">Vendor</label>
+                <div class="col-md-4">{{componentsVersion.versionModel.Vendor || "---"}}</div>
+
+            	<label class="col-md-2 control-label">Who</label>
+                <div class="col-md-4">{{componentsVersion.versionModel.builtBy || "---"}}</div>
+            </div>
+		</div>
+	</form>
+
+	<table class="table table-striped table-bordered dataTable table-ellipsis">
+		<thead>
+			<tr class="heading">
+				<th ng-repeat="header in columnHeaders" 
+					arrow-column-header 
+					label="header.label" 
+					value="header.value" 
+					sort-field="pagination.sort.property" 
+					sort-direction="pagination.sort.direction" 
+					sortable="header.sortable"
+					sort="sortColumn(column)">
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in componentsVersion.libraries">
+				<td>{{item.name || "---"}}</td>
+				<td>{{item.description || "---"}}</td>
+				<td>{{(item.major + "." + item.minor + "." + item.build) || "---"}}</td>
+				<td>
+                	<span ng-if="item.compatibleMajor && item.compatibleMinor">{{(item.compatibleMajor }}.{{item.compatibleMinor}}</span>
+                	<span ng-if="!item.compatibleMajor || !item.compatibleMinor">---</span>
+				</td>
+				<td>{{item.vendor || "---"}}</td>
+				<td>{{(item.builtDate | date:"MM/dd/yyyy hh:mm:ss a") || "---"}}</td>
+				<td>{{item.builtJdk || "---"}}</td>
+				<td>{{item.builtBy || "---"}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+<div class="modal-footer">
+	<button type="button" 
+		class="btn btn-default" 
+		ng-click="cancel()">Close</button>
+</div>			

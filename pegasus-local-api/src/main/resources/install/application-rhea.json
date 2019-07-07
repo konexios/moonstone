@@ -1,0 +1,12 @@
+[
+    {
+        "name": "default-rhea",
+        "description": "Default Rhea Application",
+        "code": "DEFAULT-RHEA",
+        "apiSigningRequired": "INHERIT",
+        "configurations": [],
+        "productExtensionIds": [],
+        "productFeatures": [],
+        "enabled": true
+    }
+]

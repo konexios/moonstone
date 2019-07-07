@@ -1,0 +1,36 @@
+bootJar {
+    archiveFileName.set("${baseName}.jar")
+    manifest {
+        attributes(
+            "Implementation-Title": "moonstone-rhea-private-api",
+            "Implementation-Version": version,
+            "Implementation-Vendor": "Arrow Electronics, Inc.",
+            "Built-By": System.getProperty('user.name'),
+            "Built-Date": new Date().format("yyyy-MM-dd"),
+            "Built-Jdk": "${System.getProperty('java.version')} (${System.getProperty('java.specification.vendor')})",
+            "Git-Branch": getCurrentGitBranch(),
+            "Git-Last-Commit": getLastGitCommit())
+    }
+}
+
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-undertow:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
+
+    implementation("org.apache.logging.log4j:log4j-web:${log4jVersion}")
+
+    implementation("org.springframework.session:spring-session-data-redis:${springSessionVersion}")   
+    
+    implementation("org.springframework.security.extensions:spring-security-saml2-core:${saml2CoreVersion}")       
+    implementation("org.opensaml:opensaml:${opensamlVersion}")    
+    implementation("xalan:xalan:${xalanVersion}")
+    implementation("org.apache.httpcomponents:httpclient:${httpclientVersion}")    
+               
+    implementation("javax.servlet:javax.servlet-api:${javaxServletVersion}")  
+    
+    implementation("io.springfox:springfox-swagger2:${swaggerVersion}")
+    implementation("io.springfox:springfox-swagger-ui:${swaggerVersion}")
+}
+
+compileJava.dependsOn(processResources)

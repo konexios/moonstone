@@ -1,0 +1,146 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{canSaveDeviceActionType ? (deviceActionType.id ? 'Edit' : 'Add') : 'View'}} Device Action Type</h3>
+</div>
+<form name="deviceActionTypeForm"
+    class="form-horizontal"
+    novalidate
+    ng-submit="save(deviceActionTypeForm);">
+    <div class="modal-body">
+            <div class="form-group">
+                <label for="deviceActionTypeSystemName" class="col-sm-2 control-label">System Name</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" ng-if="!canSaveDeviceActionType">{{deviceActionType.systemName}}</p>
+                    <input type="text" id="deviceActionTypeSystemName" name="deviceActionTypeSystemName" class="form-control" ng-if="canSaveDeviceActionType" ng-if="canSaveDeviceActionType" ng-model="deviceActionType.systemName" required />
+                </div>
+                <div class="col-sm-offset-2 col-sm-10" ng-messages="deviceActionTypeForm.deviceActionTypeSystemName.$error" role="alert">
+                    <div class="alert-danger">
+                        <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="deviceActionTypeName" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" ng-if="!canSaveDeviceActionType">{{deviceActionType.name}}</p>
+                    <input type="text" id="deviceActionTypeName" name="deviceActionTypeName" class="form-control" ng-if="canSaveDeviceActionType" ng-model="deviceActionType.name" required />
+                </div>
+                <div class="col-sm-offset-2 col-sm-10" ng-messages="deviceActionTypeForm.deviceActionTypeName.$error" role="alert">
+                    <div class="alert-danger">
+                        <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="deviceActionTypeDescription" class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" ng-if="!canSaveDeviceActionType">{{deviceActionType.description}}</p>
+                    <textarea id="deviceActionTypeDescription" name="deviceActionTypeDescription" class="form-control" rows="3" ng-if="canSaveDeviceActionType" ng-model="deviceActionType.description" required ></textarea>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10" ng-messages="deviceActionTypeForm.deviceActionTypeDescription.$error" role="alert">
+                    <div class="alert-danger">
+                        <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ng-if="!canSaveDeviceActionType">
+                <label class="col-sm-2 control-label">Enabled</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">{{deviceActionType.enabled}}</p>
+                </div>
+            </div>
+            <div class="form-group" ng-if="canSaveDeviceActionType">
+                <div class="checkbox col-sm-offset-2 col-sm-10">
+                  <label>
+                    <input type="checkbox" value="" ng-model="deviceActionType.enabled" />
+                    Enabled
+                  </label>
+                </div>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+                <div class="col-sm-12">
+                    <div class="panel panel-default" style="margin-bottom: 0;">
+                        <div class="panel-heading">
+                            Parameters
+                            <button type="button" class="btn btn-primary obj-btn-add-row"
+                                ng-if="canSaveDeviceActionType"
+                                ng-click="addParameter()">Add</button>
+                        </div>
+                        <div class="scrollable-table device-type-details-table" ng-show="parameters.length>0">
+                            <table class="table table-striped table-bordered">
+                                <thead class="hidden-xs">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Default Value</th>
+                                        <th ng-if="canSaveDeviceActionType">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="parameter in parameters track by $index">
+                                        <td class="hidden-xs" ng-if="!parameter.editing">{{parameter.name}}</td>
+                                        <td class="hidden-xs" ng-if="parameter.editing">
+                                            <input type="text" name="{{'parameter'+$index+'Name'}}" class="form-control" ng-model="parameter.name"
+                                                required />
+                                            <div class="alert-danger" ng-messages="deviceActionTypeForm['parameter'+$index+'Name'].$error" role="alert">
+                                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </td>
+                                        <td class="hidden-xs" ng-if="!parameter.editing">{{parameter.value}}</td>
+                                        <td class="hidden-xs" ng-if="parameter.editing">
+                                            <input type="text" name="{{'parameter'+$index+'Value'}}" class="form-control" ng-model="parameter.value"
+                                                maxlength="1000" />
+                                            <div class="alert-danger" ng-messages="deviceActionTypeForm['parameter'+$index+'Value'].$error" role="alert">
+                                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                                            </div>
+                                        </td>
+                                        <td class="hidden-xs" ng-if="canSaveDeviceActionType">
+                                            <button type="button" class="btn btn-link col-sm-12 col-md-6" ng-click="editParameter($index)"
+                                                ng-disabled="parameter.editing &amp;&amp; (deviceActionTypeForm['parameter'+$index+'Value'].$invalid || deviceActionTypeForm['parameter'+$index+'Name'].$invalid)">
+                                                {{parameter.editing ? 'Done' : 'Edit'}}
+                                            </button>
+                                            <button type="button" class="btn btn-link col-sm-12 col-md-6" ng-click="deleteParameter($index)">Delete</button>
+                                        </td>
+                                        <!-- FOR MOBILE VIEW -->
+                                        <td class="hidden-sm hidden-md hidden-lg">
+                                            <div ng-if="!parameter.editing"><b>Name:</b> {{parameter.name}}</div>
+                                            <div ng-if="parameter.editing">
+                                                <b>Name:</b>
+                                                <input type="text" name="{{'parameter'+$index+'Name_m'}}" class="form-control" ng-model="parameter.name"
+                                                       required />
+                                                <div class="alert-danger" ng-messages="deviceActionTypeForm['parameter'+$index+'Name_m'].$error" role="alert">
+                                                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                                                </div>
+                                            </div>
+                                            <div ng-if="!parameter.editing"><b>Default Value:</b> {{parameter.value}}</div>
+                                            <div ng-if="parameter.editing" class="margin-top-20">
+                                                <b>Default Value:</b>
+                                                <input type="text" name="{{'parameter'+$index+'Value_m'}}" class="form-control" ng-model="parameter.value"
+                                                       maxlength="1000"/>
+                                                <div class="alert-danger" ng-messages="deviceActionTypeForm['parameter'+$index+'Value_m'].$error" role="alert">
+                                                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                                                </div>
+                                            </div>
+                                            <div ng-if="canSaveDeviceActionType" class="text-center margin-top-20">
+                                                <button type="button" class="btn btn-link" ng-click="editParameter($index)"
+                                                        ng-disabled="parameter.editing &amp;&amp; (deviceActionTypeForm['parameter'+$index+'Value_m'].$invalid || deviceActionTypeForm['parameter'+$index+'Name_m'].$invalid)">
+                                                    {{parameter.editing ? 'Done' : 'Edit'}}
+                                                </button>
+                                                <button type="button" class="btn btn-link" ng-click="deleteParameter($index)">Delete</button>
+                                            </div>
+                                        </td>
+                                        <!-- /FOR MOBILE VIEW -->
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default"
+            ng-if="canSaveDeviceActionType"
+            type="submit">Save</button>
+        <button class="btn btn-default"
+            type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

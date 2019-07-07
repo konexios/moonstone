@@ -1,0 +1,96 @@
+<div class="row-content">
+	<div ng-controller="CentralKnowledgeBankController">
+		<div class="obj-page-hd">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12 col-sm-12 padding-zero">
+						<div class="page-title">
+							<h1>
+								{{pageTitle}}
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="obj-page-bd">
+			<div class="panel panel-default panel-content">
+				<header class="b-panel-header">
+					<i class="fa fa-table"></i> Central Knowledge Bank
+				</header>
+				<div class="b-panel-body">
+					<div class="row">
+						
+						<div class="form-group col-sm-12">
+							<div class="col-sm-4"></div>
+							<label for="type" class="col-sm-1 control-label">
+								Protocol
+								<span class="required" aria-required="true"> * </span>
+								<a ng-mouseover="showPopoverP=true;" ng-mouseleave="showPopoverP=false;">
+										<img src="/assets/img/blue_question_mark.png" height="13px" />
+										<div class="popover" ng-show="showPopoverP">
+											<p>Protocol</p>
+										</div>
+									</a>
+							</label>
+							<div class="col-sm-3 pull-center">
+								<select id="protocol" class="selectpicker form-control" name="protocol" ng-model="cbk.protocol" data-live-search="true">
+									<option>Zwave</option>
+									<option>Zwave1</option>
+								</select>
+								<div class="help-block" ng-messages="form.protocol.$error" ng-show="form.protocol.$touched || (form.$submitted && form.protocol.$invalid)">
+									<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group col-sm-12">
+							<div class="col-sm-4"></div>
+							<label for="vendor" class="col-sm-1 control-label">
+								Vendor
+								<span class="required" aria-required="true"> * </span>
+									<a ng-mouseover="showPopoverV=true;" ng-mouseleave="showPopoverV=false;">
+										<img src="/assets/img/blue_question_mark.png" height="13px" />
+										<div class="popover" ng-show="showPopoverV">
+											<p>Vendor</p>
+										</div>
+									</a>
+							</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" id="vendor" name="vendor" ng-model="cbk.vendor" ng-required="true" />
+								<div class="help-block" ng-messages="form.vendor.$error" ng-show="form.vendor.$touched || (form.$submitted && form.vendor.$invalid)">
+									<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group col-sm-12">
+							<div class="col-sm-4"></div>
+							<label for="model" class="col-sm-1 control-label">
+								Model
+								<span class="required" aria-required="true"> * </span>
+									<a ng-mouseover="showPopoverM=true;" ng-mouseleave="showPopoverM=false;">
+										<img src="/assets/img/blue_question_mark.png" height="13px" />
+										<div class="popover" ng-show="showPopoverM">
+											<p>Model</p>
+										</div>
+									</a>
+							</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" id="model" name="model" ng-model="cbk.model" ng-required="true" />
+								<div class="help-block" ng-messages="form.model.$error" ng-show="form.model.$touched || (form.$submitted && form.model.$invalid)">
+									<div data-ng-messages-include="scripts/portal/tpl/form-validation-messages.html"></div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group col-sm-12">
+							<div class="col-sm-6"></div>
+							<div class="col-sm-3 margin-left-six">
+								<button class="btn btn-default" ng-click="viewcbk()">View</button>
+								<button class="btn btn-default" ng-click="download()">Download</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

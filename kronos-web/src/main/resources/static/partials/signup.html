@@ -1,0 +1,197 @@
+<div class="row-content no-list-page">
+    <div class="content-wrapper-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 hidden-sm hidden-xs">
+                    <div class="v-promo">
+                        <div class="youtube-responsive">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/yXhiCsCa94E" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <p class="text-center" data-ng-bind-html="vm.pageSettings.loginScreenDevRegDescription"></p>
+                        <div class="logo-v-lg"></div>
+                        <div data-ng-bind-html="vm.pageSettings.loginScreenDevRegMetrics"></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <!--div class="logo-get-connected-lg"></div-->
+                    <form id="registrationForm" name="vm.registrationForm" class="form-horizontal signin-form" ng-submit="vm.signup(vm.registrationModel)" novalidate>
+                        <div class="panel-arrow panel-login panel-registration">
+                            <div class="hd">
+                                <h4 class="title">Developer Registration</h4>
+                            </div>
+                            <div class="bd">
+                                <div class="bd-wrapper">
+
+                                    <div ng-show="vm.errorgMessage" class="alert alert-danger" role="alert" ng-bind-html="vm.errorgMessage"></div>
+
+                                    <fieldset ng-disabled="vm.signupBtnDisabled">
+                                        <div class="form-group" ng-class="{'has-error': (vm.registrationForm.$submitted || vm.registrationForm.email.$touched) && !vm.registrationForm.email.$valid}">
+                                            <label for="email" class="col-sm-4 control-label required">Email</label>
+                                            <div class="col-sm-8">
+                                                <input id="email" type="email" name="email" class="form-control" placeholder="Email" ng-model="vm.registrationModel.email" required email-validation>
+                                                <div class="help-block" ng-show="(vm.registrationForm.$submitted || vm.registrationForm.email.$touched) && !vm.registrationForm.email.$valid">
+                                                    <div ng-show="vm.registrationForm.email.$error.required">Email required</div>
+                                                    <div ng-show="vm.registrationForm.email.$error.email">Invalid email</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" ng-class="{'has-error': (vm.registrationForm.$submitted || vm.registrationForm.firstName.$touched) && !vm.registrationForm.firstName.$valid}">
+                                            <label for="firstName" class="col-sm-4 control-label required">First Name</label>
+                                            <div class="col-sm-8">
+                                                <input id="firstName" name="firstName" type="text" class="form-control" placeholder="First Name" ng-model="vm.registrationModel.firstName" required ng-maxlength="50" ng-minlength="2" ng-pattern="/^[a-zA-Z\s]*$/">
+
+                                                <div class="help-block" ng-show="(vm.registrationForm.$submitted || vm.registrationForm.firstName.$touched) && !vm.registrationForm.firstName.$valid">
+                                                    <div ng-show="vm.registrationForm.firstName.$error.required">First Name required</div>
+                                                    <div ng-show="vm.registrationForm.firstName.$error.maxlength">First Name is too long</div>
+                                                    <div ng-show="vm.registrationForm.firstName.$error.minlength">First Name is too short</div>
+                                                    <div ng-show="vm.registrationForm.firstName.$error.pattern">Special characters and numbers are not allowed</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" ng-class="{'has-error': (vm.registrationForm.$submitted || vm.registrationForm.lastName.$touched) && !vm.registrationForm.lastName.$valid}">
+                                            <label for="lastName" class="col-sm-4 control-label required">Last Name</label>
+                                            <div class="col-sm-8">                                            
+                                                <input id="lastName" name="lastName" type="text" class="form-control" placeholder="Last Name" ng-model="vm.registrationModel.lastName" required ng-maxlength="50" ng-minlength="2" ng-pattern="/^[a-zA-Z\s]*$/">
+                                                
+                                                <div class="help-block" ng-show="(vm.registrationForm.$submitted || vm.registrationForm.lastName.$touched) && !vm.registrationForm.lastName.$valid">
+                                                    <div ng-show="vm.registrationForm.lastName.$error.required">Last Name required</div>
+                                                    <div ng-show="vm.registrationForm.lastName.$error.maxlength">Last Name is too long</div>
+                                                    <div ng-show="vm.registrationForm.lastName.$error.minlength">Last Name is too short</div>
+                                                    <div ng-show="vm.registrationForm.lastName.$error.pattern">Special characters and numbers are not allowed</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" ng-class="{'has-error': (vm.registrationForm.$submitted || vm.registrationForm.title.$touched) && !vm.registrationForm.title.$valid}">
+                                            <label for="title" class="col-sm-4 control-label required">Title</label>
+                                            <div class="col-sm-8">
+                                                <input id="title" name="title" type="text" class="form-control" placeholder="Title" ng-model="vm.registrationModel.title" required ng-maxlength="50" ng-minlength="2" ng-pattern="/^[a-zA-Z0-9]*$/">
+                                                
+                                                <div class="help-block" ng-show="(vm.registrationForm.$submitted || vm.registrationForm.title.$touched) && !vm.registrationForm.title.$valid">
+                                                    <div ng-show="vm.registrationForm.title.$error.required">Title required</div>
+                                                    <div ng-show="vm.registrationForm.title.$error.maxlength">Title is too long</div>
+                                                    <div ng-show="vm.registrationForm.title.$error.minlength">Title is too short</div>
+                                                    <div ng-show="vm.registrationForm.title.$error.pattern">Special characters are not allowed</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" ng-class="{'has-error': (vm.registrationForm.$submitted || vm.registrationForm.companyName.$touched) && !vm.registrationForm.companyName.$valid}">
+                                            <label for="companyName" class="col-sm-4 control-label required">Company Name</label>
+                                            <div class="col-sm-8">
+                                                <input id="companyName" name="companyName" type="text" class="form-control" placeholder="Company Name" ng-model="vm.registrationModel.companyName" required ng-maxlength="50" ng-minlength="2" ng-pattern="/^[a-zA-Z0-9\s]*$/">
+                                                
+                                                <div class="help-block" ng-show="(vm.registrationForm.$submitted || vm.registrationForm.companyName.$touched) && !vm.registrationForm.companyName.$valid">
+                                                    <div ng-show="vm.registrationForm.companyName.$error.required">Company Name required</div>
+                                                    <div ng-show="vm.registrationForm.companyName.$error.maxlength">Company Name is too long</div>
+                                                    <div ng-show="vm.registrationForm.companyName.$error.minlength">Company Name is too short</div>
+                                                    <div ng-show="vm.registrationForm.companyName.$error.pattern">Special characters are not allowed</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" ng-class="{'has-error': (vm.registrationForm.$submitted || vm.registrationForm.companyWebSite.$touched) && !vm.registrationForm.companyWebSite.$valid}">
+                                            <label for="companyWebSite" class="col-sm-4 control-label required">Company Web Site</label>
+                                            <div class="col-sm-8">
+                                                <input id="companyWebSite" name="companyWebSite" type="text" class="form-control" placeholder="Company Web Site" ng-model="vm.registrationModel.companyWebSite" required ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/">
+
+                                                <div class="help-block" ng-show="(vm.registrationForm.$submitted || vm.registrationForm.companyWebSite.$touched) && !vm.registrationForm.companyWebSite.$valid">
+                                                    <div ng-show="vm.registrationForm.companyWebSite.$error.required">Company Web Site required</div>
+                                                    <div ng-show="vm.registrationForm.companyWebSite.$error.pattern">Invalid Company Web Site</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" ng-class="{'has-error': (vm.registrationForm.$submitted || vm.registrationForm.projectDescription.$touched) && !vm.registrationForm.projectDescription.$valid}">
+                                            <label for="projectDescription" class="col-sm-4 control-label required">Project Description</label>
+                                            <div class="col-sm-8">
+                                                <input id="projectDescription" name="projectDescription" type="text" class="form-control" placeholder="Project Description" ng-model="vm.registrationModel.projectDescription" required ng-maxlength="50" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/">
+                                                
+                                                <div class="help-block" ng-show="(vm.registrationForm.$submitted || vm.registrationForm.projectDescription.$touched) && !vm.registrationForm.projectDescription.$valid">
+                                                    <div ng-show="vm.registrationForm.projectDescription.$error.required">Project Description required</div>
+                                                    <div ng-show="vm.registrationForm.projectDescription.$error.maxlength">Project Description is too long</div>
+                                                    <div ng-show="vm.registrationForm.projectDescription.$error.minlength">Project Description is too short</div>
+                                                    <div ng-show="vm.registrationForm.projectDescription.$error.pattern">Special characters are not allowed</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" ng-class="{'has-error': (vm.registrationForm.$submitted || vm.registrationForm.referralCode.$touched) && !vm.registrationForm.referralCode.$valid}">
+                                            <label for="referralCode" class="col-sm-4 control-label">Referral Code</label>
+                                            <div class="col-sm-8">
+                                                <input id="referralCode" name="referralCode" type="text" class="form-control" placeholder="Referral Code" 
+                                                    ng-model="vm.registrationModel.referralCode" ng-disabled="vm.preRegLock" ng-maxlength="50" ng-minlength="3">
+                                                
+                                                <div class="help-block" ng-show="(vm.registrationForm.$submitted || vm.registrationForm.referralCode.$touched) && !vm.registrationForm.referralCode.$valid">
+                                                        <div ng-show="vm.registrationForm.referralCode.$error.required">Referral Code required</div>
+                                                        <div ng-show="vm.registrationForm.referralCode.$error.maxlength">Referral Code is too long</div>
+                                                        <div ng-show="vm.registrationForm.referralCode.$error.minlength">Referral Code is too short</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group" ng-class="{'has-error': (vm.registrationForm.$submitted || vm.registrationForm.eventCode.$touched) && !vm.registrationForm.eventCode.$valid}">
+                                            <label for="eventCode" class="col-sm-4 control-label">Event Code</label>
+                                            <div class="col-sm-8">
+                                                <input id="eventCode" name="eventCode" type="text" class="form-control" placeholder="Event Code" 
+                                                    ng-model="vm.registrationModel.eventCode" ng-disabled="vm.preRegLock" ng-maxlength="50" ng-minlength="3">
+                                                
+                                                <div class="help-block" ng-show="(vm.registrationForm.$submitted || vm.registrationForm.eventCode.$touched) && !vm.registrationForm.eventCode.$valid">
+                                                        <div ng-show="vm.registrationForm.eventCode.$error.required">Event Code required</div>
+                                                        <div ng-show="vm.registrationForm.eventCode.$error.maxlength">Event Code is too long</div>
+                                                        <div ng-show="vm.registrationForm.eventCode.$error.minlength">Event Code is too short</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <div class="form-group" ng-class="{'has-error': vm.registrationForm.$submitted && vm.registrationForm.$error.recaptcha}">
+                                        <div class="col-sm-8 col-sm-offset-4">
+                                            <div vc-recaptcha key="vm.captchaSettings.key" ng-model="vm.registrationModel.reCaptcha" on-create="vm.captchaSettings.widgetId = widgetId"></div>
+
+                                            <div class="help-block" ng-show="vm.registrationForm.$submitted && vm.registrationForm.$error.recaptcha">
+                                                <div ng-show="vm.registrationForm.$error.recaptcha">ReCaptcha required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+									<div class="form-group" ng-if="vm.pageSettings.loginScreenDevRegEULA">
+										<div class="col-sm-8 col-sm-offset-4">
+											<div class="text-left" bind-html-compile="vm.pageSettings.loginScreenDevRegEULA"></div>
+										</div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="ft">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <!--<a href="#/signin"><i class="fa fa-long-arrow-left"></i> Back to Sign in</a>-->
+                                        <button type="submit" class="btn btn-brand pull-right" ladda-button="vm.signupBtnDisabled" data-style="expand-left" ng-disabled="vm.pageSettings.loginScreenDevRegEULA && !vm.termsReadAndAgree">
+                                            <span class="ladda-label">{{ !vm.signupBtnDisabled ? 'Sign up' : 'Signing up' }}</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <script type="text/ng-template" id="registrationCompletedModal.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="modal-title">Registration has been successfully completed!</h3>
+                        </div>
+                        <div class="modal-body" id="modal-body">
+                            <p>Please check your email for a message with verification link.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="button" ng-click="$close()">Ok</button>
+                        </div>
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

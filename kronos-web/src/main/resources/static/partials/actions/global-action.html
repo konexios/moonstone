@@ -1,0 +1,190 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ vm.globalAction.id ? 'Edit' : 'Add' }} Global Action</h3>
+</div>
+<form name="actionForm" class="form-horizontal" novalidate ng-submit="vm.save(actionForm, vm.globalAction)">
+    <div class="modal-body">
+
+        <div class="form-group">
+            <label for="type" class="col-sm-2 control-label">Type*</label>
+            <div class="col-sm-10">
+                <select name="type" id="type" ng-options="option.id as option.name for option in vm.actionTypes" ng-model="vm.globalAction.globalActionType.id" ng-change="vm.actionTypeSelectChanged(vm.globalAction.globalActionType.id)" required class="form-control customSelect"></select>
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="(actionForm.$submitted || actionForm.type.$touched || actionForm.type.$dirty) && actionForm.type.$error" role="alert">
+                <div class="alert-danger">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Name*</label>
+            <div class="col-sm-10">
+                <input type="text" id="name" name="name" class="form-control" ng-model="vm.globalAction.name" required />
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="(actionForm.$submitted || actionForm.name.$touched || actionForm.name.$dirty) && actionForm.name.$error" role="alert">
+                <div class="alert-danger">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="systemName" class="col-sm-2 control-label">System Name*</label>
+            <div class="col-sm-10">
+                <input type="text" id="systemName" name="systemName" class="form-control" ng-model="vm.globalAction.systemName" required />
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="(actionForm.$submitted || actionForm.systemName.$touched || actionForm.systemName.$dirty) && actionForm.systemName.$error" role="alert">
+                <div class="alert-danger">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">Description*</label>
+            <div class="col-sm-10">
+                <textarea id="description" name="description" class="form-control" ng-model="vm.globalAction.description" required></textarea>
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-messages="(actionForm.$submitted || actionForm.description.$touched || actionForm.description.$dirty) && actionForm.description.$error" role="alert">
+                <div class="alert-danger">
+                    <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox col-sm-offset-2 col-sm-10">
+                <label><input type="checkbox" value="" ng-model="vm.globalAction.enabled" /> Enabled</label>
+            </div>
+        </div>
+
+
+        <!-- Parameters -->
+        <hr ng-if="vm.globalAction.properties.length > 0">
+        <div class="row" ng-if="vm.globalAction.properties.length > 0">
+            <div class="col-xs-12">
+                <h3 style="margin-top: 0px;">Parameters</h3>
+            </div>
+        </div>
+
+        <div ng-repeat="property in vm.globalAction.properties | orderBy:'parameterOrder'">
+            <div class="form-group" ng-show="property.parameterValidationTypes.length > 1">
+                <label for="{{'valid' + property.parameterName}}" class="col-sm-2 control-label">{{property.parameterName}} (validation)</label>
+                <div class="col-sm-10">
+                    <select name="{{property.parameterName}}" ng-model="property.parameterType" ng-options="option.type as option.type for option in property.parameterValidationTypes" ng-change="vm.propertyValidationTypeChanged(property, property.parameterType)" id="{{'valid' + property.parameterName}}"
+                        class="form-control customSelect"></select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="{{property.parameterName}}" class="col-sm-2 control-label">{{property.parameterName}}</label>
+                <div class="col-sm-10">
+                    <!-- switch between types; nth: move to directives -->
+                    <input ng-if="property.parameterType === 'STRING'" type="text" id="{{property.parameterName}}" name="{{property.parameterName}}" class="form-control" ng-model="property.parameterValue" ng-required="property.parameterIsRequired" />
+                    <textarea ng-if="property.parameterType === 'MULTILINE_STRING'" id="{{property.parameterName}}" name="{{property.parameterName}}" class="form-control" ng-model="property.parameterValue" ng-required="property.parameterIsRequired"></textarea>
+                    <input ng-if="property.parameterType === 'EMAIL'" type="email" id="{{property.parameterName}}" name="{{property.parameterName}}" class="form-control" ng-model="property.parameterValue" ng-required="property.parameterIsRequired" />
+                    <select ng-if="property.parameterType === 'SELECT'" id="{{property.parameterName}}" name="{{property.parameterName}}" class="form-control customSelect" ng-model="property.parameterValue" ng-required="property.parameterIsRequired" ng-options="option for option in property.parameterData"></select>
+                    <textarea ng-if="property.parameterType === 'JSON'" id="{{property.parameterName}}" name="{{property.parameterName}}" class="form-control" ng-model="property.parameterValue" ng-required="property.parameterIsRequired" valid-json></textarea>
+                    <textarea ng-if="property.parameterType === 'XML'" id="{{property.parameterName}}" name="{{property.parameterName}}" class="form-control" ng-model="property.parameterValue" ng-required="property.parameterIsRequired"></textarea>
+                    <div ng-if="property.parameterType === 'HTML'" id="{{property.parameterName}}" name="{{property.parameterName}}" text-angular ng-model="property.parameterValue" ng-required="property.parameterIsRequired"></div>
+                    <textarea ng-if="property.parameterType === 'KEY_VALUE_PAIRS'" id="{{property.parameterName}}" name="{{property.parameterName}}" class="form-control" ng-model="property.parameterValue" ng-required="property.parameterIsRequired" key-value-pairs-validation></textarea>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10" ng-messages="(actionForm.$submitted || actionForm[property.parameterName].$touched || actionForm[property.parameterName].$dirty) && actionForm[property.parameterName].$error" role="alert">
+                    <div class="alert-danger">
+                        <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Variables -->
+        <hr>
+        <div class="row">
+            <div class="col-xs-6">
+                <h3 style="margin-top: 0px;">Action input variables</h3>
+            </div>
+            <div class="col-xs-6 text-right">
+                <button class="btn btn-default" type="button" ng-click="vm.addVariable()">Add variable</button>
+            </div>
+        </div>
+
+
+        <table class="table table-striped table-bordered" >
+            <thead class="hidden-xs">
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="input in vm.globalAction.input track by $index">
+                    <td class="hidden-xs" ng-if="!input.editing">{{input.name}}</td>
+                    <td class="hidden-xs" ng-if="input.editing">
+                        <input type="text" name="{{'inputName'+$index}}" class="form-control" ng-model="input.name" required />
+                        <div class="alert-danger" ng-messages="(actionForm.$submitted || actionForm['inputName'+$index].$touched || actionForm['inputName'+$index].$dirty) && actionForm['inputName'+$index].$error" role="alert">
+                            <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                        </div>
+                    </td>
+
+                    <td class="hidden-xs" ng-if="!input.editing">{{input.type}}</td>
+                    <td class="hidden-xs" ng-if="input.editing"><select name="{{'inputType'+$index}}" ng-options="option.type as option.name for option in vm.inputTypes" ng-model="input.type" class="form-control customSelect"></select></td>
+
+                    <td class="hidden-xs" ng-if="!input.editing">{{input.required ? 'Yes' : 'No'}}</td>
+                    <td class="hidden-xs" ng-if="input.editing">
+                        <div class="checkbox"><label><input type="checkbox" value="" ng-model="input.required" /> Required</label></div>
+                    </td>
+                    <td class="hidden-xs">
+                        <button type="button" class="btn btn-link" ng-click="input.editing = !input.editing" ng-disabled="input.editing && actionForm['inputName'+$index].$invalid">{{input.editing ? 'Save' : 'Edit'}}</button>
+                        <button type="button" class="btn btn-link" ng-click="vm.deleteVariable($index)">Delete</button>
+                    </td>
+                    <!-- FOR MOBILE VIEW -->
+                    <td class="hidden-sm hidden-md hidden-lg">
+                        <div ng-if="!input.editing"><b>Name:</b> {{input.name}}</div>
+                        <div ng-if="input.editing">
+                            <b>Name:</b>
+                            <input type="text" name="{{'inputName'+$index+'_m'}}" class="form-control" ng-model="input.name" required />
+                            <div class="alert-danger" ng-messages="(actionForm.$submitted || actionForm['inputName'+$index+'_m'].$touched || actionForm['inputName'+$index+'_m'].$dirty) && actionForm['inputName'+$index+'_m'].$error" role="alert">
+                                <div ng-messages-include="scripts/kronos/tpl/form-validation-messages.html"></div>
+                            </div>
+                        </div>
+
+                        <div ng-if="!input.editing"><b>Type:</b> {{input.type}}</div>
+                        <div ng-if="input.editing">
+                            <b>Type:</b>
+                            <select name="{{'inputType'+$index+'_m'}}" ng-options="option.type as option.name for option in vm.inputTypes" ng-model="input.type" class="form-control customSelect"></select>
+                        </div>
+
+                        <div ng-if="!input.editing"><b>Required:</b> {{input.required ? 'Yes' : 'No'}}</div>
+                        <div ng-if="input.editing">
+                            <div class="checkbox"><label><input type="checkbox" value="" ng-model="input.required" /> Required</label></div>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-link" ng-click="input.editing = !input.editing" ng-disabled="input.editing && actionForm['inputName'+$index+'_m'].$invalid">{{input.editing ? 'Save' : 'Edit'}}</button>
+                            <button type="button" class="btn btn-link" ng-click="vm.deleteVariable($index)">Delete</button>
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="alert-danger" ng-show="vm.showDuplicatedNamesAlert" role="alert">
+            <p>Error: Duplicate variables names</p>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <!-- <div class="col-xs-4 text-left">
+                <button class="btn btn-danger" type="button" ng-click="vm.delete()">Delete</button>
+            </div> -->
+            <div class="col-xs-12">
+                <button class="btn btn-default" type="submit" ng-disabled="vm.showDuplicatedNamesAlert">{{ vm.globalAction.id ? 'Save' : 'Create' }}</button>
+                <button class="btn btn-default" type="button" ng-click="vm.cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>

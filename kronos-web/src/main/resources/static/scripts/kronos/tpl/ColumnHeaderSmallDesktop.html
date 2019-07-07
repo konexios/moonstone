@@ -1,0 +1,10 @@
+<li>
+    <a href="" ng-if="sortable" ng-click="sort({column: value})">{{label}}
+        <span ng-if="sortable" ng-show="sortField == value && sortDirection == 'ASC'" class="pull-right">
+            <i class="fa fa-sort-asc"></i>
+        </span>
+        <span ng-if="sortable" ng-show="sortField == value && sortDirection == 'DESC'" class="pull-right">
+            <i class="fa fa-sort-desc"></i>
+        </span>
+    </a>
+</li>

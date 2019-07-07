@@ -1,0 +1,111 @@
+<div class="modal-header">
+	<h3 class="modal-title" id="modal-title">
+		Access Keys
+	</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <form name="form"
+          class="form-horizontal"
+          role="form"
+          novalidate>
+        <div class="form-body">
+            <div ng-if="entityType != 'subscription'" class="form-group">
+            	<label class="col-md-3 control-label">Level</label>
+                <div class="col-md-8">
+	                <label>
+	                    <input type="radio" ng-model="model.relationEntityType" value="MY_KEYS">
+	                    My Keys
+	                </label>
+	                <label>
+	                    <input type="radio" ng-model="model.relationEntityType" value="CHILD_KEYS">
+	                    Child Keys
+	                </label>                
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="access_key_name" class="col-md-3 control-label">Name</label>
+                <div class="col-md-8">
+                    <div class="input-icon right">
+                        <input type="text" id="access_key_name" name="access_key_name" class="form-control"
+                               ng-model="model.name"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Access Levels <span class="label label-default">{{filter.accessLevels.length}}</span></label>
+                <div class="col-md-8">
+                    <div class="input-icon right">
+                        <select id="accessLevels"
+                                class="form-control"
+                                size="3"
+                                multiple
+                                ng-model="model.accessLevels"
+                                ng-options="accessLevel for accessLevel in model.optionFilter.accessLevels">
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <h4 class="col-md-3 control-label">Expiration Date</h4>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">From</label>
+                <div class="col-md-4">
+                    <div class="input-icon right">
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" id="expirationDateFrom" role="button" data-toggle="dropdown"
+                               data-target="#">
+                                <div class="input-group">
+                                    <input type="text" class="form-control"
+                                           data-ng-model="model.expirationDateFrom"
+                                           data-date-time-input="MM/DD/YYYY hh:mm:ss A">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker data-ng-model="model.expirationDateFrom"
+                                                data-datetimepicker-config="{ dropdownSelector: '#expirationDateFrom' }">
+                                </datetimepicker>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">To</label>
+                <div class="col-md-4">
+                    <div class="input-icon right">
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" id="expirationDateTo" role="button" data-toggle="dropdown"
+                               data-target="#">
+                                <div class="input-group">
+                                    <input type="text" class="form-control"
+                                           data-ng-model="model.expirationDateTo"
+                                           data-date-time-input="MM/DD/YYYY hh:mm:ss A">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker data-ng-model="model.expirationDateTo"
+                                                data-datetimepicker-config="{ dropdownSelector: '#expirationDateTo' }">
+                                </datetimepicker>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+	<button type="submit" 
+		class="btn btn-default" 
+		ng-disabled="busy"
+		ng-click="search()">Search</button>
+	<button type="button" 
+		class="btn btn-default" 
+		ng-disabled="busy"
+		ng-click="cancel()">Cancel</button>
+</div>	

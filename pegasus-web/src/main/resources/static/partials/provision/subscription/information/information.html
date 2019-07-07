@@ -1,0 +1,563 @@
+<!-- BEGIN MAIN CONTENT -->
+<div class="row">
+	<div class="col-md-12">
+		<div class="portlet light bordered">
+			<div class="portlet-body form">
+				<form name="form"
+					class="form-horizontal"
+					role="form"
+					novalidate>
+					<div class="form-body">
+
+						<!-- SUBSCRIPTION -->
+						<fieldset class="fieldset-form">
+							<legend class="legend-form">Subscription</legend>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.name.$touched || form.$submitted) && form.name.$invalid, 'has-success': (form.name.$touched || form.$submitted) && !form.name.$invalid }">
+										<label
+											for="name"
+											class="col-md-3 control-label">Name
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.name.$touched || form.$submitted) && form.name.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.name.$touched || form.$submitted) && !form.name.$invalid" class="fa fa-check"></i>
+												<input id="name"
+													name="name"
+													type="text"
+													class="form-control"
+													placeholder="Name"
+													ng-model="subscription.name"
+													ng-trim="true"
+													ng-required="true"
+													ng-minlength="5"
+													ng-maxlength="255"
+													ng-disabled="!hasAccess()">
+											</div>
+											<div class="help-block" ng-messages="form.name.$error" ng-show="form.name.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.description.$touched || form.$submitted) && form.description.$invalid, 'has-success': (form.description.$touched || form.$submitted) && !form.description.$invalid }">
+										<label for="description"
+											class="col-md-3 control-label">Description
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.description.$touched || form.$submitted) && form.description.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.description.$touched || form.$submitted) && !form.description.$invalid" class="fa fa-check"></i>
+												<textarea id="description"
+													name="description"
+													class="form-control"
+													rows="3"
+													ng-model="subscription.description"
+													ng-trim="true"
+													ng-required="true"
+													ng-minlength="3"
+													ng-maxlength="255"
+													ng-disabled="!hasAccess()"></textarea>
+											</div>
+											<div class="help-block" ng-messages="form.description.$error" ng-show="form.description.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.company.$touched || form.$submitted) && form.company.$invalid, 'has-success': (form.company.$touched || form.$submitted) && !form.company.$invalid }">
+										<label for="company"
+											class="col-md-3 control-label">Tenant
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.company.$touched || form.$submitted) && form.company.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.company.$touched || form.$submitted) && !form.company.$invalid" class="fa fa-check"></i>
+												<select id="company"
+													name="company"
+													class="form-control"
+													ng-model="subscription.companyId"
+													ng-required="true"
+													ng-disabled="!hasAccess() || (subscription.id && !user.admin)">
+													<option ng-repeat="option in companyOptions"
+														value="{{option.id}}">{{option.name}}</option>
+												</select>
+											</div>
+											<div class="help-block" ng-messages="form.company.$error" ng-show="form.company.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.startDate.$touched || form.$submitted) && form.startDate.$invalid, 'has-success': (form.startDate.$touched || form.$submitted) && !form.startDate.$invalid }">
+										<label for="startDate"
+											class="col-md-3 control-label">Start Date
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-sm-9">
+											<div class="input-icon right dropdown">
+												<a class="dropdown-toggle" id="startDateDropdown" role="button" data-toggle="dropdown" data-target="#">
+													<div class="input-group">
+														<input type="text"
+															id="startDate"
+															name="startDate"
+															class="form-control"
+															data-ng-model="subscription.startDate"
+															data-date-time-input="MM/DD/YYYY"
+															required
+															autocomplete="off"
+															ng-disabled="!hasAccess() || (subscription.id != 'new' && user.companyId == subscription.companyId && !user.admin)"/>
+														<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+													</div>
+												</a>
+												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"
+													ng-hide="!hasAccess() || (subscription.companyId != 'new' && user.companyId == subscription.companyId && !user.admin)">
+													<datetimepicker data-ng-model="subscription.startDate"
+														data-datetimepicker-config="{ dropdownSelector: '#startDateDropdown', startView: 'day', minView: 'day', renderOn: 'end-date-changed' }"
+														data-before-render="startDateBeforeRender($dates)"
+														data-on-set-time="startDateOnSetTime()">
+													</datetimepicker>
+												</ul>
+											</div>
+											<div class="help-block" ng-messages="form.startDate.$error" ng-show="form.startDate.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.endDate.$touched || form.$submitted) && form.endDate.$invalid, 'has-success': (form.endDate.$touched || form.$submitted) && !form.endDate.$invalid }">
+										<label for="endDate"
+											class="col-md-3 control-label">End Date
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-sm-9">
+											<div class="input-icon right dropdown">
+												<a id="endDateDropdown"
+													class="dropdown-toggle" 
+													role="button" 
+													data-toggle="dropdown" 
+													data-target="#">
+													<div class="input-group">
+														<input type="text"
+															id="endDate"
+															name="endDate"
+															class="form-control"
+															data-ng-model="subscription.endDate"
+															data-date-time-input="MM/DD/YYYY"
+															required
+															autocomplete="off"
+															ng-disabled="!hasAccess() || (subscription.companyId != 'new' && user.companyId == subscription.companyId && !user.admin)"/>
+														<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+													</div>
+												</a>
+												<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"
+													ng-hide="!hasAccess() || (subscription.companyId != 'new' && user.companyId == subscription.companyId && !user.admin)">
+													<datetimepicker data-ng-model="subscription.endDate"
+														data-datetimepicker-config="{ dropdownSelector: '#endDateDropdown', startView: 'day', minView: 'day', renderOn: 'start-date-changed' }"
+														data-before-render="endDateBeforeRender($view, $dates)"
+														data-on-set-time="endDateOnSetTime()">
+													</datetimepicker>
+												</ul>
+											</div>
+											<div class="help-block" ng-messages="form.endDate.$error" ng-show="form.endDate.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.enabled.$touched || form.$submitted) && form.enabled.$invalid, 'has-success': (form.enabled.$touched || form.$submitted) && !form.enabled.$invalid }">
+										<div class="col-md-offset-3 col-md-9">
+											<div class="checkbox">
+												<label>
+													<div class="checker">
+														<span ng-class="subscription.enabled ? 'checked' : ''">
+															<input id="enabled" name="enabled" type="checkbox" 
+																ng-model="subscription.enabled" 
+																ng-disabled="!hasAccess() || (subscription.companyId != 'new' && user.companyId == subscription.companyId && !user.admin)" />
+														</span>
+													</div>
+													Enabled
+												</label>
+											</div>
+											<div class="help-block" ng-messages="form.enabled.$error" ng-show="form.enabled.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<!-- /SUBSCRIPTION -->
+						
+						<!-- CONTACTS -->
+						<div class="row">
+							<div class="col-md-6">
+								<!-- PRIMARY CONTACT -->
+								<fieldset class="fieldset-form">
+									<legend class="legend-form">Primary Contact</legend>
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.contact_firstName.$touched || form.$submitted) && form.contact_firstName.$invalid, 'has-success': (form.contact_firstName.$touched || form.$submitted) && !form.contact_firstName.$invalid }">
+										<label
+											for="contact_firstName"
+											class="col-md-3 control-label">First Name
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.contact_firstName.$touched || form.$submitted) && form.contact_firstName.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.contact_firstName.$touched || form.$submitted) && !form.contact_firstName.$invalid" class="fa fa-check"></i>
+												<input id="contact_firstName"
+													name="contact_firstName"
+													type="text"
+													class="form-control"
+													placeholder="First Name"
+													ng-model="subscription.contact.firstName"
+													ng-trim="true"
+													ng-required="true"
+													ng-minlength="3"
+													ng-maxlength="50"
+													ng-disabled="!hasAccess()">
+											</div>
+											<div class="help-block" ng-messages="form.contact_firstName.$error" ng-show="form.contact_firstName.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.contact_lastName.$touched || form.$submitted) && form.contact_lastName.$invalid, 'has-success': (form.contact_lastName.$touched || form.$submitted) && !form.contact_lastName.$invalid }">
+										<label
+											for="contact_lastName"
+											class="col-md-3 control-label">Last Name
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.contact_lastName.$touched || form.$submitted) && form.contact_lastName.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.contact_lastName.$touched || form.$submitted) && !form.contact_lastName.$invalid" class="fa fa-check"></i>
+												<input id="contact_lastName"
+													name="contact_lastName"
+													type="text"
+													class="form-control"
+													placeholder="Last Name"
+													ng-model="subscription.contact.lastName"
+													ng-trim="true"
+													ng-required="true"
+													ng-minlength="3"
+													ng-maxlength="50"
+													ng-disabled="!hasAccess()">
+											</div>
+											<div class="help-block" ng-messages="form.contact_lastName.$error" ng-show="form.contact_lastName.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.contact_email.$touched || form.$submitted) && form.contact_email.$invalid, 'has-success': (form.contact_email.$touched || form.$submitted) && !form.contact_email.$invalid }">
+										<label
+											for="contact_email"
+											class="col-md-3 control-label">E-mail
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.contact_email.$touched || form.$submitted) && form.contact_email.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.contact_email.$touched || form.$submitted) && !form.contact_email.$invalid" class="fa fa-check"></i>
+												<input id="contact_email"
+													name="contact_email"
+													type="email"
+													class="form-control"
+													placeholder="E-mail"
+													ng-model="subscription.contact.email"
+													ng-trim="true"
+													ng-required="true"
+													ng-minlength="6"
+													ng-maxlength="255"
+													ng-disabled="!hasAccess()">
+											</div>
+											<div class="help-block" ng-messages="form.contact_email.$error" ng-show="form.contact_email.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': form.contact_office.$touched && form.contact_office.$invalid, 'has-success': form.contact_office.$touched && !form.contact_office.$invalid }">
+										<label
+											for="contact_office"
+											class="col-md-3 control-label">Office
+											<!--span class="required" aria-required="true"> * </span-->
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="form.contact_office.$touched && form.contact_office.$invalid" class="fa fa-warning"></i>
+												<i ng-show="form.contact_office.$touched && !form.contact_office.$invalid" class="fa fa-check"></i>
+												<input id="contact_office"
+													name="contact_office"
+													type="text"
+													class="form-control"
+													placeholder="Office"
+													ng-model="subscription.contact.office"
+													ng-trim="true"
+													ng-minlength="12"
+													ng-maxlength="14"
+													ng-disabled="!hasAccess()">
+											</div>
+											<div class="help-block" ng-messages="form.contact_office.$error" ng-show="form.contact_office.$touched">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': form.contact_fax.$touched && form.contact_fax.$invalid, 'has-success': form.contact_fax.$touched && !form.contact_fax.$invalid }">
+										<label
+											for="contact_fax"
+											class="col-md-3 control-label">Fax
+											<!--span class="required" aria-required="true"> * </span-->
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="form.contact_fax.$touched && form.contact_fax.$invalid" class="fa fa-warning"></i>
+												<i ng-show="form.contact_fax.$touched && !form.contact_fax.$invalid" class="fa fa-check"></i>
+												<input id="contact_fax"
+													name="contact_fax"
+													type="text"
+													class="form-control"
+													placeholder="Fax"
+													ng-model="subscription.contact.fax"
+													ng-trim="true"
+													ng-minlength="12"
+													ng-maxlength="14"
+													ng-disabled="!hasAccess()">
+											</div>
+											<div class="help-block" ng-messages="form.contact_fax.$error" ng-show="form.contact_fax.$touched">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+									ng-class="{ 'has-error': form.contact_cell.$touched && form.contact_cell.$invalid, 'has-success': form.contact_cell.$touched && !form.contact_cell.$invalid }">
+									<label
+										for="contact_cell"
+										class="col-md-3 control-label">Cell
+										<!--span class="required" aria-required="true"> * </span-->
+									</label>
+									<div class="col-md-9">
+										<div class="input-icon right">
+											<i ng-show="form.contact_cell.$touched && form.contact_cell.$invalid" class="fa fa-warning"></i>
+											<i ng-show="form.contact_cell.$touched && !form.contact_cell.$invalid" class="fa fa-check"></i>
+											<input id="contact_cell"
+												name="contact_cell"
+												type="text"
+												class="form-control"
+												placeholder="Cell"
+												ng-model="subscription.contact.cell"
+												ng-trim="true"
+												ng-minlength="12"
+												ng-maxlength="14"
+												ng-disabled="!hasAccess()">
+										</div>
+										<div class="help-block" ng-messages="form.contact_cell.$error" ng-show="form.contact_cell.$touched">
+											<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+										</div>
+									</div>
+								</div>
+								</fieldset>
+								<!-- /PRIMARY CONTACT -->
+							</div>
+							<div class="col-md-6">
+								<!-- BILLING CONTACT -->
+								<fieldset class="fieldset-form">
+									<legend class="legend-form">Billing Contact</legend>
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.billingContact_firstName.$touched || form.$submitted) && form.billingContact_firstName.$invalid, 'has-success': (form.billingContact_firstName.$touched || form.$submitted) && !form.billingContact_firstName.$invalid }">
+										<label
+											for="billingContact_firstName"
+											class="col-md-3 control-label">First Name
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.billingContact_firstName.$touched || form.$submitted) && form.billingContact_firstName.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.billingContact_firstName.$touched || form.$submitted) && !form.billingContact_firstName.$invalid" class="fa fa-check"></i>
+												<input id="billingContact_firstName"
+													name="billingContact_firstName"
+													type="text"
+													class="form-control"
+													placeholder="First Name"
+													ng-model="subscription.billingContact.firstName"
+													ng-trim="true"
+													ng-required="true"
+													ng-minlength="3"
+													ng-maxlength="50"
+													ng-disabled="!hasAccess()">
+											</div>
+											<div class="help-block" ng-messages="form.billingContact_firstName.$error" ng-show="form.billingContact_firstName.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.billingContact_lastName.$touched || form.$submitted) && form.billingContact_lastName.$invalid, 'has-success': (form.billingContact_lastName.$touched || form.$submitted) && !form.billingContact_lastName.$invalid }">
+										<label
+											for="billingContact_lastName"
+											class="col-md-3 control-label">Last Name
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.billingContact_lastName.$touched || form.$submitted) && form.billingContact_lastName.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.billingContact_lastName.$touched || form.$submitted) && !form.billingContact_lastName.$invalid" class="fa fa-check"></i>
+												<input id="billingContact_lastName"
+													name="billingContact_lastName"
+													type="text"
+													class="form-control"
+													placeholder="Last Name"
+													ng-model="subscription.billingContact.lastName"
+													ng-trim="true"
+													ng-required="true"
+													ng-minlength="3"
+													ng-maxlength="50"
+													ng-disabled="!hasAccess()">
+											</div>
+											<div class="help-block" ng-messages="form.billingContact_lastName.$error" ng-show="form.billingContact_lastName.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': (form.billingContact_email.$touched || form.$submitted) && form.billingContact_email.$invalid, 'has-success': (form.billingContact_email.$touched || form.$submitted) && !form.billingContact_email.$invalid }">
+										<label
+											for="billingContact_email"
+											class="col-md-3 control-label">E-mail
+											<span class="required" aria-required="true"> * </span>
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="(form.billingContact_email.$touched || form.$submitted) && form.billingContact_email.$invalid" class="fa fa-warning"></i>
+												<i ng-show="(form.billingContact_email.$touched || form.$submitted) && !form.billingContact_email.$invalid" class="fa fa-check"></i>
+												<input id="billingContact_email"
+													name="billingContact_email"
+													type="email"
+													class="form-control"
+													placeholder="E-mail"
+													ng-model="subscription.billingContact.email"
+													ng-trim="true"
+													ng-required="true"
+													ng-minlength="6"
+													ng-maxlength="255"
+													ng-disabled="!hasAccess()">
+											</div>
+											<div class="help-block" ng-messages="form.billingContact_email.$error" ng-show="form.billingContact_email.$touched || form.$submitted">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': form.billingContact_office.$touched && form.billingContact_office.$invalid, 'has-success': form.billingContact_office.$touched && !form.billingContact_office.$invalid }">
+										<label
+											for="billingContact_office"
+											class="col-md-3 control-label">Office
+											<!--span class="required" aria-required="true"> * </span-->
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="form.billingContact_office.$touched && form.billingContact_office.$invalid" class="fa fa-warning"></i>
+												<i ng-show="form.billingContact_office.$touched && !form.billingContact_office.$invalid" class="fa fa-check"></i>
+												<input id="billingContact_office"
+													name="billingContact_office"
+													type="text"
+													class="form-control"
+													placeholder="Office"
+													ng-model="subscription.billingContact.office"
+													ng-trim="true"
+													ng-minlength="12"
+													ng-maxlength="14"
+													ng-disabled="!hasAccess()">
+											</div>
+											<div class="help-block" ng-messages="form.billingContact_office.$error" ng-show="form.billingContact_office.$touched">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+										ng-class="{ 'has-error': form.billingContact_fax.$touched && form.billingContact_fax.$invalid, 'has-success': form.billingContact_fax.$touched && !form.billingContact_fax.$invalid }">
+										<label
+											for="billingContact_fax"
+											class="col-md-3 control-label">Fax
+											<!--span class="required" aria-required="true"> * </span-->
+										</label>
+										<div class="col-md-9">
+											<div class="input-icon right">
+												<i ng-show="form.billingContact_fax.$touched && form.billingContact_fax.$invalid" class="fa fa-warning"></i>
+												<i ng-show="form.billingContact_fax.$touched && !form.billingContact_fax.$invalid" class="fa fa-check"></i>
+												<input id="billingContact_fax"
+													name="billingContact_fax"
+													type="text"
+													class="form-control"
+													placeholder="Fax"
+													ng-model="subscription.billingContact.fax"
+													ng-trim="true"
+													ng-minlength="12"
+													ng-maxlength="14"
+													ng-disabled="!hasAccess()">
+											</div>
+											<div class="help-block" ng-messages="form.billingContact_fax.$error" ng-show="form.billingContact_fax.$touched">
+												<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group"
+									ng-class="{ 'has-error': form.billingContact_cell.$touched && form.billingContact_cell.$invalid, 'has-success': form.billingContact_cell.$touched && !form.billingContact_cell.$invalid }">
+									<label
+										for="billingContact_cell"
+										class="col-md-3 control-label">Cell
+										<!--span class="required" aria-required="true"> * </span-->
+									</label>
+									<div class="col-md-9">
+										<div class="input-icon right">
+											<i ng-show="form.billingContact_cell.$touched && form.billingContact_cell.$invalid" class="fa fa-warning"></i>
+											<i ng-show="form.billingContact_cell.$touched && !form.billingContact_cell.$invalid" class="fa fa-check"></i>
+											<input id="billingContact_cell"
+												name="billingContact_cell"
+												type="text"
+												class="form-control"
+												placeholder="Cell"
+												ng-model="subscription.billingContact.cell"
+												ng-trim="true"
+												ng-minlength="12"
+												ng-maxlength="14"
+												ng-disabled="!hasAccess()">
+										</div>
+										<div class="help-block" ng-messages="form.billingContact_cell.$error" ng-show="form.billingContact_cell.$touched">
+											<div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+										</div>
+									</div>
+								</div>
+								</fieldset>
+								<!-- /BILLING CONTACT -->
+							</div>
+						</div>
+						<!-- /CONTACTS -->
+
+					</div>
+					<div class="form-actions">
+						<div class="row">
+							<div class="col-md-offset-3 col-md-9 text-right">
+								<button type="submit"
+									class="btn green"
+									ng-disabled="busy || !hasAccess()"
+									ng-click="save(form, subscription)">Save</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

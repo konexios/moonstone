@@ -1,0 +1,20 @@
+.circle {
+	display: inline-block;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+}
+
+.circle-sm { width: 100px; height: 100px; }
+.circle-md { width: 150px; height: 150px; }
+.circle-lg { width: 200px; height: 200px; }
+
+.dimond {
+  width: 100px;
+  height: 100px;
+  margin: 25px;
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  overflow: hidden;
+}

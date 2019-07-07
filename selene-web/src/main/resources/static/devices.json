@@ -1,0 +1,2546 @@
+[
+	{
+		"device": "Beacon Controller",
+		"type": "ble-beacon-controller",
+		"deviceClass": "com.arrow.selene.device.ble.beacon.BeaconControllerModuleImpl",
+		"info": [
+			{
+				"name": "bleInterface",
+				"title": "BLE interface",
+				"desc": "Defines name of BLE interface to be used to listen advertising packet (e.g. hci0)",
+				"value": "hci0",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "deviceMapping",
+				"title": "Device mapping",
+				"desc": "Defines mapping company Id to class name to provide ability of handling advertising packets sent by different beacons. (e. g. 0x1235:com.arrow.selene.device.ble.puck.PuckModuleImpl)",
+				"value": "",
+				"input": {
+					"type": "text"
+				}
+			}
+		],
+		"props": [
+			{
+				"name": "beaconMaxPollingIntervalMs",
+				"title": "Interval of sending telemetry to cloud",
+				"desc": "Defines interval in milliseconds of sending telemetry to cloud",
+				"value": 1000,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 9223372036854776000
+				}
+			},
+			{
+				"name": "useDbus",
+				"title": "Use D-Bus",
+				"desc": "Enables D-Bus to be used to obtain advertised data instead of direct parsing of received packets",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			}
+		]
+	},
+	{
+		"device": "Camera",
+		"type": "camera",
+		"deviceClass": "com.arrow.selene.device.uvc.CameraModule",
+		"props": [
+			{
+				"name": "index",
+				"title": "Index",
+				"desc": "Defines index of local camera to be used for capturing. Makes sense only in case if ipCamera=false",
+				"value": 0,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "streamUrl",
+				"title": "URL",
+				"desc": "Defines URL of IP-camera. Makes sense only in case if ipCamera=true",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "width",
+				"title": "Width of captured images",
+				"desc": "Defines width of captured imagesc",
+				"value": 640,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "height",
+				"title": "Height of captured images",
+				"desc": "Defines height of captured images",
+				"value": 480,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "format",
+				"title": "Format",
+				"desc": "Defines format of captured images",
+				"value": "jpg",
+				"required": "false",
+				"values": [
+					"bmp",
+					"gif",
+					"jpg",
+					"jpeg",
+					"png",
+					"wbmp"
+				]
+			},
+			{
+				"name": "frequencyInSecs",
+				"title": "Interval of image capturing",
+				"desc": "Defines interval of image capturing",
+				"value": "10",
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "directory",
+				"title": "Image destination directory",
+				"desc": "Defines directory where captured images should be saved to. Makes sense only in case if saveLocal=true",
+				"value": "/opt/selene/images",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "saveLocal",
+				"title": "Save captured images locally",
+				"desc": "Allows to save captured images locally",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "detectFace",
+				"title": "Detect faces on captured images",
+				"desc": "Allows to detect faces on captured images",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "markDetectedFace",
+				"title": "Mark detected faces",
+				"desc": "Allow to draw rectangles on detected faces. Makes sense only in case if detectFace=true",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "overlayEnabled",
+				"title": "Draw current time and text on captured images",
+				"desc": "Allows to draw current time and text from overlayUrl on captured images",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "overlayUrl",
+				"title": "Overlay URL",
+				"desc": "Defines text to be drawn on captured images. Makes sense only in case if overlayEnabled=true",
+				"value": "http://iot.arrow.com",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "ipCamera",
+				"title": "Use IP-Camera",
+				"desc": "Defines which camera should be used (IP or local)",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "faceDetectionFile",
+				"title": "Face detection file",
+				"desc": "Defines file to be used by face detection",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "faceDetectionScaleFactor",
+				"title": "Face detection scale factor",
+				"desc": "Defines scale factor specifying how much the image size is reduced at each image scale",
+				"value": 1.1,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647,
+					"step": 0.1
+				}
+			},
+			{
+				"name": "faceDetectionMinNeighbors",
+				"title": "Face detection min neighbors",
+				"desc": "Defines how many neighbors each candidate rectangle should have to retain it",
+				"value": 3,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "faceDetectionFlags",
+				"title": "Face detection flags",
+				"desc": "",
+				"value": 0,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "faceDetectionMinSizeX",
+				"title": "Face detection min size X",
+				"desc": "Defines minimum possible object size. Objects smaller than that are ignored",
+				"value": 30,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "faceDetectionMinSizeY",
+				"title": "Face detection min size Y",
+				"desc": "Defines minimum possible object size. Objects smaller than that are ignored",
+				"value": 30,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "comTrigger",
+				"title": "Use COM trigger",
+				"desc": "Allows to trigger image capture on receiving specific text from serial port",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "comTriggerValue",
+				"title": "Text triggering image capture",
+				"desc": "Defines text triggering image capture",
+				"value": "T",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "comTriggerThresholdInSecs",
+				"title": "Minimum interval of capture triggering",
+				"desc": "Defines minimum interval of capture triggering in seconds",
+				"value": 5,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "comTriggerPort",
+				"title": "Serial port name",
+				"desc": "Defines serial port name to be used to trigger image capture",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "comTriggerBaudRate",
+				"title": "Baudrate",
+				"desc": "Defines baudrate to be used to configure serial port",
+				"value": 115200,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "comTriggerDataBits",
+				"title": "Number of databits",
+				"desc": "Defines number of databits to be used to configure serial port",
+				"value": 8,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "comTriggerStopBits",
+				"title": "Number of stopbits",
+				"desc": "Defines number of stopbits to be used to configure serial port",
+				"value": 1,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "comTriggerParity",
+				"title": "Parity",
+				"desc": "Defines parity to be used to configure serial port",
+				"value": 0,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			}
+		]
+	},
+	{
+		"device": "Cellular Modem",
+		"type": "cellular-modem",
+		"deviceClass": "com.arrow.selene.device.cellular.CellularModemModule",
+		"props": [
+			{
+				"name": "healthCheckMs",
+				"title": "Interval between modem device health checks",
+				"desc": "Defines interval between modem device health checks",
+				"value": 15000,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 9223372036854776000
+				}
+			},
+			{
+				"name": "gpsPollingMs",
+				"title": "Interval between between attempt to acquire GPS position",
+				"desc": "Defines interval between between attempt to acquire GPS position",
+				"value": 15000,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 9223372036854776000
+				}
+			}
+		]
+	},
+	{
+		"device": "Command Line",
+		"type": "cli",
+		"deviceClass": "com.arrow.selene.device.cli.CliModuleImpl",
+		"props": [
+			{
+				"name": "dataType",
+				"title": "Telemetry data type",
+				"desc": "Defines type of telemetry to be extracted from command output",
+				"value": "string",
+				"required": "true",
+				"values": [
+					"string",
+					"long",
+					"double",
+					"string-array",
+					"long-array",
+					"double-array",
+					"raw"
+				]
+			},
+			{
+				"name": "command",
+				"title": "Command",
+				"desc": "Defines command to be periodically executed",
+				"value": "",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "commandIntervalInSecs",
+				"title": "Execution interval in seconds",
+				"desc": "Defines interval between command executions",
+				"value": 5,
+				"required": "true",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 9223372036854776000
+				}
+			},
+			{
+				"name": "arrayDelimiter",
+				"title": "Array delimiter",
+				"desc": "Defines delimiter to be used to split command output for string-array, long-array, double-array data types",
+				"value": ",",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "persistTelemetry",
+				"title": "Persist Telemetry",
+				"desc": "",
+				"value": "false",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "maxPollingIntervalMs",
+				"title": "Max Polling Interval Ms",
+				"desc": "",
+				"value": 1000,
+				"required": "false",
+				"input": {
+					"type": "number"
+				}
+			}
+		]
+	},
+	{
+		"device": "Multitech Conduit",
+		"type": "lora-server",
+		"deviceClass": "com.arrow.selene.device.conduit.LoraServerModule",
+		"props": [
+			{
+				"name": "loraDeviceType",
+				"title": "Type of LoRa device",
+				"desc": "Defines type of LoRa device",
+				"value": "lora-device",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "loraDeviceClass",
+				"title": "Class implementing LoRa device logic",
+				"desc": "Defines class implementing LoRa device logic",
+				"value": "com.arrow.selene.device.conduit.LoraDeviceModuleImpl",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "mqttTopics",
+				"title": "Comma-separated list of MQTT topics",
+				"desc": "Defines comma-separated list of MQTT topics that device should subscribe to",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "mqttUrl",
+				"title": "URL of MQTT server",
+				"desc": "Defines address of MQTT server",
+				"value": "tcp://localhost:1883",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "mqttUserName",
+				"title": "MQTT user name",
+				"desc": "Defines MQTT user name",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "mqttPassword",
+				"title": "MQTT user password",
+				"desc": "Defines MQTT user password",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			}
+		]
+	},
+	{
+		"device": "Default MQTT",
+		"type": "default-mqtt-device",
+		"deviceClass": "com.arrow.selene.device.mqtt.DefaultMqttDeviceModule",
+		"props": [
+			{
+				"name": "mqttTopics",
+				"title": "Comma-separated list of MQTT topics",
+				"desc": "Defines comma-separated list of MQTT topics that device should subscribe to",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "payloadFormatted",
+				"title": "JSON-formatted payload",
+				"desc": "Defines that payload received from topic is JSON-formatted and can be parsed before sending telemetry, otherwise it is assumed that telemetry contains raw payload",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "mqttUrl",
+				"title": "URL of MQTT server",
+				"desc": "Defines address of MQTT server",
+				"value": "tcp://localhost:1883",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "mqttUserName",
+				"title": "MQTT user name",
+				"desc": "Defines MQTT user name",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "mqttPassword",
+				"title": "MQTT user password",
+				"desc": "Defines MQTT user password",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			}
+		]
+	},
+	{
+		"device": "Digi GPS",
+		"type": "gps-nmea",
+		"deviceClass": "com.arrow.selene.device.udp.gps.GpsModule",
+		"props": [
+			{
+				"name": "address",
+				"title": "IP address",
+				"desc": "Defines address of network interface to be used to listen GPS data",
+				"value": "0.0.0.0",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "port",
+				"title": "UDP port",
+				"desc": "Defines UDP port to be used to listen GPS data",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 1,
+					"max": 65535
+				}
+			},
+			{
+				"name": "pollingInterval",
+				"title": "Polling interval",
+				"desc": "",
+				"value": "200",
+				"required": "false",
+				"input": {
+					"type": "number"
+				}
+			}
+		]
+	},
+	{
+		"device": "Mckinley router",
+		"type": "mckinley-router",
+		"deviceClass": "com.arrow.selene.device.mckinley.MkRouterModule",
+		"props": [
+			{
+				"name": "mqttTopics",
+				"title": "Comma-separated list of MQTT topics",
+				"desc": "Defines comma-separated list of MQTT topics that device should subscribe to",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "deviceTypeToken",
+				"title": "Device type token",
+				"desc": "Defines position of device type inside MQTT topic name. Used to extract device types from topic name formated as follows <token>/<token>/.../<token>",
+				"value": 0,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "deviceUidToken",
+				"title": "Device UID token",
+				"desc": "Defines position of device UID inside MQTT topic name. Used to extract device UIDs from topic name formated as follows <token>/<token>/.../<token>",
+				"value": 1,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "cmdMqttTopic",
+				"title": "Command MQTT topic",
+				"desc": "Defines template of topics used to send commands to devices",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "mqttUrl",
+				"title": "URL of MQTT server",
+				"desc": "Defines address of MQTT server",
+				"value": "tcp://localhost:1883",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "mqttUserName",
+				"title": "MQTT user name",
+				"desc": "Defines MQTT user name",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "mqttPassword",
+				"title": "MQTT user password",
+				"desc": "Defines MQTT user password",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			}
+		]
+	},
+	{
+		"device": "MQTT router",
+		"type": "mqtt-router",
+		"deviceClass": "com.arrow.selene.device.mqttrouter.MqttRouterModule",
+		"props": [
+			{
+				"name": "deviceUidToken",
+				"title": "Device UID token",
+				"desc": "Defines position of device UID inside MQTT topic name. Used to extract device UIDs from topic name formated as follows <token>/<token>/.../<token>",
+				"value": 1,
+				"required": "true",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "deviceNameTag",
+				"title": "Name Tag for Device",
+				"desc": "Defines tag for identification of device name",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "deviceUidTag",
+				"title": "UID Tag for Device",
+				"desc": "Defines tag for identification of device unique ID",
+				"value": "",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "cmdMqttTopic",
+				"title": "Command MQTT topic",
+				"desc": "Defines template of topics used to send commands to devices",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "stateControlTopic",
+				"title": "State Control MQTT Topic",
+				"desc": "Defines state control topic for 3rd party application.",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "protocol",
+				"title": "Protocol",
+				"desc": "Defines protocol",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "mqttUrl",
+				"title": "URL of MQTT server",
+				"desc": "Defines address of MQTT server",
+				"value": "tcp://localhost:1883",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "mqttUserName",
+				"title": "MQTT user name",
+				"desc": "Defines MQTT user name",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "mqttPassword",
+				"title": "MQTT user password",
+				"desc": "Defines MQTT user password",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "clientId",
+				"title": "Client Id",
+				"desc": "Defines clientId",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			}
+		]
+	},
+	{
+		"device": "Meshlium",
+		"type": "meshlium",
+		"deviceClass": "com.arrow.selene.device.libelium.MeshliumModuleImpl",
+		"props": [
+			{
+				"name": "dbConfigFile",
+				"title": "Database config file",
+				"desc": "Defines path to properties file to be used to establish connection to DB",
+				"value": "/mnt/lib/cfg/localDB.ini",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "pluginConfigFile",
+				"title": "Plugin config file",
+				"desc": "Defines path to config file to be used to populate module properties",
+				"value": "/mnt/lib/cfg/arrow/setup.ini",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "syncIntervalMs",
+				"title": "Synchronization interval",
+				"desc": "Defines interval between attempts to obtain new information from DB",
+				"value": 60000,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 9223372036854776000
+				}
+			},
+			{
+				"name": "maxPollingIntervalMs",
+				"title": "Max Polling Interval Ms",
+				"desc": "",
+				"value": 1000,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 9223372036854776000
+				}
+			},
+			{
+				"name": "persistTelemetry",
+				"title": "Persist Telemetry",
+				"desc": "",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "mask",
+				"title": "Mask",
+				"desc": "Defines mask to be used in DB query",
+				"value": 1,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 9223372036854776000
+				}
+			},
+			{
+				"name": "limit",
+				"title": "Limit",
+				"desc": "Defines limit to be used in DB query",
+				"value": 100,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "connectionString",
+				"title": "DB connection",
+				"desc": "Defines DB connection string template to be used to establish connection to DB",
+				"value": "jdbc:mysql://%s:%s/%s?useServerPrepStmts=true&user=%s&password=%s&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+				"input": {
+					"type": "text"
+				}
+			}
+		]
+	},
+	{
+		"device": "I2C/GPIO",
+		"type": "peripheral",
+		"deviceClass": "com.arrow.selene.device.peripheral.PeripheralModule",
+		"props": [
+			{
+				"name": "periphery",
+				"title": "Periphery",
+				"desc": "Defines connected peripheral devices in JSON format: {\"devices\":{\"<device_name>\":{\"deviceClass\":\"java class implementing device logic\", <other_properties>}}} (e.g. {\"devices\":{\"Test\":{\"deviceClass\":\"com.arrow.selene.device.peripheral.devices.grovepi.Relay\", \"pin\":\"13\"}}})",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "maxPollingIntervalMs",
+				"title": "Max Polling Interval Ms",
+				"desc": "",
+				"value": "1000",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			}
+		]
+	},
+	{
+		"device": "Rhythm+",
+		"type": "rhythm-plus",
+		"deviceClass": "com.arrow.selene.device.ble.rhythmp.RhythmPlusModuleImpl",
+		"props": [
+			{
+				"name": "bleInterface",
+				"title": "BLE interface",
+				"desc": "Defines name of bluetooth interface (e.g. hci0)",
+				"value": "hci0",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "bleInterval",
+				"title": "BLE scan interval",
+				"desc": "Defines timeout interval (in seconds) for scanning BLE MAC addresses.",
+				"value": 5,
+				"required": "true",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "bleAddress",
+				"title": "BLE MAC address",
+				"desc": "Defines MAC address of device (e.g. FA:73:B2:D1:FD:C7)",
+				"value": "",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "retryInterval",
+				"title": "Retry interval",
+				"desc": "Defines interval of checking GATT connectivity. Makes sense only in case if useDbus=false",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "useDbus",
+				"title": "Use D-Bus",
+				"desc": "Enables D-Bus to be used to obtain data instead of direct parsing of received packets",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "HeartRateSensor/enabled",
+				"title": "Heart Rate Sensor",
+				"desc": "Enable Heart Rate Sensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			}
+		]
+	},
+	{
+		"device": "Senseability 2",
+		"type": "senseability-2",
+		"deviceClass": "com.arrow.selene.device.ble.senseability.SA2ModuleImpl",
+		"props": [
+			{
+				"name": "bleInterface",
+				"title": "BLE interface",
+				"desc": "Defines name of bluetooth interface (e.g. hci0)",
+				"value": "hci0",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "bleInterval",
+				"title": "BLE scan interval",
+				"desc": "Defines timeout interval (in seconds) for scanning BLE MAC addresses.",
+				"value": 5,
+				"required": "true",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "bleAddress",
+				"title": "BLE MAC address",
+				"desc": "Defines MAC address of device (e.g. FA:73:B2:D1:FD:C7)",
+				"value": "",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "retryInterval",
+				"title": "Retry interval",
+				"desc": "Defines interval of checking GATT connectivity. Makes sense only in case if useDbus=false",
+				"value": "10000",
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "useDbus",
+				"title": "Use D-Bus",
+				"desc": "Enables D-Bus to be used to obtain data instead of direct parsing of received packets",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "SA2Sensor/enabled",
+				"title": "SA2Sensor",
+				"desc": "",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			}
+		]
+	},
+	{
+		"device": "SensorTag",
+		"type": "ti-sensortag",
+		"deviceClass": "com.arrow.selene.device.ble.sensortag.SensorTagModule",
+		"props": [
+			{
+				"name": "bleInterface",
+				"title": "BLE interface",
+				"desc": "Defines name of bluetooth interface (e.g. hci0)",
+				"value": "hci0",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "bleInterval",
+				"title": "BLE scan interval",
+				"desc": "Defines timeout interval (in seconds) for scanning BLE MAC addresses.",
+				"value": 5,
+				"required": "true",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "bleAddress",
+				"title": "BLE MAC address",
+				"desc": "Defines MAC address of device (e.g. FA:73:B2:D1:FD:C7)",
+				"value": "",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "retryInterval",
+				"title": "Retry interval",
+				"desc": "Defines interval of checking GATT connectivity. Makes sense only in case if useDbus=false",
+				"value": "10000",
+				"required": "false",
+				"input": {
+					"type": "text",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "useDbus",
+				"title": "Use D-Bus",
+				"desc": "Enables D-Bus to be used to obtain data instead of direct parsing of received packets",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "LightSensor/enabled",
+				"title": "Light Sensor",
+				"desc": "Enable Light Sensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "LightSensor/period",
+				"title": "Light Sensor Period",
+				"desc": "Set Light Sensor Period",
+				"value": "500",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "TemperatureSensor/enabled",
+				"title": "Temperature Sensor",
+				"desc": "",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "TemperatureSensor/period",
+				"title": "Temperature Sensor Period",
+				"desc": "Set Temperature Sensor Period",
+				"value": "500",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "PressureSensor/enabled",
+				"title": "Pressure Sensor",
+				"desc": "",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "PressureSensor/period",
+				"title": "Pressure Sensor Period",
+				"desc": "",
+				"value": "500",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "HumiditySensor/enabled",
+				"title": "Humidity Sensor",
+				"desc": "",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "HumiditySensor/period",
+				"title": "Humidity Sensor Period",
+				"desc": "",
+				"value": "500",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "KeysSensor/enabled",
+				"title": "Keys Sensor",
+				"desc": "",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "MovementSensor/enabled",
+				"title": "Movement Sensor",
+				"desc": "",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "MovementSensor/period",
+				"title": "Movement Sensor Period",
+				"desc": "",
+				"value": "500",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "MovementSensor/accelerometerEnabled",
+				"title": "Movement Sensor - Accelerometer",
+				"desc": "",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "MovementSensor/magnetometerEnabled",
+				"title": "Movement Sensor - Magnetometer",
+				"desc": "",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "MovementSensor/gyroscopeEnabled",
+				"title": "Movement Sensor - Gyroscope",
+				"desc": "",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "MovementSensor/accelerometerRange",
+				"title": "Movement Sensor Accelerometer Range",
+				"desc": "",
+				"value": 0,
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			}
+		]
+	},
+	{
+		"device": "SensorTile",
+		"type": "st-sensortile",
+		"deviceClass": "com.arrow.selene.device.ble.sensortile.SensorTileModule",
+		"props": [
+			{
+				"name": "bleInterface",
+				"title": "BLE interface",
+				"desc": "Defines name of bluetooth interface (e.g. hci0)",
+				"value": "hci0",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "bleInterval",
+				"title": "BLE scan interval",
+				"desc": "Defines timeout interval (in seconds) for scanning BLE MAC addresses.",
+				"value": 5,
+				"required": "true",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "bleAddress",
+				"title": "BLE MAC address",
+				"desc": "Defines MAC address of device (e.g. FA:73:B2:D1:FD:C7)",
+				"value": "",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "retryInterval",
+				"title": "Retry interval",
+				"desc": "Defines interval of checking GATT connectivity. Makes sense only in case if useDbus=false",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "useDbus",
+				"title": "Use D-Bus",
+				"desc": "Enables D-Bus to be used to obtain data instead of direct parsing of received packets",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "EnvironmentSensor/enabled",
+				"title": "Environment Sensor",
+				"desc": "",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "MovementSensor/enabled",
+				"title": "Movement Sensor",
+				"desc": "",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "AccelerationEventSensor/enabled",
+				"title": "Acceleration Event Sensor",
+				"desc": "",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "SwitchSensor/enabled",
+				"title": "Switch Sensor",
+				"desc": "",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "MicLevelSensor/enabled",
+				"title": "MicLevel Sensor",
+				"desc": "",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "ActivitySensor/enabled",
+				"title": "Activity Sensor",
+				"desc": "",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "CarryPositionSensor/enabled",
+				"title": "CarryPosition Sensor",
+				"desc": "",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "MemsGestureSensor/enabled",
+				"title": "Mems Gesture Sensor",
+				"desc": "",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "MemsFusionCompactSensor/enabled",
+				"title": "Mems Fusion Compact Sensor",
+				"desc": "",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			}
+		]
+	},
+	{
+		"device": "Thunderboard Sense",
+		"type": "silabs-thunderboard-sense",
+		"deviceClass": "com.arrow.selene.device.ble.thunderboard.sense.ThunderboardSenseModule",
+		"props": [
+			{
+				"name": "bleInterface",
+				"title": "BLE interface",
+				"desc": "Defines name of bluetooth interface (e.g. hci0)",
+				"value": "hci0",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "bleInterval",
+				"title": "BLE scan interval",
+				"desc": "Defines timeout interval (in seconds) for scanning BLE MAC addresses.",
+				"value": 5,
+				"required": "true",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "bleAddress",
+				"title": "BLE MAC address",
+				"desc": "Defines MAC address of device (e.g. FA:73:B2:D1:FD:C7)",
+				"value": "",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "retryInterval",
+				"title": "Retry interval",
+				"desc": "Defines interval of checking GATT connectivity. Makes sense only in case if useDbus=false",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "useDbus",
+				"title": "Use D-Bus",
+				"desc": "Enables D-Bus to be used to obtain data instead of direct parsing of received packets",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "enabled",
+				"title": "Enabled",
+				"desc": "enabled",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "UvSensor/enabled",
+				"title": "Uv Sensor",
+				"desc": "UvSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "PressureSensor/enabled",
+				"title": "Pressure Sensor",
+				"desc": "PressureSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "TemperatureSensor/enabled",
+				"title": "Temperature Sensor",
+				"desc": "TemperatureSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "HumiditySensor/enabled",
+				"title": "Humidity Sensor",
+				"desc": "HumiditySensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "LightSensor/enabled",
+				"title": "Light Sensor",
+				"desc": "LightSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "SoundSensor/enabled",
+				"title": "Sound Sensor",
+				"desc": "SoundSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "KeysSensor/enabled",
+				"title": "Keys Sensor",
+				"desc": "KeysSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "CO2Sensor/enabled",
+				"title": "CO2 Sensor",
+				"desc": "CO2Sensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "TvocSensor/enabled",
+				"title": "Tvoc Sensor",
+				"desc": "TvocSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "AccelerationSensor/enabled",
+				"title": "Acceleration Sensor",
+				"desc": "AccelerationSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "OrientationSensor/enabled",
+				"title": "Orientation Sensor",
+				"desc": "OrientationSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "LedsControl/enabled",
+				"title": "Leds Control",
+				"desc": "LedsControl",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			}
+		]
+	},
+	{
+		"device": "Thunderboard React",
+		"type": "silabs-thunderboard-react",
+		"deviceClass": "com.arrow.selene.device.ble.thunderboard.react.ThunderboardReactModule",
+		"props": [
+			{
+				"name": "bleInterface",
+				"title": "BLE interface",
+				"desc": "Defines name of bluetooth interface (e.g. hci0)",
+				"value": "hci0",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "bleInterval",
+				"title": "BLE scan interval",
+				"desc": "Defines timeout interval (in seconds) for scanning BLE MAC addresses.",
+				"value": 5,
+				"required": "true",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "bleAddress",
+				"title": "BLE MAC address",
+				"desc": "Defines MAC address of device (e.g. FA:73:B2:D1:FD:C7)",
+				"value": "",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "enabled",
+				"title": "Enabled",
+				"desc": "enabled",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "retryInterval",
+				"title": "Retry interval",
+				"desc": "Defines interval of checking GATT connectivity. Makes sense only in case if useDbus=false",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "useDbus",
+				"title": "Use D-Bus",
+				"desc": "Enables D-Bus to be used to obtain data instead of direct parsing of received packets",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "UvSensor/enabled",
+				"title": "Uv Sensor",
+				"desc": "UvSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "TemperatureSensor/enabled",
+				"title": "Temperature Sensor",
+				"desc": "TemperatureSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "HumiditySensor/enabled",
+				"title": "Humidity Sensor",
+				"desc": "HumiditySensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "LightSensor/enabled",
+				"title": "Light Sensor ",
+				"desc": "LightSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "KeysSensor/enabled",
+				"title": " Keys Sensor",
+				"desc": "KeysSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "AccelerationSensor/enabled",
+				"title": "Acceleration Sensor",
+				"desc": "AccelerationSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "OrientationSensor/enabled",
+				"title": "Orientation Sensor",
+				"desc": "OrientationSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "LedsControl/enabled",
+				"title": "Leds Control",
+				"desc": "LedsControl",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "publishLocal",
+				"title": "Publish Local",
+				"desc": "PublishLocal",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			}
+		]
+	},
+	{
+		"device": "Simba-Pro",
+		"type": "Simba-Pro",
+		"deviceClass": "com.arrow.selene.device.ble.simba.SimbaModule",
+		"props": [
+			{
+				"name": "bleInterface",
+				"title": "BLE interface",
+				"desc": "Defines name of bluetooth interface (e.g. hci0)",
+				"value": "hci0",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "bleInterval",
+				"title": "BLE scan interval",
+				"desc": "Defines timeout interval (in seconds) for scanning BLE MAC addresses.",
+				"value": 5,
+				"required": "true",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "bleAddress",
+				"title": "BLE MAC address",
+				"desc": "Defines MAC address of device (e.g. FA:73:B2:D1:FD:C7)",
+				"value": "",
+				"required": "true",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "Enabled",
+				"title": "enabled",
+				"desc": "enabled",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "retryInterval",
+				"title": "Retry interval",
+				"desc": "Defines interval of checking GATT connectivity. Makes sense only in case if useDbus=false",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "useDbus",
+				"title": "Use D-Bus",
+				"desc": "Enables D-Bus to be used to obtain data instead of direct parsing of received packets",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "ActivitySensor/enabled",
+				"title": "Activity Sensor",
+				"desc": "ActivitySensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "TemperatureSensor/enabled",
+				"title": "Temperature Sensor",
+				"desc": "TemperatureSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "HumiditySensor/enabled",
+				"title": "Humidity Sensor",
+				"desc": "HumiditySensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "CarryPositionSensor/enabled",
+				"title": "CarryPosition Sensor",
+				"desc": "CarryPositionSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "freefallsensor",
+				"title": "FreeFallSensor",
+				"desc": "FreeFallSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "FusionCompactSensor/enabled",
+				"title": "FusionCompact Sensor",
+				"desc": "FusionCompactSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "fusionsensor",
+				"title": "Fusion Sensor",
+				"desc": "FusionSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "luxsensor",
+				"title": "Lux Sensor",
+				"desc": "LuxSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "MicLevelSensor/enabled",
+				"title": "MicLevel Sensor",
+				"desc": "MicLevelSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "PositionSensor/enabled",
+				"title": "Position Sensor",
+				"desc": "PositionSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "PressureSensor/enabled",
+				"title": "Pressure Sensor",
+				"desc": "PressureSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "LightSensor/enabled",
+				"title": "Light Sensor",
+				"desc": "LightSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "EnvironmentSensor/enabled",
+				"title": "Environment Sensor",
+				"desc": "EnvironmentSensor",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "LedControl/enabled",
+				"title": "Led Controlr",
+				"desc": "LedControl",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			}
+		]
+	},
+	{
+		"device": "UDP Forwarder",
+		"type": "udp-forwarder",
+		"deviceClass": "com.arrow.selene.device.udp.udpforwarder.UdpForwarderModule",
+		"props": [
+			{
+				"name": "deviceAddress",
+				"title": "Device address",
+				"desc": "Defines address to which received data should be forwarded",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "devicePort",
+				"title": "Device port",
+				"desc": "Defines UDP port to which received data should be forwarded",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 1,
+					"max": 65535
+				}
+			},
+			{
+				"name": "allowPublishLocal",
+				"title": "Allow publish local",
+				"desc": "Defines if device can be used for data forwarding",
+				"value": false,
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "address",
+				"title": "IP address",
+				"desc": "Defines address of network interface to be used to listen data",
+				"value": "0.0.0.0",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "port",
+				"title": "UPD port",
+				"desc": "Defines UDP port to be used to listen data",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 1,
+					"max": 65535
+				}
+			},
+			{
+				"name": "persistTelemetry",
+				"title": "Persist Telemetry",
+				"desc": "",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "allowPublishLocal",
+				"title": "Allow Publish Local",
+				"desc": "",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			}
+		]
+	},
+	{
+		"device": "Web Camera",
+		"type": "webcam",
+		"deviceClass": "com.arrow.selene.device.uvc.UvcModule",
+		"props": [
+			{
+				"name": "index",
+				"title": "Index",
+				"desc": "Defines index of local camera to be used for capturing",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "maxFrameCounter",
+				"title": "Max frame counter",
+				"desc": "Defines maximum number of frames in video clip",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "saveToFile",
+				"title": "Save to file",
+				"desc": "Defines if clip should be saved to file",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "frameRate",
+				"title": "Frame rate",
+				"desc": "Defines FPS of captured video",
+				"value": 30,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "frameWidth",
+				"title": "Frame width",
+				"desc": "Defines width of captured video",
+				"value": 640,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "frameHeight",
+				"title": "Frame height",
+				"desc": "Defines height of captured video",
+				"value": 480,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "fourcc",
+				"title": "FourCC",
+				"desc": "Defines codec to be used in captured video encoding",
+				"value": "H264",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "directory",
+				"title": "Clips destination directory",
+				"desc": "Defines directory that captured clips should be saved to. Makes sense only if saveToFile=true",
+				"value": "/opt/videos",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "fileNamePattern",
+				"title": "File name pattern",
+				"desc": "Defines pattern to build file name",
+				"value": "%s.mp4",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "saveAsStream",
+				"title": "Save as stream",
+				"desc": "Defines if clip should be saved as images stream",
+				"value": false,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "streamNamePattern",
+				"title": "Stream name pattern",
+				"desc": "Defines pattern to build stream file name",
+				"value": "%s.stream",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "videoLenMins",
+				"title": "Video length in minutes",
+				"desc": "Defines maximum length of captured video",
+				"value": 2,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 9223372036854776000
+				}
+			},
+			{
+				"name": "liveStream",
+				"title": "Use live stream",
+				"desc": "Defines if captured images should be sent as telemetry to cloud",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "liveFrameWidth",
+				"title": "Live stream frame width",
+				"desc": "Defines width of images to be sent as telemetry. Makes sense only if liveStream=true",
+				"value": 320,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "liveFrameHeight",
+				"title": "Live stream frame height",
+				"desc": "Defines height of images to be sent as telemetry. Makes sense only if liveStream=true",
+				"value": 240,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "sendFrameCounter",
+				"title": "Send frame counter",
+				"desc": "Defines rate of sending captured images as telemetry. Makes sense only if liveStream=true",
+				"value": 2,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "retryIntervalSecs",
+				"title": "Retry interval",
+				"desc": "Defines interval between attempts of capturing in case if errors occured",
+				"value": 5,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "detectDisconnectMs",
+				"title": "Detect disconnect threshold in milliseconds",
+				"desc": "Defines maximum time for capturing one image. Exceeding of this threshold means webcam disconnected",
+				"value": 500,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			}
+		]
+	},
+	{
+		"device": "Wi-Fi",
+		"type": "wifi",
+		"deviceClass": "com.arrow.selene.device.wifi.WifiModule",
+		"props": [
+			{
+				"name": "deviceName",
+				"title": "Device name",
+				"desc": "Defines device name of WiFi adapter to be used",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "ssid",
+				"title": "SSID",
+				"desc": "Defines name of WiFi access point to be connected",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "authAlg",
+				"title": "Auth algorithm",
+				"desc": "Defines WLAN authentication algorithm to be used",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "keyMgmt",
+				"title": "Key management",
+				"desc": "Defines WLAN key management algorithm to be used for keys distribution",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "password",
+				"title": "Password",
+				"desc": "Defines password for access to WiFi access point",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "mode",
+				"title": "Working mode",
+				"desc": "Defines working mode. MONITOR mode allows monitoring near access points. ACTIVE one also allows establish connection to specific access point",
+				"value": "MONITOR",
+				"required": "false",
+				"values": [
+					"MONITOR",
+					"ACTIVE"
+				]
+			},
+			{
+				"name": "accessPointsPollingMs",
+				"title": "Access points polling",
+				"desc": "Defines interval of polling available APs",
+				"value": 60000,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 9223372036854776000
+				}
+			}
+		]
+	},
+	{
+		"device": "Digi XBee Sensor",
+		"type": "xbee-sensor",
+		"deviceClass": "com.arrow.selene.device.xbee.XbeeSensorModule",
+		"info": [
+			{
+				"name": "port",
+				"title": "Port",
+				"desc": "Defines serial port or device name of Digi XBee coordinator device",
+				"value": "",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "baudRate",
+				"title": "Baud rate",
+				"desc": "Defines baudrate to be used to configure serial port of Digi XBee adapter",
+				"value": "",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "nodeId",
+				"title": "Node ID",
+				"desc": "Defines name of Digi XBee sensor to interact",
+				"value": "",
+				"input": {
+					"type": "text"
+				}
+			}
+		],
+		"props": [
+			{
+				"name": "pollingInterval",
+				"title": "Polling interval",
+				"desc": "Defines interval of polling IO sample data from remote device",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "retryInterval",
+				"title": "Retry interval",
+				"desc": "Defines interval of attempts to find remote Digi XBee device with specific nodeId in network",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			}
+		]
+	},
+	{
+		"device": "Digi XBee HA 1.2",
+		"type": "zigbee-coordinator",
+		"deviceClass": "com.arrow.selene.device.zigbee.ZigBeeCoordinatorModule",
+		"info": [
+			{
+				"name": "port",
+				"title": "Port",
+				"desc": "Defines serial port or device name of Digi XBee coordinator device",
+				"value": "",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "baudRate",
+				"title": "Baud rate",
+				"desc": "Defines baudrate to be used to configure serial port of Digi XBee adapter",
+				"value": "",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			}
+		],
+		"props": [
+			{
+				"name": "networkDiscoveryInterval",
+				"title": "Network discovery interval",
+				"desc": "Defines interval of discovering devices in ZigBee network",
+				"value": 5000,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "healthCheckInterval",
+				"title": "Health check interval",
+				"desc": "Defines interval of checking ZigBee devices availability and link quality",
+				"value": 5,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 2147483647
+				}
+			},
+			{
+				"name": "discovering",
+				"title": "Enable discovering",
+				"desc": "Enables ZigBee devices discovering",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "autoJoin",
+				"title": "Allow auto join",
+				"desc": "Allows new ZigBee devices to join to ZigBee network",
+				"value": true,
+				"required": "false",
+				"input": {
+					"type": "checkbox"
+				}
+			},
+			{
+				"name": "nodeIdentifier",
+				"title": "Node identifier",
+				"desc": "Defines name of Digi XBee coordinator device",
+				"value": "",
+				"required": "false",
+				"input": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "messageSendingRetryInterval",
+				"title": "Message sending retry interval",
+				"desc": "Defines interval of attempts to deliver messages to sleeping end devices in ZigBee network",
+				"value": 5000,
+				"required": "false",
+				"input": {
+					"type": "number",
+					"min": 0,
+					"max": 9223372036854776000
+				}
+			},
+			{
+				"name": "pollingRetryInterval",
+				"title": "Polling Retry Interval",
+				"desc": "",
+				"value": 1000,
+				"required": "false",
+				"input": {
+					"type": "number"
+				}
+			}
+		]
+	}
+]

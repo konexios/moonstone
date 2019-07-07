@@ -1,0 +1,12 @@
+[
+    {
+        "name": "default-apollo",
+        "description": "Default Apollo Application",
+        "code": "DEFAULT-APOLLO",
+        "apiSigningRequired": "INHERIT",
+        "configurations": [],
+        "productExtensionIds": [],
+        "productFeatures": [],
+        "enabled": true
+    }
+]

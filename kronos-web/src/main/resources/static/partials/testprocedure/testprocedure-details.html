@@ -1,0 +1,156 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{loading ? '' : testProcedure.id ? 'Edit' : 'Add'}} Test Procedure <small ng-if="testProcedure.id">(HID: {{testProcedure.hid}})</small></h3>
+</div>
+<form name="testProcedureForm" class="form-horizontal" novalidate ng-submit="save(testProcedureForm);">
+    <div class="modal-body">
+
+        <div class="form-group">
+            <label for="testProcedureName" class="col-sm-3 control-label">Name</label>
+            <div class="col-sm-9">
+                <p class="form-control-static" ng-if="!canSave">{{testProcedure.name}}</p>
+                <input id="testProcedureName" name="testProcedureName" class="form-control" ng-model="testProcedure.name" required ng-if="canSave" />
+            </div>
+            <div class="col-sm-offset-3 col-sm-9" ng-messages="testProcedureForm.testProcedureName.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Name is required</span>
+                </div>
+            </div> 	
+        </div>
+
+        <div class="form-group">
+            <label for="testProcedureDescription" class="col-sm-3 control-label">Description</label>
+            <div class="col-sm-9">
+                <p class="form-control-static" ng-if="!canSave">{{testProcedure.description}}</p>
+                <textarea id="testProcedureDescription" name="testProcedureDescription" class="form-control" rows="3" ng-model="testProcedure.description" required ng-if="canSave">
+                </textarea>
+            </div>
+            <div class="col-sm-offset-3 col-sm-9" ng-messages="testProcedureForm.testProcedureDescription.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Description is required</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="testProceduredeviceTypeOption" class="col-sm-3 control-label">Asset Type</label>
+            <div class="col-sm-9">
+                <select id="testProceduredeviceTypeOption" name="testProceduredeviceTypeOption" class="form-control customSelect" ng-model="testProcedure.deviceTypeOption" ng-options="deviceType.name for deviceType in deviceTypes track by deviceType.id" required>
+                    <option value="">-- select one --</option>
+                </select>
+            </div>
+            <div class="col-sm-offset-3 col-sm-9" ng-messages="testProcedureForm.testProceduredeviceTypeOption.$error" role="alert">
+                <div class="alert-danger">
+                    <span ng-message="required">Asset Type is required</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="testProcedureEnabled" class="col-sm-3 control-label">Enabled</label>
+            <div class="col-sm-9">
+                <p class="form-control-static" ng-if="!canSave">{{testProcedure.enabled}}</p>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="testProcedureEnabled" name="testProcedureEnabled" value="" ng-if="canSave" ng-model="testProcedure.enabled" />
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+            <div class="col-sm-12">
+                <div class="panel panel-default" style="margin-bottom: 0;">
+                    <div class="panel-heading">
+                        Steps
+                        <button type="button" class="btn btn-primary obj-btn-add-row" ng-click="addStep()" ng-if="canSave">Add</button>
+                    </div>
+                    <div class="scrollable-table" ng-show="testProcedure.steps.length>0">
+                        <table class="table table-striped table-bordered" >
+                            <thead class="hidden-xs">
+                                <tr>
+                                    <th style="width: 92px;">Step #</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th ng-if="canSave">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="step in testProcedure.steps track by $index">
+                                    <td class="hidden-xs" ng-if="!editing[$index]">{{step.sortOrder}}</td>
+                                    <td class="hidden-xs" ng-if="editing[$index]">
+                                        <input type="number" min="1" max="2147483647" name="{{'step'+$index+'SortOrder'}}" class="form-control appearance-textfield" ng-model="step.sortOrder" required />
+                                        <div class="alert-danger" ng-messages="testProcedureForm['step'+$index+'SortOrder'].$error" role="alert">
+                                            <span ng-message="required">Step # is required</span>
+                                            <span ng-message="min,max">Step must be between 1 and 2147483647</span>
+                                        </div>                                    
+                                    </td>
+                                    <td class="hidden-xs" ng-if="!editing[$index]">{{step.name}}</td>
+                                    <td class="hidden-xs" ng-if="editing[$index]">
+                                        <input type="text" name="{{'step'+$index+'Name'}}" class="form-control" ng-model="step.name" required minlength="3" maxlength="100" />
+                                        <div class="alert-danger" ng-messages="testProcedureForm['step'+$index+'Name'].$error" role="alert">
+                                            <span ng-message="required">Name is required</span>
+                                            <span ng-message="minlength, maxlength">Name must be between 3 and 100 characters long</span>
+                                        </div>
+                                    </td>
+                                    <td class="hidden-xs" ng-if="!editing[$index]">{{step.description}}</td>
+                                    <td class="hidden-xs" ng-if="editing[$index]">
+                                        <input type="text" name="{{'step'+$index+'Description'}}" class="form-control" ng-model="step.description" maxlength="1000" />
+                                        <div class="alert-danger" ng-messages="testProcedureForm['step'+$index+'Description'].$error" role="alert">
+                                            <span ng-message="maxlength">Description must be maximum 1000 characters long</span>
+                                        </div>
+                                    </td>
+                                    <td class="hidden-xs" ng-if="canSave">
+                                        <button type="button" class="btn btn-link col-sm-12 col-md-6" ng-click="editStep($index)" ng-disabled="editing[$index] &amp;&amp; (testProcedureForm['step'+$index+'Description'].$invalid || testProcedureForm['step'+$index+'Name'].$invalid || testProcedureForm['step'+$index+'SortOrder'].$invalid)">
+                                                {{editing[$index] ? 'Done' : 'Edit'}}
+                                            </button>
+                                        <button type="button" class="btn btn-link col-sm-12 col-md-6" ng-click="deleteStep($index)">Delete</button>
+                                    </td>
+                                    <!-- FOR MOBILE VIEW -->
+                                    <td class="hidden-sm hidden-md hidden-lg">
+                                        <div ng-if="!editing[$index]"><b>Step #:</b> {{step.sortOrder}}</div>
+                                        <div ng-if="editing[$index]">
+                                            <b>Step #:</b>
+                                            <input type="number" min="1" max="2147483647" name="{{'step'+$index+'SortOrder_m'}}" class="form-control" ng-model="step.sortOrder" required />
+                                            <div class="alert-danger" ng-messages="testProcedureForm['step'+$index+'SortOrder_m'].$error" role="alert">
+                                                <span ng-message="required">Step # is required</span>
+                                                <span ng-message="min,max">Step must be between 1 and 2147483647</span>
+                                            </div>
+                                        </div>                                        
+                                        <div ng-if="!editing[$index]"><b>Name:</b> {{step.name}}</div>
+                                        <div ng-if="editing[$index]">
+                                            <b>Name:</b>
+                                            <input type="text" name="{{'step'+$index+'Name_m'}}" class="form-control" ng-model="step.name" required minlength="3" maxlength="100" />
+                                            <div class="alert-danger" ng-messages="testProcedureForm['step'+$index+'Name_m'].$error" role="alert">
+                                                <span ng-message="required">Name is required</span>
+                                                <span ng-message="minlength, maxlength">Name must be between 3 and 100 characters long</span>
+                                            </div>
+                                        </div>
+                                        <div ng-if="!editing[$index]"><b>Description:</b> {{step.description}}</div>
+                                        <div ng-if="editing[$index]" class="margin-top-20">
+                                            <b>Description:</b>
+                                            <input type="text" name="{{'step'+$index+'Description_m'}}" class="form-control" ng-model="step.description" maxlength="1000" />
+                                            <div class="alert-danger" ng-messages="testProcedureForm['step'+$index+'Description_m'].$error" role="alert">
+                                                <span ng-message="maxlength">Description must be maximum 1000 characters long</span>
+                                            </div>
+                                        </div>
+                                        <div ng-if="canSave" class="text-center margin-top-20">
+                                            <button type="button" class="btn btn-link" ng-click="editStep($index)" ng-disabled="editing[$index] &amp;&amp; (testProcedureForm['step'+$index+'Description_m'].$invalid || testProcedureForm['step'+$index+'Name_m'].$invalid || testProcedureForm['step'+$index+'SortOrder_m'].$invalid)">
+                                                    {{editing[$index] ? 'Done' : 'Edit'}}
+                                                </button>
+                                            <button type="button" class="btn btn-link" ng-click="deleteStep($index)">Delete</button>
+                                        </div>
+                                    </td>
+                                    <!-- /FOR MOBILE VIEW -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="submit" ng-if="canSave">Save</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">Close</button>
+    </div>
+</form>

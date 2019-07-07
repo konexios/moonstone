@@ -1,0 +1,23 @@
+event-registered-widget .circled-content {
+    padding: 5px;
+}
+
+event-registered-widget .circled-content .circle {
+    display: block;
+    border-radius: 50%;
+    background-color: #00a59b;
+    height: 115px;
+    width: 115px;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+}
+
+event-registered-widget .circled-content .circle h2 {
+    color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 15px;
+    font-size: 42px;
+}

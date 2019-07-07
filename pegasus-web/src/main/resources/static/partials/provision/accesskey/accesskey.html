@@ -1,0 +1,280 @@
+<div left-menu is-collapsed="menuIsCollapsed"></div>
+
+<div class="partial-page-content-container" ng-class="{'menu-collapsed': menuIsCollapsed}"
+     ng-scrollbars ng-scrollbars-config="scrollerConfig">
+
+    <div class="partial-page-content">
+        <!-- BEGIN PAGE BREADCRUMB -->
+        <ul class="page-breadcrumb breadcrumb">
+
+            <li ng-if="entityOwner.entityType == 'company'">
+                Companies
+            </li>
+            <li ng-if="entityOwner.entityType == 'company'">
+                Company
+            </li>
+            <li ng-if="entityOwner.entityType == 'company'">
+                <a ui-sref="company.accesskeys({companyId: '{{entityOwner.entityId}}'})">
+                    Access Keys
+                </a>
+            </li>
+
+            <li ng-if="entityOwner.entityType == 'application'">
+                Applications
+            </li>
+            <li ng-if="entityOwner.entityType == 'application'">
+                Application
+            </li>
+            <li ng-if="entityOwner.entityType == 'application'">
+                <a ui-sref="application.accesskeys({applicationId: '{{entityOwner.entityId}}'})">
+                    Access Keys
+                </a>
+            </li>
+
+            <li ng-if="entityOwner.entityType == 'subscription'">
+                Subscriptions
+            </li>
+            <li ng-if="entityOwner.entityType == 'subscription'">
+                Subscription
+            </li>
+            <li ng-if="entityOwner.entityType == 'subscription'">
+                <a ui-sref="subscription.accesskeys({subscriptionId: '{{entityOwner.entityId}}'})">
+                    Access Keys
+                </a>
+            </li>
+
+            <li class="active">
+                Access Key
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMB -->
+        <!-- BEGIN MAIN CONTENT -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <span class="caption-subject font-dark sbold uppercase">Access Key</span>
+                        </div>
+                        <div class="actions"></div>
+                    </div>
+                    <div class="portlet-body form">
+                        <form name="form"
+                              class="form-horizontal"
+                              role="form"
+                              novalidate>
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label for="accessKeyName" class="col-md-3 control-label">
+                                        Name
+                                        <span class="required" aria-required="true"> * </span>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" ng-if="!canSave()">{{accessKey.name}}</p>
+                                        <input
+                                                id="accessKeyName"
+                                                name="accessKeyName"
+                                                class="form-control"
+                                                ng-model="accessKey.name"
+                                                ng-trim="true"
+                                                ng-required="true"
+                                                ng-if="canSave()"/>
+                                    </div>
+                                    <div class="help-block" ng-messages="form.name.$error" ng-show="form.name.$touched">
+                                        <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Expiration Date</label>
+                                    <div class="col-sm-9">
+                                        <div class="dropdown col-md-6" style="padding: 0"  ng-if="!canSave()">
+                                            <p class="form-control-static">{{accessKey.expiration}}</p>
+                                        </div>
+
+                                        <div>
+                                            <div style="padding: 0" class="dropdown col-md-6" ng-if="canSave()">
+                                                <a class="dropdown-toggle" id="expirationDateDropdown" role="button"
+                                                   data-toggle="dropdown" data-target="#">
+                                                    <div class="input-group">
+                                                        <input type="text" name="expiration" class="form-control"
+                                                               data-ng-model="accessKey.expiration"
+                                                               data-date-time-input="MM/DD/YYYY hh:mm:ss A" required/>
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                    <datetimepicker data-ng-model="accessKey.expiration"
+                                                                    data-datetimepicker-config="{ dropdownSelector: '#expirationDateDropdown' }">
+                                                    </datetimepicker>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-3" ng-if="canSave()">
+                                                <button type="button" class="btn btn-danger pull-right" ng-click="expireNow()">
+                                                    Expire Now
+                                                </button>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6 col-xs-6" style="padding: 0"
+                                                 ng-messages="form.expiration.$error" role="alert">
+                                                <div class="alert-danger">
+                                                    <div ng-messages-include="scripts/pegasus/tpl/form-validation-messages.html"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" ng-if="accessKey.id">
+                                    <label for="rawApiKey" class="col-md-3 control-label">Raw Api Key</label>
+                                    <div class="col-md-9">
+                                        <textarea id="rawApiKey" 
+                                        	name="rawApiKey" class="form-control"
+                                            ng-model="accessKey.rawApiKey" 
+                                            readonly></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="accessKey.id">
+                                    <label for="rawSecretKey" class="col-md-3 control-label">Raw Secret Key</label>
+                                    <div class="col-md-9">
+                                        <textarea id="rawSecretKey" name="rawSecretKey" class="form-control"
+                                                  ng-model="accessKey.rawSecretKey" readonly></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="accessKey.id">
+                                    <label for="aes128ApiKey" class="col-md-3 control-label">Selene AES-128 Api Key</label>
+                                    <div class="col-md-9">
+                                        <textarea id="aes128ApiKey" name="aes128ApiKey"
+                                                  class="form-control" ng-model="accessKey.aes128ApiKey"
+                                                  readonly></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="accessKey.id">
+                                    <label for="aes128SecretKey" class="col-md-3 control-label">Selene AES-128 Secret Key</label>
+                                    <div class="col-md-9">
+                                        <textarea id="aes128SecretKey" name="aes128SecretKey"
+                                                  class="form-control" ng-model="accessKey.aes128SecretKey"
+                                                  readonly></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="accessKey.id">
+                                    <label for="aes256ApiKey" class="col-md-3 control-label">Selene AES-256 Api Key</label>
+                                    <div class="col-md-9">
+                                        <textarea id="aes256ApiKey" name="aes256ApiKey"
+                                                  class="form-control" ng-model="accessKey.aes256ApiKey"
+                                                  readonly></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="accessKey.id">
+                                    <label for="aes256SecretKey" class="col-md-3 control-label">Selene AES-256 Secret Key</label>
+                                    <div class="col-md-9">
+                                        <textarea id="aes256SecretKey" name="aes256SecretKey"
+                                                  class="form-control" ng-model="accessKey.aes256SecretKey"
+                                                  readonly></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-default" style="margin-bottom: 0;">
+                                            <div class="panel-heading">
+                                                Privileges
+                                                <button type="button" class="btn btn-primary obj-btn-add-row"
+                                                        ng-click="addPrivilege()" ng-if="canSave()">Add
+                                                </button>
+                                            </div>
+                                            <div class="scrollable-table" ng-show="accessKey.privileges.length>0">
+                                                <table class="table table-striped table-bordered access-key-pri-table"
+                                                       style="table-layout: fixed;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="col-md-2">Level</th>
+                                                            <th>PRI</th>
+                                                            <!--th>Name</th-->
+                                                            <th class="col-md-2" ng-if="canSave()">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="privilege in accessKey.privileges" track by $index>
+                                                        <td class="col-md-2" ng-if="editing[$index] == null">{{privilege.level}}</td>
+                                                        <td class="col-md-2" ng-if="editing[$index] != null">
+                                                            <label class="radio-inline">
+                                                                <input type="radio" ng-model="privilege.level" value="READ"> READ
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" ng-model="privilege.level" value="WRITE"> WRITE
+                                                            </label>
+                                                            <label class="radio-inline" ng-if="isSuperAdministrator()">
+                                                                <input type="radio" ng-model="privilege.level" value="OWNER"> OWNER
+                                                            </label>
+                                                        </td>
+                                                        <td>{{privilege.pri}}</td>
+                                                        <!--td class="hidden-xs" ng-if="editing[$index] == null">
+                                                            {{getObjectName(privilege)}}
+                                                        </td-->
+                                                        <!--td class="hidden-xs" ng-if="editing[$index] != null" colspan="2">
+                                                            <div>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" ng-checked="isCompany($index)"
+                                                                           ng-click="selectCompany($index)"> Tenant
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" ng-checked="isSubscription($index)"
+                                                                           ng-click="selectSubscription($index)"> Subscription
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" ng-checked="isApplication($index)"
+                                                                           ng-click="selectApplication($index)"> Application
+                                                                </label>
+                                                            </div>
+                                                            <div>
+                                                                <select style="width:100%" ng-if="isCompany]($index)"
+                                                                        ng-model="privilege.node"
+                                                                        ng-options="node.name for node in editOptions.nodes track by node.id"
+                                                                        ng-change="onNodeSelected(privilege)"></select>
+                                                                <select style="width:100%" ng-if="isSubscription($index)"
+                                                                        ng-model="privilege.gateway"
+                                                                        ng-options="gateway.name for gateway in editOptions.gateways track by gateway.id"
+                                                                        ng-change="onGatewaySelected(privilege)"></select>
+                                                                <select style="width:100%" ng-if="isApplication($index)"
+                                                                        ng-model="privilege.device"
+                                                                        ng-options="device.name for device in editOptions.devices track by device.id"
+                                                                        ng-change="onDeviceSelected(privilege)"></select>
+                                                            </div>
+                                                        </td-->
+                                                        <td ng-if="canSave()">
+                                                            <button type="button" class="btn btn-link col-sm-12 col-md-6"
+                                                                    ng-if="canEditPrivilege(privilege)"
+                                                                    ng-click="editPrivilege($index)">{{editing[$index] != null ? 'Done' : 'Edit'}}
+                                                            </button>
+                                                            <button type="button" class="btn btn-link col-sm-12 col-md-6"
+                                                                    ng-if="canEditPrivilege(privilege)"
+                                                                    ng-click="deletePrivilege($index)">Delete
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9 text-right">
+                                        <button type="submit"
+                                                class="btn green"
+                                                ng-disabled="busy"
+                                                ng-click="save(form)">Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

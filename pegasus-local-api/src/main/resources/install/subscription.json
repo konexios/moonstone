@@ -1,0 +1,9 @@
+[
+	{
+		"name": "Kronos",
+		"description": "Kronos",
+		"startDate": "2015-01-01T06:00:00Z",
+		"endDate": "2035-01-01T06:00:00Z",
+		"enabled": true
+	}
+]
