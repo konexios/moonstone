@@ -1,6 +1,6 @@
 # Project Moonstone
 
-Project **Moonstone** is the open source version of the popular **Arrow Connect Platform** developed by Arrow Electronics.  To learn more about Arrow Connect, please visit the office web site of [Arrow Connect](https://www.arrowconnect.io) and the [Developer Hub](https://developer.arrowconnect.io)
+Project **Moonstone** is the open source version of the popular **Arrow Connect Platform** developed by Arrow Electronics.  To learn more about Arrow Connect, please visit the official web site of [Arrow Connect](https://www.arrowconnect.io) and the [Developer Hub](https://developer.arrowconnect.io)
 
 ## Build from source code
 
