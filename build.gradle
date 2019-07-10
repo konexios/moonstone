@@ -402,6 +402,7 @@ project(':apollo-web') {
         compile project(':pegasus-core-web')
         compile project(':pegasus-private-client')
         compile project(':pegasus-dashboard-api')
+        compile project(':pegasus-dashboard-web-api')
         compile project(':kronos-core-cloud')
     }
 }
