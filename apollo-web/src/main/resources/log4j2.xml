@@ -38,12 +38,6 @@
             <AppenderRef ref="Console" />
         </Logger>
         <Logger 
-                name="com.arrow.widget.hyperion" 
-                level="trace" 
-                additivity="false">
-            <AppenderRef ref="Console" />
-        </Logger>
-        <Logger 
                 name="com.arrow.pegasus.client" 
                 level="off" 
                 additivity="false">

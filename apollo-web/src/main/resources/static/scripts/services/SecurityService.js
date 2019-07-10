@@ -136,11 +136,7 @@ services.factory('SecurityService',
         function canMarkAsFavoriteBoard() {
             return hasPrivilege('APOLLO_ASSIGN_FAVORITE_BOARD');
         }
-
-        function canMarkAsHyperionBoard() {
-            return hasPrivilege('APOLLO_ASSIGN_HYPERION_BOARD');
-        }
-        
+       
         return {
             isLoggedIn: isLoggedIn,
             saveSession: saveSession,
@@ -163,8 +159,7 @@ services.factory('SecurityService',
 //            canMarkAsSystemDefaultBoard: canMarkAsSystemDefaultBoard,
 //            canMarkAsArrowCertifiedBoard: canMarkAsArrowCertifiedBoard,
             canMarkAsUserDefaultBoard: canMarkAsUserDefaultBoard,
-            canMarkAsFavoriteBoard: canMarkAsFavoriteBoard,
-            canMarkAsHyperionBoard: canMarkAsHyperionBoard
+            canMarkAsFavoriteBoard: canMarkAsFavoriteBoard
         };
     }
 ]);

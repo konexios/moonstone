@@ -9,6 +9,5 @@ public interface ProductSystemNames {
 
 	// product extensions
 	public final static String APOLLO = "apollo";
-	public final static String HYPERION = "hyperion";
 	public final static String KRONOS_DEMO = "kronos-demo";
 }

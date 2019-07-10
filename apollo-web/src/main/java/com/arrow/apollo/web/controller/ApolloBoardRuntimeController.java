@@ -65,10 +65,6 @@ public class ApolloBoardRuntimeController extends ApolloControllerAbstract {
             case General:
                 model.setGeneralWidgetCount(count);
                 break;
-            case Hyperion:
-                model.setHyperionWidgetCount(count);
-                break;
-
             default:
                 throw new AcsLogicalException("Unsupported category! category:" + category);
             }

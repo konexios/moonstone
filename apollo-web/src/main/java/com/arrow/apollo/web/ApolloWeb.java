@@ -24,9 +24,9 @@ import com.arrow.rhea.service.RheaCacheProxy;
 
 @SpringBootApplication
 @ComponentScan(basePackages = { "com.arrow.pegasus", "com.arrow.kronos", "com.arrow.apollo", "com.arrow.rhea",
-        "com.arrow.dashboard", "com.arrow.widget", "com.arrow.hyperion", "com.arrow.widget.app" })
-@EnableMongoRepositories(basePackages = { "com.arrow.pegasus", "com.arrow.kronos", "com.arrow.apollo", "com.arrow.rhea",
-        "com.arrow.hyperion" })
+		"com.arrow.dashboard", "com.arrow.widget", "com.arrow.widget.app" })
+@EnableMongoRepositories(basePackages = { "com.arrow.pegasus", "com.arrow.kronos", "com.arrow.apollo",
+		"com.arrow.rhea" })
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableRedisHttpSession
 @EnableCaching
@@ -36,28 +36,28 @@ import com.arrow.rhea.service.RheaCacheProxy;
 @EnableAutoConfiguration(exclude = { RedisRepositoriesAutoConfiguration.class })
 public class ApolloWeb extends CoreWebAppAbstract {
 
-    @Bean
-    public WebSocketConfiguration webSocketConfiguration() {
-        return new com.arrow.dashboard.web.controller.WebSocketConfiguration();
-    }
+	@Bean
+	public WebSocketConfiguration webSocketConfiguration() {
+		return new com.arrow.dashboard.web.controller.WebSocketConfiguration();
+	}
 
-    @Bean
-    public CoreCacheProxy coreCacheProxy() {
-        return new com.arrow.pegasus.client.service.RemoteCoreCacheProxy();
-    }
+	@Bean
+	public CoreCacheProxy coreCacheProxy() {
+		return new com.arrow.pegasus.client.service.RemoteCoreCacheProxy();
+	}
 
-    @Bean
-    public RheaCacheProxy rheaCacheProxy() {
-        return new RemoteRheaCacheProxy();
-    }
+	@Bean
+	public RheaCacheProxy rheaCacheProxy() {
+		return new RemoteRheaCacheProxy();
+	}
 
-    public static void main(String[] args) {
-        // workaround for Elasticsearch to work
-        System.setProperty("es.set.netty.runtime.available.processors", "false");
+	public static void main(String[] args) {
+		// workaround for Elasticsearch to work
+		System.setProperty("es.set.netty.runtime.available.processors", "false");
 
-        SpringApplication app = new SpringApplication(ApolloWeb.class);
-        app.setWebApplicationType(WebApplicationType.SERVLET);
-        app.setBannerMode(Mode.OFF);
-        app.run(args);
-    }
+		SpringApplication app = new SpringApplication(ApolloWeb.class);
+		app.setWebApplicationType(WebApplicationType.SERVLET);
+		app.setBannerMode(Mode.OFF);
+		app.run(args);
+	}
 }

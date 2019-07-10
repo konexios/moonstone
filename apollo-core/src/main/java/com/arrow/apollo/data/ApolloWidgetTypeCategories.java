@@ -1,5 +1,5 @@
 package com.arrow.apollo.data;
 
 public enum ApolloWidgetTypeCategories {
-	Device, Gateway, Usage, General, Hyperion
+	Device, Gateway, Usage, General
 }

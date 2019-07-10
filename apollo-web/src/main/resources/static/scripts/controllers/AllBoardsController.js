@@ -155,13 +155,6 @@ controllers.controller('BoardModalController',
         		description: null
         	};
 
-        	var instanceNamesForHyperion = {
-        	  HyperionDevice: 'XconDevice',
-            HyperionGroup: 'XconGroup',
-            HyperionCustomer: 'XconCustomer',
-            HyperionGateway: 'XconGateway'
-        	};
-
         	
         	if (board != null)
         		$scope.board = angular.merge({}, board);
@@ -177,9 +170,6 @@ controllers.controller('BoardModalController',
                         })
                         .catch(ErrorService.handleHttpError);
                 	} else {
-                        if ($scope.board.category.includes('Hyperion')) {
-                          ($scope.board.category = instanceNamesForHyperion[$scope.board.category]);
-                        }
                         SpinnerService.wrap(BoardService.createBoard, $scope.board)
                         .then(function(response) {
                             ToastrService.popupSuccess('Board "' + $scope.board.name + '" has been saved successfully');
@@ -226,10 +216,6 @@ controllers.controller('BoardModalController',
             
             $scope.canMarkAsFavoriteBoard = function() {
                 return SecurityService.canMarkAsFavoriteBoard();
-            };
-
-            $scope.canMarkAsHyperionBoard = function() {
-                return SecurityService.canMarkAsHyperionBoard();
             };
         }
     ]

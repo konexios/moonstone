@@ -201,7 +201,6 @@ public class ApolloWidgetModels {
 		private long gatewayWidgetCount = 0;
 		private long usageWidgetCount = 0;
 		private long generalWidgetCount = 0;
-		private long hyperionWidgetCount = 0;
 
 		public ApolloWidgetCountsModel() {
 		}
@@ -238,13 +237,6 @@ public class ApolloWidgetModels {
 			this.generalWidgetCount = generalWidgetCount;
 		}
 
-		public long getHyperionWidgetCount() {
-			return hyperionWidgetCount;
-		}
-
-		public void setHyperionWidgetCount(long hyperionWidgetCount) {
-			this.hyperionWidgetCount = hyperionWidgetCount;
-		}
 	}
 
 	public static class ApolloWidgetIconModel extends DefinitionModel {
