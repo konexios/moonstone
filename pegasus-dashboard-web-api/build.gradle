@@ -21,6 +21,7 @@ bootJar {
 
 jar {
     enabled = true
+
     manifest {
         attributes(
             "Implementation-Title": "moonstone-pegasus-dashboard-web-api",
@@ -32,18 +33,16 @@ jar {
             "Git-Branch": getCurrentGitBranch(),
             "Git-Last-Commit": getLastGitCommit())
     }
-}
 
-task webjar(type: Jar) { 
     from(fileTree("src/main/resources")) {
         into "META-INF/resources/webjars/pegasus-dashboard-web-api/" 
-    } 
+    }
 }
+
+jar.dependsOn 'appNpmInstall'
 
 task appNpmInstall(type: NpmTask) {
     workingDir = file("${project.projectDir}/src/main/resources")
     args = ['install']
 }
 
-build.dependsOn 'webjar'
-webjar.dependsOn 'appNpmInstall'
