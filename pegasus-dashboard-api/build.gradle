@@ -25,7 +25,7 @@ dependencies {
     api("org.springframework.data:spring-data-mongodb")		
 	
 	testCompile("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-	testCompile("org.springframework:spring-test}")	
+	testCompile("org.springframework:spring-test")	
 	
 	api("org.webjars:bootstrap:${bootstrapVersion}")
     api("org.webjars:angularjs:${angularJsVersion}")
