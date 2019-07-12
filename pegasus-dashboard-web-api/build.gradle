@@ -36,7 +36,6 @@ jar {
 
 task webjar(type: Jar) { 
     from(fileTree("src/main/resources")) {
-        exclude "package-lock.json"  
         into "META-INF/resources/webjars/pegasus-dashboard-web-api/" 
     } 
 }
