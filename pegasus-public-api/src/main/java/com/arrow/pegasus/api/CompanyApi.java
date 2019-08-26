@@ -16,17 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.AccessKeyModel;
-import com.arrow.acs.client.model.CompanyModel;
-import com.arrow.acs.client.model.CreateCompanyModel;
-import com.arrow.acs.client.model.HidModel;
-import com.arrow.acs.client.model.ListResultModel;
-import com.arrow.acs.client.model.PagingResultModel;
-import com.arrow.acs.client.model.SubscriptionModel;
-import com.arrow.acs.client.model.UpdateCompanyModel;
-import com.arrow.acs.client.model.UserModel;
-import com.arrow.acs.client.model.UserStatus;
 import com.arrow.pegasus.NotAuthorizedException;
 import com.arrow.pegasus.data.AccessKey;
 import com.arrow.pegasus.data.profile.Company;
@@ -38,6 +27,17 @@ import com.arrow.pegasus.repo.params.UserSearchParams;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.AccessKeyModel;
+import moonstone.acs.client.model.CompanyModel;
+import moonstone.acs.client.model.CreateCompanyModel;
+import moonstone.acs.client.model.HidModel;
+import moonstone.acs.client.model.ListResultModel;
+import moonstone.acs.client.model.PagingResultModel;
+import moonstone.acs.client.model.SubscriptionModel;
+import moonstone.acs.client.model.UpdateCompanyModel;
+import moonstone.acs.client.model.UserModel;
+import moonstone.acs.client.model.UserStatus;
 
 @RestController(value = "pegasusCompanyApi")
 @RequestMapping("/api/v1/pegasus/companies")

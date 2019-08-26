@@ -5,11 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.pegasus.dashboard.data.Widget;
 import com.arrow.pegasus.dashboard.data.WidgetConfiguration;
 import com.arrow.pegasus.dashboard.repo.WidgetConfigurationSearchParams;
 import com.arrow.pegasus.dashboard.repo.WidgetRepository;
+
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class WidgetService extends DashboardServiceAbstract {

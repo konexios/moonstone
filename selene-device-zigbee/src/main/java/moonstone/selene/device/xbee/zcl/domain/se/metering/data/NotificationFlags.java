@@ -1,0 +1,12 @@
+package moonstone.selene.device.xbee.zcl.domain.se.metering.data;
+
+public enum NotificationFlags {
+	NOTIFICATION_FLAG1,
+	NOTIFICATION_FLAG2,
+	NOTIFICATION_FLAG3,
+	NOTIFICATION_FLAG4,
+	NOTIFICATION_FLAG5,
+	NOTIFICATION_FLAG6,
+	NOTIFICATION_FLAG7,
+	NOTIFICATION_FLAG8
+}

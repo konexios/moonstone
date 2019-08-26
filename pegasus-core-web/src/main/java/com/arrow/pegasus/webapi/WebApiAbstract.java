@@ -12,8 +12,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.AcsUtils;
 import com.arrow.pegasus.CoreConstant;
 import com.arrow.pegasus.EndpointAbstract;
 import com.arrow.pegasus.LoginRequiredException;
@@ -24,6 +22,9 @@ import com.arrow.pegasus.data.profile.User;
 import com.arrow.pegasus.data.security.Role;
 import com.arrow.pegasus.security.CoreUserDetails;
 import com.arrow.pegasus.service.PlatformConfigService;
+
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.AcsUtils;
 
 public class WebApiAbstract extends EndpointAbstract {
 

@@ -13,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.env.Environment;
 
-import com.arrow.acn.MqttConstants;
-import com.arrow.acs.JsonUtils;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.Gateway;
 import com.arrow.kronos.data.KronosApplication;
@@ -22,6 +20,9 @@ import com.arrow.kronos.util.CustomIntervalRetry;
 import com.arrow.kronos.util.RetryStrategy;
 import com.arrow.pegasus.service.ProcessorAbstract;
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import moonstone.acn.MqttConstants;
+import moonstone.acs.JsonUtils;
 
 public abstract class TelemetryLoopbackAbstract extends ProcessorAbstract
 		implements CommandLineRunner, ContextListener {

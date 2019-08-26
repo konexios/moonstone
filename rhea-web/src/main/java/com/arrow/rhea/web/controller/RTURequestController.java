@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.RightToUseChangeStatus;
-import com.arrow.acn.client.model.RightToUseStatus;
 import com.arrow.pegasus.data.profile.Company;
 import com.arrow.pegasus.webapi.data.CoreCompanyModels.CompanyOption;
 import com.arrow.rhea.data.RTURequest;
@@ -34,6 +32,9 @@ import com.arrow.rhea.web.model.RTURequestModels.RTURequestFilterOptionsModel;
 import com.arrow.rhea.web.model.RTURequestModels.RTURequestModel;
 import com.arrow.rhea.web.model.SearchFilterModels.RTURequestSearchFilterModel;
 import com.arrow.rhea.web.model.SearchResultModels.RTURequestSearchResultModel;
+
+import moonstone.acn.client.model.RightToUseChangeStatus;
+import moonstone.acn.client.model.RightToUseStatus;
 
 @RestController
 @RequestMapping("/api/rhea/rtu-requests")

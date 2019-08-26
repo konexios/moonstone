@@ -9,9 +9,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.arrow.acs.Loggable;
 import com.arrow.pegasus.data.profile.User;
 import com.arrow.pegasus.data.profile.UserStatus;
+
+import moonstone.acs.Loggable;
 
 public class CoreUserDetails extends Loggable implements UserDetails {
 	private static final long serialVersionUID = 702759906442465826L;

@@ -13,7 +13,7 @@ public abstract class HeartbeatAbstract extends DocumentAbstract {
 	@NotNull
 	private HeartbeatObjectType objectType;
 	@NotBlank
-	@Indexed(unique = true)
+	@Indexed(unique = false)
 	private String objectId;
 	private long timestamp;
 

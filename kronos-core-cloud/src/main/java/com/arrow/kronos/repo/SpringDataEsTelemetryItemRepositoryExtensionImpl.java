@@ -30,10 +30,11 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.util.Assert;
 
-import com.arrow.acn.client.model.TelemetryItemType;
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.data.EsTelemetryItem;
 import com.arrow.kronos.data.TelemetryStat;
+
+import moonstone.acn.client.model.TelemetryItemType;
+import moonstone.acs.AcsLogicalException;
 
 public class SpringDataEsTelemetryItemRepositoryExtensionImpl extends EsRepositoryExtensionAbstract<EsTelemetryItem>
 		implements SpringDataEsTelemetryItemRepositoryExtension {

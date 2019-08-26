@@ -5,8 +5,6 @@ import java.time.Instant;
 import java.util.EnumSet;
 import java.util.List;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
-import com.arrow.acn.client.model.RightToUseType;
 import com.arrow.pegasus.webapi.data.CoreDefinitionModelOption;
 import com.arrow.rhea.data.SoftwareRelease;
 import com.arrow.rhea.web.model.DeviceManufacturerModels.DeviceManufacturerOption;
@@ -14,6 +12,9 @@ import com.arrow.rhea.web.model.DeviceProductModels.DeviceProductOption;
 import com.arrow.rhea.web.model.DeviceTypeModels.DeviceTypeOption;
 import com.arrow.rhea.web.model.SoftwareProductModels.SoftwareProductOption;
 import com.arrow.rhea.web.model.SoftwareVendorModels.SoftwareVendorOption;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
+import moonstone.acn.client.model.RightToUseType;
 
 public class SoftwareReleaseModels {
 	public static class SoftwareReleaseOption extends CoreDefinitionModelOption {

@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acs.JsonUtils;
 import com.arrow.rhea.client.model.DeviceManufacturerModel;
 import com.arrow.rhea.data.DeviceManufacturer;
+
+import moonstone.acs.JsonUtils;
 
 @RestController(value = "privateRheaDeviceManufacturerApi")
 @RequestMapping("/api/v1/private/rhea/device-manufacturers")

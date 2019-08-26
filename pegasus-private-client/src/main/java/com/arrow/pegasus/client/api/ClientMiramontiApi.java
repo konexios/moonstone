@@ -6,8 +6,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.JsonUtils;
 import com.arrow.pegasus.data.MiramontiTenant;
+
+import moonstone.acs.JsonUtils;
 
 @Component
 public class ClientMiramontiApi extends ClientApiAbstract {

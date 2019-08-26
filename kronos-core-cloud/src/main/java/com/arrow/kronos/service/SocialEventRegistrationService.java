@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.KronosAuditLog;
 import com.arrow.kronos.data.SocialEventRegistration;
 import com.arrow.kronos.data.SocialEventRegistrationStatuses;
@@ -27,6 +26,8 @@ import com.arrow.pegasus.data.profile.Contact;
 import com.arrow.pegasus.data.profile.User;
 import com.arrow.pegasus.data.profile.UserStatus;
 import com.arrow.pegasus.data.profile.Zone;
+
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class SocialEventRegistrationService extends KronosServiceAbstract {

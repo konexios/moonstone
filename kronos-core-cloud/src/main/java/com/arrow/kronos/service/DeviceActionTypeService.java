@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.KronosAuditLog;
 import com.arrow.kronos.data.DeviceActionType;
 import com.arrow.kronos.repo.DeviceActionTypeRepository;
 import com.arrow.pegasus.data.AuditLogBuilder;
 import com.arrow.pegasus.data.profile.Application;
+
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class DeviceActionTypeService extends KronosServiceAbstract {

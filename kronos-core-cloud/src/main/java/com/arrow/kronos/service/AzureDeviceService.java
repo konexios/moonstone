@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.data.AzureDevice;
 import com.arrow.kronos.data.Gateway;
 import com.arrow.kronos.repo.AzureDeviceRepository;
+
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class AzureDeviceService extends KronosServiceAbstract {

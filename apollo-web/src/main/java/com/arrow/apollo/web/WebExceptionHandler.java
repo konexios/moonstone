@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.core.Ordered;
 
-import com.arrow.acs.AcsErrorResponse;
 import com.arrow.apollo.web.exception.NotFoundException;
 import com.arrow.pegasus.CoreWebExceptionHandler;
+
+import moonstone.acs.AcsErrorResponse;
 
 @ControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)

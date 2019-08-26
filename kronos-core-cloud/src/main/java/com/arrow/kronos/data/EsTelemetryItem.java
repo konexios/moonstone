@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
-import com.arrow.acn.client.model.TelemetryItemModel;
-import com.arrow.acn.client.model.TelemetryItemType;
-import com.arrow.acs.AcsSystemException;
+import moonstone.acn.client.model.TelemetryItemModel;
+import moonstone.acn.client.model.TelemetryItemType;
+import moonstone.acs.AcsSystemException;
 
 @Document(indexName = EsTelemetryItem.INDEX, type = EsTelemetryItem.TYPE, createIndex = false)
 public class EsTelemetryItem implements Serializable {

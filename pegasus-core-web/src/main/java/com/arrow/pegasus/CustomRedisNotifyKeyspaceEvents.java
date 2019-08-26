@@ -3,7 +3,7 @@ package com.arrow.pegasus;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.session.data.redis.config.ConfigureNotifyKeyspaceEventsAction;
 
-import com.arrow.acs.Loggable;
+import moonstone.acs.Loggable;
 
 public class CustomRedisNotifyKeyspaceEvents extends ConfigureNotifyKeyspaceEventsAction {
     private Loggable logger = new Loggable(getClass().getName()) {

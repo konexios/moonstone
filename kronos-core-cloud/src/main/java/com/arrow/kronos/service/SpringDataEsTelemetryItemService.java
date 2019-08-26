@@ -12,10 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acn.client.model.TelemetryItemModel;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.EsTelemetryItem;
 import com.arrow.kronos.repo.SpringDataEsTelemetryItemRepository;
+
+import moonstone.acn.client.model.TelemetryItemModel;
 
 @Service
 public class SpringDataEsTelemetryItemService extends KronosServiceAbstract {

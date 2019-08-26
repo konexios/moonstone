@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-import com.arrow.acs.Loggable;
+import moonstone.acs.Loggable;
 
 public abstract class RemoteCacheMonitorAbstract extends Loggable {
 

@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.EnumSet;
 import java.util.Set;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
 import com.arrow.kronos.data.SoftwareReleaseTrans;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
 
 public class SoftwareReleaseTransSearchParams extends KronosDocumentSearchParams implements Serializable {
 	private static final long serialVersionUID = 3405784362510255315L;

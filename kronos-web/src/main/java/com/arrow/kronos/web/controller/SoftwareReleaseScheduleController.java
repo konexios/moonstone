@@ -33,11 +33,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
-import com.arrow.acn.client.model.RightToUseType;
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.KeyValuePair;
-import com.arrow.acs.client.model.StatusModel;
 import com.arrow.kronos.KronosAuditLog;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.kronos.data.BaseDeviceAbstract;
@@ -108,6 +103,12 @@ import com.arrow.pegasus.webapi.data.CoreUserModels.UserOption;
 import com.arrow.rhea.client.api.ClientSoftwareReleaseApi;
 import com.arrow.rhea.data.DeviceProduct;
 import com.arrow.rhea.data.SoftwareRelease;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
+import moonstone.acn.client.model.RightToUseType;
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.KeyValuePair;
+import moonstone.acs.client.model.StatusModel;
 
 @RestController
 @RequestMapping("/api/kronos/softwarereleaseschedule")

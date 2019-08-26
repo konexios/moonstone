@@ -1,6 +1,6 @@
 package com.arrow.pegasus;
 
-import com.arrow.acs.AcsLogicalException;
+import moonstone.acs.AcsLogicalException;
 
 public class AccountHasNotPrivilegesException extends AcsLogicalException {
 	private static final long serialVersionUID = -926485465627039725L;

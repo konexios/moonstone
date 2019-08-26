@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.TelemetryUnitModel;
-import com.arrow.acs.client.model.ListResultModel;
 import com.arrow.kronos.data.TelemetryUnit;
 import com.arrow.kronos.repo.TelemetryUnitSearchParams;
 import com.arrow.kronos.service.TelemetryUnitService;
@@ -22,6 +20,8 @@ import com.arrow.pegasus.ProductSystemNames;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import moonstone.acn.client.model.TelemetryUnitModel;
+import moonstone.acs.client.model.ListResultModel;
 
 @RestController
 @RequestMapping("/api/v1/kronos/telemetries/units")

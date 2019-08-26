@@ -5,11 +5,12 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.Loggable;
 import com.arrow.pegasus.data.ConfigurationProperty;
 import com.arrow.pegasus.data.ConfigurationPropertyCategory;
 import com.arrow.pegasus.data.profile.Application;
 import com.arrow.pegasus.data.profile.Product;
+
+import moonstone.acs.Loggable;
 
 @Component
 public class CoreConfigurationPropertyUtil extends Loggable {

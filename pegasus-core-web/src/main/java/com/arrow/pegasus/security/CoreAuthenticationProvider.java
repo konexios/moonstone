@@ -7,10 +7,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 
-import com.arrow.acs.Loggable;
 import com.arrow.pegasus.data.profile.User;
 import com.arrow.pegasus.service.AuthenticationService;
 import com.arrow.pegasus.service.CoreCacheHelper;
+
+import moonstone.acs.Loggable;
 
 public class CoreAuthenticationProvider extends Loggable implements AuthenticationProvider {
 

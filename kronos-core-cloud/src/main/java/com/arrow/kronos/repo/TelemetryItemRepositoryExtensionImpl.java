@@ -23,10 +23,11 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.util.Assert;
 
-import com.arrow.acn.client.model.TelemetryItemType;
 import com.arrow.kronos.data.TelemetryItem;
 import com.arrow.kronos.data.TelemetryStat;
 import com.arrow.pegasus.repo.RepositoryExtensionAbstract;
+
+import moonstone.acn.client.model.TelemetryItemType;
 
 public class TelemetryItemRepositoryExtensionImpl extends RepositoryExtensionAbstract<TelemetryItem>
 		implements TelemetryItemRepositoryExtension {

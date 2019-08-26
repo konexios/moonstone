@@ -22,13 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.GlobalTagModel;
-import com.arrow.acn.client.model.GlobalTagRegistrationModel;
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.HidModel;
-import com.arrow.acs.client.model.ListResultModel;
-import com.arrow.acs.client.model.PagingResultModel;
 import com.arrow.kronos.data.GlobalTag;
 import com.arrow.kronos.data.GlobalTagType;
 import com.arrow.kronos.repo.GlobalTagRepositoryParams;
@@ -40,6 +33,13 @@ import com.arrow.pegasus.data.AuditLog;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import moonstone.acn.client.model.GlobalTagModel;
+import moonstone.acn.client.model.GlobalTagRegistrationModel;
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.HidModel;
+import moonstone.acs.client.model.ListResultModel;
+import moonstone.acs.client.model.PagingResultModel;
 
 @RestController
 @RequestMapping("/api/v1/kronos/global-tags")

@@ -11,11 +11,12 @@ import java.util.regex.Pattern;
 
 import org.springframework.util.StringUtils;
 
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.JsonUtils;
 import com.arrow.kronos.data.action.GlobalAction;
 import com.arrow.kronos.data.action.GlobalActionProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.JsonUtils;
 
 public class GlobalActionUtils {
 

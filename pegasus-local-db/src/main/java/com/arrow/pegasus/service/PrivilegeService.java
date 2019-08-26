@@ -5,9 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.pegasus.data.security.Privilege;
 import com.arrow.pegasus.repo.PrivilegeRepository;
+
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class PrivilegeService extends BaseServiceAbstract {

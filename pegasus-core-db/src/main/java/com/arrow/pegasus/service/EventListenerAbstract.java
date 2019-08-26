@@ -2,8 +2,9 @@ package com.arrow.pegasus.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.arrow.acs.JsonUtils;
 import com.arrow.pegasus.data.event.Event;
+
+import moonstone.acs.JsonUtils;
 
 public abstract class EventListenerAbstract extends RabbitListenerAbstract {
 

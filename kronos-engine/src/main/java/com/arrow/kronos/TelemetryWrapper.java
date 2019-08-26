@@ -2,11 +2,12 @@ package com.arrow.kronos;
 
 import java.util.List;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.Telemetry;
 import com.arrow.kronos.data.TelemetryItem;
 import com.arrow.pegasus.data.profile.Application;
+
+import moonstone.acs.AcsLogicalException;
 
 public class TelemetryWrapper extends Telemetry {
     private static final long serialVersionUID = 6503673152689913809L;

@@ -10,12 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.data.TestProcedure;
 import com.arrow.kronos.data.TestProcedureStep;
 import com.arrow.kronos.data.TestResult;
 import com.arrow.kronos.data.TestResultStep;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class TestSuiteService extends KronosServiceAbstract {

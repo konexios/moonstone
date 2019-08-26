@@ -12,9 +12,6 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.index.Index;
 import org.springframework.stereotype.Component;
 
-import com.arrow.acs.AcsUtils;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.Loggable;
 import com.arrow.pegasus.data.ApplicationEngine;
 import com.arrow.pegasus.data.PlatformConfig;
 import com.arrow.pegasus.data.profile.Application;
@@ -38,6 +35,10 @@ import com.arrow.pegasus.service.SubscriptionService;
 import com.arrow.pegasus.service.UserService;
 import com.arrow.pegasus.service.ZoneService;
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import moonstone.acs.AcsUtils;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.Loggable;
 
 @Component
 public class AutoInstallation extends Loggable implements CommandLineRunner {

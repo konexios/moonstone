@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.apollo.data.ApolloWidget;
 import com.arrow.apollo.data.ApolloWidgetTypeCategories;
 import com.arrow.apollo.repo.ApolloWidgetSearchParams;
@@ -25,6 +24,8 @@ import com.arrow.apollo.web.model.ApolloWidgetModels.ApolloWidgetSupportedSizesM
 import com.arrow.dashboard.runtime.WidgetRuntimeDefinitionManager;
 import com.arrow.pegasus.dashboard.data.WidgetType;
 import com.arrow.pegasus.dashboard.service.WidgetTypeService;
+
+import moonstone.acs.AcsLogicalException;
 
 @RestController
 @RequestMapping("/api/apollo/runtime/boards")

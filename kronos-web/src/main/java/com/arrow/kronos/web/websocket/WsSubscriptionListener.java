@@ -9,7 +9,7 @@ import org.springframework.web.socket.messaging.AbstractSubProtocolEvent;
 import org.springframework.web.socket.messaging.SessionSubscribeEvent;
 import org.springframework.web.socket.messaging.SessionUnsubscribeEvent;
 
-import com.arrow.acs.Loggable;
+import moonstone.acs.Loggable;
 
 @Component
 public class WsSubscriptionListener extends Loggable {

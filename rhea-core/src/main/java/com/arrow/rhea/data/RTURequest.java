@@ -6,11 +6,12 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.arrow.acn.client.model.RightToUseStatus;
 import com.arrow.pegasus.data.AuditableDocumentAbstract;
 import com.arrow.pegasus.data.profile.Company;
 import com.arrow.rhea.RheaCoreConstants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import moonstone.acn.client.model.RightToUseStatus;
 
 @Document(collection = "rtu_request")
 public class RTURequest extends AuditableDocumentAbstract {

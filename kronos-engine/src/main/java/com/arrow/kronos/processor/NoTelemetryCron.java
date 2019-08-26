@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.arrow.acs.Loggable;
 import com.arrow.kronos.KronosEngineContext;
 import com.arrow.kronos.TelemetryWrapper;
 import com.arrow.kronos.action.ActionHandler;
@@ -29,6 +28,8 @@ import com.arrow.kronos.data.LastTelemetryCreated;
 import com.arrow.kronos.service.DeviceService;
 import com.arrow.kronos.service.DeviceTypeService;
 import com.arrow.kronos.service.LastTelemetryItemService;
+
+import moonstone.acs.Loggable;
 
 @Component
 public class NoTelemetryCron extends Loggable {

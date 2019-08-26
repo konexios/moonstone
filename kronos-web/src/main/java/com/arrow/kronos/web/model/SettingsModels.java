@@ -6,9 +6,6 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.ModelAbstract;
 import com.arrow.pegasus.data.ConfigurationProperty;
 import com.arrow.pegasus.data.ConfigurationPropertyCategory;
 import com.arrow.pegasus.data.ConfigurationPropertyDataType;
@@ -17,6 +14,10 @@ import com.arrow.pegasus.data.profile.Application;
 import com.arrow.pegasus.data.profile.Company;
 import com.arrow.pegasus.data.profile.Product;
 import com.arrow.pegasus.data.profile.Subscription;
+
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.ModelAbstract;
 
 public class SettingsModels {
 	public static class SettingsModel implements Serializable {
@@ -314,8 +315,8 @@ public class SettingsModels {
 		private static final long serialVersionUID = 1244556286683378543L;
 
 		private boolean allowCreateGatewayFromDifferentApp;
-		private com.arrow.acs.client.model.YesNoInherit persistTelemetry;
-		private com.arrow.acs.client.model.YesNoInherit indexTelemetry;
+		private moonstone.acs.client.model.YesNoInherit persistTelemetry;
+		private moonstone.acs.client.model.YesNoInherit indexTelemetry;
 		private boolean liveTelemetryStreamingEnabled;
 		private long liveTelemetryStreamingRetentionSecs;
 		private String defaultSoftwareReleaseEmails;
@@ -335,13 +336,13 @@ public class SettingsModels {
 			return self();
 		}
 
-		public KronosApplicationModel withPersistTelemetry(com.arrow.acs.client.model.YesNoInherit persistTelemetry) {
+		public KronosApplicationModel withPersistTelemetry(moonstone.acs.client.model.YesNoInherit persistTelemetry) {
 			setPersistTelemetry(persistTelemetry);
 
 			return self();
 		}
 
-		public KronosApplicationModel withIndexTelemetry(com.arrow.acs.client.model.YesNoInherit indexTelemetry) {
+		public KronosApplicationModel withIndexTelemetry(moonstone.acs.client.model.YesNoInherit indexTelemetry) {
 			setIndexTelemetry(indexTelemetry);
 
 			return self();
@@ -392,19 +393,19 @@ public class SettingsModels {
 			this.allowCreateGatewayFromDifferentApp = allowCreateGatewayFromDifferentApp;
 		}
 
-		public com.arrow.acs.client.model.YesNoInherit getPersistTelemetry() {
+		public moonstone.acs.client.model.YesNoInherit getPersistTelemetry() {
 			return persistTelemetry;
 		}
 
-		public void setPersistTelemetry(com.arrow.acs.client.model.YesNoInherit persistTelemetry) {
+		public void setPersistTelemetry(moonstone.acs.client.model.YesNoInherit persistTelemetry) {
 			this.persistTelemetry = persistTelemetry;
 		}
 
-		public com.arrow.acs.client.model.YesNoInherit getIndexTelemetry() {
+		public moonstone.acs.client.model.YesNoInherit getIndexTelemetry() {
 			return indexTelemetry;
 		}
 
-		public void setIndexTelemetry(com.arrow.acs.client.model.YesNoInherit indexTelemetry) {
+		public void setIndexTelemetry(moonstone.acs.client.model.YesNoInherit indexTelemetry) {
 			this.indexTelemetry = indexTelemetry;
 		}
 

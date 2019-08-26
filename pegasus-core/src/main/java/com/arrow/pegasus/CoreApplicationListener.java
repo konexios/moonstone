@@ -3,7 +3,7 @@ package com.arrow.pegasus;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 
-import com.arrow.acs.Loggable;
+import moonstone.acs.Loggable;
 
 public class CoreApplicationListener extends Loggable implements ApplicationListener<ApplicationEvent> {
 

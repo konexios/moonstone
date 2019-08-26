@@ -3,10 +3,11 @@ package com.arrow.pegasus.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.arrow.acs.AcsUtils;
 import com.arrow.pegasus.data.AccessKey;
 import com.arrow.pegasus.data.profile.Application;
 import com.arrow.pegasus.security.Crypto;
+
+import moonstone.acs.AcsUtils;
 
 @Service
 public class CryptoService extends ServiceAbstract {

@@ -10,9 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
-import com.arrow.acn.client.model.RightToUseStatus;
-import com.arrow.acs.KeyValuePair;
 import com.arrow.kronos.DeviceActionTypeConstants.PostBackURL.ContentType;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.DeviceActionType;
@@ -35,6 +32,10 @@ import com.arrow.pegasus.data.GatewayType;
 import com.arrow.pegasus.data.profile.User;
 import com.arrow.pegasus.webapi.data.CoreSearchFilterModel;
 import com.arrow.pegasus.webapi.data.DeviceTagModels.DeviceTagOption;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
+import moonstone.acn.client.model.RightToUseStatus;
+import moonstone.acs.KeyValuePair;
 
 public class SearchFilterModels {
 

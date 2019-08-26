@@ -17,16 +17,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import com.arrow.acn.client.model.AuditLogModel;
-import com.arrow.acn.client.model.ConfigBackupModel;
-import com.arrow.acn.client.model.DeviceActionModel;
-import com.arrow.acn.client.model.DeviceModel;
-import com.arrow.acn.client.model.LastLocationModel;
-import com.arrow.acn.client.model.LastLocationRegistrationModel;
-import com.arrow.acn.client.model.TestProcedureStepModel;
-import com.arrow.acn.client.model.TestResultModel;
-import com.arrow.acn.client.model.TestResultStepModel;
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.kronos.data.ConfigBackup;
 import com.arrow.kronos.data.Device;
@@ -46,6 +36,17 @@ import com.arrow.pegasus.data.location.LocationObjectType;
 import com.arrow.pegasus.data.profile.User;
 import com.arrow.pegasus.service.CoreCacheService;
 import com.arrow.pegasus.service.LastLocationService;
+
+import moonstone.acn.client.model.AuditLogModel;
+import moonstone.acn.client.model.ConfigBackupModel;
+import moonstone.acn.client.model.DeviceActionModel;
+import moonstone.acn.client.model.DeviceModel;
+import moonstone.acn.client.model.LastLocationModel;
+import moonstone.acn.client.model.LastLocationRegistrationModel;
+import moonstone.acn.client.model.TestProcedureStepModel;
+import moonstone.acn.client.model.TestResultModel;
+import moonstone.acn.client.model.TestResultStepModel;
+import moonstone.acs.AcsLogicalException;
 
 @Component
 public class ApiUtil {

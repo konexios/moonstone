@@ -43,11 +43,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.AcnEventNames;
-import com.arrow.acn.client.model.AcnDeviceCategory;
-import com.arrow.acn.client.model.CreateConfigBackupModel;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.StatusModel;
 import com.arrow.kronos.KronosAuditLog;
 import com.arrow.kronos.data.ConfigBackup;
 import com.arrow.kronos.data.Device;
@@ -143,6 +138,12 @@ import com.arrow.pegasus.webapi.data.LastLocationModel;
 import com.arrow.rhea.data.SoftwareRelease;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+
+import moonstone.acn.AcnEventNames;
+import moonstone.acn.client.model.AcnDeviceCategory;
+import moonstone.acn.client.model.CreateConfigBackupModel;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.StatusModel;
 
 @RestController
 @RequestMapping("/api/kronos/device")

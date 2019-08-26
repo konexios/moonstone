@@ -3,9 +3,10 @@ package com.arrow.pegasus;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.Loggable;
 import com.arrow.pegasus.data.Enabled;
+
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.Loggable;
 
 public abstract class LifeCycleAbstract extends Loggable {
 

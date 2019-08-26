@@ -23,8 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.DeviceActionTypeConstants;
 import com.arrow.kronos.data.DeviceAction;
 import com.arrow.kronos.data.DeviceActionType;
@@ -50,6 +48,9 @@ import com.arrow.rhea.client.api.ClientDeviceProductApi;
 import com.arrow.rhea.client.api.ClientDeviceTypeApi;
 import com.arrow.rhea.data.DeviceManufacturer;
 import com.arrow.rhea.data.DeviceProduct;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
+import moonstone.acs.AcsLogicalException;
 
 @RestController
 @RequestMapping("/api/kronos/devicetype")

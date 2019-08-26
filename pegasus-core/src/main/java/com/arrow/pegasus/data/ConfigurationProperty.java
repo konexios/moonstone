@@ -4,9 +4,10 @@ import java.io.Serializable;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.JsonUtils;
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.JsonUtils;
 
 public class ConfigurationProperty implements Serializable {
 

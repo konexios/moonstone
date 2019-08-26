@@ -5,13 +5,14 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.arrow.acs.JsonUtils;
 import com.arrow.kronos.GlobalActionTypeConstants;
 import com.arrow.kronos.data.action.GlobalAction;
 import com.arrow.kronos.data.action.GlobalActionProperty;
 import com.arrow.kronos.data.action.ParameterValidation.ValidationType;
 import com.arrow.pegasus.util.EmailContentType;
 import com.arrow.pegasus.util.SmtpEmailSender;
+
+import moonstone.acs.JsonUtils;
 
 public class SendEmailHandler extends GlobalActionHandlerAbstract {
 

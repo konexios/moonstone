@@ -1,8 +1,9 @@
 package com.arrow.kronos.action;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.DeviceActionTypeConstants;
 import com.arrow.kronos.data.DeviceActionType;
+
+import moonstone.acs.AcsLogicalException;
 
 public class ActionHandlerFactory {
 

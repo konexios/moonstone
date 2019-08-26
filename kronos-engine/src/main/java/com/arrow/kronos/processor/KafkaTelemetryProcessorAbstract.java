@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.env.Environment;
 
-import com.arrow.acs.JsonUtils;
 import com.arrow.kronos.KronosEngineConstants;
 import com.arrow.kronos.KronosEngineContext;
 import com.arrow.kronos.TelemetryWrapper;
 import com.arrow.pegasus.kafka.KafkaConsumerAbstract;
+
+import moonstone.acs.JsonUtils;
 
 public abstract class KafkaTelemetryProcessorAbstract extends KafkaConsumerAbstract implements CommandLineRunner {
 

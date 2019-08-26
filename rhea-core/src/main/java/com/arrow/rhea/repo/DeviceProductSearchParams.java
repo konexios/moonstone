@@ -3,7 +3,7 @@ package com.arrow.rhea.repo;
 import java.util.EnumSet;
 import java.util.Set;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
+import moonstone.acn.client.model.AcnDeviceCategory;
 
 public class DeviceProductSearchParams extends RheaSearchParamsAbstract {
 	private static final long serialVersionUID = 5040111236979913570L;

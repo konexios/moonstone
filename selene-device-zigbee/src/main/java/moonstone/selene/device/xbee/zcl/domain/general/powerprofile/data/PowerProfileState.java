@@ -1,0 +1,12 @@
+package moonstone.selene.device.xbee.zcl.domain.general.powerprofile.data;
+
+public enum PowerProfileState {
+	POWER_PROFILE_IDLE,
+	POWER_PROFILE_PROGRAMMED,
+	RESERVED,
+	ENERGY_PHASE_RUNNING,
+	ENERGY_PHASE_PAUSED,
+	ENERGY_PHASE_WAITING_TO_START,
+	ENERGY_PHASE_WAITING_PAUSED,
+	POWER_PROFILE_ENDED
+}

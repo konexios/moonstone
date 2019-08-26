@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StreamUtils;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.pegasus.data.FileStore;
 import com.arrow.pegasus.data.profile.Application;
 import com.arrow.pegasus.data.profile.Company;
@@ -27,6 +26,8 @@ import com.arrow.pegasus.repo.params.FileStoreSearchParams;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSBuckets;
 import com.mongodb.client.gridfs.model.GridFSFile;
+
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class FileStoreService extends ServiceAbstract {

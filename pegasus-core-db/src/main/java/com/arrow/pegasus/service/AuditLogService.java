@@ -5,12 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.pegasus.data.AuditLog;
 import com.arrow.pegasus.data.AuditLogBuilder;
 import com.arrow.pegasus.data.profile.Application;
 import com.arrow.pegasus.data.profile.Product;
 import com.arrow.pegasus.repo.AuditLogRepository;
+
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class AuditLogService extends ServiceAbstract {

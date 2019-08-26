@@ -10,13 +10,14 @@ import javax.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.pegasus.CoreConstant;
 import com.arrow.pegasus.data.DefinitionCollectionAbstract;
 import com.arrow.pegasus.data.profile.Application;
 import com.arrow.rhea.data.DeviceProduct;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
 
 @Document(collection = "device_type")
 public class DeviceType extends DefinitionCollectionAbstract {

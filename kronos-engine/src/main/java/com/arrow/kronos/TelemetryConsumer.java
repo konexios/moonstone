@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.YesNoInherit;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.DeviceAction;
 import com.arrow.kronos.data.Gateway;
@@ -22,6 +20,9 @@ import com.arrow.pegasus.kafka.KafkaConsumerAbstract;
 import com.arrow.pegasus.kafka.KafkaSender;
 import com.arrow.pegasus.security.Crypto;
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.YesNoInherit;
 
 public class TelemetryConsumer extends KafkaConsumerAbstract implements CommandLineRunner {
     private static final TypeReference<List<TelemetryItem>> LIST_ITEM_TYPE_REF = new TypeReference<List<TelemetryItem>>() {

@@ -10,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.KronosEngineConstants;
 import com.arrow.kronos.TelemetryWrapper;
 import com.arrow.kronos.action.ActionHandler;
@@ -22,6 +21,8 @@ import com.arrow.kronos.data.DeviceEventStatus;
 import com.arrow.kronos.data.TelemetryItem;
 import com.arrow.kronos.service.DeviceActionWrapper;
 import com.arrow.kronos.util.ActionHelper;
+
+import moonstone.acs.AcsLogicalException;
 
 @Component
 public class ActionProcessor extends TelemetryProcessorAbstract {

@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationListener;
 
-import com.arrow.acs.AcsLogicalException;
+import moonstone.acs.AcsLogicalException;
 
 public abstract class RabbitListenerAbstract extends QueueListenerAbstract
         implements MessageListener, ApplicationListener<ListenerContainerConsumerFailedEvent> {

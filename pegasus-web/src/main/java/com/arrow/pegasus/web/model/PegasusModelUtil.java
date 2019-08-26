@@ -10,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.pegasus.data.AccessKey;
 import com.arrow.pegasus.data.AccessPrivilege;
 import com.arrow.pegasus.data.ConfigurationProperty;
@@ -41,6 +40,8 @@ import com.arrow.pegasus.web.model.UserModels.UserAccountModel;
 import com.arrow.pegasus.web.model.UserModels.UserAuthenticationUpsert;
 import com.arrow.pegasus.web.model.UserModels.UserProfileModel;
 import com.arrow.pegasus.webapi.data.PegasusCoreModelUtil;
+
+import moonstone.acs.AcsLogicalException;
 
 @Component
 public class PegasusModelUtil extends PegasusCoreModelUtil {

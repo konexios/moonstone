@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.JsonUtils;
 import com.arrow.kronos.data.SocialEventRegistration;
 import com.arrow.kronos.data.SocialEventRegistrationStatuses;
 import com.arrow.kronos.service.SocialEventRegistrationService;
@@ -34,6 +32,9 @@ import com.arrow.pegasus.client.api.ClientSocialEventApi;
 import com.arrow.pegasus.data.SocialEvent;
 import com.arrow.pegasus.data.profile.Application;
 import com.arrow.pegasus.data.profile.User;
+
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.JsonUtils;
 
 @RestController
 @RequestMapping("/api/kronos/social-event")

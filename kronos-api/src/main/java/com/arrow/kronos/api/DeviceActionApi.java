@@ -15,11 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.DeviceActionModel;
-import com.arrow.acn.client.model.DeviceActionTypeModel;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.HidModel;
-import com.arrow.acs.client.model.ListResultModel;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.DeviceAction;
 import com.arrow.kronos.data.DeviceActionType;
@@ -34,6 +29,11 @@ import com.arrow.pegasus.data.profile.Application;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import moonstone.acn.client.model.DeviceActionModel;
+import moonstone.acn.client.model.DeviceActionTypeModel;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.HidModel;
+import moonstone.acs.client.model.ListResultModel;
 
 @RestController
 @RequestMapping("/api/v1/kronos")

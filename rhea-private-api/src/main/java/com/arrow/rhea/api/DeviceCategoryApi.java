@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acs.JsonUtils;
 import com.arrow.rhea.client.model.DeviceCategoryModel;
 import com.arrow.rhea.data.DeviceCategory;
+
+import moonstone.acs.JsonUtils;
 
 @RestController(value = "privateRheaDeviceCategoryApi")
 @RequestMapping("/api/v1/private/rhea/device-categories")

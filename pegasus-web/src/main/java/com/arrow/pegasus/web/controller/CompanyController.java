@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.pegasus.ProductSystemNames;
 import com.arrow.pegasus.data.AccessKey;
 import com.arrow.pegasus.data.profile.Application;
@@ -58,6 +57,8 @@ import com.arrow.pegasus.web.model.SearchFilterModels;
 import com.arrow.pegasus.web.model.SearchResultModels;
 import com.arrow.pegasus.web.model.SearchResultModels.AccessKeySearchResult;
 import com.arrow.pegasus.webapi.data.CoreCompanyModels.CompanyOption;
+
+import moonstone.acs.AcsLogicalException;
 
 @RestController
 @RequestMapping("/api/pegasus/companies")

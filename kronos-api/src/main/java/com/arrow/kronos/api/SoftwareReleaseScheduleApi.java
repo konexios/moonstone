@@ -23,18 +23,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
-import com.arrow.acn.client.model.CreateSoftwareReleaseScheduleModel;
-import com.arrow.acn.client.model.SoftwareReleaseScheduleAutomationModel;
-import com.arrow.acn.client.model.SoftwareReleaseScheduleModel;
-import com.arrow.acn.client.model.SoftwareReleaseScheduleStatus;
-import com.arrow.acn.client.model.SoftwareReleaseTransModel;
-import com.arrow.acn.client.model.SoftwareReleaseTransStatus;
-import com.arrow.acn.client.model.UpdateSoftwareReleaseScheduleModel;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.HidModel;
-import com.arrow.acs.client.model.PagingResultModel;
-import com.arrow.acs.client.model.StatusModel;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.kronos.api.model.SoftwareReleaseScheduleCancelModel;
 import com.arrow.kronos.data.BaseDeviceAbstract;
@@ -54,6 +42,18 @@ import com.arrow.rhea.data.SoftwareRelease;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import moonstone.acn.client.model.AcnDeviceCategory;
+import moonstone.acn.client.model.CreateSoftwareReleaseScheduleModel;
+import moonstone.acn.client.model.SoftwareReleaseScheduleAutomationModel;
+import moonstone.acn.client.model.SoftwareReleaseScheduleModel;
+import moonstone.acn.client.model.SoftwareReleaseScheduleStatus;
+import moonstone.acn.client.model.SoftwareReleaseTransModel;
+import moonstone.acn.client.model.SoftwareReleaseTransStatus;
+import moonstone.acn.client.model.UpdateSoftwareReleaseScheduleModel;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.HidModel;
+import moonstone.acs.client.model.PagingResultModel;
+import moonstone.acs.client.model.StatusModel;
 
 @RestController
 @RequestMapping("/api/v1/kronos/software/releases/schedules")

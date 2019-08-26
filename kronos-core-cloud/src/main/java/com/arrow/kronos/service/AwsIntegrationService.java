@@ -28,9 +28,6 @@ import com.amazonaws.services.iot.model.GetPolicyRequest;
 import com.amazonaws.services.iot.model.GetPolicyResult;
 import com.amazonaws.services.iot.model.ResourceAlreadyExistsException;
 import com.amazonaws.services.iot.model.UpdateCertificateRequest;
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.AcsSystemException;
-import com.arrow.acs.AcsUtils;
 import com.arrow.kronos.KronosCloudConstants.Aws;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.kronos.data.AwsAccount;
@@ -38,6 +35,10 @@ import com.arrow.kronos.data.AwsThing;
 import com.arrow.kronos.data.Gateway;
 import com.arrow.pegasus.CoreConstant;
 import com.arrow.pegasus.data.profile.Application;
+
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.AcsSystemException;
+import moonstone.acs.AcsUtils;
 
 @Service
 public class AwsIntegrationService extends KronosServiceAbstract {

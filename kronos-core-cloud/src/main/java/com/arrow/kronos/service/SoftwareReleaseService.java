@@ -12,9 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acn.AcnEventNames;
-import com.arrow.acn.client.model.AcnDeviceCategory;
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.KronosAuditLog;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.kronos.data.Device;
@@ -37,6 +34,10 @@ import com.arrow.rhea.client.api.ClientSoftwareProductApi;
 import com.arrow.rhea.client.api.ClientSoftwareReleaseApi;
 import com.arrow.rhea.data.SoftwareProduct;
 import com.arrow.rhea.data.SoftwareRelease;
+
+import moonstone.acn.AcnEventNames;
+import moonstone.acn.client.model.AcnDeviceCategory;
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class SoftwareReleaseService extends KronosServiceAbstract {

@@ -22,12 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.CreateSocialEventRegistrationModel;
-import com.arrow.acn.client.model.RegisterSocialEventRegistrationModel;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.HidModel;
-import com.arrow.acs.client.model.PagingResultModel;
-import com.arrow.acs.client.model.StatusModel;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.kronos.api.model.AzureIntegrationPropertiesModel;
 import com.arrow.kronos.api.model.SocialEventRegistrationModel;
@@ -51,6 +45,12 @@ import com.arrow.pegasus.service.CryptoService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import moonstone.acn.client.model.CreateSocialEventRegistrationModel;
+import moonstone.acn.client.model.RegisterSocialEventRegistrationModel;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.HidModel;
+import moonstone.acs.client.model.PagingResultModel;
+import moonstone.acs.client.model.StatusModel;
 import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
@@ -112,7 +112,7 @@ public class SocialEventRegistrationApi extends BaseApiAbstract {
 
 		AccessKey accessKey = validateCanWriteApplication(getProductSystemName());
 
-		com.arrow.acn.client.model.RegisterSocialEventRegistrationModel model = JsonUtils.fromJson(getApiPayload(),
+		moonstone.acn.client.model.RegisterSocialEventRegistrationModel model = JsonUtils.fromJson(getApiPayload(),
 				RegisterSocialEventRegistrationModel.class);
 		Assert.notNull(model, "model is null");
 		Assert.hasText(model.getName(), "name is empty");

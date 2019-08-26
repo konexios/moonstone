@@ -3,9 +3,10 @@ package com.arrow.dashboard.widget.configuration;
 import java.util.LinkedList;
 import java.util.Optional;
 
-import com.arrow.acs.Loggable;
 import com.arrow.dashboard.property.Property;
 import com.arrow.dashboard.widget.annotation.Widget;
+
+import moonstone.acs.Loggable;
 
 /**
  * This class defines {@link Widget} configuration

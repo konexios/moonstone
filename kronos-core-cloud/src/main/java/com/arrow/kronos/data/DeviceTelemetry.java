@@ -9,8 +9,9 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Transient;
 
-import com.arrow.acn.client.model.TelemetryItemType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import moonstone.acn.client.model.TelemetryItemType;
 
 public class DeviceTelemetry implements Serializable {
 	private static final long serialVersionUID = 841481041832736471L;

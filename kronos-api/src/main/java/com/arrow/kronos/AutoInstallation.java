@@ -8,13 +8,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import com.arrow.acs.AcsUtils;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.Loggable;
 import com.arrow.pegasus.CoreConstant;
 import com.arrow.pegasus.data.PlatformConfig;
 import com.arrow.pegasus.service.PlatformConfigService;
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import moonstone.acs.AcsUtils;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.Loggable;
 
 @Component
 public class AutoInstallation extends Loggable implements CommandLineRunner {

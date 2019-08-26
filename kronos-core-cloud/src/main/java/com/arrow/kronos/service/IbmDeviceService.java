@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.IbmDevice;
 import com.arrow.kronos.repo.IbmDeviceRepository;
+
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class IbmDeviceService extends KronosServiceAbstract {

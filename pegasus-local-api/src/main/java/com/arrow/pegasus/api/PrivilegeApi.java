@@ -16,10 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.PagingResultModel;
 import com.arrow.pegasus.client.model.PrivilegeChangeModel;
 import com.arrow.pegasus.data.security.Privilege;
+
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.PagingResultModel;
 
 @RestController(value = "localPegasusPrivilegeApi")
 @RequestMapping("/api/v1/local/pegasus/privileges")

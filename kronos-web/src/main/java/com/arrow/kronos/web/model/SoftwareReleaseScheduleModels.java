@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
 import com.arrow.kronos.data.BaseDeviceAbstract;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.DeviceType;
@@ -21,6 +20,8 @@ import com.arrow.kronos.web.model.RheaModels.SoftwareReleaseOption;
 import com.arrow.pegasus.webapi.data.CoreDefinitionModelOption;
 import com.arrow.pegasus.webapi.data.CoreDocumentModel;
 import com.arrow.pegasus.webapi.data.CoreUserModels.UserOption;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
 
 public class SoftwareReleaseScheduleModels {
 

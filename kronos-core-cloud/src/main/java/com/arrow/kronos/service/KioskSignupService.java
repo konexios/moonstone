@@ -5,11 +5,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.data.KioskSignup;
 import com.arrow.kronos.repo.KioskSignupRepository;
 import com.arrow.pegasus.data.TempToken;
 import com.arrow.pegasus.service.TempTokenService;
+
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class KioskSignupService extends KronosServiceAbstract {

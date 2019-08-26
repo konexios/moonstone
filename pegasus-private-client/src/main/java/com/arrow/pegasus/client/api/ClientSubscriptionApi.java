@@ -11,10 +11,11 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.utils.URIBuilder;
 import org.springframework.stereotype.Component;
 
-import com.arrow.acs.JsonUtils;
 import com.arrow.pegasus.client.model.CreateUpdateModel;
 import com.arrow.pegasus.data.profile.Subscription;
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import moonstone.acs.JsonUtils;
 
 @Component
 public class ClientSubscriptionApi extends ClientApiAbstract {

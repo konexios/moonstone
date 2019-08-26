@@ -8,10 +8,11 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.springframework.stereotype.Component;
 
-import com.arrow.acs.JsonUtils;
 import com.arrow.rhea.client.model.DeviceManufacturerModel;
 import com.arrow.rhea.data.DeviceManufacturer;
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import moonstone.acs.JsonUtils;
 
 @Component("RheaClientDeviceManufacturerApi")
 public class ClientDeviceManufacturerApi extends ClientApiAbstract {

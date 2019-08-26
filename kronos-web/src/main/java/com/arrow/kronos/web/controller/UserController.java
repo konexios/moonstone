@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.service.DeveloperService;
 import com.arrow.kronos.service.UserRegistrationService;
 import com.arrow.kronos.web.model.UserModels;
@@ -22,6 +21,8 @@ import com.arrow.pegasus.data.profile.User;
 import com.arrow.pegasus.data.profile.UserStatus;
 import com.arrow.pegasus.util.EmailContentType;
 import com.arrow.pegasus.util.SmtpEmailSender;
+
+import moonstone.acs.AcsLogicalException;
 
 @RestController
 @RequestMapping("/api/kronos/user")

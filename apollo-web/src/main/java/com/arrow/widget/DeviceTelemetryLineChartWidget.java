@@ -13,7 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.util.Assert;
 
-import com.arrow.acn.client.model.TelemetryItemType;
 import com.arrow.dashboard.messaging.SimpleTopicProvider;
 import com.arrow.dashboard.properties.integer.IntegerKeyValue;
 import com.arrow.dashboard.properties.string.ChoiceKeyValueStringPropertyView;
@@ -44,6 +43,8 @@ import com.arrow.widget.model.TelemetryItemLineChartModel;
 import com.arrow.widget.provider.DeviceDataProvider;
 import com.arrow.widget.provider.DeviceTypeDataProvider;
 import com.arrow.widget.provider.EsTelemetryItemDataProvider;
+
+import moonstone.acn.client.model.TelemetryItemType;
 
 @Small(width = 1, height = 1)
 @Medium(width = 2, height = 1)

@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acs.client.model.ListResultModel;
-import com.arrow.acs.client.model.ProductModel;
 import com.arrow.pegasus.data.profile.Product;
+
+import moonstone.acs.client.model.ListResultModel;
+import moonstone.acs.client.model.ProductModel;
 
 @RestController(value = "pegasusProductApi")
 @RequestMapping("/api/v1/pegasus/products")

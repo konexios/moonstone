@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.arrow.acn.client.model.TelemetryItemType;
 import com.arrow.dashboard.messaging.SimpleTopicProvider;
 import com.arrow.dashboard.properties.string.ChoiceKeyValueStringPropertyView;
 import com.arrow.dashboard.widget.ScheduledWidgetAbstract;
@@ -35,6 +34,8 @@ import com.arrow.widget.model.DeviceCubeModel;
 import com.arrow.widget.provider.DeviceDataProvider;
 import com.arrow.widget.provider.DeviceTypeDataProvider;
 import com.arrow.widget.provider.LastTelemetryItemDataProvider;
+
+import moonstone.acn.client.model.TelemetryItemType;
 
 @Small(width = 1, height = 1)
 @Medium(width = 2, height = 1)

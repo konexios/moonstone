@@ -12,12 +12,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.PagingResultModel;
 import com.arrow.rhea.client.model.SoftwareReleaseModel;
 import com.arrow.rhea.client.search.SoftwareReleaseSearchCriteria;
 import com.arrow.rhea.data.SoftwareRelease;
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.PagingResultModel;
 
 @Component("RheaClientSoftwareReleaseApi")
 public class ClientSoftwareReleaseApi extends ClientApiAbstract {

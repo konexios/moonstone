@@ -9,7 +9,6 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.annotation.Transient;
 
-import com.arrow.acs.client.model.YesNoInherit;
 import com.arrow.pegasus.CoreConstant;
 import com.arrow.pegasus.data.AuditableDocumentAbstract;
 import com.arrow.pegasus.data.Enabled;
@@ -17,6 +16,8 @@ import com.arrow.pegasus.data.profile.Application;
 import com.arrow.pegasus.data.profile.User;
 import com.arrow.rhea.data.SoftwareRelease;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import moonstone.acs.client.model.YesNoInherit;
 
 public abstract class BaseDeviceAbstract extends AuditableDocumentAbstract implements Enabled {
 	private static final long serialVersionUID = -8929192620898064938L;

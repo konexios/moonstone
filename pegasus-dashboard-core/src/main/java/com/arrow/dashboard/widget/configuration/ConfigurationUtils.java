@@ -8,10 +8,11 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.arrow.acs.Loggable;
 import com.arrow.dashboard.property.Property;
 import com.arrow.dashboard.property.impl.PropertyDeserializer.DeserializedProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import moonstone.acs.Loggable;
 
 /**
  * Utility class that helps {@link ConfigurationManager} to work with

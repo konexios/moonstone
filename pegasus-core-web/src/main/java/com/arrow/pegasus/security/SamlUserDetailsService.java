@@ -7,13 +7,14 @@ import org.springframework.security.saml.userdetails.SAMLUserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.Loggable;
 import com.arrow.pegasus.CoreConstant;
 import com.arrow.pegasus.data.profile.User;
 import com.arrow.pegasus.data.security.Auth;
 import com.arrow.pegasus.service.AuthenticationService;
 import com.arrow.pegasus.service.CoreCacheHelper;
 import com.arrow.pegasus.service.CoreCacheProxy;
+
+import moonstone.acs.Loggable;
 
 @Service
 public class SamlUserDetailsService extends Loggable implements SAMLUserDetailsService {

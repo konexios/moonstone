@@ -8,9 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
-import com.arrow.acn.client.model.DeviceStateValueType;
-import com.arrow.acn.client.model.TelemetryItemType;
 import com.arrow.kronos.DeviceActionTypeConstants;
 import com.arrow.kronos.data.DeviceAction;
 import com.arrow.kronos.data.DeviceStateValueMetadata;
@@ -18,6 +15,10 @@ import com.arrow.kronos.data.DeviceTelemetry;
 import com.arrow.kronos.data.DeviceType;
 import com.arrow.pegasus.webapi.data.CoreDefinitionModelOption;
 import com.arrow.pegasus.webapi.data.CoreDocumentModel;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
+import moonstone.acn.client.model.DeviceStateValueType;
+import moonstone.acn.client.model.TelemetryItemType;
 
 public class DeviceTypeModels {
 

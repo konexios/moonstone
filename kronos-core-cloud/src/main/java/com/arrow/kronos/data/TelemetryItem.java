@@ -9,12 +9,13 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.arrow.acn.client.model.TelemetryItemType;
-import com.arrow.acs.AcsSystemException;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.pegasus.data.TsDocumentAbstract;
 import com.arrow.pegasus.data.profile.Application;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import moonstone.acn.client.model.TelemetryItemType;
+import moonstone.acs.AcsSystemException;
 
 @Document(collection = TelemetryItem.COLLECTION_NAME)
 public class TelemetryItem extends TsDocumentAbstract {

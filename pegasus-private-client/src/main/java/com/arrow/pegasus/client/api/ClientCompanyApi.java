@@ -16,12 +16,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.PagingResultModel;
 import com.arrow.pegasus.client.model.CompanyChangeModel;
 import com.arrow.pegasus.data.profile.Company;
 import com.arrow.pegasus.repo.params.CompanySearchParams;
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.PagingResultModel;
 
 @Component
 public class ClientCompanyApi extends ClientApiAbstract {

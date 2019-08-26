@@ -18,11 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.TestProcedureStepModel;
-import com.arrow.acn.client.model.TestResultModel;
-import com.arrow.acn.client.model.TestResultStepModel;
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.client.model.PagingResultModel;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.Gateway;
@@ -36,6 +31,11 @@ import com.arrow.pegasus.data.AccessKey;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import moonstone.acn.client.model.TestProcedureStepModel;
+import moonstone.acn.client.model.TestResultModel;
+import moonstone.acn.client.model.TestResultStepModel;
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.client.model.PagingResultModel;
 
 @RestController
 @RequestMapping("/api/v1/kronos/testresults")

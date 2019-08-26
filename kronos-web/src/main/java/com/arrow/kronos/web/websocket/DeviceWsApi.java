@@ -14,7 +14,6 @@ import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.EsTelemetryItem;
 import com.arrow.kronos.data.Gateway;
@@ -23,6 +22,8 @@ import com.arrow.kronos.service.GatewayService;
 import com.arrow.kronos.web.TelemetryListener;
 import com.arrow.kronos.web.model.DeviceWsModels;
 import com.arrow.kronos.web.model.TelemetryItemModels.TelemetryItemChartModel;
+
+import moonstone.acs.AcsLogicalException;
 
 @Controller
 public class DeviceWsApi extends WsApiAbstract {

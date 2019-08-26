@@ -17,8 +17,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.util.Assert;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
-import com.arrow.acn.client.model.RightToUseType;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.kronos.data.DeviceType;
 import com.arrow.kronos.data.Node;
@@ -54,6 +52,9 @@ import com.arrow.rhea.client.api.ClientSoftwareReleaseApi;
 import com.arrow.rhea.data.SoftwareProduct;
 import com.arrow.rhea.data.SoftwareRelease;
 import com.arrow.rhea.service.RheaCacheService;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
+import moonstone.acn.client.model.RightToUseType;
 
 public abstract class BaseControllerAbstract extends WebApiAbstract {
 

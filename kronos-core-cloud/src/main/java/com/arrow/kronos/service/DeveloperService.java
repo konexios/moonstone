@@ -22,7 +22,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.kronos.data.KioskSignup;
 import com.arrow.kronos.data.KronosUser;
@@ -51,6 +50,8 @@ import com.arrow.pegasus.data.security.Role;
 import com.arrow.pegasus.service.BaseServiceAbstract;
 import com.arrow.pegasus.service.PlatformConfigService;
 import com.arrow.pegasus.service.TempTokenService;
+
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class DeveloperService extends BaseServiceAbstract {

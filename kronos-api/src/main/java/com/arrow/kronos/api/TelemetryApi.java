@@ -25,15 +25,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.TelemetryItemModel;
-import com.arrow.acn.client.model.TelemetryItemType;
-import com.arrow.acn.client.model.TelemetryStatModel;
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.KeyValuePair;
-import com.arrow.acs.client.model.ListResultModel;
-import com.arrow.acs.client.model.PagingResultModel;
-import com.arrow.acs.client.model.StatusModel;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.kronos.converter.TelemetryItemConverter;
 import com.arrow.kronos.data.Device;
@@ -54,6 +45,15 @@ import com.fasterxml.jackson.core.type.TypeReference;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import moonstone.acn.client.model.TelemetryItemModel;
+import moonstone.acn.client.model.TelemetryItemType;
+import moonstone.acn.client.model.TelemetryStatModel;
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.KeyValuePair;
+import moonstone.acs.client.model.ListResultModel;
+import moonstone.acs.client.model.PagingResultModel;
+import moonstone.acs.client.model.StatusModel;
 
 @RestController
 @RequestMapping("/api/v1/kronos/telemetries")

@@ -10,11 +10,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.switchuser.SwitchUserFilter;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.Loggable;
 import com.arrow.pegasus.data.profile.Company;
 import com.arrow.pegasus.data.profile.User;
 import com.arrow.pegasus.service.CoreCacheService;
+
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.Loggable;
 
 public class CoreSwitchUserFilter extends SwitchUserFilter {
 

@@ -27,18 +27,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import com.arrow.acn.AcnEventNames;
-import com.arrow.acn.MqttConstants;
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.AcsUtils;
-import com.arrow.acs.ApiHeaders;
-import com.arrow.acs.GatewayPayloadSigner;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.api.ConnectionManager;
-import com.arrow.acs.client.model.CloudRequestMethodName;
-import com.arrow.acs.client.model.CloudRequestModel;
-import com.arrow.acs.client.model.CloudRequestParameters;
-import com.arrow.acs.client.model.CloudResponseModel;
 import com.arrow.kronos.data.Gateway;
 import com.arrow.kronos.service.GatewayCommandService;
 import com.arrow.pegasus.LifeCycleAbstract;
@@ -50,6 +38,19 @@ import com.arrow.pegasus.data.event.EventParameter;
 import com.arrow.pegasus.data.event.EventStatus;
 import com.arrow.pegasus.service.CoreCacheHelper;
 import com.arrow.pegasus.service.EventService;
+
+import moonstone.acn.AcnEventNames;
+import moonstone.acn.MqttConstants;
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.AcsUtils;
+import moonstone.acs.ApiHeaders;
+import moonstone.acs.GatewayPayloadSigner;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.api.ConnectionManager;
+import moonstone.acs.client.model.CloudRequestMethodName;
+import moonstone.acs.client.model.CloudRequestModel;
+import moonstone.acs.client.model.CloudRequestParameters;
+import moonstone.acs.client.model.CloudResponseModel;
 
 @Component
 public class ApiRequestProcessor extends LifeCycleAbstract {

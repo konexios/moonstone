@@ -5,8 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acs.Loggable;
 import com.arrow.pegasus.web.model.ResponseContext;
+
+import moonstone.acs.Loggable;
 
 @RestController
 public class PingController extends Loggable {

@@ -5,9 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.pegasus.dashboard.data.PropertyValue;
 import com.arrow.pegasus.dashboard.repo.PropertyValueRepository;
+
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class PropertyValueService extends DashboardServiceAbstract {

@@ -5,11 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.KronosAuditLog;
 import com.arrow.kronos.data.NodeType;
 import com.arrow.kronos.repo.NodeTypeRepository;
 import com.arrow.pegasus.data.AuditLogBuilder;
+
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class NodeTypeService extends KronosServiceAbstract {

@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.Gateway;
 //import com.arrow.kronos.data.Device;
@@ -43,6 +42,8 @@ import com.arrow.kronos.web.model.TestProcedureModels.TestProcedureStepModel;
 import com.arrow.kronos.web.model.TestResultModels;
 import com.arrow.kronos.web.model.TestResultModels.TestResultCommonModel;
 import com.arrow.kronos.web.model.TestResultModels.TestResultStepModel;
+
+import moonstone.acs.AcsLogicalException;
 
 @RestController
 @RequestMapping("/api/kronos/testresult")

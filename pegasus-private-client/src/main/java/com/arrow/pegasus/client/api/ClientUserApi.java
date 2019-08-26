@@ -19,12 +19,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.AcsClientException;
-import com.arrow.acs.client.model.PagingResultModel;
-import com.arrow.acs.client.model.SamlAccountModel;
-import com.arrow.acs.client.model.StatusModel;
-import com.arrow.acs.client.model.UserAuthenticationModel;
 import com.arrow.pegasus.DuplicateLoginException;
 import com.arrow.pegasus.InActiveAccountException;
 import com.arrow.pegasus.InvalidLoginException;
@@ -44,6 +38,13 @@ import com.arrow.pegasus.data.profile.User;
 import com.arrow.pegasus.data.profile.UserStatus;
 import com.arrow.pegasus.service.AuthenticationService;
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.AcsClientException;
+import moonstone.acs.client.model.PagingResultModel;
+import moonstone.acs.client.model.SamlAccountModel;
+import moonstone.acs.client.model.StatusModel;
+import moonstone.acs.client.model.UserAuthenticationModel;
 
 @Component
 public class ClientUserApi extends ClientApiAbstract implements AuthenticationService {

@@ -13,11 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acn.MqttConstants;
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.GatewayPayloadSigner;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.GatewayEventModel;
 import com.arrow.kronos.KronosAuditLog;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.Gateway;
@@ -27,6 +22,12 @@ import com.arrow.pegasus.data.AuditLogBuilder;
 import com.arrow.pegasus.data.event.Event;
 import com.arrow.pegasus.data.event.EventParameter;
 import com.arrow.pegasus.service.EventService;
+
+import moonstone.acn.MqttConstants;
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.GatewayPayloadSigner;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.GatewayEventModel;
 
 @Service
 public class GatewayCommandService extends KronosServiceAbstract {

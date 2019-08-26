@@ -5,11 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.pegasus.dashboard.data.PageProperty;
 import com.arrow.pegasus.dashboard.data.PropertyValue;
 import com.arrow.pegasus.dashboard.repo.PagePropertyRepository;
 import com.arrow.pegasus.dashboard.repo.PropertyValueSearchParams;
+
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class PagePropertyService extends DashboardServiceAbstract {

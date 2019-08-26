@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.apollo.data.ApolloBoardCategory;
 import com.arrow.apollo.service.ApolloBoardService;
 import com.arrow.apollo.web.exception.NotFoundException;
@@ -32,6 +31,8 @@ import com.arrow.kronos.service.DeviceService;
 import com.arrow.kronos.service.KronosCache;
 import com.arrow.pegasus.dashboard.data.Board;
 import com.arrow.widget.WidgetConstants;
+
+import moonstone.acs.AcsLogicalException;
 
 @RestController
 @RequestMapping("/api/apollo/boards")

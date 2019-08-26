@@ -11,10 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
-import com.arrow.acn.client.model.ErrorPayload;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.HidModel;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.Gateway;
 import com.arrow.kronos.data.TestProcedure;
@@ -28,6 +24,10 @@ import com.arrow.pegasus.data.AccessKey;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import moonstone.acn.client.model.AcnDeviceCategory;
+import moonstone.acn.client.model.ErrorPayload;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.HidModel;
 
 @RestController
 @RequestMapping("/api/v1/kronos/testsuite")

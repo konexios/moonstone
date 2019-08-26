@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.AzureAccountModel;
-import com.arrow.acn.client.model.AzureDeviceModel;
-import com.arrow.acs.client.model.ListResultModel;
 import com.arrow.kronos.data.AzureAccount;
 import com.arrow.kronos.data.AzureDevice;
 import com.arrow.kronos.data.Gateway;
@@ -26,6 +23,9 @@ import com.arrow.pegasus.data.profile.Application;
 import com.arrow.pegasus.data.profile.User;
 
 import io.swagger.annotations.ApiOperation;
+import moonstone.acn.client.model.AzureAccountModel;
+import moonstone.acn.client.model.AzureDeviceModel;
+import moonstone.acs.client.model.ListResultModel;
 
 @RestController
 @RequestMapping("/api/v1/kronos/integration/azure")

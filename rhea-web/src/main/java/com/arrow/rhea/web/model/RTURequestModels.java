@@ -4,12 +4,13 @@ import java.io.Serializable;
 import java.util.EnumSet;
 import java.util.List;
 
-import com.arrow.acn.client.model.RightToUseChangeStatus;
-import com.arrow.acn.client.model.RightToUseStatus;
 import com.arrow.pegasus.webapi.data.CoreApplicationModels.ApplicationOption;
 import com.arrow.pegasus.webapi.data.CoreCompanyModels.CompanyOption;
 import com.arrow.pegasus.webapi.data.CoreDefinitionModelOption;
 import com.arrow.rhea.data.RTURequest;
+
+import moonstone.acn.client.model.RightToUseChangeStatus;
+import moonstone.acn.client.model.RightToUseStatus;
 
 public class RTURequestModels {
 	

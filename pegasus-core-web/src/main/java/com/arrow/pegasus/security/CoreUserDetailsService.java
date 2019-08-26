@@ -5,10 +5,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.arrow.acs.Loggable;
 import com.arrow.pegasus.data.profile.User;
 import com.arrow.pegasus.service.AuthenticationService;
 import com.arrow.pegasus.service.CoreCacheHelper;
+
+import moonstone.acs.Loggable;
 
 public class CoreUserDetailsService extends Loggable implements UserDetailsService {
 

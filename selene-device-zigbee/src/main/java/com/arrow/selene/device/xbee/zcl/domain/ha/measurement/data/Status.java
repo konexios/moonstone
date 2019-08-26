@@ -1,9 +1,0 @@
-package com.arrow.selene.device.xbee.zcl.domain.ha.measurement.data;
-
-public enum Status {
-	SUCCESS,
-	ATTRIBUTE_PROFILE_NOT_SUPPORTED,
-	INVALID_START_TIME,
-	MORE_INTERVALS_REQUESTED_THAN_CAN_BE_RETURNED,
-	NO_INTERVALS_AVAILABLE_FOR_THE_REQUESTED_TIME
-}

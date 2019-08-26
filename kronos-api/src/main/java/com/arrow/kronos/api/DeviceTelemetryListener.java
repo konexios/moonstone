@@ -16,11 +16,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
-import com.arrow.acn.MqttConstants;
-import com.arrow.acs.JsonUtils;
 import com.arrow.kronos.KronosApiConstants;
 import com.arrow.pegasus.service.RabbitListenerAbstract;
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import moonstone.acn.MqttConstants;
+import moonstone.acs.JsonUtils;
 
 @Component
 public class DeviceTelemetryListener extends RabbitListenerAbstract implements CommandLineRunner, ConnectionListener {

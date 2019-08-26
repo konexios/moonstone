@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.arrow.acs.client.model.YesNoInherit;
 import com.arrow.kronos.data.DeviceActionType;
 import com.arrow.kronos.data.DeviceType;
 import com.arrow.kronos.data.Gateway;
@@ -21,6 +20,8 @@ import com.arrow.pegasus.data.profile.User;
 import com.arrow.pegasus.webapi.data.CoreDefinitionModelOption;
 import com.arrow.pegasus.webapi.data.CoreDocumentModel;
 import com.arrow.pegasus.webapi.data.LastLocationModel;
+
+import moonstone.acs.client.model.YesNoInherit;
 
 public class GatewayModels {
 

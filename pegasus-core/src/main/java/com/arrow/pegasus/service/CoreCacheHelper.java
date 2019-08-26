@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.arrow.acs.Loggable;
 import com.arrow.pegasus.data.AccessKey;
 import com.arrow.pegasus.data.ApplicationEngine;
 import com.arrow.pegasus.data.profile.Application;
@@ -19,6 +18,8 @@ import com.arrow.pegasus.data.profile.User;
 import com.arrow.pegasus.data.profile.Zone;
 import com.arrow.pegasus.data.security.Privilege;
 import com.arrow.pegasus.data.security.Role;
+
+import moonstone.acs.Loggable;
 
 @Component
 public class CoreCacheHelper extends Loggable {

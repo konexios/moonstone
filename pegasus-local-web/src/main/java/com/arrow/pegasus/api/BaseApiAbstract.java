@@ -13,27 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.client.model.AccessKeyModel;
-import com.arrow.acs.client.model.AddressModel;
-import com.arrow.acs.client.model.ApplicationModel;
-import com.arrow.acs.client.model.AuthLdapModel;
-import com.arrow.acs.client.model.AuthModel;
-import com.arrow.acs.client.model.AuthSamlModel;
-import com.arrow.acs.client.model.CompanyModel;
-import com.arrow.acs.client.model.ConfigurationPropertyModel;
-import com.arrow.acs.client.model.ContactModel;
-import com.arrow.acs.client.model.CreateApplicationModel;
-import com.arrow.acs.client.model.CreateCompanyModel;
-import com.arrow.acs.client.model.CreateSubscriptionModel;
-import com.arrow.acs.client.model.LoginPolicyModel;
-import com.arrow.acs.client.model.PasswordPolicyModel;
-import com.arrow.acs.client.model.PrivilegeModel;
-import com.arrow.acs.client.model.ProductModel;
-import com.arrow.acs.client.model.RegionModel;
-import com.arrow.acs.client.model.RoleModel;
-import com.arrow.acs.client.model.SubscriptionModel;
-import com.arrow.acs.client.model.UserModel;
-import com.arrow.acs.client.model.ZoneModel;
 import com.arrow.pegasus.NotAuthorizedException;
 import com.arrow.pegasus.ProductSystemNames;
 import com.arrow.pegasus.data.AccessKey;
@@ -71,6 +50,28 @@ import com.arrow.pegasus.service.ProductService;
 import com.arrow.pegasus.service.RoleService;
 import com.arrow.pegasus.service.SubscriptionService;
 import com.arrow.pegasus.service.UserService;
+
+import moonstone.acs.client.model.AccessKeyModel;
+import moonstone.acs.client.model.AddressModel;
+import moonstone.acs.client.model.ApplicationModel;
+import moonstone.acs.client.model.AuthLdapModel;
+import moonstone.acs.client.model.AuthModel;
+import moonstone.acs.client.model.AuthSamlModel;
+import moonstone.acs.client.model.CompanyModel;
+import moonstone.acs.client.model.ConfigurationPropertyModel;
+import moonstone.acs.client.model.ContactModel;
+import moonstone.acs.client.model.CreateApplicationModel;
+import moonstone.acs.client.model.CreateCompanyModel;
+import moonstone.acs.client.model.CreateSubscriptionModel;
+import moonstone.acs.client.model.LoginPolicyModel;
+import moonstone.acs.client.model.PasswordPolicyModel;
+import moonstone.acs.client.model.PrivilegeModel;
+import moonstone.acs.client.model.ProductModel;
+import moonstone.acs.client.model.RegionModel;
+import moonstone.acs.client.model.RoleModel;
+import moonstone.acs.client.model.SubscriptionModel;
+import moonstone.acs.client.model.UserModel;
+import moonstone.acs.client.model.ZoneModel;
 
 public abstract class BaseApiAbstract extends ApiAbstract {
 
@@ -436,7 +437,7 @@ public abstract class BaseApiAbstract extends ApiAbstract {
 		return result;
 	}
 
-	protected CompanyStatus fromCompanyStatus(com.arrow.acs.client.model.CompanyStatus model) {
+	protected CompanyStatus fromCompanyStatus(moonstone.acs.client.model.CompanyStatus model) {
 		Assert.notNull(model, "CompanyStatus is null");
 		return CompanyStatus.valueOf(model.name());
 	}
@@ -772,31 +773,31 @@ public abstract class BaseApiAbstract extends ApiAbstract {
 		});
 	}
 
-	protected com.arrow.acs.client.model.UserStatus toUserStatusModel(
+	protected moonstone.acs.client.model.UserStatus toUserStatusModel(
 			com.arrow.pegasus.data.profile.UserStatus status) {
 		Assert.notNull(status, "status is null");
-		return com.arrow.acs.client.model.UserStatus.valueOf(status.name());
+		return moonstone.acs.client.model.UserStatus.valueOf(status.name());
 	}
 
 	protected com.arrow.pegasus.data.profile.UserStatus fromUserStatusModel(
-			com.arrow.acs.client.model.UserStatus model) {
+			moonstone.acs.client.model.UserStatus model) {
 		Assert.notNull(model, "model is null");
 		return com.arrow.pegasus.data.profile.UserStatus.valueOf(model.name());
 	}
 
-	protected com.arrow.acs.client.model.CompanyStatus toCompanyStatusModel(
+	protected moonstone.acs.client.model.CompanyStatus toCompanyStatusModel(
 			com.arrow.pegasus.data.profile.CompanyStatus status) {
 		Assert.notNull(status, "status is null");
-		return com.arrow.acs.client.model.CompanyStatus.valueOf(status.name());
+		return moonstone.acs.client.model.CompanyStatus.valueOf(status.name());
 	}
 
-	protected com.arrow.acs.client.model.YesNoInherit toYesNoInheritModel(
+	protected moonstone.acs.client.model.YesNoInherit toYesNoInheritModel(
 			com.arrow.pegasus.data.YesNoInherit yesNoInherit) {
 		Assert.notNull(yesNoInherit, "yesNoInherit is null");
-		return com.arrow.acs.client.model.YesNoInherit.valueOf(yesNoInherit.name());
+		return moonstone.acs.client.model.YesNoInherit.valueOf(yesNoInherit.name());
 	}
 
-	protected com.arrow.pegasus.data.YesNoInherit fromYesNoInheritModel(com.arrow.acs.client.model.YesNoInherit model) {
+	protected com.arrow.pegasus.data.YesNoInherit fromYesNoInheritModel(moonstone.acs.client.model.YesNoInherit model) {
 		Assert.notNull(model, "yesNoInherit is null");
 		return com.arrow.pegasus.data.YesNoInherit.valueOf(model.name());
 	}
@@ -1044,9 +1045,9 @@ public abstract class BaseApiAbstract extends ApiAbstract {
 		return result;
 	}
 
-	protected com.arrow.acs.client.model.AuthType toAuthTypeModel(com.arrow.pegasus.data.security.AuthType type) {
+	protected moonstone.acs.client.model.AuthType toAuthTypeModel(com.arrow.pegasus.data.security.AuthType type) {
 		Assert.notNull(type, "AuthType is null");
-		return com.arrow.acs.client.model.AuthType.valueOf(type.name());
+		return moonstone.acs.client.model.AuthType.valueOf(type.name());
 	}
 
 	private String getSystemName(Zone ref, String id) {

@@ -37,8 +37,6 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.Loggable;
 import com.arrow.kronos.KronosApiConstants;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.Gateway;
@@ -49,6 +47,9 @@ import com.arrow.pegasus.NotAuthorizedException;
 import com.arrow.pegasus.data.AccessKey;
 import com.arrow.pegasus.data.profile.Application;
 import com.arrow.pegasus.service.CoreCacheService;
+
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.Loggable;
 
 public abstract class TelemetryEndpointAbstract<T> extends Endpoint
         implements ApplicationListener<ListenerContainerConsumerFailedEvent> {

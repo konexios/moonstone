@@ -5,13 +5,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.pegasus.CoreAuditLog;
 import com.arrow.pegasus.ProductSystemNames;
 import com.arrow.pegasus.data.AuditLogBuilder;
 import com.arrow.pegasus.data.SocialEvent;
 import com.arrow.pegasus.data.profile.Zone;
 import com.arrow.pegasus.repo.SocialEventRepository;
+
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class SocialEventService extends BaseServiceAbstract {

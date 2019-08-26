@@ -8,11 +8,12 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.springframework.stereotype.Component;
 
-import com.arrow.acs.JsonUtils;
 import com.arrow.rhea.client.model.SoftwareProductModel;
 import com.arrow.rhea.client.search.SoftwareProductSearchCriteria;
 import com.arrow.rhea.data.SoftwareProduct;
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import moonstone.acs.JsonUtils;
 
 @Component("RheaClientSoftwareProductApi")
 public class ClientSoftwareProductApi extends ClientApiAbstract {

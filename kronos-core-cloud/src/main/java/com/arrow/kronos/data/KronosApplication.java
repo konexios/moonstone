@@ -9,12 +9,13 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.arrow.acs.client.model.YesNoInherit;
 import com.arrow.kronos.KronosCloudConstants;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.pegasus.data.AuditableDocumentAbstract;
 import com.arrow.pegasus.data.profile.Application;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import moonstone.acs.client.model.YesNoInherit;
 
 @Document(collection = "application")
 public class KronosApplication extends AuditableDocumentAbstract {

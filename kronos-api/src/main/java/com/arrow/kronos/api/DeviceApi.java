@@ -22,23 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
-import com.arrow.acn.client.model.AuditLogModel;
-import com.arrow.acn.client.model.AvailableFirmwareModel;
-import com.arrow.acn.client.model.ConfigBackupModel;
-import com.arrow.acn.client.model.CreateConfigBackupModel;
-import com.arrow.acn.client.model.DeviceEventModel;
-import com.arrow.acn.client.model.DeviceModel;
-import com.arrow.acn.client.model.DeviceRegistrationModel;
-import com.arrow.acn.client.model.LastLocationModel;
-import com.arrow.acn.client.model.LastLocationRegistrationModel;
-import com.arrow.acn.client.model.TestResultModel;
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.ExternalHidModel;
-import com.arrow.acs.client.model.HidModel;
-import com.arrow.acs.client.model.PagingResultModel;
-import com.arrow.acs.client.model.StatusModel;
 import com.arrow.kronos.KronosAuditLog;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.kronos.data.ConfigBackup;
@@ -80,6 +63,23 @@ import com.arrow.pegasus.service.LastLocationService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import moonstone.acn.client.model.AcnDeviceCategory;
+import moonstone.acn.client.model.AuditLogModel;
+import moonstone.acn.client.model.AvailableFirmwareModel;
+import moonstone.acn.client.model.ConfigBackupModel;
+import moonstone.acn.client.model.CreateConfigBackupModel;
+import moonstone.acn.client.model.DeviceEventModel;
+import moonstone.acn.client.model.DeviceModel;
+import moonstone.acn.client.model.DeviceRegistrationModel;
+import moonstone.acn.client.model.LastLocationModel;
+import moonstone.acn.client.model.LastLocationRegistrationModel;
+import moonstone.acn.client.model.TestResultModel;
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.ExternalHidModel;
+import moonstone.acs.client.model.HidModel;
+import moonstone.acs.client.model.PagingResultModel;
+import moonstone.acs.client.model.StatusModel;
 
 @RestController
 @RequestMapping("/api/v1/kronos/devices")

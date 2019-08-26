@@ -10,9 +10,10 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
-import com.arrow.acs.Loggable;
 import com.arrow.pegasus.CoreConstant;
 import com.arrow.pegasus.data.AccessKey;
+
+import moonstone.acs.Loggable;
 
 public class AccessKeyAuthenticationProvider extends Loggable implements AuthenticationProvider {
 

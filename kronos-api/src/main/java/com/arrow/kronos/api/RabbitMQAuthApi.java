@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.data.Gateway;
 import com.arrow.pegasus.data.AccessKey;
 import com.arrow.pegasus.data.profile.Application;
@@ -17,6 +16,7 @@ import com.arrow.pegasus.data.profile.Company;
 import com.arrow.pegasus.data.profile.CompanyStatus;
 import com.arrow.pegasus.data.profile.Subscription;
 
+import moonstone.acs.AcsLogicalException;
 import springfox.documentation.annotations.ApiIgnore;
 
 @RestController

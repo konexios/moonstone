@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
 import com.arrow.rhea.data.DeviceManufacturer;
 import com.arrow.rhea.data.DeviceProduct;
 import com.arrow.rhea.repo.DeviceProductSearchParams;
@@ -31,6 +30,8 @@ import com.arrow.rhea.web.model.DeviceProductModels.DeviceProductModel;
 import com.arrow.rhea.web.model.DeviceProductModels.DeviceProductOptions;
 import com.arrow.rhea.web.model.SearchFilterModels.DeviceProductSearchFilterModel;
 import com.arrow.rhea.web.model.SearchResultModels.DeviceProductSearchResultModel;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
 
 @RestController
 @RequestMapping("/api/rhea/device-products")

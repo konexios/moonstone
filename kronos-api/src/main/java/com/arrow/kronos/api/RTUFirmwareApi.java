@@ -18,13 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.RTUFirmwareModels.AvailableFirmwareVersion;
-import com.arrow.acn.client.model.RTUFirmwareModels.RTUFirmwareModel;
-import com.arrow.acn.client.model.RTUFirmwareModels.RTURequestedFirmwareModel;
-import com.arrow.acn.client.model.RightToUseStatus;
-import com.arrow.acn.client.model.SoftwareReleaseScheduleModel;
-import com.arrow.acs.client.model.PagingResultModel;
-import com.arrow.acs.client.model.StatusModel;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.kronos.data.DeviceType;
 import com.arrow.kronos.data.EligibleFirmwareChangeGroup;
@@ -39,6 +32,13 @@ import com.arrow.rhea.data.SoftwareRelease;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import moonstone.acn.client.model.RightToUseStatus;
+import moonstone.acn.client.model.SoftwareReleaseScheduleModel;
+import moonstone.acn.client.model.RTUFirmwareModels.AvailableFirmwareVersion;
+import moonstone.acn.client.model.RTUFirmwareModels.RTUFirmwareModel;
+import moonstone.acn.client.model.RTUFirmwareModels.RTURequestedFirmwareModel;
+import moonstone.acs.client.model.PagingResultModel;
+import moonstone.acs.client.model.StatusModel;
 
 @RestController
 @RequestMapping("/api/v1/kronos/rtu")

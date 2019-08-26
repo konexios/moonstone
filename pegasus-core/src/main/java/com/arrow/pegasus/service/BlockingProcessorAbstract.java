@@ -7,9 +7,10 @@ import java.util.concurrent.BlockingQueue;
 
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsRuntimeException;
-import com.arrow.acs.AcsSystemException;
 import com.arrow.pegasus.LifeCycleAbstract;
+
+import moonstone.acs.AcsRuntimeException;
+import moonstone.acs.AcsSystemException;
 
 public abstract class BlockingProcessorAbstract extends LifeCycleAbstract implements Processor {
 

@@ -6,8 +6,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
-import com.arrow.acn.AcnEventNames;
-import com.arrow.acs.JsonUtils;
 import com.arrow.kronos.DeviceActionTypeConstants;
 import com.arrow.kronos.TelemetryWrapper;
 import com.arrow.kronos.data.Device;
@@ -24,6 +22,9 @@ import com.arrow.pegasus.data.event.EventBuilder;
 import com.arrow.pegasus.data.event.EventParameter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+
+import moonstone.acn.AcnEventNames;
+import moonstone.acs.JsonUtils;
 
 public class SendCommandHandler extends ActionHandlerAbstract {
 

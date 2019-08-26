@@ -10,8 +10,8 @@
  *******************************************************************************/
 package com.arrow.rhea.client.api;
 
-import com.arrow.acs.VersionAbstract;
-import com.arrow.acs.client.model.VersionModel;
+import moonstone.acs.VersionAbstract;
+import moonstone.acs.client.model.VersionModel;
 
 public final class RheaPrivateClientVersion extends VersionAbstract {
 	private final static VersionModel VERSION = readManifest(RheaPrivateClientVersion.class);

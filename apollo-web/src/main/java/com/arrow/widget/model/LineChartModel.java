@@ -2,8 +2,9 @@ package com.arrow.widget.model;
 
 import java.io.Serializable;
 
-import com.arrow.acn.client.model.TelemetryItemType;
 import com.arrow.widget.WidgetConstants;
+
+import moonstone.acn.client.model.TelemetryItemType;
 
 public class LineChartModel implements Serializable {
 	private static final long serialVersionUID = -554393153076742657L;

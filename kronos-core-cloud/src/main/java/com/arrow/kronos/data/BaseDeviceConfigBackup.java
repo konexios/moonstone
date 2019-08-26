@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.arrow.acs.client.model.YesNoInherit;
+import moonstone.acs.client.model.YesNoInherit;
 
 public class BaseDeviceConfigBackup implements Serializable {
 	private static final long serialVersionUID = -5171477505790027092L;

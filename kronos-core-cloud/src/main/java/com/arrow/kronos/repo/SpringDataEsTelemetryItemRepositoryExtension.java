@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.elasticsearch.search.sort.SortOrder;
 
-import com.arrow.acn.client.model.TelemetryItemType;
 import com.arrow.kronos.data.EsTelemetryItem;
 import com.arrow.kronos.data.TelemetryStat;
+
+import moonstone.acn.client.model.TelemetryItemType;
 
 public interface SpringDataEsTelemetryItemRepositoryExtension {
 

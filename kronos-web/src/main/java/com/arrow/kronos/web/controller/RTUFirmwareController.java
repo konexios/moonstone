@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.RightToUseStatus;
-import com.arrow.acs.client.model.StatusModel;
 import com.arrow.kronos.data.DeviceType;
 import com.arrow.kronos.data.EligibleFirmwareChangeGroup;
 import com.arrow.kronos.service.RTUFirmwareService;
@@ -40,6 +38,9 @@ import com.arrow.pegasus.data.profile.Application;
 import com.arrow.rhea.client.api.ClientRTURequestApi;
 import com.arrow.rhea.data.RTURequest;
 import com.arrow.rhea.data.SoftwareRelease;
+
+import moonstone.acn.client.model.RightToUseStatus;
+import moonstone.acs.client.model.StatusModel;
 
 @RestController
 @RequestMapping("/api/kronos/rtu")

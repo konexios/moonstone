@@ -3,7 +3,7 @@ package com.arrow.rhea.repo;
 import java.util.EnumSet;
 import java.util.Set;
 
-import com.arrow.acn.client.model.RightToUseStatus;
+import moonstone.acn.client.model.RightToUseStatus;
 
 public class RTURequestSearchParams extends RheaSearchParamsAbstract {
 	private static final long serialVersionUID = 3759875221507701923L;

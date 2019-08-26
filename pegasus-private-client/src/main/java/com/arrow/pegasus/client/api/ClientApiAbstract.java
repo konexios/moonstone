@@ -5,9 +5,9 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.arrow.acs.AcsRuntimeException;
-import com.arrow.acs.client.api.ApiAbstract;
-import com.arrow.acs.client.api.ApiConfig;
+import moonstone.acs.AcsRuntimeException;
+import moonstone.acs.client.api.ApiAbstract;
+import moonstone.acs.client.api.ApiConfig;
 
 public abstract class ClientApiAbstract extends ApiAbstract {
 	protected static final String WEB_SERVICE_ROOT_URL = "/api/v1/local/pegasus";

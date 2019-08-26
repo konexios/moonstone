@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.arrow.acs.client.model.SamlAccountModel;
+import moonstone.acs.client.model.SamlAccountModel;
 
 public class SamlAccountsModel implements Serializable {
 

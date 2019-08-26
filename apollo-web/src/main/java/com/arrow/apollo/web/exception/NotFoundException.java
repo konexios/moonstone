@@ -1,6 +1,6 @@
 package com.arrow.apollo.web.exception;
 
-import com.arrow.acs.AcsLogicalException;
+import moonstone.acs.AcsLogicalException;
 
 public class NotFoundException extends AcsLogicalException {
 

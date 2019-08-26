@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.KeyValuePair;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.LastTelemetryItem;
 import com.arrow.kronos.data.TelemetryItem;
 import com.arrow.kronos.repo.LastTelemetryItemRepository;
 import com.arrow.pegasus.CoreConstant;
+
+import moonstone.acs.KeyValuePair;
 
 @Service
 public class LastTelemetryItemService extends KronosServiceAbstract {

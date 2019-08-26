@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acn.client.model.RightToUseType;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.DeviceType;
@@ -31,6 +30,8 @@ import com.arrow.kronos.repo.SoftwareReleaseScheduleSearchParams;
 import com.arrow.pegasus.data.profile.Application;
 import com.arrow.rhea.client.api.ClientSoftwareReleaseApi;
 import com.arrow.rhea.data.SoftwareRelease;
+
+import moonstone.acn.client.model.RightToUseType;
 
 @Service
 public class RTUFirmwareService extends KronosServiceAbstract {

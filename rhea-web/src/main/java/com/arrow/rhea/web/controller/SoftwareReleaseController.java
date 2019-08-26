@@ -23,10 +23,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
-import com.arrow.acn.client.model.RightToUseType;
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.JsonUtils;
 import com.arrow.rhea.data.DeviceManufacturer;
 import com.arrow.rhea.data.DeviceProduct;
 import com.arrow.rhea.data.DeviceType;
@@ -55,6 +51,11 @@ import com.arrow.rhea.web.model.SoftwareReleaseModels.SoftwareReleaseOption;
 import com.arrow.rhea.web.model.SoftwareReleaseModels.SoftwareReleaseOptionsModel;
 import com.arrow.rhea.web.model.SoftwareReleaseModels.SoftwareReleaseSelectionModel;
 import com.arrow.rhea.web.model.SoftwareVendorModels.SoftwareVendorOption;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
+import moonstone.acn.client.model.RightToUseType;
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.JsonUtils;
 
 @RestController
 @RequestMapping("/api/rhea/software-releases")

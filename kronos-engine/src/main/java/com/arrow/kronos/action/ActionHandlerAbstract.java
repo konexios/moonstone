@@ -3,9 +3,10 @@ package com.arrow.kronos.action;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.Loggable;
 import com.arrow.kronos.data.DeviceAction;
 import com.arrow.pegasus.service.EventService;
+
+import moonstone.acs.Loggable;
 
 public abstract class ActionHandlerAbstract extends Loggable implements ActionHandler {
 

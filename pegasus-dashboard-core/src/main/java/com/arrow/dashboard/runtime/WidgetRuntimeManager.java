@@ -10,7 +10,6 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.dashboard.runtime.model.DataProviderInstance;
 import com.arrow.dashboard.runtime.model.UserRuntimeInstance;
 import com.arrow.dashboard.runtime.model.WidgetRuntimeConfigurationPatch;
@@ -21,6 +20,8 @@ import com.arrow.dashboard.widget.configuration.ConfigurationManager;
 import com.arrow.pegasus.dashboard.data.Widget;
 import com.arrow.pegasus.dashboard.data.WidgetType;
 import com.arrow.pegasus.dashboard.service.WidgetTypeService;
+
+import moonstone.acs.AcsLogicalException;
 
 /**
  * Service to manage widgets lifecycle

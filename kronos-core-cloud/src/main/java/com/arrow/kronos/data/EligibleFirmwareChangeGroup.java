@@ -3,7 +3,7 @@ package com.arrow.kronos.data;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
+import moonstone.acn.client.model.AcnDeviceCategory;
 
 public class EligibleFirmwareChangeGroup {
 	public String deviceTypeId;

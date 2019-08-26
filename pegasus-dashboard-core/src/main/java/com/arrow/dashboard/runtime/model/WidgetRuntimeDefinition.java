@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.dashboard.widget.WidgetAbstract;
 import com.arrow.dashboard.widget.annotation.OnCorrection;
 import com.arrow.dashboard.widget.annotation.OnCreate;
@@ -27,6 +26,8 @@ import com.arrow.dashboard.widget.annotation.size.Large;
 import com.arrow.dashboard.widget.annotation.size.Medium;
 import com.arrow.dashboard.widget.annotation.size.Small;
 import com.arrow.dashboard.widget.annotation.size.XtraLarge;
+
+import moonstone.acs.AcsLogicalException;
 
 public class WidgetRuntimeDefinition extends AbstractExceptionable {
 

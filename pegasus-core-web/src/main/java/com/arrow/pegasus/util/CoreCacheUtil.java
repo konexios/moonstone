@@ -3,12 +3,13 @@ package com.arrow.pegasus.util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.arrow.acs.Loggable;
 import com.arrow.pegasus.CoreAuditLog;
 import com.arrow.pegasus.ProductSystemNames;
 import com.arrow.pegasus.data.AuditLogBuilder;
 import com.arrow.pegasus.service.AuditLogService;
 import com.arrow.pegasus.service.CoreCacheService;
+
+import moonstone.acs.Loggable;
 
 @Component
 public class CoreCacheUtil extends Loggable {

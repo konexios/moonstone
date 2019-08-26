@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acs.client.model.ListResultModel;
-import com.arrow.acs.client.model.SocialEventModel;
 import com.arrow.pegasus.data.SocialEvent;
 import com.arrow.pegasus.data.profile.Zone;
 import com.arrow.pegasus.repo.SocialEventSearchParams;
@@ -26,6 +24,8 @@ import com.arrow.pegasus.service.SocialEventService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import moonstone.acs.client.model.ListResultModel;
+import moonstone.acs.client.model.SocialEventModel;
 import springfox.documentation.annotations.ApiIgnore;
 
 @ApiIgnore

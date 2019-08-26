@@ -16,22 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.servlet.HandlerMapping;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
-import com.arrow.acn.client.model.AuditLogModel;
-import com.arrow.acn.client.model.AvailableFirmwareModel;
-import com.arrow.acn.client.model.ConfigBackupModel;
-import com.arrow.acn.client.model.DeviceModel;
-import com.arrow.acn.client.model.LastLocationModel;
-import com.arrow.acn.client.model.RightToUseType;
-import com.arrow.acn.client.model.TestProcedureStepModel;
-import com.arrow.acn.client.model.TestResultModel;
-import com.arrow.acn.client.model.TestResultStepModel;
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.AuditableDocumentModelAbstract;
-import com.arrow.acs.client.model.DefinitionModelAbstract;
-import com.arrow.acs.client.model.ModelAbstract;
-import com.arrow.acs.client.model.TsModelAbstract;
 import com.arrow.kronos.KronosAuditLog.Api;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.kronos.data.ConfigBackup;
@@ -71,6 +55,23 @@ import com.arrow.rhea.client.api.ClientSoftwareReleaseApi;
 import com.arrow.rhea.data.RTURequest;
 import com.arrow.rhea.data.SoftwareProduct;
 import com.arrow.rhea.data.SoftwareRelease;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
+import moonstone.acn.client.model.AuditLogModel;
+import moonstone.acn.client.model.AvailableFirmwareModel;
+import moonstone.acn.client.model.ConfigBackupModel;
+import moonstone.acn.client.model.DeviceModel;
+import moonstone.acn.client.model.LastLocationModel;
+import moonstone.acn.client.model.RightToUseType;
+import moonstone.acn.client.model.TestProcedureStepModel;
+import moonstone.acn.client.model.TestResultModel;
+import moonstone.acn.client.model.TestResultStepModel;
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.AuditableDocumentModelAbstract;
+import moonstone.acs.client.model.DefinitionModelAbstract;
+import moonstone.acs.client.model.ModelAbstract;
+import moonstone.acs.client.model.TsModelAbstract;
 
 public abstract class BaseApiAbstract extends ApiAbstract {
 

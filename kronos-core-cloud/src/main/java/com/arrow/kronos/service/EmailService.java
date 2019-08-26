@@ -16,9 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsRuntimeException;
-import com.arrow.acs.AcsSystemException;
-import com.arrow.acs.client.model.EmailModel;
 import com.arrow.pegasus.ProductSystemNames;
 import com.arrow.pegasus.data.ConfigurationProperty;
 import com.arrow.pegasus.data.ConfigurationPropertyCategory;
@@ -31,6 +28,9 @@ import com.arrow.pegasus.util.SmtpEmailSender;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import moonstone.acs.AcsRuntimeException;
+import moonstone.acs.AcsSystemException;
+import moonstone.acs.client.model.EmailModel;
 
 @Service
 public class EmailService extends KronosServiceAbstract {

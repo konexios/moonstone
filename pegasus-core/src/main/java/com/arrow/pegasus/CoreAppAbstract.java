@@ -13,14 +13,15 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.session.data.redis.config.ConfigureRedisAction;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.Loggable;
 import com.arrow.pegasus.security.Crypto;
 import com.arrow.pegasus.security.CryptoImpl;
 import com.arrow.pegasus.util.SmtpEmailSender;
 import com.arrow.pegasus.util.SmtpProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.benmanes.caffeine.cache.Caffeine;
+
+import moonstone.acs.JsonUtils;
+import moonstone.acs.Loggable;
 
 public class CoreAppAbstract extends Loggable {
 

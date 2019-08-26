@@ -5,8 +5,9 @@ import java.time.Instant;
 import java.util.EnumSet;
 import java.util.Set;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
 import com.arrow.kronos.data.SoftwareReleaseSchedule;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
 
 public class SoftwareReleaseScheduleSearchParams extends KronosDocumentSearchParams implements Serializable {
 	private static final long serialVersionUID = -2563939772039111582L;

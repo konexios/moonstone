@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
-import com.arrow.acs.JsonUtils;
 import com.arrow.rhea.client.model.DeviceProductModel;
 import com.arrow.rhea.data.DeviceProduct;
 import com.arrow.rhea.repo.DeviceProductSearchParams;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
+import moonstone.acs.JsonUtils;
 
 @RestController(value = "privateRheaDeviceProductApi")
 @RequestMapping("/api/v1/private/rhea/device-products")

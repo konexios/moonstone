@@ -16,15 +16,16 @@ import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.arrow.acn.client.model.TelemetryItemType;
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.KeyValuePair;
 import com.arrow.kronos.KronosApiConstants;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.TelemetryItem;
 import com.arrow.kronos.service.KronosServiceAbstract;
+
+import moonstone.acn.client.model.TelemetryItemType;
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.KeyValuePair;
 
 @Component
 public class DeviceTelemetryProcessor extends KronosServiceAbstract {

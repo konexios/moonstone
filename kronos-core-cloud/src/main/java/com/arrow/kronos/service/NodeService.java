@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.KronosAuditLog;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.DeviceAction;
@@ -24,6 +23,8 @@ import com.arrow.pegasus.data.AccessPrivilege;
 import com.arrow.pegasus.data.AccessPrivilege.AccessLevel;
 import com.arrow.pegasus.data.AuditLogBuilder;
 import com.arrow.pegasus.data.profile.Application;
+
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class NodeService extends KronosServiceAbstract {

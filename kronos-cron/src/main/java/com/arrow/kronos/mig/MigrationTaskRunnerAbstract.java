@@ -4,9 +4,10 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 
-import com.arrow.acs.Loggable;
 import com.arrow.pegasus.data.MigrationTask;
 import com.arrow.pegasus.service.MigrationTaskService;
+
+import moonstone.acs.Loggable;
 
 public abstract class MigrationTaskRunnerAbstract extends Loggable implements CommandLineRunner {
 

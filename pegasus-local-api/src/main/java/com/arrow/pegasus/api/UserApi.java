@@ -18,10 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.PagingResultModel;
-import com.arrow.acs.client.model.StatusModel;
-import com.arrow.acs.client.model.UserAuthenticationModel;
 import com.arrow.pegasus.client.model.LastLoginRequestModel;
 import com.arrow.pegasus.client.model.LastLoginResponseModel;
 import com.arrow.pegasus.client.model.PasswordModel;
@@ -38,6 +34,11 @@ import com.arrow.pegasus.data.profile.UserEULA;
 import com.arrow.pegasus.data.profile.UserStatus;
 import com.arrow.pegasus.data.security.Auth;
 import com.arrow.pegasus.repo.params.UserSearchParams;
+
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.PagingResultModel;
+import moonstone.acs.client.model.StatusModel;
+import moonstone.acs.client.model.UserAuthenticationModel;
 
 @RestController(value = "localPegasusUserApi")
 @RequestMapping("/api/v1/local/pegasus/users")

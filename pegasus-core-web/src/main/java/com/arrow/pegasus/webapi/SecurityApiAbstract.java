@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.arrow.acs.client.model.StatusModel;
 import com.arrow.pegasus.LoginRequiredException;
 import com.arrow.pegasus.data.PlatformConfig;
 import com.arrow.pegasus.data.profile.Application;
@@ -26,6 +25,8 @@ import com.arrow.pegasus.data.profile.Product;
 import com.arrow.pegasus.data.profile.User;
 import com.arrow.pegasus.service.PlatformConfigService;
 import com.arrow.pegasus.webapi.data.UserModel;
+
+import moonstone.acs.client.model.StatusModel;
 
 public abstract class SecurityApiAbstract extends WebApiAbstract {
 

@@ -9,7 +9,7 @@ import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
-import com.arrow.acs.Loggable;
+import moonstone.acs.Loggable;
 
 public abstract class CoreWebSecurityAbstract extends WebSecurityConfigurerAdapter {
 

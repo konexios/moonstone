@@ -8,10 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acn.AcnEventNames;
-import com.arrow.acn.client.model.CreateGatewayModel;
-import com.arrow.acn.client.model.UpdateGatewayModel;
-import com.arrow.acs.JsonUtils;
 import com.arrow.kronos.KronosAuditLog;
 import com.arrow.kronos.data.ConfigBackup;
 import com.arrow.kronos.data.DeviceActionType;
@@ -37,6 +33,11 @@ import com.arrow.pegasus.service.HeartbeatService;
 import com.arrow.pegasus.service.LastHeartbeatService;
 import com.arrow.pegasus.service.LastLocationService;
 import com.arrow.rhea.data.SoftwareRelease;
+
+import moonstone.acn.AcnEventNames;
+import moonstone.acn.client.model.CreateGatewayModel;
+import moonstone.acn.client.model.UpdateGatewayModel;
+import moonstone.acs.JsonUtils;
 
 @Service
 public class GatewayService extends KronosServiceAbstract {

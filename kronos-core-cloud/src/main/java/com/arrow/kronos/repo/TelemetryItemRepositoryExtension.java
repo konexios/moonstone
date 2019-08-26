@@ -6,10 +6,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 
-import com.arrow.acn.client.model.TelemetryItemType;
 import com.arrow.kronos.data.TelemetryItem;
 import com.arrow.kronos.data.TelemetryStat;
 import com.arrow.pegasus.repo.RepositoryExtension;
+
+import moonstone.acn.client.model.TelemetryItemType;
 
 public interface TelemetryItemRepositoryExtension extends RepositoryExtension<TelemetryItem> {
 	public List<TelemetryItem> findTelemetryItems(String deviceId, long fromTimestamp, long toTimestamp,

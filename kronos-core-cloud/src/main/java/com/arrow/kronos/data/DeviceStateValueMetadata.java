@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.arrow.acn.client.model.DeviceStateValueType;
+import moonstone.acn.client.model.DeviceStateValueType;
 
 public class DeviceStateValueMetadata implements Serializable {
 	private static final long serialVersionUID = 2160270507833662715L;

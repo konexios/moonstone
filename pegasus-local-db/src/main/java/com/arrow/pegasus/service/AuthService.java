@@ -4,12 +4,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.pegasus.CoreAuditLog;
 import com.arrow.pegasus.ProductSystemNames;
 import com.arrow.pegasus.data.AuditLogBuilder;
 import com.arrow.pegasus.data.security.Auth;
 import com.arrow.pegasus.repo.AuthRepository;
+
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class AuthService extends BaseServiceAbstract {

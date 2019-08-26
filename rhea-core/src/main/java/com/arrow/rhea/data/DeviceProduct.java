@@ -6,12 +6,13 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
 import com.arrow.pegasus.CoreConstant;
 import com.arrow.pegasus.data.DefinitionCollectionAbstract;
 import com.arrow.pegasus.data.profile.Company;
 import com.arrow.rhea.RheaCoreConstants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
 
 @Document(collection = "device_product")
 public class DeviceProduct extends DefinitionCollectionAbstract {

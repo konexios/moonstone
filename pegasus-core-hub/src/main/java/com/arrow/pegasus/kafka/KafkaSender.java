@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.Loggable;
+import moonstone.acs.Loggable;
 
 public class KafkaSender extends Loggable {
 

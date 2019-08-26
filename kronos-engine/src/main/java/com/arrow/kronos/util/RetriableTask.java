@@ -2,7 +2,7 @@ package com.arrow.kronos.util;
 
 import java.util.concurrent.Callable;
 
-import com.arrow.acs.Loggable;
+import moonstone.acs.Loggable;
 
 public abstract class RetriableTask<T> extends Loggable implements Callable<T> {
 

@@ -9,9 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.SamlAccountModel;
 import com.arrow.pegasus.CoreAuditLog;
 import com.arrow.pegasus.CoreConstant;
 import com.arrow.pegasus.DuplicateLoginException;
@@ -41,6 +38,10 @@ import com.arrow.pegasus.itus.EventQueues;
 import com.arrow.pegasus.itus.GatewayLdapAuth;
 import com.arrow.pegasus.repo.UserRepository;
 import com.arrow.pegasus.security.Crypto;
+
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.SamlAccountModel;
 
 @Service
 public class UserService extends BaseServiceAbstract implements AuthenticationService {

@@ -8,11 +8,12 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.springframework.stereotype.Component;
 
-import com.arrow.acs.JsonUtils;
 import com.arrow.rhea.client.model.DeviceCategoryModel;
 import com.arrow.rhea.client.search.DeviceCategorySearchCriteria;
 import com.arrow.rhea.data.DeviceCategory;
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import moonstone.acs.JsonUtils;
 
 @Component("RheaClientDeviceCategoryApi")
 public class ClientDeviceCategoryApi extends ClientApiAbstract {

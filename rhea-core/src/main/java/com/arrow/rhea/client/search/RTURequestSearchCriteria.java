@@ -1,6 +1,6 @@
 package com.arrow.rhea.client.search;
 
-import com.arrow.acs.client.search.SearchCriteria;
+import moonstone.acs.client.search.SearchCriteria;
 
 public class RTURequestSearchCriteria extends SearchCriteria {
 

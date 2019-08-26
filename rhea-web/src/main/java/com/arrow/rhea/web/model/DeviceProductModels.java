@@ -4,10 +4,11 @@ import java.io.Serializable;
 import java.util.EnumSet;
 import java.util.List;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
 import com.arrow.pegasus.webapi.data.CoreDefinitionModelOption;
 import com.arrow.rhea.data.DeviceProduct;
 import com.arrow.rhea.web.model.DeviceManufacturerModels.DeviceManufacturerOption;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
 
 public class DeviceProductModels {
 	public static class DeviceProductOption extends CoreDefinitionModelOption {

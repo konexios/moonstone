@@ -7,12 +7,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.Loggable;
 import com.arrow.kronos.service.KronosCache;
 import com.arrow.pegasus.CoreConstant;
 import com.arrow.pegasus.LoginRequiredException;
 import com.arrow.pegasus.data.profile.User;
 import com.arrow.pegasus.security.CoreUserDetails;
+
+import moonstone.acs.Loggable;
 
 public class WsApiAbstract extends Loggable {
 

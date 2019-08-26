@@ -10,10 +10,11 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
 import com.arrow.kronos.KronosConstants;
 import com.arrow.pegasus.data.AuditableDocumentAbstract;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
 
 @Document(collection = TestResult.COLLECTION_NAME)
 public class TestResult extends AuditableDocumentAbstract {

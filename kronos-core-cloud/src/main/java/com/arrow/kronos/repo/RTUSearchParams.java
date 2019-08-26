@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.EnumSet;
 import java.util.Set;
 
-import com.arrow.acn.client.model.RightToUseStatus;
+import moonstone.acn.client.model.RightToUseStatus;
 
 public class RTUSearchParams extends KronosDocumentSearchParams implements Serializable {
 	private static final long serialVersionUID = 3405784362510255315L;

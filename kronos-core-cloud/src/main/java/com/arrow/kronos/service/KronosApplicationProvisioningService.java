@@ -13,9 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acs.AcsRuntimeException;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.YesNoInherit;
 import com.arrow.kronos.data.DeviceActionType;
 import com.arrow.kronos.data.DeviceType;
 import com.arrow.kronos.data.IoTProvider;
@@ -32,6 +29,10 @@ import com.arrow.pegasus.data.profile.Zone;
 import com.arrow.pegasus.data.security.Role;
 import com.arrow.pegasus.util.CoreConfigurationPropertyUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import moonstone.acs.AcsRuntimeException;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.YesNoInherit;
 
 @Service
 public class KronosApplicationProvisioningService extends KronosServiceAbstract {

@@ -18,14 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arrow.acn.AcnEventNames;
-import com.arrow.acn.client.model.DeviceStateModel;
-import com.arrow.acn.client.model.DeviceStateRequestModel;
-import com.arrow.acn.client.model.DeviceStateUpdateModel;
-import com.arrow.acn.client.model.DeviceStateValueModel;
-import com.arrow.acs.JsonUtils;
-import com.arrow.acs.client.model.HidModel;
-import com.arrow.acs.client.model.StatusModel;
 import com.arrow.kronos.data.Device;
 import com.arrow.kronos.data.DeviceState;
 import com.arrow.kronos.data.DeviceStateTrans;
@@ -45,6 +37,14 @@ import com.fasterxml.jackson.core.type.TypeReference;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import moonstone.acn.AcnEventNames;
+import moonstone.acn.client.model.DeviceStateModel;
+import moonstone.acn.client.model.DeviceStateRequestModel;
+import moonstone.acn.client.model.DeviceStateUpdateModel;
+import moonstone.acn.client.model.DeviceStateValueModel;
+import moonstone.acs.JsonUtils;
+import moonstone.acs.client.model.HidModel;
+import moonstone.acs.client.model.StatusModel;
 
 @RestController
 @RequestMapping("/api/v1/kronos/devices")

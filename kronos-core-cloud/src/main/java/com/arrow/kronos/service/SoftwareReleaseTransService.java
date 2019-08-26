@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acn.client.model.AcnDeviceCategory;
-import com.arrow.acs.AcsLogicalException;
 import com.arrow.kronos.KronosAuditLog;
 import com.arrow.kronos.data.BaseDeviceAbstract;
 import com.arrow.kronos.data.Device;
@@ -24,6 +22,9 @@ import com.arrow.pegasus.data.AuditLogBuilder;
 import com.arrow.pegasus.data.TempToken;
 import com.arrow.pegasus.repo.params.TempTokenSearchParams;
 import com.arrow.pegasus.service.TempTokenService;
+
+import moonstone.acn.client.model.AcnDeviceCategory;
+import moonstone.acs.AcsLogicalException;
 
 @Service
 public class SoftwareReleaseTransService extends KronosServiceAbstract {

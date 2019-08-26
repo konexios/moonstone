@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-import com.arrow.acs.Loggable;
 import com.arrow.kronos.data.action.GlobalAction;
 import com.arrow.kronos.data.action.GlobalActionInput;
 import com.arrow.kronos.data.action.GlobalActionProperty;
 import com.arrow.kronos.data.action.ParameterValidation.ValidationType;
+
+import moonstone.acs.Loggable;
 
 public abstract class GlobalActionHandlerAbstract extends Loggable implements GlobalActionHandler {
 

@@ -14,10 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.arrow.acn.AcnEventNames;
-import com.arrow.acn.client.model.DeviceRegistrationModel;
-import com.arrow.acs.AcsLogicalException;
-import com.arrow.acs.JsonUtils;
 import com.arrow.kronos.DeviceActionTypeConstants.PostBackURL;
 import com.arrow.kronos.DeviceActionTypeConstants.PostBackURL.ContentType;
 import com.arrow.kronos.KronosAuditLog;
@@ -45,6 +41,11 @@ import com.arrow.pegasus.data.profile.Application;
 import com.arrow.pegasus.data.profile.User;
 import com.arrow.pegasus.service.LastLocationService;
 import com.arrow.rhea.data.SoftwareRelease;
+
+import moonstone.acn.AcnEventNames;
+import moonstone.acn.client.model.DeviceRegistrationModel;
+import moonstone.acs.AcsLogicalException;
+import moonstone.acs.JsonUtils;
 
 @Service
 public class DeviceService extends KronosServiceAbstract {
