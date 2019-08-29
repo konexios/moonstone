@@ -8,8 +8,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
+import com.arrow.kronos.service.KronosApplicationProvisioningService;
+import com.arrow.kronos.service.KronosApplicationService;
 import com.arrow.pegasus.CoreConstant;
 import com.arrow.pegasus.data.PlatformConfig;
+import com.arrow.pegasus.data.profile.Application;
+import com.arrow.pegasus.service.CoreCacheService;
 import com.arrow.pegasus.service.PlatformConfigService;
 import com.fasterxml.jackson.core.type.TypeReference;
 
@@ -23,6 +27,12 @@ public class AutoInstallation extends Loggable implements CommandLineRunner {
 	private ApplicationContext context;
 	@Autowired
 	private PlatformConfigService platformConfigService;
+	@Autowired
+	private KronosApplicationService kronosApplicationService;
+	@Autowired
+	private CoreCacheService coreCacheService;
+	@Autowired
+	private KronosApplicationProvisioningService provService;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -51,6 +61,20 @@ public class AutoInstallation extends Loggable implements CommandLineRunner {
 			}
 		} else {
 			logInfo(method, "cfgCount: %d", cfgCount);
+		}
+	}
+
+	void activateDefaultApplication() throws Exception {
+		String method = "activateDefaultApplication";
+		long appCount = kronosApplicationService.getKronosApplicationRepository().count();
+		if (appCount == 0) {
+			Application kronos = coreCacheService.findApplicationByName("default-kronos");
+			if (kronos != null) {
+				provService.provisionApplication(kronos.getId(), true, CoreConstant.ADMIN_USER);
+				logInfo(method, "provisioned default application!");
+			}
+		} else {
+			logInfo(method, "appCount: %d", appCount);
 		}
 	}
 }
