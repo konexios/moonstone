@@ -39,6 +39,7 @@ public class AutoInstallation extends Loggable implements CommandLineRunner {
 		String method = "run";
 		try {
 			checkCreatePlatformConfig();
+			provisionDefaultApplication();
 		} catch (Exception e) {
 			logError(method, e);
 			throw e;
@@ -64,7 +65,7 @@ public class AutoInstallation extends Loggable implements CommandLineRunner {
 		}
 	}
 
-	void activateDefaultApplication() throws Exception {
+	void provisionDefaultApplication() throws Exception {
 		String method = "activateDefaultApplication";
 		long appCount = kronosApplicationService.getKronosApplicationRepository().count();
 		if (appCount == 0) {
