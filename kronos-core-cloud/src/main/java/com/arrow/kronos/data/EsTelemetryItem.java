@@ -37,7 +37,7 @@ public class EsTelemetryItem implements Serializable {
 	@Field(type = FieldType.Keyword)
 	private TelemetryItemType type;
 
-	@Field(type = FieldType.Date, format = DateFormat.t_time)
+	@Field(type = FieldType.Date)
 	private long timestamp;
 
 	@Field(type = FieldType.Text)
