@@ -5,13 +5,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import moonstone.acn.client.model.TelemetryItemModel;
 import moonstone.acn.client.model.TelemetryItemType;
 import moonstone.acs.AcsSystemException;
 
-@Document(indexName = EsTelemetryItem.INDEX, type = EsTelemetryItem.TYPE, createIndex = false)
+@Document(indexName = EsTelemetryItem.INDEX, type = EsTelemetryItem.TYPE, createIndex = true)
 public class EsTelemetryItem implements Serializable {
 
 	public static final String INDEX = "telemetry";
@@ -21,20 +24,50 @@ public class EsTelemetryItem implements Serializable {
 
 	@Id
 	private String id;
+
+	@Field(type = FieldType.Keyword)
 	private String applicationId;
+
+	@Field(type = FieldType.Keyword)
 	private String deviceId;
+
+	@Field(type = FieldType.Keyword)
 	private String name;
+
+	@Field(type = FieldType.Keyword)
 	private TelemetryItemType type;
+
+	@Field(type = FieldType.Date, format = DateFormat.t_time)
 	private long timestamp;
+
+	@Field(type = FieldType.Text)
 	private String strValue;
+
+	@Field(type = FieldType.Long)
 	private Long intValue;
+
+	@Field(type = FieldType.Double)
 	private Double floatValue;
+
+	@Field(type = FieldType.Boolean)
 	private Boolean boolValue;
+
+	@Field(type = FieldType.Date, format = DateFormat.date)
 	private LocalDate dateValue;
+
+	@Field(type = FieldType.Date, format = DateFormat.date_time)
 	private LocalDateTime datetimeValue;
+
+	@Field(type = FieldType.Text)
 	private String intSqrValue;
+
+	@Field(type = FieldType.Text)
 	private String floatSqrValue;
+
+	@Field(type = FieldType.Text)
 	private String intCubeValue;
+
+	@Field(type = FieldType.Text)
 	private String floatCubeValue;
 
 	public TelemetryItemModel toModel() {
