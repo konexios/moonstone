@@ -98,7 +98,7 @@ public class TelemetryItemModels {
 		}
 
 		public TelemetryItemChartModel(EsTelemetryItem telemetryItem) {
-			this.t = telemetryItem.getTimestamp();
+			this.t = telemetryItem.getTimestamp().toEpochMilli();
 			this.v = telemetryItem.value().toString();
 		}
 

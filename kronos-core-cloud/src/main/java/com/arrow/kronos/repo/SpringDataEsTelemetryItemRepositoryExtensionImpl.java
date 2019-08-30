@@ -42,16 +42,14 @@ public class SpringDataEsTelemetryItemRepositoryExtensionImpl extends EsReposito
 	private static final Comparator<EsTelemetryItem> ASC_COMPARATOR = new Comparator<EsTelemetryItem>() {
 		@Override
 		public int compare(EsTelemetryItem o1, EsTelemetryItem o2) {
-			long diff = o1.getTimestamp() - o2.getTimestamp();
-			return diff < 0 ? -1 : (diff > 0 ? 1 : 0);
+			return o1.getTimestamp().compareTo(o2.getTimestamp());
 		}
 	};
 
 	private static final Comparator<EsTelemetryItem> DESC_COMPARATOR = new Comparator<EsTelemetryItem>() {
 		@Override
 		public int compare(EsTelemetryItem o1, EsTelemetryItem o2) {
-			long diff = o2.getTimestamp() - o1.getTimestamp();
-			return diff < 0 ? -1 : (diff > 0 ? 1 : 0);
+			return o2.getTimestamp().compareTo(o1.getTimestamp());
 		}
 	};
 

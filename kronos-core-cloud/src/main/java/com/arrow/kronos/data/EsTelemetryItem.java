@@ -1,6 +1,7 @@
 package com.arrow.kronos.data;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -38,7 +39,7 @@ public class EsTelemetryItem implements Serializable {
 	private TelemetryItemType type;
 
 	@Field(type = FieldType.Date)
-	private long timestamp;
+	private Instant timestamp;
 
 	@Field(type = FieldType.Text)
 	private String strValue;
@@ -74,7 +75,7 @@ public class EsTelemetryItem implements Serializable {
 		TelemetryItemModel model = new TelemetryItemModel();
 		model.setName(name);
 		model.setType(type);
-		model.setTimestamp(timestamp);
+		model.setTimestamp(timestamp.toEpochMilli());
 		model.setStrValue(strValue);
 		model.setIntValue(intValue);
 		model.setFloatValue(floatValue);
@@ -142,11 +143,11 @@ public class EsTelemetryItem implements Serializable {
 		this.type = type;
 	}
 
-	public long getTimestamp() {
+	public Instant getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(long timestamp) {
+	public void setTimestamp(Instant timestamp) {
 		this.timestamp = timestamp;
 	}
 
