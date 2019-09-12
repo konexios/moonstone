@@ -25,36 +25,34 @@ import com.arrow.kronos.util.ActionHelper;
 import moonstone.acs.AcsLogicalException;
 
 @Component
-public class ActionProcessor extends TelemetryProcessorAbstract {
+public class ActionProcessor extends KafkaTelemetryProcessorAbstract {
 
 	private JexlEngine jexlEngine = new JexlBuilder().strict(true).silent(false).create();
 
 	public ActionProcessor() {
-		super(KronosEngineConstants.ProcessorQueue.ACTION);
+		super(KronosEngineConstants.KafkaTelemetryProcessor.ACTION);
 	}
 
 	protected void doProcessTelemetry(TelemetryWrapper wrapper) {
 		String method = "doProcessTelemetry";
 
 		try {
-			// Device device =
-			// getDeviceMemCache().get(wrapper.getDeviceId()).orElse(null);
 			Device device = getContext().getKronosCache().findDeviceById(wrapper.getDeviceId());
 			Assert.notNull(device, "device not found: " + wrapper.getDeviceId());
 			device.setRefDeviceType(getContext().getKronosCache().findDeviceTypeById(device.getDeviceTypeId()));
 			Assert.notNull(device.getRefDeviceType(), "device type not found: " + device.getDeviceTypeId());
 			logInfo(method, "deviceUid: %s, deviceName: %s, applicationId: %s", device.getUid(), device.getName(),
-			        device.getApplicationId());
+					device.getApplicationId());
 			for (DeviceActionWrapper action : ActionHelper.getDeviceActionWrappers(getContext(), wrapper, device)) {
 				logInfo(method, "iterating over device actions: %s, enabled: %s, isNoTelemetry: %s, isNotBlank: %s",
-				        action.getDescription(), action.isEnabled(), !action.isNoTelemetry(),
-				        !StringUtils.isBlank(action.getCriteria()));
+						action.getDescription(), action.isEnabled(), !action.isNoTelemetry(),
+						!StringUtils.isBlank(action.getCriteria()));
 				if (action.isEnabled() && !action.isNoTelemetry() && !StringUtils.isBlank(action.getCriteria())) {
 					try {
 						DeviceActionType deviceActionType = getContext().getKronosCache()
-						        .findDeviceActionTypeById(action.getDeviceActionTypeId());
+								.findDeviceActionTypeById(action.getDeviceActionTypeId());
 						Assert.notNull(deviceActionType,
-						        "deviceActionType not found: " + action.getDeviceActionTypeId());
+								"deviceActionType not found: " + action.getDeviceActionTypeId());
 
 						action.setRefDeviceActionType(deviceActionType);
 						JexlExpression expr = jexlEngine.createExpression(action.getCriteria());
@@ -79,7 +77,7 @@ public class ActionProcessor extends TelemetryProcessorAbstract {
 							event.setStatus(DeviceEventStatus.Open);
 							boolean created = getContext().getDeviceEventService().createOrUpdate(event, action);
 							logInfo(method, "createOrUpdate action: %s, created: %s",
-							        action.getRefDeviceActionType().getName(), created);
+									action.getRefDeviceActionType().getName(), created);
 
 							// send to action handler
 							if (created) {
@@ -99,10 +97,10 @@ public class ActionProcessor extends TelemetryProcessorAbstract {
 						}
 					} catch (JexlException e) {
 						logError(method, "deviceId: %s, uid: %s, criteria: %s, JEXL ERROR: %s", device.getId(),
-						        device.getUid(), action.getCriteria(), e.getMessage());
+								device.getUid(), action.getCriteria(), e.getMessage());
 					} catch (Throwable t) {
 						logError(method, "deviceId: %s, uid: %s, criteria: %s, UNKNOWN ERROR: %s", device.getId(),
-						        device.getUid(), action.getCriteria(), t);
+								device.getUid(), action.getCriteria(), t);
 					}
 				} else {
 					logDebug(method, "action is disabled or empty criteria: %s", action);
