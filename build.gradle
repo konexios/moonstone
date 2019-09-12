@@ -135,7 +135,7 @@ subprojects {
         testCompile 'junit:junit:4.12'
     }
 
-    version = '19.2'
+    version = '19.2.1'
     
     compileJava.dependsOn(processResources)
 

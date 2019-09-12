@@ -23,7 +23,7 @@ public class TelemetryItemLineChartModel implements Serializable {
 	}
 
 	public TelemetryItemLineChartModel(EsTelemetryItem telemetryItem) {
-		this.t = telemetryItem.getTimestamp().toEpochMilli();
+		this.t = telemetryItem.getTimestamp();
 		this.v = telemetryItem.value().toString();
 	}
 

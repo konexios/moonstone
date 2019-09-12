@@ -1,6 +1,5 @@
 package com.arrow.kronos.processor;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -64,7 +63,7 @@ public class EsTelemetryProcessor extends KafkaTelemetryProcessorAbstract {
 				esItem.setApplicationId(item.getApplicationId());
 				esItem.setName(item.getName());
 				esItem.setType(item.getType());
-				esItem.setTimestamp(Instant.ofEpochMilli(item.getTimestamp()));
+				esItem.setTimestamp(item.getTimestamp());
 				esItem.setStrValue(item.getStrValue());
 				esItem.setIntValue(item.getIntValue());
 

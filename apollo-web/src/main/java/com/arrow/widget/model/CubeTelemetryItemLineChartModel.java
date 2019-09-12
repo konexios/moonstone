@@ -24,7 +24,7 @@ public class CubeTelemetryItemLineChartModel extends SquareTelemetryItemLineChar
 		super(telemetryItem);
 
 		String[] values = telemetryItem.value().toString().split("\\|");
-		super.t = telemetryItem.getTimestamp().toEpochMilli();
+		super.t = telemetryItem.getTimestamp();
 		super.v = values[0];
 		this.v2 = values[1];
 		this.v3 = values[2];

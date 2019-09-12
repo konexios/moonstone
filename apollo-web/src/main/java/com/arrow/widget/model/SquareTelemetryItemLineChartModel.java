@@ -25,7 +25,7 @@ public class SquareTelemetryItemLineChartModel extends TelemetryItemLineChartMod
 		super(telemetryItem);
 
 		String[] values = telemetryItem.value().toString().split("\\|");
-		super.t = telemetryItem.getTimestamp().toEpochMilli();
+		super.t = telemetryItem.getTimestamp();
 		super.v = values[0];
 		this.v2 = values[1];
 	}
