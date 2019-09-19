@@ -332,13 +332,6 @@ public abstract class CloudModuleAbstract extends ModuleAbstract implements Clou
 		if (model == null || StringUtils.isEmpty(model.getName())) {
 			logError(method, "ignore invalid payload: %s", payload);
 			throw new SeleneException(String.format("ignore invalid payload: %s", payload));
-		} else {
-			logInfo(method, "\n\n\t SELENE receiving and processing cloud message: \n\n" + message
-					+ "\n\n with GatewayEventModel.name = " + model.getName() + "\n");
-			int i = 1;
-			for (String parameter : model.getParameters().keySet()) {
-				System.out.println("\t\t" + i + ". " + parameter + ":" + model.getParameters().get(parameter) + ". \n");
-			}
 		}
 
 		CoreEventApi eventApi = SelfModule.getInstance().getAcnClient().getCoreEventApi();

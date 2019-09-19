@@ -2,7 +2,9 @@ package moonstone.selene.device.ble.thunderboard.sense;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
+import moonstone.acs.JsonUtils;
 import moonstone.selene.device.ble.BleStates;
 import moonstone.selene.engine.state.State;
 
@@ -30,22 +32,13 @@ public class ThunderboardSenseStates extends BleStates {
 	}
 
 	public Map<String, String> importStates(Map<String, State> newStates) {
-		Map<String, String> states = new HashMap<>();
-		for (String key : newStates.keySet()) {
-			if (key.trim().equalsIgnoreCase("led0") && Boolean.valueOf(newStates.get(key).getValue())) {
-				led0.withValue(Boolean.toString(LED0_BITMASK > 0));
-			} else if (key.trim().equalsIgnoreCase("led1") && Boolean.valueOf(newStates.get(key).getValue())) {
-				led1.withValue(Boolean.toString(LED1_BITMASK > 0));
-			} else if (key.trim().equalsIgnoreCase("led2") && Boolean.valueOf(newStates.get(key).getValue())) {
-				led2.withValue(Boolean.toString(LED2_BITMASK > 0));
-			} else if (key.trim().equalsIgnoreCase("led3") && Boolean.valueOf(newStates.get(key).getValue())) {
-				led3.withValue(Boolean.toString(LED3_BITMASK > 0));
-			} else if (key.trim().equalsIgnoreCase("color")) {
-				color.withValue(String.valueOf(newStates.get(key).getValue()));
-			}
-
-		}
-		return states;
+		Map<String, String> result = new HashMap<>();
+		compareAndUpdateState(result, "led0", led0, newStates);
+		compareAndUpdateState(result, "led1", led1, newStates);
+		compareAndUpdateState(result, "led2", led2, newStates);
+		compareAndUpdateState(result, "led3", led3, newStates);
+		compareAndUpdateState(result, "color", color, newStates);
+		return result;
 	}
 
 	public State getLed0() {
@@ -90,7 +83,15 @@ public class ThunderboardSenseStates extends BleStates {
 
 	@Override
 	public String toString() {
-		return "ThunderboardSenseStates{" + "led0=" + led0 + ", led1=" + led1 + ", led2=" + led2 + ", led3=" + led3
-				+ ", color=" + color + '}';
+		return JsonUtils.toJson(this);
+	}
+
+	private void compareAndUpdateState(Map<String, String> result, String name, State currentState,
+			Map<String, State> newStates) {
+		State newState = newStates.get(name);
+		if (currentState != null && newState != null && !Objects.equals(currentState.getValue(), newState.getValue())) {
+			currentState.setValue(newState.getValue());
+			result.put(name, currentState.getValue());
+		}
 	}
 }

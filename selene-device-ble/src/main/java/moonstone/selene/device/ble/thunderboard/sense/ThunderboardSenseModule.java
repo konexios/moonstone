@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 
+import moonstone.acs.JsonUtils;
 import moonstone.selene.device.ble.BleModuleAbstract;
 import moonstone.selene.device.ble.thunderboard.ThunderboardData;
 import moonstone.selene.device.ble.thunderboard.ThunderboardProperties;
@@ -28,7 +29,7 @@ import moonstone.selene.engine.DeviceData;
 import moonstone.selene.engine.state.StateUpdate;
 
 public class ThunderboardSenseModule extends
-        BleModuleAbstract<ThunderboardSenseInfo, ThunderboardProperties, ThunderboardSenseStates, ThunderboardData> {
+		BleModuleAbstract<ThunderboardSenseInfo, ThunderboardProperties, ThunderboardSenseStates, ThunderboardData> {
 	private final RgbLedsControl rgbLedsControl;
 	private final LedsStateChangeHandler ledsStateChangeHandler;
 
@@ -73,16 +74,14 @@ public class ThunderboardSenseModule extends
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void queueDataForSending(DeviceData data, boolean processSequential) {
-		
-		System.out.println("\n ThunderboardSenseMobile.queueDataForSending()");
-		
+		String method = "queueDataForSending";
 		super.queueDataForSending(data, processSequential);
-
 		SensorDataImpl<? extends SensorData<?>> sensorData = (SensorDataImpl<? extends SensorData<?>>) data;
 		int color = 0;
 		int leds = 0;
 		boolean hasStates = false;
 		for (SensorData<?> sd : sensorData.getSensorDataList()) {
+			logInfo(method, "---> checking sensor: %s", sd.getName());
 			if (Objects.equals(sd.getName(), RgbLedsControl.LEDS)) {
 				leds = ((IntegerSensorData) sd).getData();
 				hasStates = true;
@@ -91,9 +90,11 @@ public class ThunderboardSenseModule extends
 				hasStates = true;
 			}
 		}
+		logInfo(method, "hasStates: %s", hasStates);
 		if (hasStates) {
 			Map<String, String> updatedStates = getStates()
-			        .importStates(ThunderboardSenseStates.extractStates(color, leds));
+					.importStates(ThunderboardSenseStates.extractStates(color, leds));
+			logInfo(method, "updatedStates: %s", JsonUtils.toJson(updatedStates));
 			if (!updatedStates.isEmpty()) {
 				queueStatesForSending(new StateUpdate().withStates(updatedStates));
 			}

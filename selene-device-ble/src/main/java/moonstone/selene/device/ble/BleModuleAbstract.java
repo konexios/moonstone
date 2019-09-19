@@ -210,14 +210,14 @@ public abstract class BleModuleAbstract<Info extends BleInfo, Prop extends BlePr
 
 		// start pollingTimer
 		pollingTimer = new Timer();
-		logInfo(method, "\n\nScheduling PollingTimerTask for execution every %s \n",
-				getProperties().getSampleIntervalMs());
+		logInfo(method, "pollingTimer sampleIntervalMs: %d", getProperties().getSampleIntervalMs());
 		pollingTimer.schedule(new PollingTimerTask(), 0L, getProperties().getSampleIntervalMs());
 		logInfo(method, "pollingTimer started!");
 
 		// start sendingTimer
 		sendingTimer = new Timer();
-		sendingTimer.schedule(new SendingTimerTask(), 0L, getProperties().getSampleIntervalMs());
+		logInfo(method, "sendingTimer sampleIntervalMs: %d", getProperties().getSampleIntervalMs());
+		sendingTimer.schedule(new SendingTimerTask(), 500L, getProperties().getSampleIntervalMs());
 		logInfo(method, "sendingTimer started!");
 	}
 
@@ -288,23 +288,24 @@ public abstract class BleModuleAbstract<Info extends BleInfo, Prop extends BlePr
 	class PollingTimerTask extends TimerTask {
 		@Override
 		public void run() {
-			logInfo("PollingTimerTask ", "run() starts ...");
+			String method = "PollingTimerTask";
+			logInfo(method, "...");
 			passiveSensors.stream().filter(sensor -> sensor.getProperties().isEnabled()).forEach(sensor -> {
 				byte[] data = sensor.readValue();
-
-				StringBuffer dataValue = new StringBuffer();
-				for (byte value : data) {
-					dataValue.append(" " + value);
-				}
-
-				logInfo("PollingTimerTask ", sensor.getName() + " has value " + dataValue);
-
-				if (!getProperties().isUseDbus() && data != null) {
+				if (data != null) {
+					StringBuilder dataValue = new StringBuilder();
+					for (byte value : data) {
+						dataValue.append(" " + value);
+					}
+					logInfo(method, "name: %s, value: %s", sensor.getName(), dataValue);
 					handleNotification(sensor, data);
+					if (!getProperties().isUseDbus() && data != null) {
+						handleNotification(sensor, data);
+					}
 				}
 			});
 
-			logInfo("PollingTimerTask ", "run() completes ...");
+			logInfo(method, "done");
 		}
 	}
 
