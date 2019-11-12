@@ -7,7 +7,7 @@ Project **Moonstone** is the open source version of the popular **Arrow Connect 
 Project moonstone uses [Gradle](https://gradle.org) build tool.  Build requires **JDK 8**, [NodeJS](https://nodejs.org), and [npm](https://www.npmjs.com)
 
 ```
-git clone https://github.com/arrow-acs/moonstone.git
+git clone https://github.com/konexios/moonstone.git
 cd moonstone
 gradle build
 ```
