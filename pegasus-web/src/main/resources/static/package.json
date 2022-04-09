@@ -30,7 +30,7 @@
     "bootstrap": "~3.3.6",
     "font-awesome": "~4.7.0",
     "jquery": "~2.1.3",
-    "moment": "~2.13.0",
+    "moment": "~2.29.2",
     "moment-timezone": "~0.5.4",
     "spin.js": "~2.3.2",
     "stompjs": "~2.3.3"
