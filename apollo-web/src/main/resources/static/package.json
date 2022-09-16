@@ -27,7 +27,7 @@
     "angular-toastr": "^1.7.0",
     "angular-tree-control": "~0.2.26",
     "angular-ui-grid": "~3.0.7",
-    "bootstrap": "~3.3.6",
+    "bootstrap": "~3.4.1",
     "font-awesome": "~4.7.0",
     "javascript-detect-element-resize": "~0.5.3",
     "jquery": "~2.1.3",
